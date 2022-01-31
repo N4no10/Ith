@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentation.ui.fragments.login.LoginFragment"
+    >
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motionBackgroundLoginML"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffff"
+        app:layoutDescription="@xml/background_login_scene">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guiaCentralGL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="1.5" />
+
+        <ImageView
+            android:id="@+id/fotoBackgroundIV"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/image_backgorund_login"
+            app:layout_constraintBottom_toTopOf="@+id/guiaCentralGL"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

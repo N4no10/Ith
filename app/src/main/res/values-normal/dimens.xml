@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="with_form_login">300dp</dimen>
+    <dimen name="height_form_login">0.5945946</dimen>
+    <dimen name="translation_x_background_login">-32dp</dimen>
+</resources>

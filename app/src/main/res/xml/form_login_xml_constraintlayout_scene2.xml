@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1700"
+        motion:motionInterpolator="cubic(0.97,0,0.26,0)"
+        motion:autoTransition="animateToEnd">
+       <KeyFrameSet>
+           <KeyAttribute
+               motion:motionTarget="@+id/contentLoginCV"
+               motion:framePosition="0"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/fotoCV"
+               motion:framePosition="0"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/contentLoginCV"
+               motion:framePosition="50"
+               android:alpha="0" />
+           <KeyAttribute
+               motion:motionTarget="@+id/fotoCV"
+               motion:framePosition="50"
+               android:alpha="0" />
+       </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/contentLoginCV"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            motion:layout_constraintTop_toTopOf="@+id/guidelineCardViewDown"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintBottom_toTopOf="@+id/guidelineCardViewDown"
+            android:alpha="1" />
+        <Constraint
+            android:id="@+id/fotoCV"
+            motion:layout_constraintEnd_toEndOf="@+id/contentLoginCV"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            motion:layout_constraintBottom_toTopOf="@+id/contentLoginCV"
+            motion:layout_constraintTop_toTopOf="@+id/contentLoginCV"
+            motion:layout_constraintStart_toStartOf="@+id/contentLoginCV" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/contentLoginCV"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="24dp"
+            motion:layout_constraintTop_toTopOf="@+id/guidelineCardViewDown"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintBottom_toTopOf="@+id/guidelineCardViewDown"
+            android:alpha="1"
+            android:layout_marginBottom="0dp" />
+        <Constraint
+            android:id="@+id/fotoCV"
+            motion:layout_constraintEnd_toEndOf="@+id/contentLoginCV"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            motion:layout_constraintBottom_toTopOf="@+id/contentLoginCV"
+            motion:layout_constraintTop_toTopOf="@+id/contentLoginCV"
+            motion:layout_constraintStart_toStartOf="@+id/contentLoginCV" />
+        <Constraint
+            android:id="@+id/guidelineCardViewDown"
+            motion:layout_constraintGuide_percent="0.6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </ConstraintSet>
+</MotionScene>
