@@ -1,9 +1,7 @@
-package cu.gob.ith.presentation.ui.activities;
+package cu.gob.ith.presentation.ui.activities.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -26,7 +24,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void initView() {
         uiBind.layoutFormLogin.buttonLoginIB.setOnClickListener(v->{
+            uiBind.layoutFormLogin.buttonLoginIB.startAnimation();
             startActivity(new Intent(this, MainActivity.class));
+
         });
 
     }

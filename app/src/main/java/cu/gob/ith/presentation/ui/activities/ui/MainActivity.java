@@ -1,4 +1,4 @@
-package cu.gob.ith.presentation.ui.activities;
+package cu.gob.ith.presentation.ui.activities.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;

@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/transparent"
-        app:layoutDescription="@xml/form_login_xml_constraintlayout_scene2">
+        app:layoutDescription="@xml/form_login_xml_constraintlayout_scene">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/contentLoginCV"

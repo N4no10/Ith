@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ith" >
         <activity
-            android:name=".presentation.ui.activities.LoginActivity"
+            android:name=".presentation.ui.activities.ui.LoginActivity"
             android:exported="true"
             android:theme="@style/ThemeSplash" >
             <intent-filter>
@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.ui.activities.MainActivity"
+            android:name=".presentation.ui.activities.ui.MainActivity"
             android:exported="true" >
         </activity>
     </application>
