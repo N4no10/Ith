@@ -1,7 +1,6 @@
-package cu.gob.ith.presentation.ui.fragments.menu;
+package cu.gob.ith.presentation.activities.main.fragments.menu;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,9 @@ import androidx.fragment.app.Fragment;
 
 import cu.gob.ith.R;
 import cu.gob.ith.databinding.FragmentMenuBinding;
+import dagger.hilt.android.AndroidEntryPoint;
 
+@AndroidEntryPoint
 public class MenuFragment extends Fragment {
 
     private FragmentMenuBinding uiBind;
@@ -37,8 +38,6 @@ public class MenuFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-       // getResources().getDrawable(R.drawable.ic_logout);
 
     }
 

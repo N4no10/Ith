@@ -14,7 +14,7 @@
             android:id="@+id/bienvenidoTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bienvenido asdhasudhausdasd asdasdsad asfdafdf df dfdf df556 77 77 fgg fgfgf 4 asfdafdf df dfdf df556 77 77 fgg fgfgf 4 asfdafdf df dfdf df556 77 77 fgg fgfgf 4 Arnaldooo!!!"
+            android:text="@string/lorem_ipsum"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"

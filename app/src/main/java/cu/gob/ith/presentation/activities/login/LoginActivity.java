@@ -1,4 +1,4 @@
-package cu.gob.ith.presentation.ui.activities.ui;
+package cu.gob.ith.presentation.activities.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil;
 
 import cu.gob.ith.R;
 import cu.gob.ith.databinding.ActivityLoginBinding;
-import cu.gob.ith.presentation.util.Util;
+import cu.gob.ith.presentation.activities.main.ui.MainActivity;
 
 public class LoginActivity extends AppCompatActivity {
 

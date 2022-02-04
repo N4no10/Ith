@@ -4,47 +4,38 @@
     xmlns:binding="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="title"
             type="String" />
     </data>
 
-   <!-- <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contentCL"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        >-->
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/contentCL"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+        <include
+            android:id="@+id/toolbarLayout"
+            layout="@layout/toolbar_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            binding:title='@{title}' />
 
-            <include
-                android:id="@+id/toolbarLayout"
-                layout="@layout/toolbar_layout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                binding:title='@{title}'
-                />
+        <fragment
+            android:id="@+id/fragmentContainerView2"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarLayout"
+            app:navGraph="@navigation/navigation_app" />
 
-            <fragment
-                android:id="@+id/fragmentContainerView2"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:defaultNavHost="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/toolbarLayout"
-                app:navGraph="@navigation/navigation_app" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-   <!-- </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </layout>

@@ -6,6 +6,6 @@
     app:startDestination="@id/menuFragment">
     <fragment
         android:id="@+id/menuFragment"
-        android:name="cu.gob.ith.presentation.ui.fragments.menu.MenuFragment"
+        android:name="cu.gob.ith.presentation.activities.main.fragments.menu.MenuFragment"
         android:label="MenuFragment" />
 </navigation>
