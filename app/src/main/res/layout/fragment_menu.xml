@@ -7,15 +7,17 @@
         android:id="@+id/contentMenuCL"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/gris_light"
         >
 
         <TextView
             android:id="@+id/bienvenidoTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bienvenido !!!"
+            android:text="Bienvenido asdhasudhausdasd asdasdsad asfdafdf df dfdf df556 77 77 fgg fgfgf 4 asfdafdf df dfdf df556 77 77 fgg fgfgf 4 asfdafdf df dfdf df556 77 77 fgg fgfgf 4 Arnaldooo!!!"
             android:textColor="@color/black"
             android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

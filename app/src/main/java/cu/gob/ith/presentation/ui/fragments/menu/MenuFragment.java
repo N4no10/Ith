@@ -1,6 +1,7 @@
 package cu.gob.ith.presentation.ui.fragments.menu;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,7 @@ public class MenuFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+       // getResources().getDrawable(R.drawable.ic_logout);
 
     }
 

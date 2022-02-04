@@ -13,6 +13,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -50,4 +51,10 @@ dependencies {
 
     //Progress Load Button
     implementation 'br.com.simplepass:loading-button-android:2.2.0'
+
+    //Paging 3
+    def paging_version = "3.0.0-alpha10"
+    implementation "androidx.paging:paging-runtime:$paging_version"
+    //optional dependency for RxJava support
+    implementation "androidx.paging:paging-rxjava3:$paging_version"
 }

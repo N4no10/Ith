@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil;
 
 import cu.gob.ith.R;
 import cu.gob.ith.databinding.ActivityLoginBinding;
+import cu.gob.ith.presentation.util.Util;
 
 public class LoginActivity extends AppCompatActivity {
 

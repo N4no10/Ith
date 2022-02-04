@@ -16,9 +16,7 @@
         android:id="@+id/motionLayoutDrawerMainActivity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutDescription="@xml/xml_motionlayout_drawer_main_activity_scene">
-
-
+        app:layoutDescription="@xml/activity_main_scene">
 
 
         <include
@@ -26,6 +24,7 @@
             layout="@layout/content_menu_nav_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,14 +34,23 @@
         <include
             android:id="@+id/contentMainActivityLayout"
             layout="@layout/content_main_activity"
+            app:layout_wrapBehaviorInParent="vertical_only"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="@id/guideline2"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
 
-    </androidx.constraintlayout.motion.widget.MotionLayout>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="72dp" />
+
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>>
 
 </layout>
