@@ -3,10 +3,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="user_login">User</string>
-    <string name="pass_login">Password</string>
-    <string name="forgot_pass_login">Forgot password?</string>
-    <string name="button_login">SIGN IN</string>
+    <string name="user_login">Usuario</string>
+    <string name="pass_login">Contraseña</string>
+    <string name="forgot_pass_login">¿Olvidó la contraseña?</string>
+    <string name="button_login">Iniciar Sesión</string>
 
     <string name="menu_title">Menú</string>
     <string name="title_activity_responsive">ResponsiveActivity</string>
@@ -20,7 +20,7 @@
     <string name="menu_transform">Transform</string>
     <string name="menu_reflow">Reflow</string>
     <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_settings">Settings</string>
+    <string name="menu_settings">Configuración</string>
 
     <string name="lorem_ipsum_title">Lorem Ipsum"</string>
     <string name="lorem_ipsum">Lorem Ipsum is simply placeholder text of the printing and
@@ -32,11 +32,11 @@
     <string name="image_view_item_transform_content_description">Represents an image view in the
         item
     </string>
-    <string name="log_out">Sign Out</string>
+    <string name="menu_pedido">Pedido</string>
+    <string name="menu_logout">Cerrar Sesión</string>
 
 
     //Preferences
     <string name="preferences_file_name">IthPreferences</string>
-
 
 </resources>

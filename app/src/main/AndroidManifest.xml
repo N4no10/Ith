@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="cu.gob.ith">
+    package="cu.gob.ith" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -15,9 +15,9 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Ith">
         <activity
-            android:name=".presentation.ui.activities.ui.LoginActivity"
+            android:name=".presentation.activities.login.LoginActivity"
             android:exported="true"
-            android:theme="@style/ThemeSplash">
+            android:theme="@style/ThemeSplash" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.ui.activities.ui.MainActivity"
+            android:name=".presentation.activities.main.ui.MainActivity"
             android:exported="true" />
     </application>
 

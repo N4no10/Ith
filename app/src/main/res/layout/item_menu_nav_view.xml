@@ -17,17 +17,18 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        >
 
         <ImageView
             android:id="@+id/iconoMenuIV"
-            android:layout_width="wrap_content"
+            android:layout_width="26dp"
             android:layout_height="wrap_content"
+            android:src='@{icono}'
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars"
-            android:src='@{icono}'
-            />
+            tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/titleMenuTV"

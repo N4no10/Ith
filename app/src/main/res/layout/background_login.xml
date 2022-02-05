@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".presentation.ui.fragments.login.LoginFragment"
+    tools:context=".presentation.activities.main.fragments.login.LoginFragment"
     >
     <androidx.constraintlayout.motion.widget.MotionLayout
         android:id="@+id/motionBackgroundLoginML"

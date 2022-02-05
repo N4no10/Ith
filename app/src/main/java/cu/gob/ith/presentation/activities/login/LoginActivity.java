@@ -1,4 +1,4 @@
-package cu.gob.ith.presentation.ui.activities.ui;
+package cu.gob.ith.presentation.activities.login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import cu.gob.ith.R;
 import cu.gob.ith.databinding.ActivityLoginBinding;
 import cu.gob.ith.domain.interactors.LoginUseCase;
 import cu.gob.ith.domain.model.login.LoginBody;
-import cu.gob.ith.presentation.util.Util;
+import cu.gob.ith.presentation.activities.main.ui.MainActivity;
 import dagger.hilt.android.AndroidEntryPoint;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
