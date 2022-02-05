@@ -10,7 +10,9 @@ import androidx.databinding.DataBindingUtil;
 import cu.gob.ith.R;
 import cu.gob.ith.databinding.ActivityMainBinding;
 import cu.gob.ith.presentation.util.Util;
+import dagger.hilt.android.AndroidEntryPoint;
 
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding uiBind;

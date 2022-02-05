@@ -13,7 +13,9 @@ import androidx.fragment.app.Fragment;
 
 import cu.gob.ith.R;
 import cu.gob.ith.databinding.FragmentMenuBinding;
+import dagger.hilt.android.AndroidEntryPoint;
 
+@AndroidEntryPoint
 public class MenuFragment extends Fragment {
 
     private FragmentMenuBinding uiBind;
