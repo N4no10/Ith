@@ -10,7 +10,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
 import cu.gob.ith.R;
+import cu.gob.ith.data.preferences.UserAppPreferences;
 import cu.gob.ith.databinding.ActivityMainBinding;
 import cu.gob.ith.presentation.activities.main.recyclerview.ItemMenuAdapter;
 import cu.gob.ith.presentation.activities.main.ui.viewmodel.MainActivityViewModel;
@@ -24,11 +27,14 @@ public class MainActivity extends AppCompatActivity {
     private MainActivityViewModel mainActivityViewModel;
     private ActivityMainBinding uiBind;
 
+    @Inject
+    UserAppPreferences userAppPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        uiBind = DataBindingUtil.setContentView(this,R.layout.activity_main);
+        uiBind = DataBindingUtil.setContentView(this, R.layout.activity_main);
         setContentView(uiBind.getRoot());
 
         mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
@@ -44,17 +50,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initNavView() {
+        uiBind.contentNavViewLayout.userHeaderTV.setText(userAppPreferences.getNamePreferences("not Found"));
+        uiBind.contentNavViewLayout.emailHeaderTV.setText(userAppPreferences.getEmailPreferences("not Found"));
         uiBind.contentNavViewLayout.setAdapter(new ItemMenuAdapter(mainActivityViewModel.getItemMenuNavViewList()));
+        uiBind.contentNavViewLayout.logoutItemLayout.getRoot().setOnClickListener(
+                v -> logout()
+        );
     }
 
-    private void initTransformMotionLayout(){
+    private void initTransformMotionLayout() {
         MotionLayout ml = uiBind.motionLayoutDrawerMainActivity;
         ConstraintSet constraintSetEnd = ml.getConstraintSet(R.id.end);
         ConstraintSet.Transform transformContentMainActiv = constraintSetEnd
                 .getConstraint(R.id.contentMainActivityLayout).transform;
         transformContentMainActiv.elevation = 40;
 
-        int translationX = ((int)Util.widthDp(ml.getContext())) - (constraintSetEnd.getConstraint(R.id.guideline2).layout.guideEnd);
+        int translationX = ((int) Util.widthDp(ml.getContext())) - (constraintSetEnd.getConstraint(R.id.guideline2).layout.guideEnd);
         transformContentMainActiv.translationX = translationX;
+    }
+
+    private void logout() {
+        userAppPreferences.clearPreferences();
+        onBackPressed();
     }
 }

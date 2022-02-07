@@ -3,14 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/content_main_activity.xml" value="0.22826086956521738" />
+        <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/content_menu_nav_view.xml" value="0.22826086956521738" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/avatar_1.xml" value="0.2635" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/avatar_2.xml" value="0.2635" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/background_button_login.xml" value="0.2450657894736842" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/background_login_button.xml" value="0.27291666666666664" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/ic_arrow_left.xml" value="0.369" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/ic_logout.xml" value="0.251" />
-        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/ic_pedido_en_linea.xml" value="0.188" />
-        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/ic_settings_black_24dp.xml" value="0.126" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/ic_show_menu.xml" value="0.369" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/ic_user_svgrepo_com.xml" value="0.27291666666666664" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/image_backgorund_login.xml" value="0.3880208333333333" />
@@ -26,14 +27,13 @@
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/activity_main.xml" value="0.16033755274261605" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/background_login.xml" value="0.25" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/content_main_activity.xml" value="0.1" />
-        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/content_menu_nav_view.xml" value="0.43675213675213675" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/content_menu_nav_view.xml" value="0.22" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/content_responsive.xml" value="0.25833333333333336" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/form_login.xml" value="0.2190082644628099" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_menu.xml" value="0.22" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_prueba.xml" value="0.15" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/item_menu_nav_vie.xml" value="0.1" />
-        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/item_menu_nav_view.xml" value="0.25" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/item_prueba_layout.xml" value="0.1513157894736842" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/item_transform.xml" value="0.25833333333333336" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/list_prueba_layout.xml" value="0.2348684210526316" />

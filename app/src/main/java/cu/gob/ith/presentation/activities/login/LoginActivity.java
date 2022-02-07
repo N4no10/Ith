@@ -6,13 +6,16 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 
-import javax.inject.Inject;
+import com.google.android.material.snackbar.Snackbar;
+
+import java.util.Objects;
 
 import cu.gob.ith.R;
 import cu.gob.ith.databinding.ActivityLoginBinding;
-import cu.gob.ith.domain.interactors.LoginUseCase;
 import cu.gob.ith.domain.model.login.LoginBody;
+import cu.gob.ith.presentation.activities.login.viewmodel.LoginActivityViewModel;
 import cu.gob.ith.presentation.activities.main.ui.MainActivity;
 import dagger.hilt.android.AndroidEntryPoint;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -25,17 +28,16 @@ import io.reactivex.rxjava3.disposables.Disposable;
 public class LoginActivity extends AppCompatActivity {
 
     private ActivityLoginBinding uiBind;
+    private LoginActivityViewModel loginActivityViewModel;
 
-    @Inject
-    LoginUseCase loginUseCase;
-
-    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         uiBind = DataBindingUtil.setContentView(this, R.layout.activity_login);
         setContentView(uiBind.getRoot());
+        loginActivityViewModel = new ViewModelProvider(this).get(LoginActivityViewModel.class);
 
         initView();
     }
@@ -44,9 +46,9 @@ public class LoginActivity extends AppCompatActivity {
         uiBind.layoutFormLogin.buttonLoginIB.setOnClickListener(v -> {
             uiBind.layoutFormLogin.buttonLoginIB.startAnimation();
 
-            LoginBody loginBody = new LoginBody(uiBind.layoutFormLogin.userTextInputET.getText().toString(),
-                    uiBind.layoutFormLogin.passTextInputET.getText().toString());
-            loginUseCase.execute(loginBody)
+            LoginBody loginBody = new LoginBody(Objects.requireNonNull(uiBind.layoutFormLogin.userTextInputET.getText()).toString(),
+                    Objects.requireNonNull(uiBind.layoutFormLogin.passTextInputET.getText()).toString());
+            loginActivityViewModel.getLoginUseCase().execute(loginBody)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new CompletableObserver() {
                         @Override
@@ -65,6 +67,10 @@ public class LoginActivity extends AppCompatActivity {
                         public void onError(@NonNull Throwable e) {
                             uiBind.layoutFormLogin.buttonLoginIB.revertAnimation();
 
+                            if (e.getMessage().contains("401"))
+                                Snackbar.make(uiBind.getRoot(),
+                                        R.string.unauthorized_401,
+                                        Snackbar.LENGTH_SHORT).show();
                             Log.e("TAG", "onError: " + e.getMessage());
                         }
                     });

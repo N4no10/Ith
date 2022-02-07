@@ -38,5 +38,5 @@
 
     //Preferences
     <string name="preferences_file_name">IthPreferences</string>
-
+    <string name="unauthorized_401">Usuario o Contraseña Incorrectas</string>
 </resources>
