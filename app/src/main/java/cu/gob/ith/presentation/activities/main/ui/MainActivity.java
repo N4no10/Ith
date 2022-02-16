@@ -65,8 +65,30 @@ public class MainActivity extends AppCompatActivity {
                 .getConstraint(R.id.contentMainActivityLayout).transform;
         transformContentMainActiv.elevation = 40;
 
-        int translationX = ((int) Util.widthDp(ml.getContext())) - (constraintSetEnd.getConstraint(R.id.guideline2).layout.guideEnd);
-        transformContentMainActiv.translationX = translationX;
+        transformContentMainActiv.translationX = ((int) Util.widthDp(ml.getContext())) -
+                (constraintSetEnd.getConstraint(R.id.guideline2).layout.guideEnd);
+
+        uiBind.motionLayoutDrawerMainActivity.addTransitionListener(new MotionLayout.TransitionListener() {
+            @Override
+            public void onTransitionStarted(MotionLayout motionLayout, int startId, int endId) {
+
+            }
+
+            @Override
+            public void onTransitionChange(MotionLayout motionLayout, int startId, int endId, float progress) {
+
+            }
+
+            @Override
+            public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
+                mainActivityViewModel.setColapsedMainContent(motionLayout.getProgress() != 0);
+            }
+
+            @Override
+            public void onTransitionTrigger(MotionLayout motionLayout, int triggerId, boolean positive, float progress) {
+
+            }
+        });
     }
 
     private void logout() {
