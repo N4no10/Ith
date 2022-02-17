@@ -1,19 +1,45 @@
 package cu.gob.ith.domain.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Categoria {
-    private String title;
+    private String nombreFamilia;
+    private String codFamilia;
+    private String productosFamilia;
     private boolean selected;
 
-    public Categoria(String title) {
-        this.title = title;
+    public String getCodFamilia() {
+        return codFamilia;
     }
 
-    public String getTitle() {
-        return title;
+    public void setCodFamilia(String codFamilia) {
+        this.codFamilia = codFamilia;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public String getProductosFamilia() {
+        return productosFamilia;
+    }
+
+    public void setProductosFamilia(String productosFamilia) {
+        this.productosFamilia = productosFamilia;
+    }
+
+    public Categoria(String nombreFamilia) {
+        this.nombreFamilia = nombreFamilia;
+    }
+
+    public Categoria(String nombreFamilia, String codFamilia, String productosFamilia) {
+        this.nombreFamilia = nombreFamilia;
+        this.codFamilia = codFamilia;
+        this.productosFamilia = productosFamilia;
+    }
+
+    public String getNombreFamilia() {
+        return nombreFamilia;
+    }
+
+    public void setNombreFamilia(String nombreFamilia) {
+        this.nombreFamilia = nombreFamilia;
     }
 
     public boolean isSelected() {

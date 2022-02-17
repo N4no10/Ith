@@ -26,6 +26,7 @@ import cu.gob.ith.presentation.activities.main.fragments.menu.recyclerview.produ
 import cu.gob.ith.presentation.activities.main.fragments.menu.viewmodel.MenuFragmentViewModel;
 import cu.gob.ith.presentation.activities.main.ui.viewmodel.MainActivityViewModel;
 import dagger.hilt.android.AndroidEntryPoint;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
 @AndroidEntryPoint
 public class MenuFragment extends Fragment implements ItemCategoriaClick {
@@ -69,34 +70,56 @@ public class MenuFragment extends Fragment implements ItemCategoriaClick {
     }
 
     private void loadContent() {
-        List<Categoria> categoriaList = new ArrayList<Categoria>() {{
-            add(new Categoria("Vegetales"));
-            add(new Categoria("Aceites y Grasa"));
-            add(new Categoria("Frutas"));
-            add(new Categoria("Bebidas"));
-            add(new Categoria("Dulces"));
-            add(new Categoria("Panes"));
 
-        }};
-        CategoriasAdapter categoriasAdapter = new CategoriasAdapter(categoriaList);
-        categoriasAdapter.setItemCategoriaClick(this);
-        viewModel.setLoadedData(true);
-        uiBind.listCategoriaLayout.setAdapter(categoriasAdapter);
-        uiBind.listCategoriaLayout.listCategoriaRV.setLayoutManager(
-                new LinearLayoutManager(getContext(),
-                        LinearLayoutManager.HORIZONTAL,
-                        false));
+        viewModel.addCompositeDisposable(
+                viewModel.getGetCategoriasUseCase().execute()
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(categorias -> {
+                            CategoriasAdapter categoriasAdapter = new CategoriasAdapter(categorias);
+                            categoriasAdapter.setItemCategoriaClick(this);
+                            viewModel.setLoadedData(true);
+                            uiBind.listCategoriaLayout.setAdapter(categoriasAdapter);
+                            uiBind.listCategoriaLayout.listCategoriaRV.setLayoutManager(
+                                    new LinearLayoutManager(getContext(),
+                                            LinearLayoutManager.HORIZONTAL,
+                                            false));
+                        }, throwable -> {
+                            Log.e("GetCategoriasList", "loadContent: " + throwable.getMessage());
+                        })
+        );
+//        List<Categoria> categoriaList = new ArrayList<Categoria>() {{
+//            add(new Categoria("Vegetales"));
+//            add(new Categoria("Aceites y Grasa"));
+//            add(new Categoria("Frutas"));
+//            add(new Categoria("Bebidas"));
+//            add(new Categoria("Dulces"));
+//            add(new Categoria("Panes"));
+//
+//        }};
+//        CategoriasAdapter categoriasAdapter = new CategoriasAdapter(categoriaList);
+//        categoriasAdapter.setItemCategoriaClick(this);
+//        viewModel.setLoadedData(true);
+//        uiBind.listCategoriaLayout.setAdapter(categoriasAdapter);
+//        uiBind.listCategoriaLayout.listCategoriaRV.setLayoutManager(
+//                new LinearLayoutManager(getContext(),
+//                        LinearLayoutManager.HORIZONTAL,
+//                        false));
     }
 
 
     @Override
     public void clickEvent(Categoria categoria) {
-        Log.e("AAA", "AAA");
 
-        List<Producto> productoList = new ArrayList<>();
-        for (int i = 0 ; i < 200 ; i++)
-            productoList.add(new Producto("Producto No. " + i ));
-        ProductosAdapter productosAdapter = new ProductosAdapter(productoList);
-        uiBind.listProductosByCategoriaLayout.setAdapter(productosAdapter);
+        viewModel.addCompositeDisposable(viewModel.getGetProductosPorCategoriaUseCase().execute(categoria.getCodFamilia())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(productos -> {
+                    ProductosAdapter productosAdapter = new ProductosAdapter(productos);
+                    uiBind.listProductosByCategoriaLayout.setAdapter(productosAdapter);
+                }, throwable -> {
+                    Log.e("GetProductosXCategoria", "clickEvent: " + throwable.getMessage());
+                }));
+
+//        ProductosAdapter productosAdapter = new ProductosAdapter(productoList);
+//        uiBind.listProductosByCategoriaLayout.setAdapter(productosAdapter);
     }
 }

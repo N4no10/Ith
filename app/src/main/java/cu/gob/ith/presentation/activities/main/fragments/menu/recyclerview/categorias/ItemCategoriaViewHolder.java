@@ -1,6 +1,5 @@
 package cu.gob.ith.presentation.activities.main.fragments.menu.recyclerview.categorias;
 
-import android.graphics.Color;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -19,7 +18,7 @@ public class ItemCategoriaViewHolder extends ViewHolderGlobal<Categoria, ItemCat
 
         getUiBind().setCategoria(param);
 
-        Log.e("bind","bind " + param.getTitle() + " " + param.isSelected());
+        Log.e("bind","bind " + param.getNombreFamilia() + " " + param.isSelected());
         if(param.isSelected()) {
             /*getUiBind().motionItemML.setScaleY(1.0f);
             getUiBind().titleTV.setTextColor(Color.parseColor("#FF03DAC5"));*/

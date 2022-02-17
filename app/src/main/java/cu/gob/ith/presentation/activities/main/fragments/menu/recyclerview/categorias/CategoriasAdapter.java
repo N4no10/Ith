@@ -55,7 +55,7 @@ public class CategoriasAdapter extends RecyclerView.Adapter<ItemCategoriaViewHol
     public void setSelectedCategoria(Categoria categoria) {
         categoria.setSelected(true);
         for(Categoria c : categoriaList)
-            if(!c.getTitle().equals(categoria.getTitle()) && c.isSelected())
+            if(!c.getNombreFamilia().equals(categoria.getNombreFamilia()) && c.isSelected())
                 c.setSelected(false);
     }
 }

@@ -80,4 +80,8 @@ public class UserAppPreferences {
     public String getAccessTokenPreferences(String msg) {
         return getPreferenceString(PreferenceConstants.ACCESS_TOKEN, msg);
     }
+
+    public boolean existAccessTokenPreference() {
+        return !getAccessTokenPreferences("").equals("");
+    }
 }

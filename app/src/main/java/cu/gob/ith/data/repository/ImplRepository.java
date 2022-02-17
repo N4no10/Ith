@@ -1,10 +1,14 @@
 package cu.gob.ith.data.repository;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import cu.gob.ith.data.api.model.ApiCategoria;
 import cu.gob.ith.data.api.model.ApiLoginBody;
 import cu.gob.ith.data.api.model.ApiLoginResponse;
+import cu.gob.ith.data.api.model.ApiProducto;
 import cu.gob.ith.data.repository.datasources.DataSourcePreferences;
 import cu.gob.ith.data.repository.datasources.DataSourceRemote;
 import io.reactivex.rxjava3.core.Observable;
@@ -13,8 +17,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 @Singleton
 public class ImplRepository implements Repository {
 
-    private DataSourceRemote dataSourceRemote;
-    private DataSourcePreferences dataSourcePreferences;
+    private final DataSourceRemote dataSourceRemote;
+    private final DataSourcePreferences dataSourcePreferences;
 
 
     @Inject
@@ -28,7 +32,19 @@ public class ImplRepository implements Repository {
         return dataSourceRemote.login(apiLoginBody)
                 .subscribeOn(Schedulers.io())
                 .doOnNext(apiLoginResponse ->
-                    dataSourcePreferences.saveApiLoginBodyResponsePreference(apiLoginResponse)
+                        dataSourcePreferences.saveApiLoginBodyResponsePreference(apiLoginResponse)
                 );
+    }
+
+    @Override
+    public Observable<List<ApiCategoria>> getCategorias() {
+        return dataSourceRemote.getCategorias()
+                .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Observable<List<ApiProducto>> getProductos(String codFamilia) {
+        return dataSourceRemote.getProductos(codFamilia)
+                .subscribeOn(Schedulers.io());
     }
 }

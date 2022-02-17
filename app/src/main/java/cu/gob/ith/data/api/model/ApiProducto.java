@@ -1,34 +1,28 @@
-package cu.gob.ith.domain.model;
+package cu.gob.ith.data.api.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Producto {
-    private String descripcion;
+public class ApiProducto {
+
+    @SerializedName("Referencia")
     private String referencia;
+
+    @SerializedName("Descripcion")
+    private String descripcion;
+
+    @SerializedName("CodUm")
     private String codUm;
+
+    @SerializedName("CodFamilia")
     private String codFamilia;
+
+    @SerializedName("NombreFamilia")
     private String nombreFamilia;
+
+    @SerializedName("PV")
     private String pv;
 
-    public Producto(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public Producto(String descripcion, String referencia, String codUm, String codFamilia, String nombreFamilia, String pv) {
-        this.descripcion = descripcion;
-        this.referencia = referencia;
-        this.codUm = codUm;
-        this.codFamilia = codFamilia;
-        this.nombreFamilia = nombreFamilia;
-        this.pv = pv;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public ApiProducto() {
     }
 
     public String getReferencia() {
@@ -37,6 +31,14 @@ public class Producto {
 
     public void setReferencia(String referencia) {
         this.referencia = referencia;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public String getCodUm() {

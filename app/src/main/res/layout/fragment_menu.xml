@@ -14,7 +14,7 @@
         android:id="@+id/contentMenuCL"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gris_light2"
+        android:background="#F6F6F6"
         >
 
         <androidx.appcompat.widget.SearchView

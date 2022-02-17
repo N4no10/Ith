@@ -8,9 +8,12 @@ import com.google.gson.GsonBuilder;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import cu.gob.ith.data.api.Api;
+import cu.gob.ith.data.api.interceptors.TokenInterceptor;
+import cu.gob.ith.data.preferences.UserAppPreferences;
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
@@ -47,22 +50,29 @@ public class ModuleApi {
 
     @Singleton
     @Provides
-    static OkHttpClient provideHttpClient(HttpLoggingInterceptor interceptor/*, MyInterceptor myInterceptor*/) {
+    static OkHttpClient provideHttpClient(HttpLoggingInterceptor interceptor, TokenInterceptor tokenInterceptor) {
 //        Log.e("OkHttpClient","OkHttpClient Inject ..." + myInterceptor);
         return new OkHttpClient.Builder()
                 .connectTimeout(1, TimeUnit.MINUTES)
                 .readTimeout(5, TimeUnit.MINUTES)
                 .writeTimeout(30, TimeUnit.SECONDS)
                 .addInterceptor(interceptor)
-//                .addInterceptor(myInterceptor)
+                .addInterceptor(tokenInterceptor)
                 .build();
+    }
+
+    @Singleton
+    @Provides
+    static TokenInterceptor provideTokenInterceptor(UserAppPreferences userAppPreferences) {
+        return new TokenInterceptor(userAppPreferences);
     }
 
     @Singleton
     @Provides
     static Retrofit provideRetrofit(/*Gson gson,*/ OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
-                .baseUrl("http://ith-local.cu/api/"/*"http://ithapi.local.cu:80/api/"*/)
+//                .baseUrl(/*"http://ith-local.cu/api/"*/"http://ithapi.local.cu:80/api/")
+                .baseUrl("http://ith.api.local:80/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
