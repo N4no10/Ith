@@ -10,8 +10,8 @@ public class ApiCategoria {
     @SerializedName("NombreFamilia")
     private String nombreFamilia;
 
-    @SerializedName("ProductosFamilia")
-    private String productosFamilia;
+    @SerializedName("ProductosTotales")
+    private String productosTotales;
 
     public ApiCategoria() {
     }
@@ -32,11 +32,11 @@ public class ApiCategoria {
         this.nombreFamilia = nombreFamilia;
     }
 
-    public String getProductosFamilia() {
-        return productosFamilia;
+    public String getProductosTotales() {
+        return productosTotales;
     }
 
-    public void setProductosFamilia(String productosFamilia) {
-        this.productosFamilia = productosFamilia;
+    public void setProductosTotales(String productosTotales) {
+        this.productosTotales = productosTotales;
     }
 }

@@ -12,7 +12,7 @@ public class TransformApiCategoriaToCategoria {
     public static Categoria map(ApiCategoria param) {
         return new Categoria(param.getNombreFamilia(),
                 param.getCodFamilia(),
-                param.getProductosFamilia());
+                param.getProductosTotales());
     }
 
     public static List<Categoria> mapList(List<ApiCategoria> param) {

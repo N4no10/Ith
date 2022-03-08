@@ -37,8 +37,8 @@ public class CategoriasAdapter extends RecyclerView.Adapter<ItemCategoriaViewHol
         holder.bind(categoriaList.get(position));
 
         holder.getUiBind().frameLayout.setOnClickListener(v -> {
-           setSelectedCategoria(categoriaList.get(position));
-           itemCategoriaClick.clickEvent(categoriaList.get(position));
+            setSelectedCategoria(categoriaList.get(position));
+            itemCategoriaClick.clickEvent(categoriaList.get(position));
             notifyDataSetChanged();
         });
     }
@@ -54,8 +54,8 @@ public class CategoriasAdapter extends RecyclerView.Adapter<ItemCategoriaViewHol
 
     public void setSelectedCategoria(Categoria categoria) {
         categoria.setSelected(true);
-        for(Categoria c : categoriaList)
-            if(!c.getNombreFamilia().equals(categoria.getNombreFamilia()) && c.isSelected())
+        for (Categoria c : categoriaList)
+            if (!c.getNombreFamilia().equals(categoria.getNombreFamilia()) && c.isSelected())
                 c.setSelected(false);
     }
 }

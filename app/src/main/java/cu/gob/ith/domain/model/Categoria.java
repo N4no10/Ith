@@ -1,11 +1,9 @@
 package cu.gob.ith.domain.model;
 
-import com.google.gson.annotations.SerializedName;
-
 public class Categoria {
     private String nombreFamilia;
     private String codFamilia;
-    private String productosFamilia;
+    private String productosTotales;
     private boolean selected;
 
     public String getCodFamilia() {
@@ -16,22 +14,22 @@ public class Categoria {
         this.codFamilia = codFamilia;
     }
 
-    public String getProductosFamilia() {
-        return productosFamilia;
+    public String getProductosTotales() {
+        return productosTotales;
     }
 
-    public void setProductosFamilia(String productosFamilia) {
-        this.productosFamilia = productosFamilia;
+    public void setProductosTotales(String productosTotales) {
+        this.productosTotales = productosTotales;
     }
 
     public Categoria(String nombreFamilia) {
         this.nombreFamilia = nombreFamilia;
     }
 
-    public Categoria(String nombreFamilia, String codFamilia, String productosFamilia) {
+    public Categoria(String nombreFamilia, String codFamilia, String productosTotales) {
         this.nombreFamilia = nombreFamilia;
         this.codFamilia = codFamilia;
-        this.productosFamilia = productosFamilia;
+        this.productosTotales = productosTotales;
     }
 
     public String getNombreFamilia() {
