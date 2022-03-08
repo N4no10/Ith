@@ -9,6 +9,7 @@ public class Producto {
     private String codFamilia;
     private String nombreFamilia;
     private String pv;
+    private double cantProducto = 0.0;
 
     public Producto(String descripcion) {
         this.descripcion = descripcion;
@@ -69,5 +70,13 @@ public class Producto {
 
     public void setPv(String pv) {
         this.pv = pv;
+    }
+
+    public double getCantProducto() {
+        return cantProducto;
+    }
+
+    public void setCantProducto(double cantProducto) {
+        this.cantProducto = cantProducto;
     }
 }

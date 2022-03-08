@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="producto"
             type="cu.gob.ith.domain.model.Producto" />
@@ -16,8 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        >
+        android:layout_marginBottom="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/contentCV"
@@ -34,9 +32,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="2dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="28dp"
                 android:fontFamily="@font/myriad_regular"
                 android:text="@{producto.descripcion}"
                 android:textColor="@color/black"
@@ -45,6 +43,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:id="@+id/productPriceTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text='@{"Precio: "+producto.pv+"/"+producto.codUm}'
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@+id/titleTV"
+                app:layout_constraintTop_toBottomOf="@+id/titleTV" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
@@ -52,8 +60,8 @@
             android:layout_width="64dp"
             android:layout_height="70dp"
             android:rotation="0"
-            app:elevation="50dp"
             android:src="@drawable/foto_alimentos"
+            app:elevation="50dp"
             app:layout_constraintBottom_toBottomOf="@+id/contentCV"
             app:layout_constraintEnd_toStartOf="@+id/contentCV"
             app:layout_constraintStart_toStartOf="@+id/contentCV"
@@ -63,7 +71,7 @@
         <include
             android:id="@+id/buttonAddLayout"
             layout="@layout/buttton_item_producto"
-             android:layout_width="0dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="@+id/contentCV"
             app:layout_constraintEnd_toEndOf="@+id/contentCV"

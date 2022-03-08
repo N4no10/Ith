@@ -32,6 +32,21 @@
                 app:srcCompat="@drawable/ic_add"
                 app:tint="@color/white" />
 
+            <TextView
+                android:id="@+id/totalSelectedTV"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="0.0"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@id/restButtonIV"
+                app:layout_constraintEnd_toStartOf="@id/addButtonIV"
+                app:layout_constraintStart_toEndOf="@id/restButtonIV"
+                app:layout_constraintTop_toTopOf="@id/restButtonIV" />
+
             <ImageView
                 android:id="@+id/restButtonIV"
                 android:layout_width="wrap_content"
