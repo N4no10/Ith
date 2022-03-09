@@ -15,13 +15,26 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public Producto(String descripcion, String referencia, String codUm, String codFamilia, String nombreFamilia, String pv) {
+    public Producto(String descripcion, String referencia, String codUm,
+                    String codFamilia, String nombreFamilia, String pv) {
         this.descripcion = descripcion;
         this.referencia = referencia;
         this.codUm = codUm;
         this.codFamilia = codFamilia;
         this.nombreFamilia = nombreFamilia;
         this.pv = pv;
+    }
+
+    public Producto(String descripcion, String referencia,
+                    String codUm, String codFamilia, String nombreFamilia,
+                    String pv, double cantProducto) {
+        this.descripcion = descripcion;
+        this.referencia = referencia;
+        this.codUm = codUm;
+        this.codFamilia = codFamilia;
+        this.nombreFamilia = nombreFamilia;
+        this.pv = pv;
+        this.cantProducto = cantProducto;
     }
 
     public String getDescripcion() {

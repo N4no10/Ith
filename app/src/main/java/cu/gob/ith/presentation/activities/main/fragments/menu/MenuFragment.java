@@ -22,6 +22,7 @@ import cu.gob.ith.domain.model.Categoria;
 import cu.gob.ith.domain.model.Producto;
 import cu.gob.ith.presentation.activities.main.fragments.menu.recyclerview.categorias.CategoriasAdapter;
 import cu.gob.ith.presentation.activities.main.fragments.menu.recyclerview.categorias.ItemCategoriaClick;
+import cu.gob.ith.presentation.activities.main.fragments.menu.recyclerview.productos.ManageProductListUtil;
 import cu.gob.ith.presentation.activities.main.fragments.menu.recyclerview.productos.ProductosAdapter;
 import cu.gob.ith.presentation.activities.main.fragments.menu.viewmodel.MenuFragmentViewModel;
 import cu.gob.ith.presentation.activities.main.ui.viewmodel.MainActivityViewModel;
@@ -34,6 +35,7 @@ public class MenuFragment extends Fragment implements ItemCategoriaClick {
     private FragmentMenuBinding uiBind;
     private MenuFragmentViewModel viewModel;
     private MainActivityViewModel mainActivityViewModel;
+    private ManageProductListUtil manageProductListUtil;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,9 +48,70 @@ public class MenuFragment extends Fragment implements ItemCategoriaClick {
                              Bundle savedInstanceState) {
         uiBind = DataBindingUtil.inflate(inflater, R.layout.fragment_menu, container, false);
         // Inflate the layout for this fragment
-
+        initManageProductListUtil();
 
         return uiBind.getRoot();
+    }
+
+    private void initManageProductListUtil() {
+
+        manageProductListUtil = new ManageProductListUtil() {
+            @Override
+            public boolean updateProduct(Producto producto) {
+                List<Producto> productoList = mainActivityViewModel.getProductosParaPedidosList();
+
+                for (Producto productoElement : productoList
+                ) {
+                    if (producto.getReferencia().equals(productoElement.getReferencia()))
+                        productoElement.setCantProducto(producto.getCantProducto());
+                    return true;
+                }
+                return false;
+            }
+
+            @Override
+            public void addProduct(Producto producto) {
+                mainActivityViewModel.getProductosParaPedidosList().add(
+                        producto
+                );
+
+              /*  new Producto(producto.getDescripcion(),
+                        producto.getReferencia(),
+                        producto.getCodUm(),
+                        producto.getCodFamilia(),
+                        producto.getNombreFamilia(),
+                        producto.getPv(),
+                        producto.getCantProducto())*/
+            }
+
+            @Override
+            public boolean deleteProduct(Producto producto) {
+                List<Producto> productoList = mainActivityViewModel.getProductosParaPedidosList();
+
+                for (Producto productoElement : productoList
+                ) {
+                    if (producto.getReferencia().equals(productoElement.getReferencia())) {
+                        productoList.remove(productoElement);
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            @Override
+            public void updateApiList(List<Producto> apiProductoList) {
+                for (Producto producto : mainActivityViewModel.getProductosParaPedidosList()
+                ) {
+                    for (Producto productoElement : apiProductoList
+                    ) {
+                        if (productoElement.getReferencia().equals(producto.getReferencia())) {
+                            productoElement.setCantProducto(producto.getCantProducto());
+                        }
+                    }
+                }
+            }
+        };
+
     }
 
     @Override
@@ -89,7 +152,7 @@ public class MenuFragment extends Fragment implements ItemCategoriaClick {
                                     new LinearLayoutManager(getContext(),
                                             LinearLayoutManager.HORIZONTAL,
                                             false));
-                            Log.e("Load All","success");
+                            Log.e("Load All", "success");
                         }, throwable -> Log.e("GetCategoriasList", "loadContent: " + throwable.getMessage()))
         );
     }
@@ -101,7 +164,7 @@ public class MenuFragment extends Fragment implements ItemCategoriaClick {
         viewModel.addCompositeDisposable(viewModel.getGetProductosPorCategoriaUseCase().execute(categoria.getCodFamilia())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(productos -> {
-                    ProductosAdapter productosAdapter = new ProductosAdapter(productos);
+                    ProductosAdapter productosAdapter = new ProductosAdapter(productos, manageProductListUtil);
                     uiBind.listProductosByCategoriaLayout.setAdapter(productosAdapter);
                 }, throwable -> Log.e("GetProductosXCategoria", "clickEvent: " + throwable.getMessage())));
     }
