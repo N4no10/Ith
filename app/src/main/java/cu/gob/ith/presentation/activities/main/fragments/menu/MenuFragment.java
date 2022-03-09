@@ -51,7 +51,9 @@ public class MenuFragment extends Fragment implements ItemCategoriaClick {
         uiBind = DataBindingUtil.inflate(inflater, R.layout.fragment_menu, container, false);
         // Inflate the layout for this fragment
         initManageProductListUtil();
+        uiBind.listProductosByCategoriaLayout.contentListCL.setOnClickListener(v -> {
 
+        });
         return uiBind.getRoot();
     }
 
@@ -141,7 +143,7 @@ public class MenuFragment extends Fragment implements ItemCategoriaClick {
 
             @Override
             public void onTransitionChange(MotionLayout motionLayout, int startId, int endId, float progress) {
-                uiBind.listProductosByCategoriaLayout.arrowMoreIVsetRotation(180*progress);
+                uiBind.listProductosByCategoriaLayout.arrowMoreIV.setRotation(180 * progress);
             }
 
             @Override
