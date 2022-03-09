@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="250"
+        android:id="@+id/transitionListProductos">
+       <KeyFrameSet>
+       </KeyFrameSet>
+        <OnClick motion:targetId="@id/arrowMoreIV"
+            motion:clickAction="toggle" />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/listProductosByCategoriaLayout"
+            motion:layout_constraintEnd_toEndOf="@id/listCategoriaLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/listCategoriaLayout"
+            motion:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp" />
+        <Constraint
+            android:id="@+id/buscarProductSV"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:alpha="0.0" />
+        <Constraint
+            android:id="@+id/listCategoriaLayout"
+            motion:layout_constraintEnd_toEndOf="@id/buscarProductSV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@+id/buscarProductSV"
+            motion:layout_constraintStart_toStartOf="@+id/buscarProductSV"
+            android:layout_marginTop="32dp"
+            android:alpha="0.0" />
+    </ConstraintSet>
+</MotionScene>

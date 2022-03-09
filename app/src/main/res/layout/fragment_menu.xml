@@ -10,12 +10,12 @@
         <import type="cu.gob.ith.R"/>
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.motion.widget.MotionLayout
         android:id="@+id/contentMenuCL"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F6F6F6"
-        >
+        app:layoutDescription="@xml/fragment_menu_xml_contentmenucl_scene">
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/buscarProductSV"
@@ -30,8 +30,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:queryBackground="@android:color/transparent"
             app:queryHint="@string/search_hint"
-            bindadapter:fontFamily='@{R.font.myriad_regular}'
-            />
+            bindadapter:fontFamily='@{R.font.myriad_regular}' />
 
 
         <include
@@ -47,14 +46,13 @@
         <include
             android:id="@+id/listProductosByCategoriaLayout"
             layout="@layout/list_productos"
-            android:layout_height="0dp"
             android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginTop="32dp"
-            app:layout_constraintTop_toBottomOf="@id/listCategoriaLayout"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/listCategoriaLayout"
             app:layout_constraintEnd_toEndOf="@id/listCategoriaLayout"
-            />
+            app:layout_constraintStart_toStartOf="@id/listCategoriaLayout"
+            app:layout_constraintTop_toBottomOf="@id/listCategoriaLayout" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

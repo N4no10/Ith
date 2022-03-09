@@ -5,9 +5,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -127,7 +129,30 @@ public class MenuFragment extends Fragment implements ItemCategoriaClick {
         });
 
         currentToolBar();
+        listenerMotionLayoutListProducts();
+    }
 
+    private void listenerMotionLayoutListProducts() {
+        uiBind.contentMenuCL.addTransitionListener(new MotionLayout.TransitionListener() {
+            @Override
+            public void onTransitionStarted(MotionLayout motionLayout, int startId, int endId) {
+
+            }
+
+            @Override
+            public void onTransitionChange(MotionLayout motionLayout, int startId, int endId, float progress) {
+                uiBind.listProductosByCategoriaLayout.arrowMoreIVsetRotation(180*progress);
+            }
+
+            @Override
+            public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
+            }
+
+            @Override
+            public void onTransitionTrigger(MotionLayout motionLayout, int triggerId, boolean positive, float progress) {
+
+            }
+        });
     }
 
     public void initViewModel() {
@@ -160,7 +185,6 @@ public class MenuFragment extends Fragment implements ItemCategoriaClick {
 
     @Override
     public void clickEvent(Categoria categoria) {
-
         viewModel.addCompositeDisposable(viewModel.getGetProductosPorCategoriaUseCase().execute(categoria.getCodFamilia())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(productos -> {

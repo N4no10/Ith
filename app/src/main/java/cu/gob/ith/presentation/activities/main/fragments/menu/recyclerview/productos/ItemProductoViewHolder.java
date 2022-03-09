@@ -25,8 +25,6 @@ public class ItemProductoViewHolder extends ViewHolderGlobal<Producto, ItemProdu
         } else {
             getUiBind().buttonAddLayout.totalSelectedTV.setText("" + param.getCantProducto());
             getUiBind().buttonAddLayout.motionButtonAddML.transitionToEnd();
-
-
         }
 
         super.bind(param);
