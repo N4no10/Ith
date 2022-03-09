@@ -42,4 +42,10 @@
     <string name="search_hint">Buscar Producto</string>
     <string name="tipo_categoria">Tipo de Categoría</string>
     <string name="productos">Productos</string>
+    <string name="menu_nuevo_pedido">Nuevo Pedido</string>
+    <string name="menu_completar_pedido">Completar Pedido</string>
+    <string name="menu_historial_pedido">Historial de Pedidos</string>
+    <string name="menu_inicio">Inicio</string>
+    <string name="inicio_fragment">Inicio</string>
+    <string name="nuevo_pedido_fragment">Nuevo Pedido</string>
 </resources>

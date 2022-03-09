@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    >
+    xmlns:bindadapter="http://schemas.android.com/apk/res-auto">
 
     <data>
         <import type="android.graphics.drawable.Drawable"/>
+        <import type="android.view.View"/>
+        <import type="android.graphics.fonts.Font"/>
+        <import type="cu.gob.ith.R"/>
         <variable
             name="titleItemMenu"
             type="String" />
         <variable
             name="icono"
             type="android.graphics.drawable.Drawable" />
+        <variable
+            name="adapterSubMenu"
+            type="cu.gob.ith.presentation.activities.main.recyclerview.ItemMenuAdapter" />
+        <variable
+            name="isSubMenu"
+            type="Boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,28 +29,45 @@
         android:padding="16dp"
         >
 
-        <ImageView
-            android:id="@+id/iconoMenuIV"
-            android:layout_width="26dp"
-            android:layout_height="wrap_content"
-            android:src='@{icono}'
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <TextView
-            android:id="@+id/titleMenuTV"
+        <LinearLayout
+            android:id="@+id/itemMenuLL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:fontFamily="@font/myriad_regular"
-            android:text='@{titleItemMenu}'
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/iconoMenuIV"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/iconoMenuIV"
-            app:layout_constraintTop_toTopOf="@+id/iconoMenuIV" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iconoMenuIV"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="16dp"
+                android:src='@{icono}'
+                android:visibility='@{icono == null ? View.GONE : View.VISIBLE }'
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/titleMenuTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text='@{titleItemMenu}'
+                android:textColor="@color/white"
+                bindadapter:fontFamily='@{isSubMenu ? R.font.myriad_regular : R.font.myriad_bold}'
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/subMenuRV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:adapter='@{adapterSubMenu}'
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="@id/itemMenuLL"
+            app:layout_constraintTop_toBottomOf="@id/itemMenuLL" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

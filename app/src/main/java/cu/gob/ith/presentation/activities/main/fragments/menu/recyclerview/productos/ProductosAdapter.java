@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,18 +42,8 @@ public class ProductosAdapter extends RecyclerView.Adapter<ItemProductoViewHolde
     public void onBindViewHolder(@NonNull ItemProductoViewHolder holder, int position) {
         Producto producto = productoList.get(position);
         holder.bind(producto);
-        if (producto.getCantProducto() == 0.0) {
-            if (!holder.getUiBind().buttonAddLayout.totalSelectedTV.getText().toString().equals("0.0")) {
-                holder.getUiBind().buttonAddLayout.totalSelectedTV.setText("0.0");
-                holder.getUiBind().buttonAddLayout.exitCL.callOnClick();
-            }
-        } else {
-            if (holder.getUiBind().buttonAddLayout.totalSelectedTV.getText().toString().equals("0.0")) {
-                holder.getUiBind().buttonAddLayout.exitCL.callOnClick();
-            }
-            holder.getUiBind().buttonAddLayout.totalSelectedTV.setText(String.valueOf(producto.getCantProducto()));
-        }
-        holder.getUiBind().buttonAddLayout.exitCL.setOnClickListener(new View.OnClickListener() {
+
+        /*holder.getUiBind().buttonAddLayout.exitCL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (v.getRotation() == 315) {
@@ -61,16 +52,69 @@ public class ProductosAdapter extends RecyclerView.Adapter<ItemProductoViewHolde
                     holder.getUiBind().buttonAddLayout.totalSelectedTV.setText("1.0");
                 }
             }
+        });*/
+        /*holder.getUiBind().buttonAddLayout.motionButtonAddML.addTransitionListener(new MotionLayout.TransitionListener() {
+            @Override
+            public void onTransitionStarted(MotionLayout motionLayout, int startId, int endId) {
+
+            }
+
+            @Override
+            public void onTransitionChange(MotionLayout motionLayout, int startId, int endId, float progress) {
+
+            }
+
+            @Override
+            public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
+                if (motionLayout.getProgress() > 0.0)
+                    producto.setCantProducto(1.0);
+                else
+                    producto.setCantProducto(0.0);
+            }
+
+            @Override
+            public void onTransitionTrigger(MotionLayout motionLayout, int triggerId, boolean positive, float progress) {
+
+            }
+        });*/
+
+        holder.getUiBind().buttonAddLayout.exitCL.setOnClickListener(v->{
+            if(producto.getCantProducto() == 0.0) {
+                producto.setCantProducto(1.0);
+                holder.getUiBind().buttonAddLayout.motionButtonAddML.transitionToEnd();
+                notifyItemChanged(position);
+            }else {
+                producto.setCantProducto(0.0);
+                holder.getUiBind().buttonAddLayout.motionButtonAddML.transitionToStart();
+                notifyItemChanged(position);
+            }
         });
+
         holder.getUiBind().buttonAddLayout.totalSelectedTV.setOnClickListener(v -> createAlertDialog(holder, producto));
-        holder.getUiBind().buttonAddLayout.addButtonIV.setOnClickListener(v -> addProduct(holder, producto));
-        holder.getUiBind().buttonAddLayout.restButtonIV.setOnClickListener(v -> lessProduct(holder, producto));
+        holder.getUiBind().buttonAddLayout.addButtonIV.setOnClickListener(v -> {
+            addProduct(holder, producto);
+            notifyItemChanged(position);
+        });
+        holder.getUiBind().buttonAddLayout.restButtonIV.setOnClickListener(v -> {
+            lessProduct(holder, producto);
+            notifyItemChanged(position);
+        });
 
     }
 
     @Override
     public int getItemCount() {
         return productoList == null ? 0 : productoList.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+    @Override
+    public void setHasStableIds(boolean hasStableIds) {
+        super.setHasStableIds(true);
     }
 
     private void createAlertDialog(ItemProductoViewHolder holder, Producto producto) {
@@ -107,18 +151,11 @@ public class ProductosAdapter extends RecyclerView.Adapter<ItemProductoViewHolde
         String textValue = holder.getUiBind().buttonAddLayout.totalSelectedTV.getText().toString();
         double value = Double.parseDouble(textValue) + 1;
         producto.setCantProducto(value);
-        holder.getUiBind().buttonAddLayout.totalSelectedTV.setText(String.valueOf(value));
     }
 
     private void lessProduct(ItemProductoViewHolder holder, Producto producto) {
         String textValue = holder.getUiBind().buttonAddLayout.totalSelectedTV.getText().toString();
         double value = Double.parseDouble(textValue) - 1;
-        if (value < 1.0)
-            value = 1.0;
         producto.setCantProducto(value);
-
-        holder.getUiBind().buttonAddLayout.totalSelectedTV.setText(String.valueOf(value));
-
-
     }
 }

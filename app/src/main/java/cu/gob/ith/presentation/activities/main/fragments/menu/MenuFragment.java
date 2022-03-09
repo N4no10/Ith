@@ -42,7 +42,7 @@ public class MenuFragment extends Fragment implements ItemCategoriaClick {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         uiBind = DataBindingUtil.inflate(inflater, R.layout.fragment_menu, container, false);
         // Inflate the layout for this fragment
@@ -62,6 +62,9 @@ public class MenuFragment extends Fragment implements ItemCategoriaClick {
             if (!collapsedMainContent /*&& !viewModel.isLoadedData()*/)
                 loadContent();
         });
+
+        currentToolBar();
+
     }
 
     public void initViewModel() {
@@ -69,8 +72,11 @@ public class MenuFragment extends Fragment implements ItemCategoriaClick {
         mainActivityViewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
     }
 
-    private void loadContent() {
+    private void currentToolBar() {
+        mainActivityViewModel.setTitleToolBar(getString(R.string.nuevo_pedido_fragment));
+    }
 
+    private void loadContent() {
         viewModel.addCompositeDisposable(
                 viewModel.getGetCategoriasUseCase().execute()
                         .observeOn(AndroidSchedulers.mainThread())
@@ -83,27 +89,9 @@ public class MenuFragment extends Fragment implements ItemCategoriaClick {
                                     new LinearLayoutManager(getContext(),
                                             LinearLayoutManager.HORIZONTAL,
                                             false));
-                        }, throwable -> {
-                            Log.e("GetCategoriasList", "loadContent: " + throwable.getMessage());
-                        })
+                            Log.e("Load All","success");
+                        }, throwable -> Log.e("GetCategoriasList", "loadContent: " + throwable.getMessage()))
         );
-//        List<Categoria> categoriaList = new ArrayList<Categoria>() {{
-//            add(new Categoria("Vegetales"));
-//            add(new Categoria("Aceites y Grasa"));
-//            add(new Categoria("Frutas"));
-//            add(new Categoria("Bebidas"));
-//            add(new Categoria("Dulces"));
-//            add(new Categoria("Panes"));
-//
-//        }};
-//        CategoriasAdapter categoriasAdapter = new CategoriasAdapter(categoriaList);
-//        categoriasAdapter.setItemCategoriaClick(this);
-//        viewModel.setLoadedData(true);
-//        uiBind.listCategoriaLayout.setAdapter(categoriasAdapter);
-//        uiBind.listCategoriaLayout.listCategoriaRV.setLayoutManager(
-//                new LinearLayoutManager(getContext(),
-//                        LinearLayoutManager.HORIZONTAL,
-//                        false));
     }
 
 
@@ -115,11 +103,6 @@ public class MenuFragment extends Fragment implements ItemCategoriaClick {
                 .subscribe(productos -> {
                     ProductosAdapter productosAdapter = new ProductosAdapter(productos);
                     uiBind.listProductosByCategoriaLayout.setAdapter(productosAdapter);
-                }, throwable -> {
-                    Log.e("GetProductosXCategoria", "clickEvent: " + throwable.getMessage());
-                }));
-
-//        ProductosAdapter productosAdapter = new ProductosAdapter(productoList);
-//        uiBind.listProductosByCategoriaLayout.setAdapter(productosAdapter);
+                }, throwable -> Log.e("GetProductosXCategoria", "clickEvent: " + throwable.getMessage())));
     }
 }

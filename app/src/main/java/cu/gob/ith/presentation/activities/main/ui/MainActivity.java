@@ -1,20 +1,25 @@
 package cu.gob.ith.presentation.activities.main.ui;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
+import androidx.navigation.Navigation;
 
-import java.util.ArrayList;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
 import cu.gob.ith.R;
 import cu.gob.ith.data.preferences.UserAppPreferences;
 import cu.gob.ith.databinding.ActivityMainBinding;
+import cu.gob.ith.presentation.activities.main.recyclerview.ClickItemMenuInterface;
 import cu.gob.ith.presentation.activities.main.recyclerview.ItemMenuAdapter;
 import cu.gob.ith.presentation.activities.main.ui.viewmodel.MainActivityViewModel;
 import cu.gob.ith.presentation.model.ItemMenuNavView;
@@ -22,10 +27,11 @@ import cu.gob.ith.presentation.util.Util;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ClickItemMenuInterface {
 
     private MainActivityViewModel mainActivityViewModel;
     private ActivityMainBinding uiBind;
+    private ItemMenuAdapter itemMenuAdapter;
 
     @Inject
     UserAppPreferences userAppPreferences;
@@ -40,22 +46,36 @@ public class MainActivity extends AppCompatActivity {
         mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
         initView();
-
     }
 
     private void initView() {
-        uiBind.setTitle(getString(R.string.menu_title));
         initNavView();
         initTransformMotionLayout();
+        observerChangeToolBar();
     }
 
     private void initNavView() {
         uiBind.contentNavViewLayout.userHeaderTV.setText(userAppPreferences.getNamePreferences("not Found"));
         uiBind.contentNavViewLayout.emailHeaderTV.setText(userAppPreferences.getEmailPreferences("not Found"));
-        uiBind.contentNavViewLayout.setAdapter(new ItemMenuAdapter(mainActivityViewModel.getItemMenuNavViewList()));
-        uiBind.contentNavViewLayout.logoutItemLayout.getRoot().setOnClickListener(
-                v -> logout()
-        );
+        initAdapterNavMenu();
+    }
+
+    private void initAdapterNavMenu() {
+        itemMenuAdapter = new ItemMenuAdapter(mainActivityViewModel.getItemMenuNavViewList(),
+                false);
+        itemMenuAdapter.setClickItemMenuInterface(this);
+        uiBind.contentNavViewLayout.setAdapter(itemMenuAdapter);
+        uiBind.contentNavViewLayout.logoutItemLayout.getRoot().setOnClickListener(v -> logout());
+
+    }
+
+    private boolean goToStartTransitionNavView() {
+        Log.e("aaa","aaaa " + uiBind.motionLayoutDrawerMainActivity.getProgress());
+        if (uiBind.motionLayoutDrawerMainActivity.getProgress() > 0.0) {
+            uiBind.motionLayoutDrawerMainActivity.transitionToStart();
+            return true;
+        }
+        return false;
     }
 
     private void initTransformMotionLayout() {
@@ -81,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
-                mainActivityViewModel.setColapsedMainContent(motionLayout.getProgress() != 0);
+                mainActivityViewModel.setColapsedMainContent(motionLayout.getProgress() != 0.0);
             }
 
             @Override
@@ -89,10 +109,44 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+    }
+
+    private void observerChangeToolBar() {
+        mainActivityViewModel.getTitleToolBar().observe(this, uiBind.contentMainActivityLayout::setTitle);
     }
 
     private void logout() {
         userAppPreferences.clearPreferences();
         onBackPressed();
+    }
+
+    @Override
+    public void clickItemMenu(ItemMenuNavView itemMenuNavView) {
+        Log.e("click", "click " + itemMenuNavView.getTitle());
+        goToStartTransitionNavView();
+
+        if (!itemMenuNavView.isSelected()) {
+            itemMenuAdapter.selectedItemMenu(itemMenuNavView);
+            navigateByItemMenu(itemMenuNavView);
+        }
+
+    }
+
+    private void navigateByItemMenu(ItemMenuNavView itemMenuNavView) {
+        if (itemMenuNavView.getTitle().equals(getString(R.string.inicio_fragment)))
+            initNavigate(R.id.inicioFragment, itemMenuNavView.getTitle());
+        else if (itemMenuNavView.getTitle().equals(getString(R.string.nuevo_pedido_fragment)))
+            initNavigate(R.id.menuFragment, itemMenuNavView.getTitle());
+    }
+
+    private void initNavigate(int destino, String title) {
+        NavController navController = Navigation.findNavController(this, R.id.fragmentContainerView2);
+        if (navController.getCurrentDestination() != null)
+            navController.navigate(destino, new Bundle(),
+                    new NavOptions.Builder().setPopUpTo(Objects.requireNonNull(
+                            navController.getCurrentDestination())
+                            .getId(), true).build());
     }
 }
