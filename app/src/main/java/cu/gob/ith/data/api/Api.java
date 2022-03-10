@@ -23,4 +23,7 @@ public interface Api {
     @GET("categoria/productos")
     Observable<List<ApiProducto>> getProductos(@Query("CodFamilia") String codFamilia);
 
+    @POST("api/pedido/guardarPedido")
+    Observable<String> login();
+
 }

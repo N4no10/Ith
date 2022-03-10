@@ -7,7 +7,11 @@
     <fragment
         android:id="@+id/menuFragment"
         android:name="cu.gob.ith.presentation.activities.main.fragments.menu.MenuFragment"
-        android:label="MenuFragment" />
+        android:label="MenuFragment" >
+        <action
+            android:id="@+id/to_pedidoListFragment"
+            app:destination="@id/pedidoListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/inicioFragment"
         android:name="cu.gob.ith.presentation.activities.main.fragments.inicio.InicioFragment"
@@ -17,4 +21,9 @@
             android:id="@+id/action_inicioFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/pedidoListFragment"
+        android:name="cu.gob.ith.presentation.activities.main.fragments.pedidolist.PedidoListFragment"
+        android:label="fragment_pedido_list"
+        tools:layout="@layout/fragment_pedido_list" />
 </navigation>
