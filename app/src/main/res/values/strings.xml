@@ -48,4 +48,6 @@
     <string name="menu_inicio">Inicio</string>
     <string name="inicio_fragment">Inicio</string>
     <string name="nuevo_pedido_fragment">Nuevo Pedido</string>
+    <string name="precio_title">Precio</string>
+    <string name="total_pagar_title">Total a Pagar</string>
 </resources>

@@ -5,6 +5,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -54,10 +55,31 @@ public class ProductosAdapter extends RecyclerView.Adapter<ItemProductoViewHolde
                 manageProductListUtil.deleteProduct(producto);
                 holder.getUiBind().buttonAddLayout.motionButtonAddML.transitionToStart();
             }
-            notifyItemChanged(position);
+
+            holder.getUiBind().buttonAddLayout.motionButtonAddML.addTransitionListener(new MotionLayout.TransitionListener() {
+                @Override
+                public void onTransitionStarted(MotionLayout motionLayout, int startId, int endId) {
+
+                }
+
+                @Override
+                public void onTransitionChange(MotionLayout motionLayout, int startId, int endId, float progress) {
+
+                }
+
+                @Override
+                public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
+                    notifyItemChanged(position);
+                }
+
+                @Override
+                public void onTransitionTrigger(MotionLayout motionLayout, int triggerId, boolean positive, float progress) {
+
+                }
+            });
         });
 
-        holder.getUiBind().buttonAddLayout.totalSelectedTV.setOnClickListener(v -> createAlertDialog(holder, producto));
+        holder.getUiBind().buttonAddLayout.totalSelectedTV.setOnClickListener(v -> createAlertDialog(holder, producto,position));
         holder.getUiBind().buttonAddLayout.addButtonIV.setOnClickListener(v -> {
             addProduct(holder, producto);
             notifyItemChanged(position);
@@ -84,7 +106,7 @@ public class ProductosAdapter extends RecyclerView.Adapter<ItemProductoViewHolde
         super.setHasStableIds(true);
     }
 
-    private void createAlertDialog(ItemProductoViewHolder holder, Producto producto) {
+    private void createAlertDialog(ItemProductoViewHolder holder, Producto producto, int position) {
 
         AlertDialogCantProductoLayoutBinding alertUIBind = DataBindingUtil.inflate(layoutInflater,
                 R.layout.alert_dialog_cant_producto_layout,
@@ -105,6 +127,7 @@ public class ProductosAdapter extends RecyclerView.Adapter<ItemProductoViewHolde
                         holder.getUiBind().buttonAddLayout.totalSelectedTV.setText(String.valueOf(value));
                     }
                     manageProductListUtil.updateProduct(producto);
+                    notifyItemChanged(position);
 
                     dialog.dismiss();
 

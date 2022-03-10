@@ -17,14 +17,15 @@ public class ItemProductoViewHolder extends ViewHolderGlobal<Producto, ItemProdu
     @Override
     public void bind(Producto param) {
         getUiBind().setProducto(param);
+        getUiBind().totalPagarPriceTV.setText("$"+Double.parseDouble(param.getPv())*param.getCantProducto());
         Log.e("cant", "cant " + param.getCantProducto());
         if (param.getCantProducto() == 0.0) {
             getUiBind().buttonAddLayout.totalSelectedTV.setText("1.0");
-            getUiBind().buttonAddLayout.motionButtonAddML.transitionToStart();
+            getUiBind().buttonAddLayout.motionButtonAddML.setProgress(0);
 
         } else {
             getUiBind().buttonAddLayout.totalSelectedTV.setText("" + param.getCantProducto());
-            getUiBind().buttonAddLayout.motionButtonAddML.transitionToEnd();
+            getUiBind().buttonAddLayout.motionButtonAddML.setProgress(1);
         }
 
         super.bind(param);
