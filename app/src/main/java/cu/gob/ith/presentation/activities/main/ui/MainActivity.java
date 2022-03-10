@@ -2,6 +2,7 @@ package cu.gob.ith.presentation.activities.main.ui;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.MotionLayout;
@@ -52,6 +53,12 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
         initNavView();
         initTransformMotionLayout();
         observerChangeToolBar();
+        initShopCar();
+    }
+
+    private void initShopCar() {
+        uiBind.contentMainActivityLayout.toolbarLayout.shopCarIV.setOnClickListener(v ->
+                initNavigateWithoutPopUpTo(R.id.to_pedidoListFragment, "itemMenuNavView.getTitle()"));
     }
 
     private void initNavView() {
@@ -70,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
     }
 
     private boolean goToStartTransitionNavView() {
-        Log.e("aaa","aaaa " + uiBind.motionLayoutDrawerMainActivity.getProgress());
+        Log.e("aaa", "aaaa " + uiBind.motionLayoutDrawerMainActivity.getProgress());
         if (uiBind.motionLayoutDrawerMainActivity.getProgress() > 0.0) {
             uiBind.motionLayoutDrawerMainActivity.transitionToStart();
             return true;
@@ -114,7 +121,28 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
     }
 
     private void observerChangeToolBar() {
-        mainActivityViewModel.getTitleToolBar().observe(this, uiBind.contentMainActivityLayout::setTitle);
+        mainActivityViewModel.getTitleToolBar().observe(this,
+                title -> {
+                    uiBind.contentMainActivityLayout.setTitle(title);
+                    if (title.equals(this.getString(R.string.menu_nuevo_pedido)))
+                        uiBind.contentMainActivityLayout.toolbarLayout.shopCarIV.setVisibility(View.VISIBLE);
+                    else
+                        uiBind.contentMainActivityLayout.toolbarLayout.shopCarIV.setVisibility(View.GONE);
+                });
+
+        mainActivityViewModel.getShowMenuOrBack().observe(this,
+                showMenuOrBack -> {
+                    if (!showMenuOrBack) {
+                        uiBind.contentMainActivityLayout.toolbarLayout.menuIV.setVisibility(View.GONE);
+                        uiBind.contentMainActivityLayout.toolbarLayout.backIV.setVisibility(View.VISIBLE);
+                        uiBind.contentMainActivityLayout.toolbarLayout.backIV.setOnClickListener(v -> onBackPressed());
+                    } else {
+                        uiBind.contentMainActivityLayout.toolbarLayout.backIV.setVisibility(View.GONE);
+                        uiBind.contentMainActivityLayout.toolbarLayout.menuIV.setVisibility(View.VISIBLE);
+                    }
+                });
+
+        mainActivityViewModel.setShowMenuOrBack(true);
     }
 
     private void logout() {
@@ -148,5 +176,11 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
                     new NavOptions.Builder().setPopUpTo(Objects.requireNonNull(
                             navController.getCurrentDestination())
                             .getId(), true).build());
+    }
+
+    private void initNavigateWithoutPopUpTo(int destino, String title) {
+        NavController navController = Navigation.findNavController(this, R.id.fragmentContainerView2);
+        if (navController.getCurrentDestination() != null)
+            navController.navigate(destino, new Bundle());
     }
 }

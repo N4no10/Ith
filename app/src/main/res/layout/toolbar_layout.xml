@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
+
         <variable
             name="title"
             type="String" />
@@ -17,8 +19,7 @@
         android:background="@color/white"
         android:elevation="6dp"
         app:contentInsetLeft="0dp"
-        app:contentInsetStart="0dp"
-        >
+        app:contentInsetStart="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -29,34 +30,31 @@
                 android:id="@+id/menuIV"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 android:src="@drawable/ic_show_menu"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                app:tint="@color/blue_dark"
-                />
+                app:tint="@color/blue_dark" />
 
             <ImageView
                 android:id="@+id/backIV"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_arrow_left"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 android:paddingLeft="16dp"
                 android:paddingEnd="16dp"
+                android:src="@drawable/ic_arrow_left"
                 android:visibility="gone"
-                />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/titleTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginRight="24dp"
+                android:layout_marginStart="64dp"
                 android:fontFamily="@font/myriad_bold"
                 android:singleLine="true"
                 android:text='@{title}'
@@ -65,8 +63,20 @@
                 app:layout_constraintBottom_toBottomOf="@+id/menuIV"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/menuIV"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/menuIV" />
+
+            <ImageView
+                android:id="@+id/shopCarIV"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_shop_car"
+                android:tint="@color/blue_dark"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/menuIV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/menuIV" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

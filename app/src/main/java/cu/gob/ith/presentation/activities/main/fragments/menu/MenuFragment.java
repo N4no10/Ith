@@ -164,6 +164,7 @@ public class MenuFragment extends Fragment implements ItemCategoriaClick {
 
     private void currentToolBar() {
         mainActivityViewModel.setTitleToolBar(getString(R.string.nuevo_pedido_fragment));
+        mainActivityViewModel.setShowMenuOrBack(true);
     }
 
     private void loadContent() {

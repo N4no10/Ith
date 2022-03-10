@@ -4,9 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/drawable/background_add_button.xml" value="0.2595" />
+        <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/drawable/background_item_producto.xml" value="0.1365" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/drawable/background_title_categoria.xml" value="0.1365" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/drawable/background_total_product_categoria.xml" value="0.1365" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/drawable/ic_add.xml" value="0.167" />
+        <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1575" />
+        <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/drawable/ic_launcher_background_ith.xml" value="0.1575" />
+        <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/activity_login.xml" value="0.19519927536231885" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/alert_dialog_cant_producto_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/buttton_item_producto.xml" value="0.264" />
@@ -15,10 +19,13 @@
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/form_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/fragment_inicio.xml" value="0.23007246376811594" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/fragment_menu.xml" value="0.22826086956521738" />
+        <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/fragment_pedido_list.xml" value="0.23007246376811594" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/item_categoria.xml" value="0.5833333333333334" />
+        <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/item_menu_nav_view.xml" value="0.19519927536231885" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/item_productos.xml" value="0.4" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/list_categoria.xml" value="0.19519927536231885" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/list_productos.xml" value="0.2789115646258503" />
+        <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/toolbar_layout.xml" value="0.72" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/avatar_1.xml" value="0.2635" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/avatar_2.xml" value="0.2635" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/background_button_login.xml" value="0.2450657894736842" />

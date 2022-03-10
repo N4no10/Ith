@@ -35,6 +35,8 @@
     <string name="menu_pedido">Pedido</string>
     <string name="menu_logout">Cerrar Sesión</string>
 
+    //Lista de Pedidos
+    <string name="send_list">Solicitar Pedido</string>
 
     //Preferences
     <string name="preferences_file_name">IthPreferences</string>

@@ -23,6 +23,7 @@ public class MainActivityViewModel extends ViewModel {
 
     public MutableLiveData<String> titleToolBar = new MutableLiveData<>();
     private final MutableLiveData<Boolean> colapsedMainContent = new MutableLiveData<>();
+    private final MutableLiveData<Boolean> showMenuOrBack = new MutableLiveData<>();
     private final List<ItemMenuNavView> itemMenuNavViewList = new ArrayList<>();
     private final List<Producto> productosParaPedidosList = new ArrayList<>();
 
@@ -54,6 +55,14 @@ public class MainActivityViewModel extends ViewModel {
 
     public List<Producto> getProductosParaPedidosList() {
         return productosParaPedidosList;
+    }
+
+    public MutableLiveData<Boolean> getShowMenuOrBack() {
+        return showMenuOrBack;
+    }
+
+    public void setShowMenuOrBack(Boolean showMenuOrBack) {
+        this.showMenuOrBack.setValue(showMenuOrBack);
     }
 
     private List<ItemMenuNavView> listSubMenuPedido(Context context) {
