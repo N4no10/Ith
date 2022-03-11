@@ -14,13 +14,14 @@
         android:id="@+id/contentListCL"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/white_2">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listProductosRV"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="4dp"
+            android:layout_marginBottom="16dp"
             android:adapter='@{adapter}'
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/totalToPayTV"
@@ -31,14 +32,33 @@
             tool:listitem="@layout/item_productos" />
 
         <TextView
+            android:id="@+id/totalToPayTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/myriad_bold"
+            android:text="@string/total_pagar_title"
+            android:textColor="@color/blue_dark"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/totalToPayTV"
+            app:layout_constraintEnd_toStartOf="@+id/totalToPayTV"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/totalToPayTV" />
+
+        <TextView
             android:id="@+id/totalToPayTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total a pagar: 0"
-            android:textSize="24sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="0.0"
+            android:textColor="@color/green"
+            android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/buttonSendList"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/totalToPayTitleTV" />
 
         <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
             android:id="@+id/buttonSendList"

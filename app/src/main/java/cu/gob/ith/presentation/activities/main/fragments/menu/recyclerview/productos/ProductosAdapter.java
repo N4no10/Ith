@@ -69,7 +69,7 @@ public class ProductosAdapter extends RecyclerView.Adapter<ItemProductoViewHolde
 
                 @Override
                 public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
-                    notifyItemChanged(position);
+                    notifyItemChanged(holder.getAdapterPosition());
                 }
 
                 @Override
@@ -151,5 +151,13 @@ public class ProductosAdapter extends RecyclerView.Adapter<ItemProductoViewHolde
         double value = Double.parseDouble(textValue) - 1;
         producto.setCantProducto(value);
         manageProductListUtil.updateProduct(producto);
+    }
+
+    public Double totalPrice(){
+        Double result = 0.0;
+        for(Producto producto : productoList)
+            result += producto.getCantProducto() * Double.parseDouble(producto.getPv());
+
+        return result;
     }
 }
