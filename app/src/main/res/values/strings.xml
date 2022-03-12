@@ -49,7 +49,9 @@
     <string name="menu_historial_pedido">Historial de Pedidos</string>
     <string name="menu_inicio">Inicio</string>
     <string name="inicio_fragment">Inicio</string>
+    <string name="informe_pedido_fragment">Solicitud de Pedido</string>
     <string name="nuevo_pedido_fragment">Nuevo Pedido</string>
     <string name="precio_title">Precio</string>
     <string name="total_pagar_title">Total a Pagar</string>
+    <string name="cantidad_producto_title">Cantidad</string>
 </resources>

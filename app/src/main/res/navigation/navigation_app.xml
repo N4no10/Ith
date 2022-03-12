@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/menuFragment"
         android:name="cu.gob.ith.presentation.activities.main.fragments.menu.MenuFragment"
-        android:label="MenuFragment" >
+        android:label="MenuFragment">
         <action
             android:id="@+id/to_pedidoListFragment"
             app:destination="@id/pedidoListFragment" />
@@ -16,7 +16,7 @@
         android:id="@+id/inicioFragment"
         android:name="cu.gob.ith.presentation.activities.main.fragments.inicio.InicioFragment"
         android:label="fragment_inicio"
-        tools:layout="@layout/fragment_inicio" >
+        tools:layout="@layout/fragment_inicio">
         <action
             android:id="@+id/action_inicioFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
@@ -25,5 +25,14 @@
         android:id="@+id/pedidoListFragment"
         android:name="cu.gob.ith.presentation.activities.main.fragments.pedidolist.PedidoListFragment"
         android:label="fragment_pedido_list"
-        tools:layout="@layout/fragment_pedido_list" />
+        tools:layout="@layout/fragment_pedido_list">
+        <action
+            android:id="@+id/to_informePedidoFragment"
+            app:destination="@id/informePedidoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/informePedidoFragment"
+        android:name="cu.gob.ith.presentation.activities.main.fragments.informe.InformePedidoFragment"
+        android:label="fragment_informe_pedido"
+        tools:layout="@layout/fragment_informe_pedido" />
 </navigation>

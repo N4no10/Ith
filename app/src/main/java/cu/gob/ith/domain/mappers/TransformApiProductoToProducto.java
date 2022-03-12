@@ -25,11 +25,28 @@ public class TransformApiProductoToProducto {
                 finalValue);
     }
 
+    public static Producto mapToProductoInforme(ApiProducto apiProducto) {
+        BigDecimal bd = BigDecimal.valueOf(apiProducto.getPv()).setScale(2, RoundingMode.HALF_UP);
+        float finalValue = bd.floatValue();
+        return new Producto(apiProducto.getDescripcion(), apiProducto.getReferencia(),
+                apiProducto.getCodUm(), apiProducto.getPv(),
+                apiProducto.getCantidad(), apiProducto.getImporte());
+    }
+
     public static List<Producto> mapList(List<ApiProducto> apiProductoList) {
         List<Producto> productoList = new ArrayList<>();
         for (ApiProducto apiProducto : apiProductoList
         ) {
             productoList.add(map(apiProducto));
+        }
+        return productoList;
+    }
+
+    public static List<Producto> mapToProductoInformeList(List<ApiProducto> apiProductoList) {
+        List<Producto> productoList = new ArrayList<>();
+        for (ApiProducto apiProducto : apiProductoList
+        ) {
+            productoList.add(mapToProductoInforme(apiProducto));
         }
         return productoList;
     }

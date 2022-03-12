@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.util.Log;
@@ -86,15 +87,22 @@ public class PedidoListFragment extends Fragment {
                 if (!pedidoList.isEmpty())
                     pedidoList.clear();
                 for (Producto producto : mainActivityViewModel.getProductosParaPedidosList()) {
+                    BigDecimal bd = BigDecimal.valueOf(producto.getPv() * producto.getCantProducto())
+                            .setScale(2, RoundingMode.HALF_UP);
+                    float finalValue = bd.floatValue();
                     pedidoList.add(new Pedido(producto.getReferencia(),
                             producto.getPv(),
                             producto.getCantProducto(),
-                            /*producto.getPv() * producto.getCantProducto()*/0));
+                            finalValue));
                 }
                 disposables.add(
                         viewModel.getRequestOrderUseCase().execute(pedidoList)
                                 .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(s -> Toast.makeText(requireContext(), "La solicitud se ha realizado correctamente ", Toast.LENGTH_SHORT).show(),
+                                .subscribe(informePedido -> {
+                                            Toast.makeText(requireContext(), "La solicitud se ha realizado correctamente ", Toast.LENGTH_SHORT).show();
+                                            mainActivityViewModel.setInformePedido(informePedido);
+                                            Navigation.findNavController(uiBind.getRoot()).navigate(R.id.to_informePedidoFragment);
+                                        },
                                         e -> {
                                             Toast.makeText(requireContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                             uiBind.buttonSendList.revertAnimation();
@@ -205,4 +213,11 @@ public class PedidoListFragment extends Fragment {
 
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (!disposables.isDisposed()){
+            disposables.dispose();
+        }
+    }
 }

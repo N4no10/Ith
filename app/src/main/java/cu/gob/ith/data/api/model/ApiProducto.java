@@ -4,13 +4,16 @@ import com.google.gson.annotations.SerializedName;
 
 public class ApiProducto {
 
-    @SerializedName("Referencia")
+    @SerializedName(value = "Referencia",
+            alternate = {"Codigo"})
     private String referencia;
 
-    @SerializedName("Descripcion")
+    @SerializedName(value = "Descripcion",
+            alternate = {"Producto"})
     private String descripcion;
 
-    @SerializedName("CodUm")
+    @SerializedName(value = "CodUm",
+            alternate = {"UM"})
     private String codUm;
 
     @SerializedName("CodFamilia")
@@ -19,8 +22,16 @@ public class ApiProducto {
     @SerializedName("NombreFamilia")
     private String nombreFamilia;
 
-    @SerializedName("PV")
+    @SerializedName(value = "PV",
+            alternate = {"PVP"})
     private float pv;
+
+    @SerializedName("Cantidad")
+    private float cantidad;
+
+    @SerializedName("Importe")
+    private float importe;
+
 
     public ApiProducto() {
     }
@@ -71,5 +82,21 @@ public class ApiProducto {
 
     public void setPv(float pv) {
         this.pv = pv;
+    }
+
+    public float getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(float cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public float getImporte() {
+        return importe;
+    }
+
+    public void setImporte(float importe) {
+        this.importe = importe;
     }
 }

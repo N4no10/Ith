@@ -13,6 +13,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import cu.gob.ith.R;
+import cu.gob.ith.domain.model.InformePedido;
 import cu.gob.ith.domain.model.Producto;
 import cu.gob.ith.presentation.model.ItemMenuNavView;
 import dagger.hilt.android.lifecycle.HiltViewModel;
@@ -27,6 +28,7 @@ public class MainActivityViewModel extends ViewModel {
     private final List<ItemMenuNavView> itemMenuNavViewList = new ArrayList<>();
     private final List<Producto> productosParaPedidosList = new ArrayList<>();
     private final MutableLiveData<Integer> cantProductos = new MutableLiveData<>();
+    private InformePedido informePedido;
 
     @Inject
     public MainActivityViewModel(@ApplicationContext Context context) {
@@ -94,5 +96,13 @@ public class MainActivityViewModel extends ViewModel {
 
     public MutableLiveData<Integer> getCantProductos() {
         return cantProductos;
+    }
+
+    public InformePedido getInformePedido() {
+        return informePedido;
+    }
+
+    public void setInformePedido(InformePedido informePedido) {
+        this.informePedido = informePedido;
     }
 }

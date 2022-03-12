@@ -9,6 +9,7 @@ import cu.gob.ith.data.api.model.ApiCategoria;
 import cu.gob.ith.data.api.model.ApiLoginBody;
 import cu.gob.ith.data.api.model.ApiLoginResponse;
 import cu.gob.ith.data.api.model.ApiPedido;
+import cu.gob.ith.data.api.model.ApiPedidoResponse;
 import cu.gob.ith.data.api.model.ApiProducto;
 import cu.gob.ith.data.repository.datasources.DataSourcePreferences;
 import cu.gob.ith.data.repository.datasources.DataSourceRemote;
@@ -49,7 +50,7 @@ public class ImplRepository implements Repository {
     }
 
     @Override
-    public Observable<String> requestOrder(List<ApiPedido> apiPedidoList) {
+    public Observable<ApiPedidoResponse> requestOrder(List<ApiPedido> apiPedidoList) {
         return dataSourceRemote.requestOrder(apiPedidoList)
                 .subscribeOn(Schedulers.io());
     }

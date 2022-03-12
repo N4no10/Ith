@@ -10,6 +10,7 @@ import cu.gob.ith.data.api.model.ApiCategoria;
 import cu.gob.ith.data.api.model.ApiLoginBody;
 import cu.gob.ith.data.api.model.ApiLoginResponse;
 import cu.gob.ith.data.api.model.ApiPedido;
+import cu.gob.ith.data.api.model.ApiPedidoResponse;
 import cu.gob.ith.data.api.model.ApiProducto;
 import io.reactivex.rxjava3.core.Observable;
 
@@ -39,7 +40,7 @@ public class DataSourceRemote implements DataSourceApi {
     }
 
     @Override
-    public Observable<String> requestOrder(List<ApiPedido> apiPedidoList) {
+    public Observable<ApiPedidoResponse> requestOrder(List<ApiPedido> apiPedidoList) {
         return api.requestOrder(apiPedidoList);
     }
 }

@@ -10,6 +10,7 @@ public class Producto {
     private String nombreFamilia;
     private float pv;
     private float cantProducto = 0;
+    private float importe;
 
     public Producto(String descripcion) {
         this.descripcion = descripcion;
@@ -35,6 +36,16 @@ public class Producto {
         this.nombreFamilia = nombreFamilia;
         this.pv = pv;
         this.cantProducto = cantProducto;
+    }
+
+    public Producto(String descripcion, String referencia, String codUm, float pv,
+                    float cantProducto, float importe) {
+        this.descripcion = descripcion;
+        this.referencia = referencia;
+        this.codUm = codUm;
+        this.pv = pv;
+        this.cantProducto = cantProducto;
+        this.importe = importe;
     }
 
     public String getDescripcion() {
@@ -91,5 +102,13 @@ public class Producto {
 
     public void setCantProducto(float cantProducto) {
         this.cantProducto = cantProducto;
+    }
+
+    public float getImporte() {
+        return importe;
+    }
+
+    public void setImporte(float importe) {
+        this.importe = importe;
     }
 }
