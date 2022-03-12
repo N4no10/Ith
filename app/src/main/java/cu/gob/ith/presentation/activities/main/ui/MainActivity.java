@@ -59,6 +59,13 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
     private void initShopCar() {
         uiBind.contentMainActivityLayout.toolbarLayout.shopCarIV.setOnClickListener(v ->
                 initNavigateWithoutPopUpTo(R.id.to_pedidoListFragment, "itemMenuNavView.getTitle()"));
+        mainActivityViewModel.getCantProductos().observe(this, integer -> {
+            if (uiBind.contentMainActivityLayout.toolbarLayout.shopCarIV.getVisibility() == View.VISIBLE) {
+                uiBind.contentMainActivityLayout.toolbarLayout.setCantProductos(integer);
+            } else {
+                uiBind.contentMainActivityLayout.toolbarLayout.productsBadgeTV.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void initNavView() {
@@ -124,10 +131,16 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
         mainActivityViewModel.getTitleToolBar().observe(this,
                 title -> {
                     uiBind.contentMainActivityLayout.setTitle(title);
-                    if (title.equals(this.getString(R.string.menu_nuevo_pedido)))
+                    if (title.equals(this.getString(R.string.menu_nuevo_pedido))) {
                         uiBind.contentMainActivityLayout.toolbarLayout.shopCarIV.setVisibility(View.VISIBLE);
-                    else
+                        if (mainActivityViewModel.getProductosParaPedidosList().size() != 0)
+                            uiBind.contentMainActivityLayout.toolbarLayout.setCantProductos(mainActivityViewModel.getProductosParaPedidosList().size());
+
+//                            uiBind.contentMainActivityLayout.toolbarLayout.productsBadgeTV.setVisibility(View.VISIBLE);
+                    } else {
                         uiBind.contentMainActivityLayout.toolbarLayout.shopCarIV.setVisibility(View.GONE);
+                        uiBind.contentMainActivityLayout.toolbarLayout.productsBadgeTV.setVisibility(View.GONE);
+                    }
                 });
 
         mainActivityViewModel.getShowMenuOrBack().observe(this,

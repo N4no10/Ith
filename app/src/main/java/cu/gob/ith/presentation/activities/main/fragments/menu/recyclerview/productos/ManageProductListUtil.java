@@ -14,4 +14,6 @@ public interface ManageProductListUtil {
 
     void updateApiList(List<Producto> apiProductoList);
 
+    void setSearchText(String textSearch);
+
 }

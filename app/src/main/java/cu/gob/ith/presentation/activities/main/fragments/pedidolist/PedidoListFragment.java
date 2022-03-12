@@ -13,20 +13,28 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import cu.gob.ith.R;
 import cu.gob.ith.databinding.FragmentPedidoListBinding;
+import cu.gob.ith.domain.model.Pedido;
 import cu.gob.ith.domain.model.Producto;
 import cu.gob.ith.presentation.activities.main.fragments.menu.recyclerview.categorias.CategoriasAdapter;
 import cu.gob.ith.presentation.activities.main.fragments.menu.recyclerview.productos.ManageProductListUtil;
 import cu.gob.ith.presentation.activities.main.fragments.menu.recyclerview.productos.ProductosAdapter;
 import cu.gob.ith.presentation.activities.main.fragments.pedidolist.viewmodel.PedidoListFragmentViewModel;
 import cu.gob.ith.presentation.activities.main.ui.viewmodel.MainActivityViewModel;
+import dagger.hilt.android.AndroidEntryPoint;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
-
+@AndroidEntryPoint
 public class PedidoListFragment extends Fragment {
 
     private MainActivityViewModel mainActivityViewModel;
@@ -34,6 +42,8 @@ public class PedidoListFragment extends Fragment {
     private FragmentPedidoListBinding uiBind;
     private ManageProductListUtil manageProductListUtil;
     private ProductosAdapter productosAdapter;
+    private List<Pedido> pedidoList = new ArrayList<>();
+    private final CompositeDisposable disposables = new CompositeDisposable();
 
     public PedidoListFragment() {
         // Required empty public constructor
@@ -53,7 +63,9 @@ public class PedidoListFragment extends Fragment {
         initView();
         viewModel.getTotalToPay().observe(getViewLifecycleOwner(),
                 priceToPay -> {
-                    uiBind.totalToPayTV.setText("" + priceToPay);
+                    BigDecimal bd = new BigDecimal(priceToPay).setScale(2, RoundingMode.HALF_UP);
+                    float finalValue = bd.floatValue();
+                    uiBind.totalToPayTV.setText("" + finalValue);
                     Log.e("total a pagar", "$" + priceToPay);
                 });
     }
@@ -67,7 +79,29 @@ public class PedidoListFragment extends Fragment {
     }
 
     private void configSolicitarPedidoButton() {
-
+        uiBind.buttonSendList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uiBind.buttonSendList.startAnimation();
+                if (!pedidoList.isEmpty())
+                    pedidoList.clear();
+                for (Producto producto : mainActivityViewModel.getProductosParaPedidosList()) {
+                    pedidoList.add(new Pedido(producto.getReferencia(),
+                            producto.getPv(),
+                            producto.getCantProducto(),
+                            /*producto.getPv() * producto.getCantProducto()*/0));
+                }
+                disposables.add(
+                        viewModel.getRequestOrderUseCase().execute(pedidoList)
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(s -> Toast.makeText(requireContext(), "La solicitud se ha realizado correctamente ", Toast.LENGTH_SHORT).show(),
+                                        e -> {
+                                            Toast.makeText(requireContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            uiBind.buttonSendList.revertAnimation();
+                                        }, () -> uiBind.buttonSendList.revertAnimation())
+                );
+            }
+        });
     }
 
     private void currentToolBar() {
@@ -100,7 +134,7 @@ public class PedidoListFragment extends Fragment {
                 List<Producto> productoList = mainActivityViewModel.getProductosParaPedidosList();
 
                 boolean result = false;
-                Double priceTotal = 0.0;
+                float priceTotal = 0;
                 for (int i = 0; i < productoList.size(); i++
                 ) {
                     if (producto.getReferencia().equals(productoList.get(i).getReferencia())) {
@@ -114,8 +148,8 @@ public class PedidoListFragment extends Fragment {
                         result = true;
                     }
 
-                        priceTotal += productoList.get(i).getCantProducto() *
-                                Double.parseDouble(productoList.get(i).getPv());
+                    priceTotal += productoList.get(i).getCantProducto() *
+                            productoList.get(i).getPv();
                 }
 
                 viewModel.setTotalToPay(priceTotal);
@@ -128,7 +162,7 @@ public class PedidoListFragment extends Fragment {
                 Log.e("Add", "ADD");
                 mainActivityViewModel.getProductosParaPedidosList().add(producto);
                 viewModel.setTotalToPay(viewModel.getTotalToPay().getValue() +
-                        (producto.getCantProducto() * Double.parseDouble(producto.getPv())));
+                        (producto.getCantProducto() * producto.getPv()));
             }
 
             @Override
@@ -143,7 +177,7 @@ public class PedidoListFragment extends Fragment {
                         productoList.remove(productoElement);
                         loadContent();
                         viewModel.setTotalToPay(viewModel.getTotalToPay().getValue() -
-                                (producto.getCantProducto() * Double.parseDouble(producto.getPv())));
+                                (producto.getCantProducto() * producto.getPv()));
                         return true;
                     }
                 }
@@ -161,6 +195,11 @@ public class PedidoListFragment extends Fragment {
                         }
                     }
                 }
+            }
+
+            @Override
+            public void setSearchText(String textSearch) {
+
             }
         };
 

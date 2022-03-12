@@ -26,6 +26,7 @@ public class MainActivityViewModel extends ViewModel {
     private final MutableLiveData<Boolean> showMenuOrBack = new MutableLiveData<>();
     private final List<ItemMenuNavView> itemMenuNavViewList = new ArrayList<>();
     private final List<Producto> productosParaPedidosList = new ArrayList<>();
+    private final MutableLiveData<Integer> cantProductos = new MutableLiveData<>();
 
     @Inject
     public MainActivityViewModel(@ApplicationContext Context context) {
@@ -89,5 +90,9 @@ public class MainActivityViewModel extends ViewModel {
                 context.getString(R.string.menu_settings),
                 ContextCompat.getDrawable(context, R.drawable.ic_settings_black_24dp)
         ));
+    }
+
+    public MutableLiveData<Integer> getCantProductos() {
+        return cantProductos;
     }
 }

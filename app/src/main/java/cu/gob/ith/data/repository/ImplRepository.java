@@ -8,6 +8,7 @@ import javax.inject.Singleton;
 import cu.gob.ith.data.api.model.ApiCategoria;
 import cu.gob.ith.data.api.model.ApiLoginBody;
 import cu.gob.ith.data.api.model.ApiLoginResponse;
+import cu.gob.ith.data.api.model.ApiPedido;
 import cu.gob.ith.data.api.model.ApiProducto;
 import cu.gob.ith.data.repository.datasources.DataSourcePreferences;
 import cu.gob.ith.data.repository.datasources.DataSourceRemote;
@@ -31,8 +32,7 @@ public class ImplRepository implements Repository {
     public Observable<ApiLoginResponse> login(ApiLoginBody apiLoginBody) {
         return dataSourceRemote.login(apiLoginBody)
                 .subscribeOn(Schedulers.io())
-                .doOnNext(apiLoginResponse ->
-                        dataSourcePreferences.saveApiLoginBodyResponsePreference(apiLoginResponse)
+                .doOnNext(dataSourcePreferences::saveApiLoginBodyResponsePreference
                 );
     }
 
@@ -45,6 +45,12 @@ public class ImplRepository implements Repository {
     @Override
     public Observable<List<ApiProducto>> getProductos(String codFamilia) {
         return dataSourceRemote.getProductos(codFamilia)
+                .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Observable<String> requestOrder(List<ApiPedido> apiPedidoList) {
+        return dataSourceRemote.requestOrder(apiPedidoList)
                 .subscribeOn(Schedulers.io());
     }
 }

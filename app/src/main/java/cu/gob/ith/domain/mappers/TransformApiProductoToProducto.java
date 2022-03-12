@@ -1,8 +1,11 @@
 package cu.gob.ith.domain.mappers;
 
+import android.util.Log;
+
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,14 +15,14 @@ import cu.gob.ith.domain.model.Producto;
 public class TransformApiProductoToProducto {
 
     public static Producto map(ApiProducto apiProducto) {
-        double precio = Double.parseDouble(apiProducto.getPv());
-        BigDecimal value = new BigDecimal(precio, new MathContext(2, RoundingMode.HALF_UP));
+        BigDecimal bd = BigDecimal.valueOf(apiProducto.getPv()).setScale(2, RoundingMode.HALF_UP);
+        float finalValue = bd.floatValue();
         return new Producto(apiProducto.getDescripcion(),
                 apiProducto.getReferencia(),
                 apiProducto.getCodUm(),
                 apiProducto.getCodFamilia(),
                 apiProducto.getNombreFamilia(),
-                value.toString());
+                finalValue);
     }
 
     public static List<Producto> mapList(List<ApiProducto> apiProductoList) {

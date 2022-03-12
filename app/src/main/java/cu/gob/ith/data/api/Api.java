@@ -5,6 +5,7 @@ import java.util.List;
 import cu.gob.ith.data.api.model.ApiCategoria;
 import cu.gob.ith.data.api.model.ApiLoginBody;
 import cu.gob.ith.data.api.model.ApiLoginResponse;
+import cu.gob.ith.data.api.model.ApiPedido;
 import cu.gob.ith.data.api.model.ApiProducto;
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.Body;
@@ -24,6 +25,6 @@ public interface Api {
     Observable<List<ApiProducto>> getProductos(@Query("CodFamilia") String codFamilia);
 
     @POST("api/pedido/guardarPedido")
-    Observable<String> login();
+    Observable<String> requestOrder(@Body List<ApiPedido> apiPedidoList);
 
 }

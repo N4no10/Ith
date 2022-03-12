@@ -76,7 +76,7 @@ public class MenuFragment extends Fragment implements ItemCategoriaClick {
                 mainActivityViewModel.getProductosParaPedidosList().add(
                         producto
                 );
-
+                mainActivityViewModel.getCantProductos().setValue(mainActivityViewModel.getProductosParaPedidosList().size());
               /*  new Producto(producto.getDescripcion(),
                         producto.getReferencia(),
                         producto.getCodUm(),
@@ -94,6 +94,7 @@ public class MenuFragment extends Fragment implements ItemCategoriaClick {
                 ) {
                     if (producto.getReferencia().equals(productoElement.getReferencia())) {
                         productoList.remove(productoElement);
+                        mainActivityViewModel.getCantProductos().setValue(mainActivityViewModel.getProductosParaPedidosList().size());
                         return true;
                     }
                 }
@@ -111,6 +112,11 @@ public class MenuFragment extends Fragment implements ItemCategoriaClick {
                         }
                     }
                 }
+            }
+
+            @Override
+            public void setSearchText(String textSearch) {
+//                uiBind.listProductosByCategoriaLayout.getAdapter().
             }
         };
 
@@ -141,7 +147,7 @@ public class MenuFragment extends Fragment implements ItemCategoriaClick {
 
             @Override
             public void onTransitionChange(MotionLayout motionLayout, int startId, int endId, float progress) {
-                uiBind.listProductosByCategoriaLayout.arrowMoreIV.setRotation(180*progress);
+                uiBind.listProductosByCategoriaLayout.arrowMoreIV.setRotation(180 * progress);
             }
 
             @Override

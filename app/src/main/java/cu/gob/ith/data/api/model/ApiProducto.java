@@ -20,7 +20,7 @@ public class ApiProducto {
     private String nombreFamilia;
 
     @SerializedName("PV")
-    private String pv;
+    private float pv;
 
     public ApiProducto() {
     }
@@ -65,11 +65,11 @@ public class ApiProducto {
         this.nombreFamilia = nombreFamilia;
     }
 
-    public String getPv() {
+    public float getPv() {
         return pv;
     }
 
-    public void setPv(String pv) {
+    public void setPv(float pv) {
         this.pv = pv;
     }
 }

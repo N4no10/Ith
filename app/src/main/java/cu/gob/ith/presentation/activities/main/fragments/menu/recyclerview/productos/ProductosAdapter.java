@@ -46,12 +46,12 @@ public class ProductosAdapter extends RecyclerView.Adapter<ItemProductoViewHolde
         holder.bind(producto);
 
         holder.getUiBind().buttonAddLayout.exitCL.setOnClickListener(v -> {
-            if (producto.getCantProducto() == 0.0) {
-                producto.setCantProducto(1.0);
+            if (producto.getCantProducto() == 0) {
+                producto.setCantProducto(1);
                 manageProductListUtil.addProduct(producto);
                 holder.getUiBind().buttonAddLayout.motionButtonAddML.transitionToEnd();
             } else {
-                producto.setCantProducto(0.0);
+                producto.setCantProducto(0);
                 manageProductListUtil.deleteProduct(producto);
                 holder.getUiBind().buttonAddLayout.motionButtonAddML.transitionToStart();
             }
@@ -79,7 +79,7 @@ public class ProductosAdapter extends RecyclerView.Adapter<ItemProductoViewHolde
             });
         });
 
-        holder.getUiBind().buttonAddLayout.totalSelectedTV.setOnClickListener(v -> createAlertDialog(holder, producto,position));
+        holder.getUiBind().buttonAddLayout.totalSelectedTV.setOnClickListener(v -> createAlertDialog(holder, producto, position));
         holder.getUiBind().buttonAddLayout.addButtonIV.setOnClickListener(v -> {
             addProduct(holder, producto);
             notifyItemChanged(position);
@@ -119,10 +119,10 @@ public class ProductosAdapter extends RecyclerView.Adapter<ItemProductoViewHolde
         alertUIBind.acceptBtn.setOnClickListener(v -> {
                     String textValue = alertUIBind.cantProductoET.getText().toString();
                     if (textValue.isEmpty()) {
-                        producto.setCantProducto(1.0);
-                        holder.getUiBind().buttonAddLayout.totalSelectedTV.setText("1.0");
+                        producto.setCantProducto(1);
+                        holder.getUiBind().buttonAddLayout.totalSelectedTV.setText("1");
                     } else {
-                        double value = Double.parseDouble(textValue);
+                        float value = Float.parseFloat(textValue);
                         producto.setCantProducto(value);
                         holder.getUiBind().buttonAddLayout.totalSelectedTV.setText(String.valueOf(value));
                     }
@@ -141,22 +141,25 @@ public class ProductosAdapter extends RecyclerView.Adapter<ItemProductoViewHolde
 
     private void addProduct(ItemProductoViewHolder holder, Producto producto) {
         String textValue = holder.getUiBind().buttonAddLayout.totalSelectedTV.getText().toString();
-        double value = Double.parseDouble(textValue) + 1;
+        float value = Float.parseFloat(textValue) + 1;
         producto.setCantProducto(value);
         manageProductListUtil.updateProduct(producto);
     }
 
     private void lessProduct(ItemProductoViewHolder holder, Producto producto) {
         String textValue = holder.getUiBind().buttonAddLayout.totalSelectedTV.getText().toString();
-        double value = Double.parseDouble(textValue) - 1;
+        float value = Float.parseFloat(textValue) - 1;
         producto.setCantProducto(value);
-        manageProductListUtil.updateProduct(producto);
+        if (value == 0)
+            manageProductListUtil.deleteProduct(producto);
+        else
+            manageProductListUtil.updateProduct(producto);
     }
 
-    public Double totalPrice(){
-        Double result = 0.0;
-        for(Producto producto : productoList)
-            result += producto.getCantProducto() * Double.parseDouble(producto.getPv());
+    public float totalPrice() {
+        float result = 0;
+        for (Producto producto : productoList)
+            result += producto.getCantProducto() * producto.getPv();
 
         return result;
     }

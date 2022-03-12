@@ -7,23 +7,30 @@ import androidx.room.Index;
 
 import javax.inject.Inject;
 
+import cu.gob.ith.domain.interactors.RequestOrderUseCase;
 import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
 public class PedidoListFragmentViewModel extends ViewModel {
 
-    private MutableLiveData<Double> totalToPay = new MutableLiveData<>();
+    private MutableLiveData<Float> totalToPay = new MutableLiveData<>();
+    private final RequestOrderUseCase requestOrderUseCase;
 
     @Inject
-    public PedidoListFragmentViewModel() {
-        this.totalToPay.setValue(0.0);
+    public PedidoListFragmentViewModel(RequestOrderUseCase requestOrderUseCase) {
+        this.totalToPay.setValue(0f);
+        this.requestOrderUseCase = requestOrderUseCase;
     }
 
-    public LiveData<Double> getTotalToPay() {
+    public LiveData<Float> getTotalToPay() {
         return totalToPay;
     }
 
-    public void setTotalToPay(Double totalToPay) {
+    public void setTotalToPay(float totalToPay) {
         this.totalToPay.setValue(totalToPay);
+    }
+
+    public RequestOrderUseCase getRequestOrderUseCase() {
+        return requestOrderUseCase;
     }
 }

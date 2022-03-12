@@ -8,15 +8,15 @@ public class Producto {
     private String codUm;
     private String codFamilia;
     private String nombreFamilia;
-    private String pv;
-    private double cantProducto = 0.0;
+    private float pv;
+    private float cantProducto = 0;
 
     public Producto(String descripcion) {
         this.descripcion = descripcion;
     }
 
     public Producto(String descripcion, String referencia, String codUm,
-                    String codFamilia, String nombreFamilia, String pv) {
+                    String codFamilia, String nombreFamilia, float pv) {
         this.descripcion = descripcion;
         this.referencia = referencia;
         this.codUm = codUm;
@@ -27,7 +27,7 @@ public class Producto {
 
     public Producto(String descripcion, String referencia,
                     String codUm, String codFamilia, String nombreFamilia,
-                    String pv, double cantProducto) {
+                    float pv, float cantProducto) {
         this.descripcion = descripcion;
         this.referencia = referencia;
         this.codUm = codUm;
@@ -77,19 +77,19 @@ public class Producto {
         this.nombreFamilia = nombreFamilia;
     }
 
-    public String getPv() {
+    public float getPv() {
         return pv;
     }
 
-    public void setPv(String pv) {
+    public void setPv(float pv) {
         this.pv = pv;
     }
 
-    public double getCantProducto() {
+    public float getCantProducto() {
         return cantProducto;
     }
 
-    public void setCantProducto(double cantProducto) {
+    public void setCantProducto(float cantProducto) {
         this.cantProducto = cantProducto;
     }
 }
