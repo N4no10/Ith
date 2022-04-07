@@ -1,5 +1,7 @@
 package cu.gob.ith.presentation.activities.main.ui;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -7,6 +9,8 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -20,6 +24,7 @@ import javax.inject.Inject;
 import cu.gob.ith.R;
 import cu.gob.ith.data.preferences.UserAppPreferences;
 import cu.gob.ith.databinding.ActivityMainBinding;
+import cu.gob.ith.presentation.activities.main.fragments.informe.pdf.InformePedidoPDFGenerator;
 import cu.gob.ith.presentation.activities.main.recyclerview.ClickItemMenuInterface;
 import cu.gob.ith.presentation.activities.main.recyclerview.ItemMenuAdapter;
 import cu.gob.ith.presentation.activities.main.ui.viewmodel.MainActivityViewModel;
@@ -37,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
     @Inject
     UserAppPreferences userAppPreferences;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +52,9 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
 
         mainActivityViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
+        requestPermissions();
         initView();
+
     }
 
     private void initView() {
@@ -54,6 +62,27 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
         initTransformMotionLayout();
         observerChangeToolBar();
         initShopCar();
+    }
+
+    private void requestPermissions() {
+        if(!enabledPermissionReadAndWrite())
+            ActivityCompat.requestPermissions(MainActivity.this,
+                    new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE}, 23);
+    }
+
+    private boolean enabledPermissionReadAndWrite() {
+        return checkPermissionRead() && checkPermissionWrite();
+    }
+
+    private boolean checkPermissionWrite() {
+        return ContextCompat.checkSelfPermission(MainActivity.this,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private boolean checkPermissionRead() {
+        return ContextCompat.checkSelfPermission(MainActivity.this,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
     }
 
     private void initShopCar() {
@@ -80,7 +109,6 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
         itemMenuAdapter.setClickItemMenuInterface(this);
         uiBind.contentNavViewLayout.setAdapter(itemMenuAdapter);
         uiBind.contentNavViewLayout.logoutItemLayout.getRoot().setOnClickListener(v -> logout());
-
     }
 
     private boolean goToStartTransitionNavView() {
@@ -94,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
 
     private void initTransformMotionLayout() {
         MotionLayout ml = uiBind.motionLayoutDrawerMainActivity;
-        ConstraintSet constraintSetEnd = ml.getConstraintSet(R.id.end);
+        ConstraintSet constraintSetEnd = ml.getConstraintSet(R.id.opcion2);
         ConstraintSet.Transform transformContentMainActiv = constraintSetEnd
                 .getConstraint(R.id.contentMainActivityLayout).transform;
         transformContentMainActiv.elevation = 40;
@@ -166,13 +194,15 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
     @Override
     public void clickItemMenu(ItemMenuNavView itemMenuNavView) {
         Log.e("click", "click " + itemMenuNavView.getTitle());
-        goToStartTransitionNavView();
+        if(mainActivityViewModel.isColapsedMainContent().getValue() != null &&
+                mainActivityViewModel.isColapsedMainContent().getValue()) {
+            goToStartTransitionNavView();
 
-        if (!itemMenuNavView.isSelected()) {
-            itemMenuAdapter.selectedItemMenu(itemMenuNavView);
-            navigateByItemMenu(itemMenuNavView);
+            if (!itemMenuNavView.isSelected()) {
+                itemMenuAdapter.selectedItemMenu(itemMenuNavView);
+                navigateByItemMenu(itemMenuNavView);
+            }
         }
-
     }
 
     private void navigateByItemMenu(ItemMenuNavView itemMenuNavView) {
@@ -180,6 +210,8 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
             initNavigate(R.id.inicioFragment, itemMenuNavView.getTitle());
         else if (itemMenuNavView.getTitle().equals(getString(R.string.nuevo_pedido_fragment)))
             initNavigate(R.id.menuFragment, itemMenuNavView.getTitle());
+        else if (itemMenuNavView.getTitle().equals(getString(R.string.menu_historial_pedido)))
+            initNavigate(R.id.misPedidosFragment, itemMenuNavView.getTitle());
     }
 
     private void initNavigate(int destino, String title) {

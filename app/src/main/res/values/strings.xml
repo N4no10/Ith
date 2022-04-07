@@ -36,6 +36,7 @@
     <string name="menu_logout">Cerrar Sesión</string>
 
     //Lista de Pedidos
+    <string name="list_producto">Lista de Productos</string>
     <string name="send_list">Solicitar Pedido</string>
 
     //Preferences
@@ -54,4 +55,36 @@
     <string name="precio_title">Precio</string>
     <string name="total_pagar_title">Total a Pagar</string>
     <string name="cantidad_producto_title">Cantidad</string>
+    <string name="mis_pedidos">Mis Pedidos</string>
+    <string name="list_productos_title">Productos</string>
+
+
+    //Informe PDF
+    <string name="solicitud_pdf">SOLICITUD DE PEDIDO </string>
+    <string name="cliente_pdf">Cliente: </string>
+    <string name="direccion_pdf">Dirección: </string>
+    <string name="negocio_pdf">Negocio: </string>
+    <string name="cuenta_pdf">Cuenta: </string>
+    <string name="sucursal_pdf">Sucursal: </string>
+    <string name="proveedor_pdf">Proveedor: </string>
+    <string name="productos_pdf">Relación de Productos </string>
+    <string name="numero_pdf">No.</string>
+    <string name="referencia_pdf">REFERENCIA</string>
+    <string name="um_pdf">U.M.</string>
+    <string name="cantidad_pdf">CANTIDAD</string>
+    <string name="precio_pdf">PRECIO</string>
+    <string name="importe_pdf">IMPORTE</string>
+    <string name="descripcion_pdf">DESCRIPCION</string>
+    <string name="total_a_pagar_pdf">TOTAL A PAGAR MN</string>
+    <string name="elaborado_pdf">ELABORADO POR</string>
+    <string name="recibido_pdf">RECIBIDO POR</string>
+    <string name="nombre_pdf">Nombre:</string>
+    <string name="firma_pdf">Firma: </string>
+    <string name="fecha_pdf">Fecha: </string>
+    <string name="cargo_pdf">Cargo: </string>
+    <string name="ci_pdf">CI: </string>
+    <string name="success_build_pdf">Se ha generado exitosamente un documento PDF con el informe del pedido</string>
+    <string name="success_solicitud_pedido">La solicitud se ha realizado correctamente</string>
+
+
 </resources>

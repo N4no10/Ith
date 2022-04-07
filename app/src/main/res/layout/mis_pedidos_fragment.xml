@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentation.activities.main.fragments.mispedidos.MisPedidosFragment"
+    >
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/contentCL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_2"
+        app:layoutDescription="@xml/mis_pedidos_fragment_xml_contentcl_scene">
+
+        <ImageButton
+            android:id="@+id/opc1FL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"
+
+            android:src="@drawable/ic_pedido_en_linea_borde"
+            app:layout_constraintEnd_toStartOf="@+id/opc2FL"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageButton
+            android:id="@+id/opc2FL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_pedido_en_linea_borde"
+            app:layout_constraintBottom_toBottomOf="@+id/opc1FL"
+            app:layout_constraintEnd_toStartOf="@+id/opc3FL"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/opc1FL" />
+
+
+        <ImageButton
+            android:id="@+id/opc3FL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_pedido_en_linea_borde"
+            app:layout_constraintBottom_toBottomOf="@+id/opc2FL"
+            app:layout_constraintEnd_toStartOf="@+id/opc4FL"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/opc2FL" />
+
+        <ImageButton
+            android:id="@+id/opc4FL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_pedido_en_linea_borde"
+            app:layout_constraintBottom_toBottomOf="@+id/opc3FL"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+
+            app:layout_constraintStart_toEndOf="@+id/opc3FL" />
+
+
+        <View
+            android:id="@+id/lineSelectedV"
+            android:layout_width="40dp"
+            android:layout_height="8dp"
+            android:layout_marginTop="10dp"
+            android:scaleX="1"
+            android:background="@drawable/line_selected_tab_mis_pedidos"
+            app:layout_constraintEnd_toEndOf="@+id/opc1FL"
+            app:layout_constraintStart_toStartOf="@+id/opc1FL"
+            app:layout_constraintTop_toBottomOf="@+id/opc1FL" />
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

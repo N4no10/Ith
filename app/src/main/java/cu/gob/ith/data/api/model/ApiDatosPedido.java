@@ -41,6 +41,12 @@ public class ApiDatosPedido {
     @SerializedName("Productos")
     private List<ApiProducto> apiProductoList;
 
+    @SerializedName("TipoCliente")
+    private String tipoCliente;
+
+    @SerializedName("DescripciomTipoCliente")
+    private String descripcionTipoCliente;
+
     public ApiDatosPedido() {
     }
 
@@ -138,5 +144,21 @@ public class ApiDatosPedido {
 
     public void setProductoList(List<ApiProducto> apiProductoList) {
         this.apiProductoList = apiProductoList;
+    }
+
+    public String getTipoCliente() {
+        return tipoCliente;
+    }
+
+    public void setTipoCliente(String tipoCliente) {
+        this.tipoCliente = tipoCliente;
+    }
+
+    public String getDescripcionTipoCliente() {
+        return descripcionTipoCliente;
+    }
+
+    public void setDescripcionTipoCliente(String descripcionTipoCliente) {
+        this.descripcionTipoCliente = descripcionTipoCliente;
     }
 }

@@ -12,6 +12,7 @@
 
     <!-- Color App -->
     <color name="white_2">#F6F6F6</color>
+    <color name="gris_light3">#DADCE1</color>
     <color name="gris_light">#EEEEEE</color>
     <color name="gris_light2">#ECECEC</color>
     <color name="gris">#7C7D7E</color>

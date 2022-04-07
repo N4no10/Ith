@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentation.activities.main.fragments.informe.InformePedidoFragment">
+
+
+    <data>
+        <variable
+            name="datosPedido"
+            type="cu.gob.ith.domain.model.DatosPedido" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gris_light2"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        >
+
+        <TextView
+            android:id="@+id/numeroTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/myriad_semibold"
+            android:text="Número de Pedido: "
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/numeroTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/myriad_regular"
+            android:text='@{""+datosPedido.number}'
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/numeroTitleTV"
+            app:layout_constraintTop_toTopOf="@+id/numeroTitleTV" />
+
+        <TextView
+            android:id="@+id/proveedorTitleTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/myriad_semibold"
+            android:text="Proveedor: "
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/numeroTitleTV"
+            app:layout_constraintTop_toBottomOf="@id/numeroTv" />
+
+        <TextView
+            android:id="@+id/proveedorTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/myriad_regular"
+            android:text='@{""+datosPedido.provider}'
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/numeroTv"
+            app:layout_constraintStart_toEndOf="@id/proveedorTitleTv"
+            app:layout_constraintTop_toTopOf="@id/proveedorTitleTv" />
+
+        <TextView
+            android:id="@+id/codigoITHTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/myriad_semibold"
+            android:text="Codigo ITH: "
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/proveedorTitleTv"
+            app:layout_constraintTop_toBottomOf="@id/proveedorTv" />
+
+
+        <TextView
+            android:id="@+id/codigoITHTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/myriad_regular"
+            android:text='@{""+datosPedido.codeITH}'
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/proveedorTv"
+            app:layout_constraintStart_toEndOf="@id/codigoITHTitleTV"
+            app:layout_constraintTop_toTopOf="@id/codigoITHTitleTV" />
+
+        <TextView
+            android:id="@+id/direccionITHTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/myriad_semibold"
+            android:text="Dirección ITH: "
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/codigoITHTitleTV"
+            app:layout_constraintTop_toBottomOf="@id/codigoITHTV" />
+
+        <TextView
+            android:id="@+id/direccionITHTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/myriad_regular"
+            android:text='@{""+datosPedido.addressITH}'
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/codigoITHTV"
+            app:layout_constraintStart_toEndOf="@id/direccionITHTitleTV"
+            app:layout_constraintTop_toTopOf="@id/direccionITHTitleTV" />
+
+        <TextView
+            android:id="@+id/codigoTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/myriad_semibold"
+            android:text="Codigo: "
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/direccionITHTitleTV"
+            app:layout_constraintTop_toBottomOf="@id/direccionITHTV" />
+
+        <TextView
+            android:id="@+id/codigoTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/myriad_regular"
+            android:text='@{""+datosPedido.code}'
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/direccionITHTV"
+            app:layout_constraintStart_toEndOf="@id/codigoTitleTV"
+            app:layout_constraintTop_toTopOf="@id/codigoTitleTV" />
+
+        <TextView
+            android:id="@+id/direccionTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/myriad_semibold"
+            android:text="Dirección: "
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/codigoTitleTV"
+            app:layout_constraintTop_toBottomOf="@id/codigoTV" />
+
+        <TextView
+            android:id="@+id/direccionTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/myriad_regular"
+            android:text='@{""+datosPedido.address}'
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/codigoTV"
+            app:layout_constraintStart_toEndOf="@id/direccionTitleTV"
+            app:layout_constraintTop_toTopOf="@id/direccionTitleTV" />
+
+        <TextView
+            android:id="@+id/fechaTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/myriad_semibold"
+            android:text="Fecha: "
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/direccionTitleTV"
+            app:layout_constraintTop_toBottomOf="@+id/direccionTV" />
+
+        <TextView
+            android:id="@+id/fechaTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/myriad_regular"
+            android:text='@{""+datosPedido.date}'
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/direccionTV"
+            app:layout_constraintStart_toEndOf="@id/fechaTitleTV"
+            app:layout_constraintTop_toTopOf="@id/fechaTitleTV" />
+
+        <TextView
+            android:id="@+id/clienteTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/myriad_semibold"
+            android:text="Cliente: "
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/fechaTitleTV"
+            app:layout_constraintTop_toBottomOf="@id/fechaTV" />
+
+        <TextView
+            android:id="@+id/clienteTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/myriad_regular"
+            android:text='@{""+datosPedido.client}'
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/fechaTV"
+            app:layout_constraintStart_toEndOf="@id/clienteTitleTV"
+            app:layout_constraintTop_toTopOf="@id/clienteTitleTV" />
+
+        <TextView
+            android:id="@+id/cuentaBancariaTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/myriad_semibold"
+            android:text="Cuenta Bancaria: "
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/clienteTitleTV"
+            app:layout_constraintTop_toBottomOf="@id/clienteTV" />
+
+        <TextView
+            android:id="@+id/cuentaBancariaTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/myriad_regular"
+            android:text='@{""+datosPedido.bankAccount}'
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/clienteTV"
+            app:layout_constraintStart_toEndOf="@id/cuentaBancariaTitleTV"
+            app:layout_constraintTop_toTopOf="@id/cuentaBancariaTitleTV" />
+
+        <TextView
+            android:id="@+id/sucursalTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/myriad_semibold"
+            android:text="Sucursal: "
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/cuentaBancariaTitleTV"
+            app:layout_constraintTop_toBottomOf="@id/cuentaBancariaTV" />
+
+        <TextView
+            android:id="@+id/sucursalTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/myriad_regular"
+            android:text='@{""+datosPedido.sucursal}'
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/cuentaBancariaTV"
+            app:layout_constraintStart_toEndOf="@id/sucursalTitleTV"
+            app:layout_constraintTop_toTopOf="@id/sucursalTitleTV" />
+
+        <TextView
+            android:id="@+id/importeTotalTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/myriad_semibold"
+            android:text="Importe Total: "
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/sucursalTitleTV"
+            app:layout_constraintTop_toBottomOf="@id/sucursalTV" />
+
+        <TextView
+            android:id="@+id/importeTotalTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/myriad_regular"
+            android:text='@{""+datosPedido.importeTotal}'
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@id/sucursalTV"
+            app:layout_constraintStart_toEndOf="@id/importeTotalTitleTV"
+            app:layout_constraintTop_toTopOf="@id/importeTotalTitleTV" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

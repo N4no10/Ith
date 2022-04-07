@@ -30,7 +30,9 @@
         android:background='@color/blue_dark'
         android:paddingStart="20dp"
         android:paddingTop="32dp"
-        android:paddingBottom="16dp">
+        android:paddingBottom="16dp"
+
+        >
 
         <LinearLayout
             android:id="@+id/headerNavViewLL"
@@ -97,6 +99,7 @@
             android:layout_marginEnd="1dp"
             android:layout_marginBottom="1dp"
             android:adapter='@{adapter}'
+            android:clickable="false"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/logoutItemLayout"
             app:layout_constraintEnd_toEndOf="parent"

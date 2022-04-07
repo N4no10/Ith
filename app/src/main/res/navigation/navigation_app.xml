@@ -20,6 +20,9 @@
         <action
             android:id="@+id/action_inicioFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_inicioFragment_to_misPedidosFragment"
+            app:destination="@id/misPedidosFragment" />
     </fragment>
     <fragment
         android:id="@+id/pedidoListFragment"
@@ -35,4 +38,14 @@
         android:name="cu.gob.ith.presentation.activities.main.fragments.informe.InformePedidoFragment"
         android:label="fragment_informe_pedido"
         tools:layout="@layout/fragment_informe_pedido" />
+    <fragment
+        android:id="@+id/misPedidosFragment"
+        android:name="cu.gob.ith.presentation.activities.main.fragments.mispedidos.MisPedidosFragment"
+        android:label="mis_pedidos_fragment"
+        tools:layout="@layout/mis_pedidos_fragment" />
+    <fragment
+        android:id="@+id/pedidosMesFragment"
+        android:name="cu.gob.ith.PedidosMesFragment"
+        android:label="pedidos_mes_fragment"
+        tools:layout="@layout/pedidos_mes_fragment" />
 </navigation>

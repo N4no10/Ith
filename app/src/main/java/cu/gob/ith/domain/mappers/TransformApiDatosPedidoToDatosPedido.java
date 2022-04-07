@@ -3,6 +3,7 @@ package cu.gob.ith.domain.mappers;
 import java.util.ArrayList;
 import java.util.List;
 
+import cu.gob.ith.common.Util;
 import cu.gob.ith.data.api.model.ApiDatosPedido;
 import cu.gob.ith.domain.model.DatosPedido;
 
@@ -14,11 +15,13 @@ public class TransformApiDatosPedidoToDatosPedido {
                 apiDatosPedido.getAddressITH(),
                 apiDatosPedido.getCode(),
                 apiDatosPedido.getAddress(),
-                apiDatosPedido.getDate(),
+                Util.changeDateFormat(apiDatosPedido.getDate()),
                 apiDatosPedido.getClient(),
                 apiDatosPedido.getBankAccount(),
                 apiDatosPedido.getSucursal(),
                 apiDatosPedido.getImporteTotal(),
+                apiDatosPedido.getTipoCliente(),
+                apiDatosPedido.getDescripcionTipoCliente(),
                 TransformApiProductoToProducto
                         .mapToProductoInformeList(apiDatosPedido.getApiProductoList()));
 

@@ -12,10 +12,13 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Objects;
 
+import javax.inject.Inject;
+
 import cu.gob.ith.R;
 import cu.gob.ith.databinding.ActivityLoginBinding;
 import cu.gob.ith.domain.model.login.LoginBody;
 import cu.gob.ith.presentation.activities.login.viewmodel.LoginActivityViewModel;
+import cu.gob.ith.presentation.activities.main.fragments.informe.pdf.InformePedidoPDFGenerator;
 import cu.gob.ith.presentation.activities.main.ui.MainActivity;
 import dagger.hilt.android.AndroidEntryPoint;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -32,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         loginActivityViewModel = new ViewModelProvider(this).get(LoginActivityViewModel.class);
 
         initView();
+
     }
 
     private void initView() {

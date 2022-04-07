@@ -18,12 +18,15 @@ public class DatosPedido {
     private String client;
     private String bankAccount;
     private String sucursal;
+    private String tipoCliente;
+    private String descripcionTipoCliente;
     private float importeTotal;
     private List<Producto> productoList;
 
     public DatosPedido(String number, String provider, String codeITH, String addressITH,
                        String code, String address, String date, String client,
                        String bankAccount, String sucursal, float importeTotal,
+                       String tipoCliente, String descripcionTipoCliente,
                        List<Producto> productoList) {
         this.number = number;
         this.provider = provider;
@@ -37,6 +40,8 @@ public class DatosPedido {
         this.sucursal = sucursal;
         this.importeTotal = importeTotal;
         this.productoList = productoList;
+        this.tipoCliente = tipoCliente;
+        this.descripcionTipoCliente = descripcionTipoCliente;
     }
 
     public String getNumber() {
@@ -129,6 +134,22 @@ public class DatosPedido {
 
     public List<Producto> getProductoList() {
         return productoList;
+    }
+
+    public String getTipoCliente() {
+        return tipoCliente;
+    }
+
+    public void setTipoCliente(String tipoCliente) {
+        this.tipoCliente = tipoCliente;
+    }
+
+    public String getDescripcionTipoCliente() {
+        return descripcionTipoCliente;
+    }
+
+    public void setDescripcionTipoCliente(String descripcionTipoCliente) {
+        this.descripcionTipoCliente = descripcionTipoCliente;
     }
 
     public void setProductoList(List<Producto> productoList) {

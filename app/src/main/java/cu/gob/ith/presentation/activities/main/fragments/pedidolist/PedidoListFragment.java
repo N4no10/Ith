@@ -16,6 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -99,7 +102,9 @@ public class PedidoListFragment extends Fragment {
                         viewModel.getRequestOrderUseCase().execute(pedidoList)
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe(informePedido -> {
-                                            Toast.makeText(requireContext(), "La solicitud se ha realizado correctamente ", Toast.LENGTH_SHORT).show();
+                                            Snackbar.make(uiBind.getRoot(),
+                                                    getString(R.string.success_solicitud_pedido),
+                                                    Snackbar.LENGTH_LONG).show();
                                             mainActivityViewModel.setInformePedido(informePedido);
                                             Navigation.findNavController(uiBind.getRoot()).navigate(R.id.to_informePedidoFragment);
                                         },
@@ -113,7 +118,7 @@ public class PedidoListFragment extends Fragment {
     }
 
     private void currentToolBar() {
-        mainActivityViewModel.setTitleToolBar("Lista de Pedidos");
+        mainActivityViewModel.setTitleToolBar(getString(R.string.list_producto));
         mainActivityViewModel.setShowMenuOrBack(false);
 
     }
