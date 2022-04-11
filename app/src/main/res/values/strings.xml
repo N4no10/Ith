@@ -85,6 +85,13 @@
     <string name="ci_pdf">CI: </string>
     <string name="success_build_pdf">Se ha generado exitosamente un documento PDF con el informe del pedido</string>
     <string name="success_solicitud_pedido">La solicitud se ha realizado correctamente</string>
+    <string name="fecha_pedido">Fecha</string>
+    <string name="cliente_pedido">Cliente</string>
+
+    //Mis Pedidos Opc1
+    <string name="pedidos_opc1">Pedidos:</string>
+    <string name="fecha_inic_opc1">De:</string>
+    <string name="fecha_fin_opc1">Hasta:</string>
 
 
 </resources>

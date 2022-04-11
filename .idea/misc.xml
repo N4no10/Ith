@@ -23,6 +23,7 @@
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/elevation_shadown.xml" value="0.242" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/ic_add.xml" value="0.3725" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/ic_arrow_left.xml" value="0.369" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/ic_date_picker.xml" value="0.3725" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/ic_logout.xml" value="0.251" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/ic_pedido_en_linea.xml" value="0.188" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/ic_pedido_en_linea_borde.xml" value="0.2015" />
@@ -39,6 +40,7 @@
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout-h480dp/form_login.xml" value="0.5875" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout-h480dp/list_productos.xml" value="0.12954253954681488" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout-h480dp/mis_pedidos_fragment2.xml" value="0.16374519025224454" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout-h600dp/item_pedido.xml" value="0.5" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout-h600dp/prueba_responsive.xml" value="0.20094057289439932" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout-h800dp/form_login.xml" value="0.20094057289439932" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout-w1240dp/activity_responsive.xml" value="0.10105949470252648" />
@@ -60,11 +62,17 @@
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_inicio.xml" value="0.20126926563916592" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_menu.xml" value="0.2" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_mis_pedidos.xml" value="0.3240143369175627" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_pedido_list.xml" value="0.10175438596491228" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_pedidos_entregados.xml" value="0.19324497648567765" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_pedidos_mes.xml" value="0.33" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_pedidos_procesados.xml" value="0.19324497648567765" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_pedidos_sin_procesar.xml" value="0.3052586575459598" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_prueba.xml" value="0.15" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/item_categoria.xml" value="0.4" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/item_menu_nav_vie.xml" value="0.1" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/item_menu_nav_view.xml" value="0.16" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/item_pedido.xml" value="0.6086330935251798" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/item_productos.xml" value="0.264" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/item_productos_informe_pedido.xml" value="0.264" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/item_prueba_layout.xml" value="0.1513157894736842" />
@@ -73,8 +81,11 @@
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/list_pedidos_solicitud.xml" value="0.264" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/list_productos.xml" value="0.3247863247863248" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/list_prueba_layout.xml" value="0.2348684210526316" />
-        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/mis_pedidos_fragment.xml" value="0.264" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/mis_pedidos_fragment.xml" value="0.22" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/nav_header_responsive.xml" value="0.20094057289439932" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/pedidos_entregados_fragment.xml" value="0.3052586575459598" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/pedidos_mes_fragment.xml" value="0.1" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/pedidos_procesados_fragment.xml" value="0.1" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/toolbar_layout.xml" value="0.5" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/xml/network_security.xml" value="0.11842667806755024" />
       </map>

@@ -26,11 +26,20 @@
             android:id="@+id/lineSelectedV"
             motion:layout_constraintEnd_toEndOf="@id/opc1FL"
             android:layout_width="40dp"
-            android:layout_height="8dp"
+            android:layout_height="4dp"
             motion:layout_constraintTop_toBottomOf="@+id/opc1FL"
             motion:layout_constraintStart_toStartOf="@+id/opc1FL"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="6dp"
             android:scaleX="1" />
+        <Constraint
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintTop_toBottomOf="@+id/lineSelectedV"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="8dp"
+            android:id="@+id/contentFragmentCV" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/opc2">
@@ -38,10 +47,10 @@
             android:id="@+id/lineSelectedV"
             motion:layout_constraintEnd_toEndOf="@id/opc2FL"
             android:layout_width="40dp"
-            android:layout_height="8dp"
+            android:layout_height="4dp"
             motion:layout_constraintTop_toBottomOf="@id/opc2FL"
             motion:layout_constraintStart_toStartOf="@id/opc2FL"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="6dp"
             android:scaleX="1" />
     </ConstraintSet>
     <ConstraintSet android:id="@+id/opc3" >
@@ -49,10 +58,10 @@
             android:id="@+id/lineSelectedV"
             motion:layout_constraintEnd_toEndOf="@id/opc3FL"
             android:layout_width="40dp"
-            android:layout_height="8dp"
+            android:layout_height="4dp"
             motion:layout_constraintTop_toBottomOf="@id/opc3FL"
             motion:layout_constraintStart_toStartOf="@id/opc3FL"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="6dp"
             android:scaleX="1" />
     </ConstraintSet>
     <Transition
@@ -146,10 +155,10 @@
             android:id="@+id/lineSelectedV"
             motion:layout_constraintEnd_toEndOf="@id/opc4FL"
             android:layout_width="40dp"
-            android:layout_height="8dp"
+            android:layout_height="4dp"
             motion:layout_constraintTop_toBottomOf="@id/opc4FL"
             motion:layout_constraintStart_toStartOf="@id/opc4FL"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="6dp"
             android:scaleX="1" />
     </ConstraintSet>
     <Transition

@@ -41,11 +41,6 @@
     <fragment
         android:id="@+id/misPedidosFragment"
         android:name="cu.gob.ith.presentation.activities.main.fragments.mispedidos.MisPedidosFragment"
-        android:label="mis_pedidos_fragment"
-        tools:layout="@layout/mis_pedidos_fragment" />
-    <fragment
-        android:id="@+id/pedidosMesFragment"
-        android:name="cu.gob.ith.PedidosMesFragment"
-        android:label="pedidos_mes_fragment"
-        tools:layout="@layout/pedidos_mes_fragment" />
+        android:label="fragment_mis_pedidos"
+        tools:layout="@layout/fragment_mis_pedidos" />
 </navigation>

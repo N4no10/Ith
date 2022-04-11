@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.activities.main.fragments.mispedidos.opc1.PedidosMesFragment">
+
+    <data>
+        <variable
+            name="fechaInic"
+            type="String" />
+        <variable
+            name="fechaFin"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/titleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/myriad_bold"
+            android:text="@string/pedidos_opc1"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/desdeTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/myriad_bold"
+            android:text="@string/fecha_inic_opc1"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/titleTV"
+            app:layout_constraintTop_toBottomOf="@+id/titleTV" />
+
+        <TextView
+            android:id="@+id/desdeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/myriad_bold"
+            android:text='@{fechaInic}'
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/desdeTitleTV"
+            app:layout_constraintStart_toEndOf="@+id/desdeTitleTV" />
+
+        <TextView
+            android:id="@+id/hastaTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:fontFamily="@font/myriad_bold"
+            android:text="@string/fecha_fin_opc1"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/desdeTitleTV"
+            app:layout_constraintStart_toEndOf="@+id/desdeTV" />
+
+        <TextView
+            android:id="@+id/hastaTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/myriad_bold"
+            android:text='@{fechaFin}'
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/hastaTitleTV"
+            app:layout_constraintStart_toEndOf="@+id/hastaTitleTV" />
+
+        <ImageButton
+            android:id="@+id/calendarioIB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="8dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_date_picker"
+            app:layout_constraintBottom_toBottomOf="@+id/hastaTitleTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/hastaTV"
+            app:layout_constraintTop_toTopOf="@+id/titleTV"
+            app:tint="@color/green" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listPedidosRV"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/calendarioIB"
+            app:layout_constraintStart_toStartOf="@+id/desdeTitleTV"
+            app:layout_constraintTop_toBottomOf="@+id/hastaTitleTV" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

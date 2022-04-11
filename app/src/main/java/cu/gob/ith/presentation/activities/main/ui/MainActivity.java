@@ -31,6 +31,7 @@ import cu.gob.ith.presentation.activities.main.ui.viewmodel.MainActivityViewMode
 import cu.gob.ith.presentation.model.ItemMenuNavView;
 import cu.gob.ith.presentation.util.Util;
 import dagger.hilt.android.AndroidEntryPoint;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
 @AndroidEntryPoint
 public class MainActivity extends AppCompatActivity implements ClickItemMenuInterface {
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
         initShopCar();
     }
 
+    //region Permissions
     private void requestPermissions() {
         if(!enabledPermissionReadAndWrite())
             ActivityCompat.requestPermissions(MainActivity.this,
@@ -84,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
         return ContextCompat.checkSelfPermission(MainActivity.this,
                 android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
     }
+    //endregion Permissions
 
     private void initShopCar() {
         uiBind.contentMainActivityLayout.toolbarLayout.shopCarIV.setOnClickListener(v ->
@@ -205,6 +208,7 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
         }
     }
 
+    //region Navigations
     private void navigateByItemMenu(ItemMenuNavView itemMenuNavView) {
         if (itemMenuNavView.getTitle().equals(getString(R.string.inicio_fragment)))
             initNavigate(R.id.inicioFragment, itemMenuNavView.getTitle());
@@ -228,4 +232,5 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
         if (navController.getCurrentDestination() != null)
             navController.navigate(destino, new Bundle());
     }
+    //endregion Navigations
 }

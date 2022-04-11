@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/pedidosMesFragment"
+    android:id="@+id/navigation_mis_pedidos">
+
+    <fragment
+        android:id="@+id/pedidosSinProcesarFragment"
+        android:name="cu.gob.ith.presentation.activities.main.fragments.mispedidos.opc2.PedidosSinProcesarFragment"
+        tools:layout="@layout/fragment_pedidos_sin_procesar"
+        android:label="fragment_pedidos_sin_procesar" />
+    <fragment
+        android:id="@+id/pedidosProcesadosFragment"
+        android:name="cu.gob.ith.presentation.activities.main.fragments.mispedidos.opc4.PedidosProcesadosFragment"
+        tools:layout="@layout/fragment_pedidos_procesados"
+        android:label="pedidos_procesados_fragment" />
+    <fragment
+        android:id="@+id/pedidosEntregadosFragment"
+        android:name="cu.gob.ith.presentation.activities.main.fragments.mispedidos.opc3.PedidosEntregadosFragment"
+        tools:layout="@layout/fragment_pedidos_entregados"
+        android:label="pedidos_entregados_fragment" />
+    <fragment
+        android:id="@+id/pedidosMesFragment"
+        android:name="cu.gob.ith.presentation.activities.main.fragments.mispedidos.opc1.PedidosMesFragment"
+        tools:layout="@layout/fragment_pedidos_mes"
+        android:label="pedidos_mes_fragment" >
+        <action
+            android:id="@+id/action_pedidosMesFragment_to_pedidosSinProcesarFragment"
+            app:destination="@id/pedidosSinProcesarFragment" />
+        <action
+            android:id="@+id/action_pedidosMesFragment_to_pedidosEntregadosFragment"
+            app:destination="@id/pedidosEntregadosFragment" />
+        <action
+            android:id="@+id/action_pedidosMesFragment_to_pedidosProcesadosFragment"
+            app:destination="@id/pedidosProcesadosFragment" />
+    </fragment>
+</navigation>
