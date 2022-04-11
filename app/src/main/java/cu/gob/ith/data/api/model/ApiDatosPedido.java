@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class ApiDatosPedido {
-    @SerializedName("Numero")
+    @SerializedName(value = "Numero", alternate = "NumDocumento")
     private String number;
 
     @SerializedName("Proveedor")
@@ -17,16 +17,16 @@ public class ApiDatosPedido {
     @SerializedName("DireccionITH")
     private String addressITH;
 
-    @SerializedName("Codigo")
+    @SerializedName(value = "Codigo", alternate = "CodEntidad")
     private String code;
 
     @SerializedName("Direccion")
     private String address;
 
-    @SerializedName("Fecha")
+    @SerializedName(value = "Fecha", alternate = "FechaDocumento")
     private String date;
 
-    @SerializedName("Cliente")
+    @SerializedName(value = "Cliente", alternate = "User_Name")
     private String client;
 
     @SerializedName("CuentaBancaria")
@@ -35,7 +35,7 @@ public class ApiDatosPedido {
     @SerializedName("Sucursal")
     private String sucursal;
 
-    @SerializedName("ImporteTotal")
+    @SerializedName(value = "ImporteTotal", alternate = "Importe")
     private float importeTotal;
 
     @SerializedName("Productos")
@@ -46,6 +46,15 @@ public class ApiDatosPedido {
 
     @SerializedName("DescripciomTipoCliente")
     private String descripcionTipoCliente;
+
+    @SerializedName("Observaciones")
+    private String observaciones;
+
+    @SerializedName("PEDIDO_DETALLE")
+    private String detalle;
+
+    @SerializedName("Estado")
+    private Integer estado;
 
     public ApiDatosPedido() {
     }
@@ -160,5 +169,29 @@ public class ApiDatosPedido {
 
     public void setDescripcionTipoCliente(String descripcionTipoCliente) {
         this.descripcionTipoCliente = descripcionTipoCliente;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+
+    public String getDetalle() {
+        return detalle;
+    }
+
+    public void setDetalle(String detalle) {
+        this.detalle = detalle;
+    }
+
+    public Integer getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Integer estado) {
+        this.estado = estado;
     }
 }

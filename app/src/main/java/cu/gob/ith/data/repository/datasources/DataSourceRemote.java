@@ -1,12 +1,14 @@
 package cu.gob.ith.data.repository.datasources;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import cu.gob.ith.data.api.Api;
 import cu.gob.ith.data.api.model.ApiCategoria;
+import cu.gob.ith.data.api.model.ApiListPedidos;
 import cu.gob.ith.data.api.model.ApiLoginBody;
 import cu.gob.ith.data.api.model.ApiLoginResponse;
 import cu.gob.ith.data.api.model.ApiPedido;
@@ -42,5 +44,10 @@ public class DataSourceRemote implements DataSourceApi {
     @Override
     public Observable<ApiPedidoResponse> requestOrder(List<ApiPedido> apiPedidoList) {
         return api.requestOrder(apiPedidoList);
+    }
+
+    @Override
+    public Observable<ApiListPedidos> filterListPedidos(Map<String, Object> params) {
+        return api.filterListPedidos(params);
     }
 }

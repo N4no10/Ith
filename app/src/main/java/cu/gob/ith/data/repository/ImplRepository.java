@@ -1,11 +1,13 @@
 package cu.gob.ith.data.repository;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import cu.gob.ith.data.api.model.ApiCategoria;
+import cu.gob.ith.data.api.model.ApiListPedidos;
 import cu.gob.ith.data.api.model.ApiLoginBody;
 import cu.gob.ith.data.api.model.ApiLoginResponse;
 import cu.gob.ith.data.api.model.ApiPedido;
@@ -52,6 +54,12 @@ public class ImplRepository implements Repository {
     @Override
     public Observable<ApiPedidoResponse> requestOrder(List<ApiPedido> apiPedidoList) {
         return dataSourceRemote.requestOrder(apiPedidoList)
+                .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Observable<ApiListPedidos> filterListPedidos(Map<String, Object> params) {
+        return dataSourceRemote.filterListPedidos(params)
                 .subscribeOn(Schedulers.io());
     }
 }

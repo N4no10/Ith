@@ -42,4 +42,12 @@ public class MenuFragmentViewModel extends ViewModel {
     public GetProductosPorCategoriaUseCase getGetProductosPorCategoriaUseCase() {
         return getProductosPorCategoriaUseCase;
     }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+
+        if(compositeDisposable.isDisposed())
+            compositeDisposable.dispose();
+    }
 }

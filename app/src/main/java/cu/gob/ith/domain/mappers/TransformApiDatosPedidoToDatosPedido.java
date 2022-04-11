@@ -23,7 +23,10 @@ public class TransformApiDatosPedidoToDatosPedido {
                 apiDatosPedido.getTipoCliente(),
                 apiDatosPedido.getDescripcionTipoCliente(),
                 TransformApiProductoToProducto
-                        .mapToProductoInformeList(apiDatosPedido.getApiProductoList()));
+                        .mapToProductoInformeList(apiDatosPedido.getApiProductoList()),
+                apiDatosPedido.getObservaciones(),
+                apiDatosPedido.getDetalle(),
+                apiDatosPedido.getEstado());
 
     }
 

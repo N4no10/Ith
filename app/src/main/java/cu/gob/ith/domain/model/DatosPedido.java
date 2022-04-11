@@ -1,10 +1,6 @@
 package cu.gob.ith.domain.model;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.util.List;
-
-import cu.gob.ith.data.api.model.ApiProducto;
 
 public class DatosPedido {
 
@@ -23,11 +19,15 @@ public class DatosPedido {
     private float importeTotal;
     private List<Producto> productoList;
 
+    private String observaciones;
+    private String detalle;
+    private Integer estado;
+
     public DatosPedido(String number, String provider, String codeITH, String addressITH,
                        String code, String address, String date, String client,
                        String bankAccount, String sucursal, float importeTotal,
                        String tipoCliente, String descripcionTipoCliente,
-                       List<Producto> productoList) {
+                       List<Producto> productoList, String observaciones, String detalle, Integer estado) {
         this.number = number;
         this.provider = provider;
         this.codeITH = codeITH;
@@ -42,6 +42,9 @@ public class DatosPedido {
         this.productoList = productoList;
         this.tipoCliente = tipoCliente;
         this.descripcionTipoCliente = descripcionTipoCliente;
+        this.observaciones = observaciones;
+        this.detalle = detalle;
+        this.estado = estado;
     }
 
     public String getNumber() {
@@ -154,5 +157,29 @@ public class DatosPedido {
 
     public void setProductoList(List<Producto> productoList) {
         this.productoList = productoList;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+
+    public String getDetalle() {
+        return detalle;
+    }
+
+    public void setDetalle(String detalle) {
+        this.detalle = detalle;
+    }
+
+    public Integer getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Integer estado) {
+        this.estado = estado;
     }
 }

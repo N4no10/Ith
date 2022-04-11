@@ -98,6 +98,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
+            tools:listitem="@layout/item_pedido"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/calendarioIB"
             app:layout_constraintStart_toStartOf="@+id/desdeTitleTV"

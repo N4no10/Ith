@@ -1,8 +1,10 @@
 package cu.gob.ith.data.api;
 
 import java.util.List;
+import java.util.Map;
 
 import cu.gob.ith.data.api.model.ApiCategoria;
+import cu.gob.ith.data.api.model.ApiListPedidos;
 import cu.gob.ith.data.api.model.ApiLoginBody;
 import cu.gob.ith.data.api.model.ApiLoginResponse;
 import cu.gob.ith.data.api.model.ApiPedido;
@@ -13,6 +15,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 public interface Api {
 
@@ -27,5 +30,8 @@ public interface Api {
 
     @POST("pedido/guardarPedido")
     Observable<ApiPedidoResponse> requestOrder(@Body List<ApiPedido> apiPedidoList);
+
+    @GET("pedido/findAllPedidos")
+    Observable<ApiListPedidos> filterListPedidos(@QueryMap Map<String,Object> params);
 
 }

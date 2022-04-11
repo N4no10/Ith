@@ -14,7 +14,9 @@ import android.view.ViewGroup;
 
 import cu.gob.ith.R;
 import cu.gob.ith.presentation.activities.main.fragments.mispedidos.opc3.viewmodel.PedidosEntregadosViewModel;
+import dagger.hilt.android.AndroidEntryPoint;
 
+@AndroidEntryPoint
 public class PedidosEntregadosFragment extends Fragment {
 
     private PedidosEntregadosViewModel mViewModel;
