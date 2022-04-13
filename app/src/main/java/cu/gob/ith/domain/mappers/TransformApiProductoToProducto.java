@@ -43,11 +43,14 @@ public class TransformApiProductoToProducto {
     }
 
     public static List<Producto> mapToProductoInformeList(List<ApiProducto> apiProductoList) {
-        List<Producto> productoList = new ArrayList<>();
-        for (ApiProducto apiProducto : apiProductoList
-        ) {
-            productoList.add(mapToProductoInforme(apiProducto));
+        if(apiProductoList != null && apiProductoList.isEmpty()) {
+            List<Producto> productoList = new ArrayList<>();
+            for (ApiProducto apiProducto : apiProductoList
+            ) {
+                productoList.add(mapToProductoInforme(apiProducto));
+            }
+            return productoList;
         }
-        return productoList;
+        return null;
     }
 }

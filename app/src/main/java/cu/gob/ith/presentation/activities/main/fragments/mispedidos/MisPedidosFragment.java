@@ -23,7 +23,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class MisPedidosFragment extends Fragment {
-
     private FragmentMisPedidosBinding uiBind;
     private MisPedidosViewModel mViewModel;
     private MainActivityViewModel mainActivityViewModel;

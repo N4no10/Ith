@@ -10,7 +10,7 @@
         android:id="@+id/contentCL"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white_2"
+        android:background="@color/gris_light"
         app:layoutDescription="@xml/mis_pedidos_fragment_xml_contentcl_scene">
 
         <ImageButton
@@ -80,6 +80,8 @@
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
             style="@style/cornerTopCardView"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/white_2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

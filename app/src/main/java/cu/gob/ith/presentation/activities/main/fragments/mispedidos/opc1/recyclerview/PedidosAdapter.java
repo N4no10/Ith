@@ -10,15 +10,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import cu.gob.ith.R;
+import cu.gob.ith.domain.model.DatosPedido;
 import cu.gob.ith.domain.model.InformePedido;
 
 public class PedidosAdapter extends RecyclerView.Adapter<ItemPedidoViewHolder> {
 
     private LayoutInflater layoutInflater;
-    private List<InformePedido> informePedidoList;
+    private List<DatosPedido> datosPedidoList;
 
-    public PedidosAdapter(List<InformePedido> informePedidoList) {
-        this.informePedidoList = informePedidoList;
+    public PedidosAdapter(List<DatosPedido> datosPedidoList) {
+        this.datosPedidoList = datosPedidoList;
     }
 
     @NonNull
@@ -32,11 +33,17 @@ public class PedidosAdapter extends RecyclerView.Adapter<ItemPedidoViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ItemPedidoViewHolder holder, int position) {
-         holder.bind(informePedidoList.get(position).getDatosPedido());
+         holder.bind(datosPedidoList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return informePedidoList == null ? 0 : informePedidoList.size();
+        return datosPedidoList == null ? 0 : datosPedidoList.size();
+    }
+
+    public void loadList(List<DatosPedido> newListPedidos){
+        datosPedidoList.clear();
+        datosPedidoList.addAll(newListPedidos);
+        notifyDataSetChanged();
     }
 }
