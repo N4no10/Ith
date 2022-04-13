@@ -23,7 +23,7 @@ public class ApiProducto {
     private String nombreFamilia;
 
     @SerializedName(value = "PV",
-            alternate = {"PVP"})
+            alternate = {"PVP", "Pvp"})
     private float pv;
 
     @SerializedName("Cantidad")
@@ -32,6 +32,17 @@ public class ApiProducto {
     @SerializedName("Importe")
     private float importe;
 
+    @SerializedName("Estado")
+    private String estado;
+
+    @SerializedName("NumDocumento")
+    private String numDocumento;
+
+    @SerializedName("CantidadPedida")
+    private int cantPedida;
+
+    @SerializedName("CantidadDespachada")
+    private int cantDespachada;
 
     public ApiProducto() {
     }
@@ -98,5 +109,37 @@ public class ApiProducto {
 
     public void setImporte(float importe) {
         this.importe = importe;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getNumDocumento() {
+        return numDocumento;
+    }
+
+    public void setNumDocumento(String numDocumento) {
+        this.numDocumento = numDocumento;
+    }
+
+    public int getCantPedida() {
+        return cantPedida;
+    }
+
+    public void setCantPedida(int cantPedida) {
+        this.cantPedida = cantPedida;
+    }
+
+    public int getCantDespachada() {
+        return cantDespachada;
+    }
+
+    public void setCantDespachada(int cantDespachada) {
+        this.cantDespachada = cantDespachada;
     }
 }

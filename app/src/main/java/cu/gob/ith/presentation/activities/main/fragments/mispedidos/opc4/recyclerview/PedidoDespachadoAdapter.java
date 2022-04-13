@@ -11,15 +11,17 @@ import java.util.List;
 
 import cu.gob.ith.R;
 import cu.gob.ith.domain.model.DatosPedido;
-import cu.gob.ith.presentation.activities.main.fragments.mispedidos.opc1.recyclerview.ItemPedidoViewHolder;
+import cu.gob.ith.presentation.activities.main.fragments.mispedidos.OnClickDelegateRV;
 
 public class PedidoDespachadoAdapter extends RecyclerView.Adapter<ItemPedidoDespachadoViewHolder> {
 
     private LayoutInflater layoutInflater;
     private List<DatosPedido> datosPedidoList;
+    private OnClickDelegateRV onClickDelegateRV;
 
-    public PedidoDespachadoAdapter(List<DatosPedido> datosPedidoList) {
+    public PedidoDespachadoAdapter(List<DatosPedido> datosPedidoList, OnClickDelegateRV onClickDelegateRV) {
         this.datosPedidoList = datosPedidoList;
+        this.onClickDelegateRV = onClickDelegateRV;
     }
 
     @NonNull
@@ -34,7 +36,8 @@ public class PedidoDespachadoAdapter extends RecyclerView.Adapter<ItemPedidoDesp
     @Override
     public void onBindViewHolder(@NonNull ItemPedidoDespachadoViewHolder holder, int position) {
         holder.bind(datosPedidoList.get(position));
-
+        holder.getUiBind().getRoot().setOnClickListener(v -> onClickDelegateRV.onclickItem(datosPedidoList
+                .get(position).getNumber()));
     }
 
     @Override

@@ -14,7 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gris_light3">
+        android:background="@color/white_2">
 
         <TextView
             android:id="@+id/titleTV"

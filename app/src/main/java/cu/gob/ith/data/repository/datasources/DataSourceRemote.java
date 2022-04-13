@@ -8,6 +8,7 @@ import javax.inject.Singleton;
 
 import cu.gob.ith.data.api.Api;
 import cu.gob.ith.data.api.model.ApiCategoria;
+import cu.gob.ith.data.api.model.ApiListDetallesPedido;
 import cu.gob.ith.data.api.model.ApiListPedidos;
 import cu.gob.ith.data.api.model.ApiLoginBody;
 import cu.gob.ith.data.api.model.ApiLoginResponse;
@@ -59,5 +60,10 @@ public class DataSourceRemote implements DataSourceApi {
     @Override
     public Observable<ApiListPedidos> filterListPedidosDespachadosFacturados() {
         return api.filterListPedidosDespachadosFacturados();
+    }
+
+    @Override
+    public Observable<ApiListDetallesPedido> findAllDetallesPedidoDespachadosyNoDespachados(int numeroPedido) {
+        return api.findAllDetallesPedidoDespachadosyNoDespachados(numeroPedido);
     }
 }

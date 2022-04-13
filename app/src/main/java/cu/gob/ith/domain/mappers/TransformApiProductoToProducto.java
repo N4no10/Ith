@@ -33,6 +33,14 @@ public class TransformApiProductoToProducto {
                 apiProducto.getCantidad(), apiProducto.getImporte());
     }
 
+    public static Producto mapToDetalleProducto(ApiProducto apiProducto) {
+        BigDecimal bd = BigDecimal.valueOf(apiProducto.getPv()).setScale(2, RoundingMode.HALF_UP);
+        float finalValue = bd.floatValue();
+        return new Producto(apiProducto.getDescripcion(), apiProducto.getReferencia(), apiProducto.getCodUm(),
+                finalValue, apiProducto.getImporte(), apiProducto.getEstado(), apiProducto.getNumDocumento(),
+                apiProducto.getCantPedida(), apiProducto.getCantDespachada());
+    }
+
     public static List<Producto> mapList(List<ApiProducto> apiProductoList) {
         List<Producto> productoList = new ArrayList<>();
         for (ApiProducto apiProducto : apiProductoList
@@ -43,11 +51,23 @@ public class TransformApiProductoToProducto {
     }
 
     public static List<Producto> mapToProductoInformeList(List<ApiProducto> apiProductoList) {
-        if(apiProductoList != null && apiProductoList.isEmpty()) {
+        if (apiProductoList != null && !apiProductoList.isEmpty()) {
             List<Producto> productoList = new ArrayList<>();
             for (ApiProducto apiProducto : apiProductoList
             ) {
                 productoList.add(mapToProductoInforme(apiProducto));
+            }
+            return productoList;
+        }
+        return null;
+    }
+
+    public static List<Producto> mapToDetalleProductoList(List<ApiProducto> apiProductoList) {
+        if (apiProductoList != null && !apiProductoList.isEmpty()) {
+            List<Producto> productoList = new ArrayList<>();
+            for (ApiProducto apiProducto : apiProductoList
+            ) {
+                productoList.add(mapToDetalleProducto(apiProducto));
             }
             return productoList;
         }

@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="producto"
+            type="cu.gob.ith.domain.model.Producto" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/contentCV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:background="@drawable/background_item_producto"
+            android:backgroundTint="@color/gris_light"
+            android:paddingBottom="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/titleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="46dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/myriad_regular"
+                android:text="@{producto.descripcion}"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.32"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/productTitlePriceTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/myriad_bold"
+                android:text="@string/precio_title"
+                android:textColor="@color/blue_dark"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toTopOf="@+id/productPriceTV"
+                app:layout_constraintStart_toStartOf="@+id/titleTV"
+                app:layout_constraintTop_toBottomOf="@+id/titleTV" />
+
+            <TextView
+                android:id="@+id/productPriceTV"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/myriad_regular"
+                android:gravity="center"
+                android:text='@{producto.pv+"/"+producto.codUm}'
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/productTitlePriceTV"
+                app:layout_constraintStart_toStartOf="@id/productTitlePriceTV"
+                app:layout_constraintTop_toBottomOf="@id/productTitlePriceTV" />
+
+            <View
+                android:id="@+id/viewSeparetorV"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/gris_light3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/cantidadTV"
+                app:layout_constraintStart_toEndOf="@+id/productTitlePriceTV"
+                app:layout_constraintTop_toTopOf="@+id/productTitlePriceTV" />
+
+
+            <TextView
+                android:id="@+id/cantidadTitlePriceTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:fontFamily="@font/myriad_bold"
+                android:text="@string/cantidad_producto_despachado_title"
+                android:textColor="@color/blue_dark"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@+id/productTitlePriceTV"
+                app:layout_constraintStart_toEndOf="@+id/viewSeparetorV"
+                app:layout_constraintTop_toTopOf="@+id/productTitlePriceTV" />
+
+            <TextView
+                android:id="@+id/cantidadTV"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/myriad_regular"
+                android:gravity="center"
+                android:text='@{""+producto.cantDespachada}'
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/cantidadTitlePriceTV"
+                app:layout_constraintStart_toStartOf="@id/cantidadTitlePriceTV"
+                app:layout_constraintTop_toBottomOf="@id/cantidadTitlePriceTV" />
+
+
+            <View
+                android:id="@+id/viewSeparetor2V"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/gris_light3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/totalPagarPriceTV"
+                app:layout_constraintStart_toEndOf="@+id/cantidadTitlePriceTV"
+                app:layout_constraintTop_toTopOf="@+id/cantidadTitlePriceTV" />
+
+            <TextView
+                android:id="@+id/totalPagarTitlePriceTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/myriad_bold"
+                android:text="@string/total_pagar_title"
+                android:textColor="@color/blue_dark"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@+id/cantidadTitlePriceTV"
+                app:layout_constraintStart_toEndOf="@id/viewSeparetor2V"
+                app:layout_constraintTop_toTopOf="@+id/cantidadTitlePriceTV" />
+
+            <TextView
+                android:id="@+id/totalPagarPriceTV"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/myriad_regular"
+                android:gravity="center"
+                android:text='@{""+producto.importe}'
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/totalPagarTitlePriceTV"
+                app:layout_constraintStart_toStartOf="@id/totalPagarTitlePriceTV"
+                app:layout_constraintTop_toBottomOf="@id/totalPagarTitlePriceTV" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/fotoIV2"
+            android:layout_width="64dp"
+            android:layout_height="70dp"
+            android:rotation="0"
+            android:src="@drawable/foto_alimentos"
+            app:elevation="50dp"
+            app:layout_constraintBottom_toBottomOf="@+id/contentCV"
+            app:layout_constraintEnd_toStartOf="@+id/contentCV"
+            app:layout_constraintStart_toStartOf="@+id/contentCV"
+            app:layout_constraintTop_toTopOf="@+id/contentCV"
+            app:layout_constraintVertical_bias="0.25"
+            app:srcCompat="@drawable/foto_alimentos" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+   <!-- <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/contentCV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_item_producto"
+            android:paddingBottom="36dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/titleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/myriad_regular"
+                android:text="@{producto.descripcion}"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.32"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/productTitlePriceTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/myriad_bold"
+                android:text="@string/precio_title"
+                android:textColor="@color/blue_dark"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toTopOf="@+id/productPriceTV"
+                app:layout_constraintEnd_toStartOf="@+id/cantidadProductoTitleTV"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/titleTV" />
+
+            <TextView
+                android:id="@+id/productPriceTV"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/myriad_regular"
+                android:gravity="center"
+                android:text='@{producto.pv+"/"+producto.codUm}'
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/productTitlePriceTV"
+                app:layout_constraintStart_toStartOf="@id/productTitlePriceTV"
+                app:layout_constraintTop_toBottomOf="@id/productTitlePriceTV" />
+
+            <View
+                android:id="@+id/viewSeparetorV"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/gris_light2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/productTitlePriceTV"
+                app:layout_constraintTop_toTopOf="@+id/productTitlePriceTV" />
+
+
+            <TextView
+                android:id="@+id/cantidadProductoTitleTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/myriad_bold"
+                android:text="@string/cantidad_producto_title"
+                android:textColor="@color/blue_dark"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@+id/productTitlePriceTV"
+                app:layout_constraintEnd_toStartOf="@+id/totalPagarTitlePriceTV"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/productTitlePriceTV"
+                app:layout_constraintTop_toTopOf="@+id/productTitlePriceTV"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/cantidadProductoValueTV"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/myriad_regular"
+                android:gravity="center"
+                android:text='@{""+producto.cantProducto}'
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/cantidadProductoTitleTV"
+                app:layout_constraintStart_toStartOf="@id/cantidadProductoTitleTV"
+                app:layout_constraintTop_toBottomOf="@id/cantidadProductoTitleTV" />
+
+            <View
+                android:id="@+id/viewSeparatorCantidadV"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/gris_light2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cantidadProductoTitleTV"
+                app:layout_constraintTop_toTopOf="@+id/cantidadProductoTitleTV" />
+
+            <TextView
+                android:id="@+id/totalPagarTitlePriceTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/myriad_bold"
+                android:text="@string/total_pagar_title"
+                android:textColor="@color/blue_dark"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@+id/productTitlePriceTV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/cantidadProductoTitleTV"
+                app:layout_constraintTop_toTopOf="@+id/productTitlePriceTV"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/totalPagarPriceTV"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/myriad_regular"
+                android:gravity="center"
+                android:text='@{""+producto.importe}'
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@+id/totalPagarTitlePriceTV"
+                app:layout_constraintStart_toStartOf="@id/totalPagarTitlePriceTV"
+                app:layout_constraintTop_toBottomOf="@id/totalPagarTitlePriceTV" />
+
+            <View
+                android:id="@+id/viewSeparatorV"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/gris_light2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/totalPagarTitlePriceTV"
+                app:layout_constraintTop_toTopOf="@+id/totalPagarTitlePriceTV" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>-->
+</layout>

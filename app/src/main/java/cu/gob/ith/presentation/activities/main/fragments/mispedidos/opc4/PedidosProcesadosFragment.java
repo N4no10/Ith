@@ -11,9 +11,11 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import cu.gob.ith.R;
 import cu.gob.ith.databinding.FragmentPedidosProcesadosBinding;
+import cu.gob.ith.presentation.activities.main.fragments.mispedidos.OnClickDelegateRV;
 import cu.gob.ith.presentation.activities.main.fragments.mispedidos.opc4.recyclerview.PedidoDespachadoAdapter;
 import cu.gob.ith.presentation.activities.main.fragments.mispedidos.opc4.viewmodel.PedidosProcesadosViewModel;
 import dagger.hilt.android.AndroidEntryPoint;
@@ -26,6 +28,7 @@ public class PedidosProcesadosFragment extends Fragment {
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
     private FragmentPedidosProcesadosBinding uiBind;
     private PedidosProcesadosViewModel mViewModel;
+    private OnClickDelegateRV onClickDelegateRV;
 
     public static PedidosProcesadosFragment newInstance() {
         return new PedidosProcesadosFragment();
@@ -46,11 +49,22 @@ public class PedidosProcesadosFragment extends Fragment {
 
     private void initView() {
         initViewModel();
+        initOnClickInViewHolderItem();
         getPedidosDespachadosList();
     }
 
     private void initViewModel() {
         mViewModel = new ViewModelProvider(this).get(PedidosProcesadosViewModel.class);
+    }
+
+    private void initOnClickInViewHolderItem() {
+        onClickDelegateRV = id -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("pedidoId", id);
+            Navigation.findNavController(requireParentFragment().requireParentFragment().requireView())
+                    .navigate(R.id.to_detallesPedidoFragment, bundle);
+            Log.e("TAG", "onClick: RV: " + id);
+        };
     }
 
     private void getPedidosDespachadosList() {
@@ -59,7 +73,7 @@ public class PedidosProcesadosFragment extends Fragment {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(datosPedidos ->
                                         uiBind.pedidosDespachadosRV.setAdapter(
-                                                new PedidoDespachadoAdapter(datosPedidos)
+                                                new PedidoDespachadoAdapter(datosPedidos, onClickDelegateRV)
                                         ),
                                 throwable -> Log.e("PedidosDespachadosList", "getPedidosDespachadosList: " + throwable.getMessage())
                         )

@@ -11,9 +11,13 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+
+import java.util.Objects;
 
 import cu.gob.ith.R;
 import cu.gob.ith.databinding.FragmentPedidosEntregadosBinding;
+import cu.gob.ith.presentation.activities.main.fragments.mispedidos.OnClickDelegateRV;
 import cu.gob.ith.presentation.activities.main.fragments.mispedidos.opc3.recyclerview.PedidoFacturadoAdapter;
 import cu.gob.ith.presentation.activities.main.fragments.mispedidos.opc3.viewmodel.PedidosEntregadosViewModel;
 import dagger.hilt.android.AndroidEntryPoint;
@@ -26,6 +30,7 @@ public class PedidosEntregadosFragment extends Fragment {
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
     private PedidosEntregadosViewModel mViewModel;
     private FragmentPedidosEntregadosBinding uiBind;
+    private OnClickDelegateRV onClickDelegateRV;
 
     public static PedidosEntregadosFragment newInstance() {
         return new PedidosEntregadosFragment();
@@ -47,6 +52,7 @@ public class PedidosEntregadosFragment extends Fragment {
 
     private void initView() {
         initViewModel();
+        initOnClickInViewHolderItem();
         getPedidosDespachadosList();
 
     }
@@ -55,14 +61,32 @@ public class PedidosEntregadosFragment extends Fragment {
         mViewModel = new ViewModelProvider(this).get(PedidosEntregadosViewModel.class);
     }
 
+    private void initOnClickInViewHolderItem() {
+        onClickDelegateRV = id -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("pedidoId", id);
+            Navigation.findNavController(requireParentFragment().requireParentFragment().requireView())
+                    .navigate(R.id.to_detallesPedidoFragment, bundle);
+            Log.e("TAG", "onClick: RV: " + id);
+        };
+    }
+
     private void getPedidosDespachadosList() {
         compositeDisposable.add(
                 mViewModel.getFilterListPedidosFacturadosUseCase().execute()
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(datosPedidos -> uiBind.pedidosFacturadosRV
-                                        .setAdapter(new PedidoFacturadoAdapter(datosPedidos)),
+                                        .setAdapter(new PedidoFacturadoAdapter(datosPedidos, onClickDelegateRV)),
                                 throwable -> Log.e("PedidoFacturadoAdapter",
                                         "getPedidosDespachadosList: " + throwable.getMessage()))
         );
+
+    }
+
+    @Override
+    public void onDestroyView() {
+        if (!compositeDisposable.isDisposed())
+            compositeDisposable.dispose();
+        super.onDestroyView();
     }
 }

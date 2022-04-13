@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import cu.gob.ith.data.api.model.ApiCategoria;
+import cu.gob.ith.data.api.model.ApiListDetallesPedido;
 import cu.gob.ith.data.api.model.ApiListPedidos;
 import cu.gob.ith.data.api.model.ApiLoginBody;
 import cu.gob.ith.data.api.model.ApiLoginResponse;
@@ -72,6 +73,12 @@ public class ImplRepository implements Repository {
     @Override
     public Observable<ApiListPedidos> filterListPedidosDespachadosFacturados() {
         return dataSourceRemote.filterListPedidosDespachadosFacturados()
+                .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Observable<ApiListDetallesPedido> findAllDetallesPedidoDespachadosyNoDespachados(int numeroPedido) {
+        return dataSourceRemote.findAllDetallesPedidoDespachadosyNoDespachados(numeroPedido)
                 .subscribeOn(Schedulers.io());
     }
 }

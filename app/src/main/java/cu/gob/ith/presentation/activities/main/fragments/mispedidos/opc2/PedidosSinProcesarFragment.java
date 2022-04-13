@@ -8,6 +8,7 @@ import androidx.core.util.Pair;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ import cu.gob.ith.R;
 import cu.gob.ith.common.Util;
 import cu.gob.ith.databinding.FragmentPedidosSinProcesarBinding;
 import cu.gob.ith.domain.model.DatosPedido;
+import cu.gob.ith.presentation.activities.main.fragments.mispedidos.OnClickDelegateRV;
 import cu.gob.ith.presentation.activities.main.fragments.mispedidos.opc1.recyclerview.PedidosAdapter;
 import cu.gob.ith.presentation.activities.main.fragments.mispedidos.opc1.viewmodel.PedidosMesViewModel;
 import cu.gob.ith.presentation.activities.main.fragments.mispedidos.opc2.viewmodel.PedidosSinProcesarViewModel;
@@ -41,7 +43,7 @@ public class PedidosSinProcesarFragment extends Fragment {
     private MainActivityViewModel mainActivityViewModel;
     private PedidosSinProcesarViewModel mViewModel;
     private PedidosAdapter pedidosAdapter;
-
+    private OnClickDelegateRV onClickDelegateRV;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,7 +58,8 @@ public class PedidosSinProcesarFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         initViewModel();
-        initViewModel();
+//        initViewModel();
+        initOnClickInViewHolderItem();
         observers();
 
         initCalendario();
@@ -86,7 +89,7 @@ public class PedidosSinProcesarFragment extends Fragment {
 
     private void updateAdapter(List<DatosPedido> datosPedidoList) {
         if (pedidosAdapter == null) {
-            pedidosAdapter = new PedidosAdapter(datosPedidoList);
+            pedidosAdapter = new PedidosAdapter(datosPedidoList, onClickDelegateRV);
             uiBind.listPedidosRV.setAdapter(pedidosAdapter);
         } else
             pedidosAdapter.loadList(datosPedidoList);
@@ -141,5 +144,15 @@ public class PedidosSinProcesarFragment extends Fragment {
                 .get(MisPedidosViewModel.class);
         mViewModel = new ViewModelProvider(this).get(PedidosSinProcesarViewModel.class);
         mainActivityViewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
+    }
+
+    private void initOnClickInViewHolderItem() {
+        onClickDelegateRV = id -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("pedidoId", id);
+            Navigation.findNavController(requireParentFragment().requireParentFragment().requireView())
+                    .navigate(R.id.to_detallesPedidoFragment, bundle);
+            Log.e("TAG", "onClick: RV: " + id);
+        };
     }
 }

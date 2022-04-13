@@ -1,40 +1,31 @@
 package cu.gob.ith.presentation.activities.main.fragments.mispedidos.opc1;
 
-import androidx.core.util.Pair;
-import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.ViewModelProvider;
-
-import android.app.DatePickerDialog;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 
-import com.google.android.material.datepicker.CalendarConstraints;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.util.Pair;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
-import com.google.android.material.datepicker.MaterialStyledDatePickerDialog;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import cu.gob.ith.R;
 import cu.gob.ith.common.Util;
 import cu.gob.ith.databinding.FragmentPedidosMesBinding;
 import cu.gob.ith.domain.model.DatosPedido;
+import cu.gob.ith.presentation.activities.main.fragments.mispedidos.OnClickDelegateRV;
 import cu.gob.ith.presentation.activities.main.fragments.mispedidos.opc1.recyclerview.PedidosAdapter;
 import cu.gob.ith.presentation.activities.main.fragments.mispedidos.opc1.viewmodel.PedidosMesViewModel;
 import cu.gob.ith.presentation.activities.main.fragments.mispedidos.viewmodel.MisPedidosViewModel;
@@ -50,6 +41,7 @@ public class PedidosMesFragment extends Fragment {
     private MisPedidosViewModel misPedidosViewModel;
     private PedidosMesViewModel mViewModel;
     private PedidosAdapter pedidosAdapter;
+    private OnClickDelegateRV onClickDelegateRV;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -63,6 +55,7 @@ public class PedidosMesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         initViewModel();
+        initOnClickInViewHolderItem();
         observers();
 
         initCalendario();
@@ -102,7 +95,7 @@ public class PedidosMesFragment extends Fragment {
 
     private void updateAdapter(List<DatosPedido> datosPedidoList) {
         if (pedidosAdapter == null) {
-            pedidosAdapter = new PedidosAdapter(datosPedidoList);
+            pedidosAdapter = new PedidosAdapter(datosPedidoList, onClickDelegateRV);
             uiBind.listPedidosRV.setAdapter(pedidosAdapter);
         } else
             pedidosAdapter.loadList(datosPedidoList);
@@ -138,7 +131,7 @@ public class PedidosMesFragment extends Fragment {
     }
 
     private void updateViewFecha(long fechaInic, long fechaFin) {
-        if ((mViewModel.getInicFecha().getValue() == null && mViewModel.getFinFecha().getValue() == null )
+        if ((mViewModel.getInicFecha().getValue() == null && mViewModel.getFinFecha().getValue() == null)
                 || (mViewModel.getInicFecha().getValue() != null && fechaInic != mViewModel.getInicFecha().getValue() ||
                 mViewModel.getFinFecha().getValue() != null && fechaFin != mViewModel.getFinFecha().getValue())) {
             mViewModel.setInicFecha(fechaInic);
@@ -157,5 +150,15 @@ public class PedidosMesFragment extends Fragment {
                 .get(MisPedidosViewModel.class);
         mViewModel = new ViewModelProvider(this).get(PedidosMesViewModel.class);
         mainActivityViewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
+    }
+
+    private void initOnClickInViewHolderItem() {
+        onClickDelegateRV = id -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("pedidoId", id);
+            Navigation.findNavController(requireParentFragment().requireParentFragment().requireView())
+                    .navigate(R.id.to_detallesPedidoFragment, bundle);
+            Log.e("TAG", "onClick: RV: " + id);
+        };
     }
 }

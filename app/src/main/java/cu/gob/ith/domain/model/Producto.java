@@ -11,6 +11,10 @@ public class Producto {
     private float pv;
     private float cantProducto = 0;
     private float importe;
+    private String estado;
+    private String numDocumento;
+    private int cantPedida;
+    private int cantDespachada;
 
     public Producto(String descripcion) {
         this.descripcion = descripcion;
@@ -24,6 +28,20 @@ public class Producto {
         this.codFamilia = codFamilia;
         this.nombreFamilia = nombreFamilia;
         this.pv = pv;
+    }
+
+    public Producto(String descripcion, String referencia, String codUm, float pv,
+                    float importe, String estado, String numDocumento, int cantPedida,
+                    int cantDespachada) {
+        this.descripcion = descripcion;
+        this.referencia = referencia;
+        this.codUm = codUm;
+        this.pv = pv;
+        this.importe = importe;
+        this.estado = estado;
+        this.numDocumento = numDocumento;
+        this.cantPedida = cantPedida;
+        this.cantDespachada = cantDespachada;
     }
 
     public Producto(String descripcion, String referencia,
@@ -110,5 +128,37 @@ public class Producto {
 
     public void setImporte(float importe) {
         this.importe = importe;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getNumDocumento() {
+        return numDocumento;
+    }
+
+    public void setNumDocumento(String numDocumento) {
+        this.numDocumento = numDocumento;
+    }
+
+    public int getCantPedida() {
+        return cantPedida;
+    }
+
+    public void setCantPedida(int cantPedida) {
+        this.cantPedida = cantPedida;
+    }
+
+    public int getCantDespachada() {
+        return cantDespachada;
+    }
+
+    public void setCantDespachada(int cantDespachada) {
+        this.cantDespachada = cantDespachada;
     }
 }

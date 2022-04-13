@@ -42,5 +42,14 @@
         android:id="@+id/misPedidosFragment"
         android:name="cu.gob.ith.presentation.activities.main.fragments.mispedidos.MisPedidosFragment"
         android:label="fragment_mis_pedidos"
-        tools:layout="@layout/fragment_mis_pedidos" />
+        tools:layout="@layout/fragment_mis_pedidos" >
+        <action
+            android:id="@+id/to_detallesPedidoFragment"
+            app:destination="@id/detallesPedidoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detallesPedidoFragment"
+        android:name="cu.gob.ith.presentation.activities.main.fragments.detallespedido.DetallesPedidoFragment"
+        android:label="fragment_detalles_pedido"
+        tools:layout="@layout/fragment_detalles_pedido" />
 </navigation>

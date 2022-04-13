@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import cu.gob.ith.data.api.model.ApiCategoria;
+import cu.gob.ith.data.api.model.ApiListDetallesPedido;
 import cu.gob.ith.data.api.model.ApiListPedidos;
 import cu.gob.ith.data.api.model.ApiLoginBody;
 import cu.gob.ith.data.api.model.ApiLoginResponse;
@@ -39,4 +40,8 @@ public interface Api {
 
     @GET("pedido/findAllPedidosDespachadosFacturados")
     Observable<ApiListPedidos> filterListPedidosDespachadosFacturados();
+
+    @GET("pedido/findAllDetallesPedidoDespachadosyNoDespachados")
+    Observable<ApiListDetallesPedido> findAllDetallesPedidoDespachadosyNoDespachados(@Query("numero") int numeroPedido);
+
 }

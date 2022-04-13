@@ -14,6 +14,7 @@ public class ItemPedidoFacturadoViewHolder extends ViewHolderGlobal<DatosPedido,
 
     @Override
     public void bind(DatosPedido param) {
+        getUiBind().processedDateTitlePriceTV.setText("Fecha de Facturación");
         getUiBind().setDatosPedido(param);
         super.bind(param);
     }

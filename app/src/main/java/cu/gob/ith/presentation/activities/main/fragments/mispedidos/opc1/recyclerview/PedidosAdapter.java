@@ -11,15 +11,17 @@ import java.util.List;
 
 import cu.gob.ith.R;
 import cu.gob.ith.domain.model.DatosPedido;
-import cu.gob.ith.domain.model.InformePedido;
+import cu.gob.ith.presentation.activities.main.fragments.mispedidos.OnClickDelegateRV;
 
 public class PedidosAdapter extends RecyclerView.Adapter<ItemPedidoViewHolder> {
 
     private LayoutInflater layoutInflater;
     private List<DatosPedido> datosPedidoList;
+    private OnClickDelegateRV onClickDelegateRV;
 
-    public PedidosAdapter(List<DatosPedido> datosPedidoList) {
+    public PedidosAdapter(List<DatosPedido> datosPedidoList, OnClickDelegateRV onClickDelegateRV) {
         this.datosPedidoList = datosPedidoList;
+        this.onClickDelegateRV = onClickDelegateRV;
     }
 
     @NonNull
@@ -33,7 +35,9 @@ public class PedidosAdapter extends RecyclerView.Adapter<ItemPedidoViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ItemPedidoViewHolder holder, int position) {
-         holder.bind(datosPedidoList.get(position));
+        holder.bind(datosPedidoList.get(position));
+        holder.getUiBind().getRoot().setOnClickListener(v -> onClickDelegateRV.onclickItem(datosPedidoList
+                .get(position).getNumber()));
     }
 
     @Override
@@ -41,7 +45,7 @@ public class PedidosAdapter extends RecyclerView.Adapter<ItemPedidoViewHolder> {
         return datosPedidoList == null ? 0 : datosPedidoList.size();
     }
 
-    public void loadList(List<DatosPedido> newListPedidos){
+    public void loadList(List<DatosPedido> newListPedidos) {
         datosPedidoList.clear();
         datosPedidoList.addAll(newListPedidos);
         notifyDataSetChanged();

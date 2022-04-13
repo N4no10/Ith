@@ -2,44 +2,51 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".presentation.activities.main.fragments.mispedidos.opc3.PedidosEntregadosFragment">
+    tools:context=".presentation.activities.main.fragments.detallespedido.DetallesPedidoFragment">
 
     <data>
 
         <variable
+            name="pedidoNo"
+            type="String" />
+
+        <variable
             name="adapter"
-            type="cu.gob.ith.presentation.activities.main.fragments.mispedidos.opc3.recyclerview.PedidoFacturadoAdapter" />
+            type="cu.gob.ith.presentation.activities.main.fragments.detallespedido.recyclerview.ItemDetalleProductoAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white_2">
+        android:background="@color/white">
 
         <TextView
-            android:id="@+id/titleTV"
+            android:id="@+id/pedidoNumberTitleTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/myriad_bold"
-            android:text="@string/pedidos_opc4"
-            android:textColor="@color/black"
-            android:textSize="12sp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/myriad_regular"
+            android:text='@{"No. Pedido: "+pedidoNo}'
+            android:textColor="@color/blue_dark"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="No.Pedido: 21000001" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/pedidosFacturadosRV"
+            android:id="@+id/detalleProductosRV"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="2dp"
             android:adapter="@{adapter}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleTV"
-            tools:listitem="@layout/item_list_pedido_doble_fecha" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toBottomOf="@+id/pedidoNumberTitleTV"
+            tools:listitem="@layout/item_productos_detalles_pedido" />
 
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

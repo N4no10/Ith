@@ -42,7 +42,7 @@
             android:fontFamily="@font/myriad_bold"
             android:text="@string/fecha_pedido"
             android:textColor="@color/blue_dark"
-            android:textSize="10sp"
+            android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@+id/fechaTV"
             app:layout_constraintStart_toStartOf="@+id/titleTV"
             app:layout_constraintTop_toBottomOf="@+id/titleTV" />
@@ -69,7 +69,7 @@
             android:fontFamily="@font/myriad_bold"
             android:text="@string/cliente_pedido"
             android:textColor="@color/blue_dark"
-            android:textSize="10sp"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/fechaTitleTV"
             app:layout_constraintStart_toEndOf="@+id/fechaTitleTV"
             app:layout_constraintTop_toTopOf="@+id/fechaTitleTV"
