@@ -26,4 +26,19 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+
+    //start region  Corner Custom CardView
+    <style name="cornerTopCardView" parent="Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/CustomCorner</item>
+    </style>
+
+    <style name="CustomCorner" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">9dp</item>
+        <item name="cornerSizeTopRight">9dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cardElevation">8dp</item>
+    </style>
+    //end region
 </resources>

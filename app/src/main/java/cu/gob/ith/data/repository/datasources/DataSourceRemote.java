@@ -50,4 +50,14 @@ public class DataSourceRemote implements DataSourceApi {
     public Observable<ApiListPedidos> filterListPedidos(Map<String, Object> params) {
         return api.filterListPedidos(params);
     }
+
+    @Override
+    public Observable<ApiListPedidos> filterListPedidosDespachados() {
+        return api.filterListPedidosDespachados();
+    }
+
+    @Override
+    public Observable<ApiListPedidos> filterListPedidosDespachadosFacturados() {
+        return api.filterListPedidosDespachadosFacturados();
+    }
 }

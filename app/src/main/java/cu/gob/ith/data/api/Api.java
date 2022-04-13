@@ -32,6 +32,11 @@ public interface Api {
     Observable<ApiPedidoResponse> requestOrder(@Body List<ApiPedido> apiPedidoList);
 
     @GET("pedido/findAllPedidos")
-    Observable<ApiListPedidos> filterListPedidos(@QueryMap Map<String,Object> params);
+    Observable<ApiListPedidos> filterListPedidos(@QueryMap Map<String, Object> params);
 
+    @GET("pedido/findAllPedidosDespachados")
+    Observable<ApiListPedidos> filterListPedidosDespachados();
+
+    @GET("pedido/findAllPedidosDespachadosFacturados")
+    Observable<ApiListPedidos> filterListPedidosDespachadosFacturados();
 }

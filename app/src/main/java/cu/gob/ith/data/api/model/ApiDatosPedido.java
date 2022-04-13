@@ -23,10 +23,13 @@ public class ApiDatosPedido {
     @SerializedName("Direccion")
     private String address;
 
-    @SerializedName(value = "Fecha", alternate = "FechaDocumento")
+    @SerializedName(value = "Fecha", alternate = {"FechaDocumento", "FechaPedido"})
     private String date;
 
-    @SerializedName(value = "Cliente", alternate = "User_Name")
+    @SerializedName(value = "FechaDespacho")
+    private String dateDespacho;
+
+    @SerializedName(value = "Cliente", alternate = {"User_Name", "UserName"})
     private String client;
 
     @SerializedName("CuentaBancaria")
@@ -193,5 +196,13 @@ public class ApiDatosPedido {
 
     public void setEstado(Integer estado) {
         this.estado = estado;
+    }
+
+    public String getDateDespacho() {
+        return dateDespacho;
+    }
+
+    public void setDateDespacho(String dateDespacho) {
+        this.dateDespacho = dateDespacho;
     }
 }

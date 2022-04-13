@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import cu.gob.ith.R;
 import cu.gob.ith.databinding.FragmentPedidosMesBinding;
@@ -69,7 +70,7 @@ public class PedidosMesFragment extends Fragment {
     }
 
     private void initViewModel() {
-        misPedidosViewModel = new ViewModelProvider(requireParentFragment()).get(MisPedidosViewModel.class);
+        misPedidosViewModel = new ViewModelProvider(requireParentFragment().requireParentFragment()).get(MisPedidosViewModel.class);
         mViewModel = new ViewModelProvider(this).get(PedidosMesViewModel.class);
         mainActivityViewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
     }

@@ -62,4 +62,16 @@ public class ImplRepository implements Repository {
         return dataSourceRemote.filterListPedidos(params)
                 .subscribeOn(Schedulers.io());
     }
+
+    @Override
+    public Observable<ApiListPedidos> filterListPedidosDespachados() {
+        return dataSourceRemote.filterListPedidosDespachados()
+                .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Observable<ApiListPedidos> filterListPedidosDespachadosFacturados() {
+        return dataSourceRemote.filterListPedidosDespachadosFacturados()
+                .subscribeOn(Schedulers.io());
+    }
 }

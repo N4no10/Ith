@@ -25,4 +25,8 @@ public interface Repository {
     Observable<ApiPedidoResponse> requestOrder(List<ApiPedido> apiPedidoList);
 
     Observable<ApiListPedidos> filterListPedidos(Map<String,Object> params);
+
+    Observable<ApiListPedidos> filterListPedidosDespachados();
+
+    Observable<ApiListPedidos> filterListPedidosDespachadosFacturados();
 }

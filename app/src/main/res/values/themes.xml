@@ -44,6 +44,7 @@
         <item name="cornerSizeTopRight">9dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
         <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cardElevation">8dp</item>
     </style>
     //end region
 

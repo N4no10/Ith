@@ -12,6 +12,7 @@ import cu.gob.ith.data.api.model.ApiPedidoResponse;
 import cu.gob.ith.data.api.model.ApiProducto;
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.QueryMap;
 
 public interface DataSourceApi {
@@ -25,4 +26,8 @@ public interface DataSourceApi {
     Observable<ApiPedidoResponse> requestOrder(List<ApiPedido> apiPedidoList);
 
     Observable<ApiListPedidos> filterListPedidos(Map<String,Object> params);
+
+    Observable<ApiListPedidos> filterListPedidosDespachados();
+
+    Observable<ApiListPedidos> filterListPedidosDespachadosFacturados();
 }

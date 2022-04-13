@@ -57,7 +57,11 @@
     <string name="cantidad_producto_title">Cantidad</string>
     <string name="mis_pedidos">Mis Pedidos</string>
     <string name="list_productos_title">Productos</string>
-
+    <string name="no_title">No.</string>
+    <string name="request_date_title">Fecha de Solicitud</string>
+    <string name="processed_date_title">Fecha de Despacho</string>
+    <string name="delivery_date_title">Fecha de Recogida</string>
+    <string name="client_title">Cliente</string>
 
     //Informe PDF
     <string name="solicitud_pdf">SOLICITUD DE PEDIDO </string>
@@ -93,5 +97,9 @@
     <string name="fecha_inic_opc1">De:</string>
     <string name="fecha_fin_opc1">Hasta:</string>
 
+    //Mis Pedidos Opc3
+    <string name="pedidos_opc3">Pedidos Procesados:</string>
+    //Mis Pedidos Opc4
+    <string name="pedidos_opc4">Pedidos Entregados:</string>
 
 </resources>

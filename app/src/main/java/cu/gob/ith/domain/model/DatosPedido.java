@@ -11,6 +11,7 @@ public class DatosPedido {
     private String code;
     private String address;
     private String date;
+    private String secondDate;
     private String client;
     private String bankAccount;
     private String sucursal;
@@ -45,6 +46,13 @@ public class DatosPedido {
         this.observaciones = observaciones;
         this.detalle = detalle;
         this.estado = estado;
+    }
+
+    public DatosPedido(String number, String date, String secondDate, String client) {
+        this.number = number;
+        this.date = date;
+        this.secondDate = secondDate;
+        this.client = client;
     }
 
     public String getNumber() {
@@ -181,5 +189,13 @@ public class DatosPedido {
 
     public void setEstado(Integer estado) {
         this.estado = estado;
+    }
+
+    public String getSecondDate() {
+        return secondDate;
+    }
+
+    public void setSecondDate(String secondDate) {
+        this.secondDate = secondDate;
     }
 }
