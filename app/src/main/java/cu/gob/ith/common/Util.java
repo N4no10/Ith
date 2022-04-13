@@ -24,4 +24,8 @@ public class Util {
 
         return null;
     }
+
+    public static String formatDate(long date){
+        return new SimpleDateFormat("yyyy-MM-dd").format(date);
+    }
 }

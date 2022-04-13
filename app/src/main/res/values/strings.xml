@@ -97,6 +97,9 @@
     <string name="fecha_inic_opc1">De:</string>
     <string name="fecha_fin_opc1">Hasta:</string>
 
+    //Opc2
+    <string name="pedidos_entreg_opc2">Pedidos sin entregar </string>
+    <string name="pedidos_proces_opc2">Pedidos sin procesar </string>
     //Mis Pedidos Opc3
     <string name="pedidos_opc3">Pedidos Procesados:</string>
     //Mis Pedidos Opc4

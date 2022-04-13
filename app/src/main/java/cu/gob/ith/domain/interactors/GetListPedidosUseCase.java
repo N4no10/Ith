@@ -1,5 +1,7 @@
 package cu.gob.ith.domain.interactors;
 
+import android.util.Log;
+
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +14,7 @@ import cu.gob.ith.domain.mappers.TransformApiDatosPedidoToDatosPedido;
 import cu.gob.ith.domain.model.DatosPedido;
 import io.reactivex.rxjava3.core.Observable;
 
-public class GetListPedidosUseCase implements GlobalUseCase<Observable<List<DatosPedido>>, Map<String,Object>>{
+public class GetListPedidosUseCase implements GlobalUseCase<Observable<List<DatosPedido>>, Map<String, Object>> {
 
     private final ImplRepository implRepository;
 
@@ -22,9 +24,10 @@ public class GetListPedidosUseCase implements GlobalUseCase<Observable<List<Dato
     }
 
     @Override
-    public Observable<List<DatosPedido>> execute(Map<String,Object> param) {
+    public Observable<List<DatosPedido>> execute(Map<String, Object> param) {
         return implRepository.filterListPedidos(param)
                 .map(apiPedidoResponse ->
-                        TransformApiDatosPedidoToDatosPedido.mapList(apiPedidoResponse.getApiDatosPedido()));
+                        TransformApiDatosPedidoToDatosPedido
+                                .mapList(apiPedidoResponse.getApiDatosPedido()));
     }
 }

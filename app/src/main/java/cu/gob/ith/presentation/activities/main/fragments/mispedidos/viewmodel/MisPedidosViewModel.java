@@ -20,18 +20,15 @@ import io.reactivex.rxjava3.core.Observable;
 @HiltViewModel
 public class MisPedidosViewModel extends ViewModel {
     // TODO: Implement the ViewModel
-
     private final GetListPedidosUseCase getListPedidosUseCase;
-    public String text = "Hola";
 
     @Inject
     public MisPedidosViewModel(GetListPedidosUseCase getListPedidosUseCase) {
         this.getListPedidosUseCase = getListPedidosUseCase;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public Observable<List<DatosPedido>> getListPedidos(Map<String,Object> params){
+        return getListPedidosUseCase.execute(params);
     }
-
 
 }

@@ -1,5 +1,7 @@
 package cu.gob.ith.domain.mappers;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,11 +39,9 @@ public class TransformApiDatosPedidoToDatosPedido {
 
     public static List<DatosPedido> mapList(List<ApiDatosPedido> apiDatosPedidoList) {
         List<DatosPedido> datosPedidoList = new ArrayList<>();
+        for (ApiDatosPedido apiDatosPedidos : apiDatosPedidoList)
+             datosPedidoList.add(map(apiDatosPedidos));
 
-        for (ApiDatosPedido apiDatosPedidos : apiDatosPedidoList
-        ) {
-            datosPedidoList.add(map(apiDatosPedidos));
-        }
         return datosPedidoList;
     }
 
