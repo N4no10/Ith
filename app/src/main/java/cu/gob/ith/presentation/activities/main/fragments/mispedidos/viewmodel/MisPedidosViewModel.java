@@ -26,7 +26,7 @@ public class MisPedidosViewModel extends ViewModel {
     @Inject
     public MisPedidosViewModel(GetListPedidosUseCase getListPedidosUseCase) {
         this.getListPedidosUseCase = getListPedidosUseCase;
-        this.currentOpc = 1;
+        this.currentOpc = -1;
     }
 
     public Observable<List<DatosPedido>> getListPedidos(Map<String,Object> params){

@@ -7,8 +7,6 @@
         motion:constraintSetEnd="@+id/opc2"
         motion:constraintSetStart="@id/start"
         motion:duration="500">
-        <OnClick motion:clickAction="toggle"
-            motion:targetId="@id/opc2FL" />
         <KeyFrameSet >
             <KeyAttribute
                 motion:motionTarget="@+id/lineSelectedV"
@@ -69,8 +67,6 @@
         motion:constraintSetEnd="@+id/opc3"
         motion:autoTransition="none"
         motion:duration="500">
-        <OnClick motion:targetId="@id/opc3FL"
-            motion:clickAction="toggle" />
         <KeyFrameSet >
             <KeyAttribute
                 motion:motionTarget="@+id/lineSelectedV"
@@ -86,8 +82,6 @@
         motion:constraintSetStart="@+id/opc2"
         motion:constraintSetEnd="@+id/opc3"
         motion:duration="500" >
-        <OnClick motion:targetId="@id/opc3FL"
-            motion:clickAction="toggle" />
         <KeyFrameSet >
             <KeyAttribute
                 motion:motionTarget="@+id/lineSelectedV"
@@ -103,8 +97,6 @@
         motion:constraintSetStart="@+id/opc2"
         motion:constraintSetEnd="@+id/start"
         motion:duration="500" >
-        <OnClick motion:clickAction="toggle"
-            motion:targetId="@id/opc1FL" />
         <KeyFrameSet >
             <KeyAttribute
                 motion:motionTarget="@+id/lineSelectedV"
@@ -120,8 +112,6 @@
         motion:constraintSetStart="@+id/opc3"
         motion:constraintSetEnd="@+id/opc2"
         motion:duration="500" >
-        <OnClick motion:targetId="@id/opc2FL"
-            motion:clickAction="toggle" />
         <KeyFrameSet >
             <KeyAttribute
                 motion:motionTarget="@+id/lineSelectedV"
@@ -137,8 +127,6 @@
         motion:constraintSetStart="@+id/opc3"
         motion:constraintSetEnd="@+id/start"
         motion:duration="500" >
-        <OnClick motion:clickAction="toggle"
-            motion:targetId="@id/opc1FL" />
         <KeyFrameSet >
             <KeyAttribute
                 motion:motionTarget="@+id/lineSelectedV"
@@ -165,9 +153,9 @@
         motion:constraintSetStart="@+id/start"
         motion:constraintSetEnd="@+id/opc4"
         motion:duration="500"
-        motion:motionInterpolator="linear">
-        <OnClick motion:targetId="@id/opc4FL"
-            motion:clickAction="toggle" />
+        motion:motionInterpolator="linear"
+        android:id="@+id/transOpc1ToOpc4"
+        motion:autoTransition="none">
         <KeyFrameSet >
             <KeyAttribute
                 motion:motionTarget="@+id/lineSelectedV"
@@ -183,8 +171,6 @@
         motion:constraintSetStart="@+id/opc2"
         motion:constraintSetEnd="@+id/opc4"
         motion:duration="500">
-        <OnClick motion:targetId="@id/opc4FL"
-            motion:clickAction="toggle" />
         <KeyFrameSet >
             <KeyAttribute
                 motion:motionTarget="@+id/lineSelectedV"
@@ -200,8 +186,6 @@
         motion:constraintSetStart="@+id/opc3"
         motion:constraintSetEnd="@+id/opc4"
         motion:duration="500" >
-        <OnClick motion:targetId="@id/opc4FL"
-            motion:clickAction="toggle" />
         <KeyFrameSet >
             <KeyAttribute
                 motion:motionTarget="@+id/lineSelectedV"
@@ -217,8 +201,6 @@
         motion:constraintSetStart="@+id/opc4"
         motion:constraintSetEnd="@+id/opc3"
         motion:duration="500">
-        <OnClick motion:targetId="@id/opc3FL"
-            motion:clickAction="toggle" />
         <KeyFrameSet >
             <KeyAttribute
                 motion:motionTarget="@+id/lineSelectedV"
@@ -234,8 +216,6 @@
         motion:constraintSetStart="@+id/opc4"
         motion:constraintSetEnd="@+id/opc2"
         motion:duration="500" >
-        <OnClick motion:clickAction="toggle"
-            motion:targetId="@id/opc2FL" />
         <KeyFrameSet >
             <KeyAttribute
                 motion:motionTarget="@+id/lineSelectedV"
@@ -251,8 +231,6 @@
         motion:constraintSetStart="@+id/opc4"
         motion:constraintSetEnd="@+id/start"
         motion:duration="500" >
-        <OnClick motion:targetId="@id/opc1FL"
-            motion:clickAction="toggle" />
         <KeyFrameSet >
             <KeyAttribute
                 motion:motionTarget="@+id/lineSelectedV"
