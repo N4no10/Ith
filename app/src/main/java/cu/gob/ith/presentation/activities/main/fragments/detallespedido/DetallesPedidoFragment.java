@@ -65,31 +65,29 @@ public class DetallesPedidoFragment extends Fragment {
     }
 
     private void initDownloadPDF() {
-        uiBind.downloadPdfFAB.setOnClickListener(v->{
-            compositeDisposable.add(
-                    mViewModel.getGetPedidoByIdUseCase(Integer.parseInt(id))
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(
-                                    informePedido -> {
+        uiBind.downloadPdfFAB.setOnClickListener(v -> compositeDisposable.add(
+                mViewModel.getGetPedidoByIdUseCase(Integer.parseInt(id))
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(
+                                informePedido -> {
 
-                                        try {
-                                            mViewModel.createInformePDF("InformePedido" +
-                                                            (informePedido.getDatosPedido()
-                                                                    .getTipoCliente().equals("2") ? "TCP" : "Empresa") + "-" +
-                                                            informePedido.getDatosPedido().getCode(), informePedido);
-                                            Snackbar.make(uiBind.getRoot(), getString(R.string.success_build_pdf),
-                                                    Snackbar.LENGTH_LONG).show();
-                                        } catch (IOException e) {
-                                            e.printStackTrace();
-                                            Log.e("createPDF", "pdf error " + e.getMessage());
-                                            Snackbar.make(uiBind.getRoot(), "Error " + e.getMessage(),
-                                                    Snackbar.LENGTH_LONG).show();
-                                        }
+                                    try {
+                                        mViewModel.createInformePDF("InformePedido" +
+                                                (informePedido.getDatosPedido()
+                                                        .getTipoCliente().equals("2") ? "TCP" : "Empresa") + "-" +
+                                                informePedido.getDatosPedido().getCode(), informePedido);
+                                        Snackbar.make(uiBind.getRoot(), getString(R.string.success_build_pdf),
+                                                Snackbar.LENGTH_LONG).show();
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                        Log.e("createPDF", "pdf error " + e.getMessage());
+                                        Snackbar.make(uiBind.getRoot(), "Error " + e.getMessage(),
+                                                Snackbar.LENGTH_LONG).show();
+                                    }
 
-                                    },
-                                    throwable -> Log.e("Error","error " + throwable.getMessage()))
-            );
-        });
+                                },
+                                throwable -> Log.e("Error", "error " + throwable.getMessage()))
+        ));
     }
 
     private void setupViewComponents() {
