@@ -34,4 +34,8 @@ public interface Repository {
 
     Observable<ApiListDetallesPedido> findAllDetallesPedidoDespachadosyNoDespachados(int numeroPedido);
 
+    Observable<ApiListPedidos> filterListPedidosPendientesDespachar();
+
+    Observable<ApiPedidoResponse> getPedidoById(int numeroPedido);
+
 }

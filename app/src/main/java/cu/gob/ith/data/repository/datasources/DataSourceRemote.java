@@ -66,4 +66,14 @@ public class DataSourceRemote implements DataSourceApi {
     public Observable<ApiListDetallesPedido> findAllDetallesPedidoDespachadosyNoDespachados(int numeroPedido) {
         return api.findAllDetallesPedidoDespachadosyNoDespachados(numeroPedido);
     }
+
+    @Override
+    public Observable<ApiListPedidos> filterListPedidosPendientesDespachar() {
+        return api.filterListPedidosPendientesDespachar();
+    }
+
+    @Override
+    public Observable<ApiPedidoResponse> getPedidoById(int numeroPedido) {
+        return api.getPedidoById(numeroPedido);
+    }
 }

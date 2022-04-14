@@ -51,6 +51,8 @@ public class TransformApiProductoToProducto {
     }
 
     public static List<Producto> mapToProductoInformeList(List<ApiProducto> apiProductoList) {
+        Log.e("mao DatosPedido","mapToProductoInformeList " + apiProductoList);
+
         if (apiProductoList != null && !apiProductoList.isEmpty()) {
             List<Producto> productoList = new ArrayList<>();
             for (ApiProducto apiProducto : apiProductoList

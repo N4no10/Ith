@@ -55,7 +55,17 @@ public class InformePedidoFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView();
+    }
 
+    private void initView() {
+        initViewModels();
+        setupViewComponents();
+        initAdapter();
+        listenerMotionLayoutListProducts();
+        downloadPDF();
+    }
+
+    private void downloadPDF() {
         try {
             informePedidoFragmentViewModel.createInformePDF("InformePedido" +
                             (mainActivityViewModel.getInformePedido().getDatosPedido()
@@ -68,14 +78,6 @@ public class InformePedidoFragment extends Fragment {
             e.printStackTrace();
             Log.e("createPDF", "pdf error " + e.getMessage());
         }
-
-    }
-
-    private void initView() {
-        initViewModels();
-        setupViewComponents();
-        initAdapter();
-        listenerMotionLayoutListProducts();
     }
 
     private void initViewModels() {

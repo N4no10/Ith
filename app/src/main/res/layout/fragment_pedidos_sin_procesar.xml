@@ -34,7 +34,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <View
+       <!-- <View
             android:id="@+id/leyendaSinProcesarV"
             android:layout_width="12dp"
             android:layout_height="12dp"
@@ -42,10 +42,10 @@
             android:background="@color/purple"
             app:layout_constraintBottom_toBottomOf="@+id/titleTV"
             app:layout_constraintStart_toEndOf="@+id/titleTV"
-            app:layout_constraintTop_toTopOf="@+id/titleTV" />
+            app:layout_constraintTop_toTopOf="@+id/titleTV" />-->
 
 
-        <TextView
+      <!--  <TextView
             android:id="@+id/titleSinEntregarTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
             android:background="@color/design_default_color_error"
             app:layout_constraintBottom_toBottomOf="@+id/titleSinEntregarTV"
             app:layout_constraintStart_toEndOf="@+id/titleSinEntregarTV"
-            app:layout_constraintTop_toTopOf="@+id/titleSinEntregarTV" />
+            app:layout_constraintTop_toTopOf="@+id/titleSinEntregarTV" />-->
 
         <TextView
             android:id="@+id/desdeTitleTV"
