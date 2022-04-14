@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context=".presentation.activities.main.fragments.mispedidos.opc2.PedidosSinProcesarFragment">
 
     <data>
+
         <variable
             name="fechaInic"
             type="String" />
+
         <variable
             name="fechaFin"
             type="String" />
@@ -19,8 +21,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/titleTV"
@@ -34,39 +35,39 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-       <!-- <View
-            android:id="@+id/leyendaSinProcesarV"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginStart="8dp"
-            android:background="@color/purple"
-            app:layout_constraintBottom_toBottomOf="@+id/titleTV"
-            app:layout_constraintStart_toEndOf="@+id/titleTV"
-            app:layout_constraintTop_toTopOf="@+id/titleTV" />-->
+        <!-- <View
+             android:id="@+id/leyendaSinProcesarV"
+             android:layout_width="12dp"
+             android:layout_height="12dp"
+             android:layout_marginStart="8dp"
+             android:background="@color/purple"
+             app:layout_constraintBottom_toBottomOf="@+id/titleTV"
+             app:layout_constraintStart_toEndOf="@+id/titleTV"
+             app:layout_constraintTop_toTopOf="@+id/titleTV" />-->
 
 
-      <!--  <TextView
-            android:id="@+id/titleSinEntregarTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:fontFamily="@font/myriad_bold"
-            android:text="@string/pedidos_entreg_opc2"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/titleTV"
-            app:layout_constraintStart_toEndOf="@+id/leyendaSinProcesarV"
-            app:layout_constraintTop_toTopOf="@+id/titleTV" />
+        <!--  <TextView
+              android:id="@+id/titleSinEntregarTV"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginStart="16dp"
+              android:fontFamily="@font/myriad_bold"
+              android:text="@string/pedidos_entreg_opc2"
+              android:textColor="@color/black"
+              android:textSize="12sp"
+              app:layout_constraintBottom_toBottomOf="@+id/titleTV"
+              app:layout_constraintStart_toEndOf="@+id/leyendaSinProcesarV"
+              app:layout_constraintTop_toTopOf="@+id/titleTV" />
 
-        <View
-            android:id="@+id/leyendaSinEntregarV"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginStart="8dp"
-            android:background="@color/design_default_color_error"
-            app:layout_constraintBottom_toBottomOf="@+id/titleSinEntregarTV"
-            app:layout_constraintStart_toEndOf="@+id/titleSinEntregarTV"
-            app:layout_constraintTop_toTopOf="@+id/titleSinEntregarTV" />-->
+          <View
+              android:id="@+id/leyendaSinEntregarV"
+              android:layout_width="12dp"
+              android:layout_height="12dp"
+              android:layout_marginStart="8dp"
+              android:background="@color/design_default_color_error"
+              app:layout_constraintBottom_toBottomOf="@+id/titleSinEntregarTV"
+              app:layout_constraintStart_toEndOf="@+id/titleSinEntregarTV"
+              app:layout_constraintTop_toTopOf="@+id/titleSinEntregarTV" />-->
 
         <TextView
             android:id="@+id/desdeTitleTV"
@@ -77,6 +78,7 @@
             android:text="@string/fecha_inic_opc1"
             android:textColor="@color/black"
             android:textSize="12sp"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="@+id/titleTV"
             app:layout_constraintTop_toBottomOf="@+id/titleTV" />
 
@@ -101,6 +103,7 @@
             android:text="@string/fecha_fin_opc1"
             android:textColor="@color/black"
             android:textSize="12sp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/desdeTitleTV"
             app:layout_constraintStart_toEndOf="@+id/desdeTV" />
 
@@ -113,6 +116,7 @@
             android:text='@{fechaFin}'
             android:textColor="@color/black"
             android:textSize="12sp"
+            android:visibility="gone"
             app:layout_constraintBaseline_toBaselineOf="@+id/hastaTitleTV"
             app:layout_constraintStart_toEndOf="@+id/hastaTitleTV" />
 
@@ -140,11 +144,11 @@
             android:layout_marginTop="16dp"
             android:adapter='@{adapter}'
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/item_pedido"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/calendarioIB"
             app:layout_constraintStart_toStartOf="@+id/desdeTitleTV"
-            app:layout_constraintTop_toBottomOf="@+id/hastaTitleTV" />
+            app:layout_constraintTop_toBottomOf="@+id/hastaTitleTV"
+            tools:listitem="@layout/item_pedido" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
