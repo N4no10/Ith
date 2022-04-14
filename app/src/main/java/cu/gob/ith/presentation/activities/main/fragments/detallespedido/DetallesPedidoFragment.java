@@ -72,10 +72,10 @@ public class DetallesPedidoFragment extends Fragment {
                                 informePedido -> {
 
                                     try {
-                                        mViewModel.createInformePDF("InformePedido" +
-                                                (informePedido.getDatosPedido()
-                                                        .getTipoCliente().equals("2") ? "TCP" : "Empresa") + "-" +
-                                                informePedido.getDatosPedido().getCode(), informePedido);
+                                        mViewModel.createInformePDF(getString(R.string.solicitud_file_name_pdf)
+                                                + " " + (informePedido.getDatosPedido()
+                                                .getTipoCliente().equals("2") ? "TCP" : "Empresa") + "-" +
+                                                informePedido.getDatosPedido().getNumber(), informePedido);
                                         Snackbar.make(uiBind.getRoot(), getString(R.string.success_build_pdf),
                                                 Snackbar.LENGTH_LONG).show();
                                     } catch (IOException e) {

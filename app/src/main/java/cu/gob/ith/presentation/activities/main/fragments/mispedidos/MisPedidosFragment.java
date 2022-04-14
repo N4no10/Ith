@@ -42,7 +42,12 @@ public class MisPedidosFragment extends Fragment {
         initViewModel();
         currentToolBar();
 
-        initMotionOptionSelected();
+        mainActivityViewModel.isColapsedMainContent().observe(getViewLifecycleOwner(), collapsedMainContent -> {
+            Log.e("ColapsedMenu", "ColapsedMenu " + collapsedMainContent);
+            if (!collapsedMainContent)
+                initMotionOptionSelected();
+        });
+
 
     }
 
@@ -59,7 +64,8 @@ public class MisPedidosFragment extends Fragment {
 
         uiBind.opc1FL.setOnClickListener(v -> {
             Log.e("presOpc1", "opc1");
-            if (mViewModel.getNumberOpc() == R.id.opc2 || mViewModel.getNumberOpc() == R.id.opc4) {
+            if (mViewModel.getNumberOpc() == R.id.opc2 || mViewModel.getNumberOpc() == R.id.opc3
+                    || mViewModel.getNumberOpc() == R.id.opc4) {
                 Log.e("trans", "trans");
                 uiBind.contentCL.transitionToState(R.id.start);
             }
@@ -113,7 +119,6 @@ public class MisPedidosFragment extends Fragment {
                     navController.navigate(getDestinoForIdConstriaintSet(currentId), new Bundle(),
                             new NavOptions.Builder().setPopUpTo(lastDestino, true).build());
                 }
-
             }
 
             @Override

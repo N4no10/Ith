@@ -68,6 +68,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
+                android:layout_marginEnd="8dp"
                 android:fontFamily="@font/myriad_regular"
                 android:gravity="center"
                 android:text='@{producto.pv+"/"+producto.codUm}'
@@ -95,7 +96,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/myriad_bold"
-                android:text="@{producto.cantDespachada==0?@string/cantidad_producto_pedido_title:@string/cantidad_producto_despachado_title}"
+                android:gravity="center"
+                android:text="@string/cantidad_producto_pedido_despachado_title"
                 android:textColor="@color/blue_dark"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="@+id/productTitlePriceTV"
@@ -111,7 +113,7 @@
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/myriad_regular"
                 android:gravity="center"
-                android:text='@{producto.cantDespachada==0?""+producto.cantPedida:""+producto.cantDespachada}'
+                android:text='@{""+producto.cantPedida+" / "+producto.cantDespachada}'
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toStartOf="@+id/viewSeparetor2V"
@@ -149,6 +151,7 @@
                 android:id="@+id/totalPagarPriceTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/myriad_regular"
                 android:gravity="center"

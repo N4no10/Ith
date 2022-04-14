@@ -52,10 +52,10 @@
     <string name="inicio_fragment">Inicio</string>
     <string name="informe_pedido_fragment">Solicitud de Pedido</string>
     <string name="nuevo_pedido_fragment">Nuevo Pedido</string>
-    <string name="precio_title">Precio</string>
-    <string name="total_pagar_title">Total a Pagar</string>
+    <string name="precio_title">Precio\n</string>
+    <string name="total_pagar_title">Total a Pagar\n</string>
     <string name="cantidad_producto_title">Cantidad</string>
-    <string name="cantidad_producto_despachado_title">Cantidad Despachada</string>
+    <string name="cantidad_producto_pedido_despachado_title">Cantidad \n Solicitada/Despachada</string>
     <string name="cantidad_producto_pedido_title">Cantidad Pedida</string>
     <string name="mis_pedidos">Mis Pedidos</string>
     <string name="list_productos_title">Productos</string>
@@ -66,6 +66,7 @@
     <string name="client_title">Cliente</string>
 
     //Informe PDF
+    <string name="solicitud_file_name_pdf">Solicitud de pedido </string>
     <string name="solicitud_pdf">SOLICITUD DE PEDIDO </string>
     <string name="cliente_pdf">Cliente: </string>
     <string name="direccion_pdf">Dirección: </string>

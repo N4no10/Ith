@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.util.Pair;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Objects;
@@ -42,9 +44,8 @@ public class LoginActivity extends AppCompatActivity {
         uiBind = DataBindingUtil.setContentView(this, R.layout.activity_login);
         setContentView(uiBind.getRoot());
         loginActivityViewModel = new ViewModelProvider(this).get(LoginActivityViewModel.class);
-
+        
         initView();
-
     }
 
     private void initView() {
@@ -65,7 +66,6 @@ public class LoginActivity extends AppCompatActivity {
                         public void onComplete() {
                             uiBind.layoutFormLogin.buttonLoginIB.revertAnimation();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
-
                         }
 
                         @Override

@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,6 +33,15 @@ import cu.gob.ith.presentation.activities.main.fragments.mispedidos.viewmodel.Mi
 import cu.gob.ith.presentation.activities.main.ui.viewmodel.MainActivityViewModel;
 import dagger.hilt.android.AndroidEntryPoint;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.CompletableEmitter;
+import io.reactivex.rxjava3.core.CompletableObserver;
+import io.reactivex.rxjava3.core.CompletableOnSubscribe;
+import io.reactivex.rxjava3.core.Scheduler;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.core.SingleObserver;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 @AndroidEntryPoint
 public class PedidosMesFragment extends Fragment {
@@ -54,51 +64,39 @@ public class PedidosMesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        initViewModel();
-        initOnClickInViewHolderItem();
-        observers();
+         initViewModel();
+         initOnClickInViewHolderItem();
+         observers();
 
         initCalendario();
     }
 
     private void initCalendario() {
-       /* Calendar fechaInic = Calendar.getInstance();
-        int lastDay = fechaInic.getActualMaximum(Calendar.DATE);
-        int month = fechaInic.get(Calendar.MONTH);
-        int year = fechaInic.get(Calendar.YEAR);
-        fechaInic.set(year, month, 1);
-
-        Calendar fechaFin = Calendar.getInstance();
-        fechaFin.set(year, month, lastDay);*/
-       /* updateViewFecha(MaterialDatePicker.thisMonthInUtcMilliseconds() + 86400000,
-                MaterialDatePicker.todayInUtcMilliseconds() + 86400000);*/
         MaterialDatePicker<Pair<Long, Long>> datePicker = MaterialDatePicker
                 .Builder
-                .dateRangePicker()
+                 .dateRangePicker()
                 .setTitleText("Seleccionar Fecha")
-                .setSelection(new Pair<>(
-                        MaterialDatePicker.thisMonthInUtcMilliseconds(),
-                        MaterialDatePicker.todayInUtcMilliseconds()))
+                .setTheme(R.style.ThemeOverlay_MaterialComponents_MaterialCalendar)
+                 .setSelection(new Pair<>(
+                         MaterialDatePicker.thisMonthInUtcMilliseconds(),
+                         MaterialDatePicker.todayInUtcMilliseconds()))
                 .build();
 
-        datePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Pair<Long, Long>>() {
-            @Override
-            public void onPositiveButtonClick(Pair<Long, Long> selection) {
-                updateViewFecha(selection.first + 86400000, selection.second + 86400000);
-            }
-        });
+        datePicker.addOnPositiveButtonClickListener(selection->
+                updateViewFecha(selection.first + 86400000, selection.second + 86400000));
 
-        uiBind.calendarioIB.setOnClickListener(v -> {
-            datePicker.show(getParentFragmentManager(), "Calendario");
-        });
+        uiBind.calendarioIB.setOnClickListener(v -> datePicker.show(
+                requireActivity().getSupportFragmentManager(), "Calendario"));
     }
 
     private void updateAdapter(List<DatosPedido> datosPedidoList) {
         if (pedidosAdapter == null) {
             pedidosAdapter = new PedidosAdapter(datosPedidoList, onClickDelegateRV);
             uiBind.listPedidosRV.setAdapter(pedidosAdapter);
-        } else
+        } else {
+            Log.e("reload List","reload " + datosPedidoList.size());
             pedidosAdapter.loadList(datosPedidoList);
+        }
     }
 
     private void observers() {
@@ -131,9 +129,9 @@ public class PedidosMesFragment extends Fragment {
     }
 
     private void updateViewFecha(long fechaInic, long fechaFin) {
-        if ((mViewModel.getInicFecha().getValue() == null && mViewModel.getFinFecha().getValue() == null)
+       /* if ((mViewModel.getInicFecha().getValue() == null && mViewModel.getFinFecha().getValue() == null)
                 || (mViewModel.getInicFecha().getValue() != null && fechaInic != mViewModel.getInicFecha().getValue() ||
-                mViewModel.getFinFecha().getValue() != null && fechaFin != mViewModel.getFinFecha().getValue())) {
+                mViewModel.getFinFecha().getValue() != null && fechaFin != mViewModel.getFinFecha().getValue())) {*/
             mViewModel.setInicFecha(fechaInic);
             mViewModel.setFinFecha(fechaFin);
 
@@ -142,7 +140,7 @@ public class PedidosMesFragment extends Fragment {
             param.put("options.fechaFin", Util.formatDate(mViewModel.getFinFecha().getValue()));
 
             loadContent(param);
-        }
+       // }
     }
 
     private void initViewModel() {
