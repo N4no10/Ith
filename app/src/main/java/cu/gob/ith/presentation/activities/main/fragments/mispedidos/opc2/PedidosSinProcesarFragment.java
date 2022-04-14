@@ -93,6 +93,7 @@ public class PedidosSinProcesarFragment extends Fragment {
         } else {
             Log.e("reload List","reload");
             pedidosAdapter.loadList(datosPedidoList);
+            uiBind.listPedidosRV.setAdapter(pedidosAdapter);
         }
     }
 

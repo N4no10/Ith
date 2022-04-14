@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +15,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.google.android.material.datepicker.MaterialDatePicker;
-import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
 import java.util.HashMap;
 import java.util.List;
@@ -33,15 +31,6 @@ import cu.gob.ith.presentation.activities.main.fragments.mispedidos.viewmodel.Mi
 import cu.gob.ith.presentation.activities.main.ui.viewmodel.MainActivityViewModel;
 import dagger.hilt.android.AndroidEntryPoint;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.core.Completable;
-import io.reactivex.rxjava3.core.CompletableEmitter;
-import io.reactivex.rxjava3.core.CompletableObserver;
-import io.reactivex.rxjava3.core.CompletableOnSubscribe;
-import io.reactivex.rxjava3.core.Scheduler;
-import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.core.SingleObserver;
-import io.reactivex.rxjava3.disposables.Disposable;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
 @AndroidEntryPoint
 public class PedidosMesFragment extends Fragment {
@@ -64,9 +53,9 @@ public class PedidosMesFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-         initViewModel();
-         initOnClickInViewHolderItem();
-         observers();
+        initViewModel();
+        initOnClickInViewHolderItem();
+        observers();
 
         initCalendario();
     }
@@ -74,15 +63,15 @@ public class PedidosMesFragment extends Fragment {
     private void initCalendario() {
         MaterialDatePicker<Pair<Long, Long>> datePicker = MaterialDatePicker
                 .Builder
-                 .dateRangePicker()
+                .dateRangePicker()
                 .setTitleText("Seleccionar Fecha")
                 .setTheme(R.style.ThemeOverlay_MaterialComponents_MaterialCalendar)
-                 .setSelection(new Pair<>(
-                         MaterialDatePicker.thisMonthInUtcMilliseconds(),
-                         MaterialDatePicker.todayInUtcMilliseconds()))
+                .setSelection(new Pair<>(
+                        MaterialDatePicker.thisMonthInUtcMilliseconds(),
+                        MaterialDatePicker.todayInUtcMilliseconds()))
                 .build();
 
-        datePicker.addOnPositiveButtonClickListener(selection->
+        datePicker.addOnPositiveButtonClickListener(selection ->
                 updateViewFecha(selection.first + 86400000, selection.second + 86400000));
 
         uiBind.calendarioIB.setOnClickListener(v -> datePicker.show(
@@ -94,8 +83,9 @@ public class PedidosMesFragment extends Fragment {
             pedidosAdapter = new PedidosAdapter(datosPedidoList, onClickDelegateRV);
             uiBind.listPedidosRV.setAdapter(pedidosAdapter);
         } else {
-            Log.e("reload List","reload " + datosPedidoList.size());
+            Log.e("reload List", "reload " + datosPedidoList.size());
             pedidosAdapter.loadList(datosPedidoList);
+            uiBind.listPedidosRV.setAdapter(pedidosAdapter);
         }
     }
 
@@ -132,15 +122,15 @@ public class PedidosMesFragment extends Fragment {
        /* if ((mViewModel.getInicFecha().getValue() == null && mViewModel.getFinFecha().getValue() == null)
                 || (mViewModel.getInicFecha().getValue() != null && fechaInic != mViewModel.getInicFecha().getValue() ||
                 mViewModel.getFinFecha().getValue() != null && fechaFin != mViewModel.getFinFecha().getValue())) {*/
-            mViewModel.setInicFecha(fechaInic);
-            mViewModel.setFinFecha(fechaFin);
+        mViewModel.setInicFecha(fechaInic);
+        mViewModel.setFinFecha(fechaFin);
 
-            Map<String, Object> param = new HashMap<>();
-            param.put("options.fechaInicio", Util.formatDate(mViewModel.getInicFecha().getValue()));
-            param.put("options.fechaFin", Util.formatDate(mViewModel.getFinFecha().getValue()));
+        Map<String, Object> param = new HashMap<>();
+        param.put("options.fechaInicio", Util.formatDate(mViewModel.getInicFecha().getValue()));
+        param.put("options.fechaFin", Util.formatDate(mViewModel.getFinFecha().getValue()));
 
-            loadContent(param);
-       // }
+        loadContent(param);
+        // }
     }
 
     private void initViewModel() {

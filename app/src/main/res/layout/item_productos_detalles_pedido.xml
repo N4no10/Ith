@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -55,7 +54,7 @@
                 android:fontFamily="@font/myriad_bold"
                 android:text="@string/precio_title"
                 android:textColor="@color/blue_dark"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 app:layout_constraintBottom_toTopOf="@+id/productPriceTV"
                 app:layout_constraintEnd_toStartOf="@+id/cantidadTitlePriceTV"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -67,6 +66,7 @@
                 android:id="@+id/productPriceTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/myriad_regular"
@@ -75,7 +75,7 @@
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toStartOf="@+id/viewSeparetorV"
-                app:layout_constraintStart_toStartOf="@+id/titleTV"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/productTitlePriceTV" />
 
             <View
@@ -99,7 +99,7 @@
                 android:gravity="center"
                 android:text="@string/cantidad_producto_pedido_despachado_title"
                 android:textColor="@color/blue_dark"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 app:layout_constraintBottom_toBottomOf="@+id/productTitlePriceTV"
                 app:layout_constraintEnd_toStartOf="@+id/totalPagarTitlePriceTV"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -140,7 +140,7 @@
                 android:fontFamily="@font/myriad_bold"
                 android:text="@string/total_pagar_title"
                 android:textColor="@color/blue_dark"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 app:layout_constraintBottom_toBottomOf="@+id/cantidadTitlePriceTV"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
