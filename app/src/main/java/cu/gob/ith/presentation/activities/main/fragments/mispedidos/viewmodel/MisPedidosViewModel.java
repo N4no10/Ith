@@ -21,14 +21,23 @@ import io.reactivex.rxjava3.core.Observable;
 public class MisPedidosViewModel extends ViewModel {
     // TODO: Implement the ViewModel
     private final GetListPedidosUseCase getListPedidosUseCase;
+    private int currentOpc;
 
     @Inject
     public MisPedidosViewModel(GetListPedidosUseCase getListPedidosUseCase) {
         this.getListPedidosUseCase = getListPedidosUseCase;
+        this.currentOpc = 1;
     }
 
     public Observable<List<DatosPedido>> getListPedidos(Map<String,Object> params){
         return getListPedidosUseCase.execute(params);
     }
 
+    public int getNumberOpc() {
+        return currentOpc;
+    }
+
+    public void setNumberOpc(int currentOpc) {
+        this.currentOpc = currentOpc;
+    }
 }

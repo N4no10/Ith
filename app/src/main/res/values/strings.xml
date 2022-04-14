@@ -94,6 +94,7 @@
     <string name="cliente_pedido">Cliente</string>
 
     //Mis Pedidos Opc1
+    <string name="detalle_pedido">Detalle del Pedido</string>
     <string name="pedidos_opc1">Pedidos:</string>
     <string name="fecha_inic_opc1">De:</string>
     <string name="fecha_fin_opc1">Hasta:</string>

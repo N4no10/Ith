@@ -17,7 +17,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 @HiltViewModel
 public class InformePedidoFragmentViewModel extends ViewModel {
 
-    private  InformePedidoPDFGenerator informePedidoPDFGenerator;
+    private final InformePedidoPDFGenerator informePedidoPDFGenerator;
 
     @Inject
     public InformePedidoFragmentViewModel(InformePedidoPDFGenerator informePedidoPDFGenerator) {

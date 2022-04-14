@@ -44,4 +44,9 @@ public interface Api {
     @GET("pedido/findAllDetallesPedidoDespachadosyNoDespachados")
     Observable<ApiListDetallesPedido> findAllDetallesPedidoDespachadosyNoDespachados(@Query("numero") int numeroPedido);
 
+    @GET("pedido/findAllPedidosPendientesDespachar")
+    Observable<ApiListPedidos> filterListPedidosPendientesDespachar();
+
+    @GET("pedido")
+    Observable<ApiPedidoResponse> getPedidoById(@Query("numero") int numeroPedido);
 }

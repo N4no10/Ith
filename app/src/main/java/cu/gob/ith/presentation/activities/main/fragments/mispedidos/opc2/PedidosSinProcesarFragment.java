@@ -58,14 +58,13 @@ public class PedidosSinProcesarFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         initViewModel();
-//        initViewModel();
         initOnClickInViewHolderItem();
         observers();
 
-        initCalendario();
+       // initCalendario();
     }
 
-    private void initCalendario() {
+   /* private void initCalendario() {
         MaterialDatePicker<Pair<Long, Long>> datePicker = MaterialDatePicker
                 .Builder
                 .dateRangePicker()
@@ -85,7 +84,7 @@ public class PedidosSinProcesarFragment extends Fragment {
         uiBind.calendarioIB.setOnClickListener(v -> {
             datePicker.show(getParentFragmentManager(), "Calendario");
         });
-    }
+    }*/
 
     private void updateAdapter(List<DatosPedido> datosPedidoList) {
         if (pedidosAdapter == null) {
@@ -99,32 +98,33 @@ public class PedidosSinProcesarFragment extends Fragment {
         mainActivityViewModel.isColapsedMainContent().observe(getViewLifecycleOwner(), collapsedMainContent -> {
             Log.e("ColapsedMenu", "ColapsedMenu " + collapsedMainContent);
             if (!collapsedMainContent) {
-                updateViewFecha(MaterialDatePicker.thisMonthInUtcMilliseconds() + 86400000,
-                        MaterialDatePicker.todayInUtcMilliseconds() + 86400000);
+               /* updateViewFecha(MaterialDatePicker.thisMonthInUtcMilliseconds() + 86400000,
+                        MaterialDatePicker.todayInUtcMilliseconds() + 86400000);*/
+                loadContent();
             }
         });
 
-        mViewModel.getInicFecha().observe(getViewLifecycleOwner(), fechaInic -> uiBind.setFechaInic(Util.formatDate(fechaInic)));
-        mViewModel.getFinFecha().observe(getViewLifecycleOwner(), fechaFin -> uiBind.setFechaFin(Util.formatDate(fechaFin)));
+       /* mViewModel.getInicFecha().observe(getViewLifecycleOwner(), fechaInic -> uiBind.setFechaInic(Util.formatDate(fechaInic)));
+        mViewModel.getFinFecha().observe(getViewLifecycleOwner(), fechaFin -> uiBind.setFechaFin(Util.formatDate(fechaFin)));*/
     }
 
-    private void loadContent(Map<String, Object> paramQuery) {
+    private void loadContent(/*Map<String, Object> paramQuery*/) {
         mViewModel.addCompositeDisposable(
-                misPedidosViewModel.getListPedidos(paramQuery)
+                mViewModel.getListPedidosSinProcesar()
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
                                 datosPedidos -> {
                                     Log.e("onNext", "next" + datosPedidos.size());
                                     updateAdapter(datosPedidos);
-                                    if (uiBind.calendarioIB.getVisibility() == View.INVISIBLE)
-                                        uiBind.calendarioIB.setVisibility(View.VISIBLE);
+                                   /* if (uiBind.calendarioIB.getVisibility() == View.INVISIBLE)
+                                        uiBind.calendarioIB.setVisibility(View.VISIBLE);*/
                                 }
                                 ,
                                 e -> Log.e("Error", "error cargando pedidos " + e.getMessage())
                         ));
     }
 
-    private void updateViewFecha(long fechaInic, long fechaFin) {
+   /* private void updateViewFecha(long fechaInic, long fechaFin) {
         if ((mViewModel.getInicFecha().getValue() == null && mViewModel.getFinFecha().getValue() == null)
                 || (mViewModel.getInicFecha().getValue() != null && fechaInic != mViewModel.getInicFecha().getValue() ||
                 mViewModel.getFinFecha().getValue() != null && fechaFin != mViewModel.getFinFecha().getValue())) {
@@ -137,7 +137,7 @@ public class PedidosSinProcesarFragment extends Fragment {
 
             loadContent(param);
         }
-    }
+    }*/
 
     private void initViewModel() {
         misPedidosViewModel = new ViewModelProvider(requireParentFragment().requireParentFragment())

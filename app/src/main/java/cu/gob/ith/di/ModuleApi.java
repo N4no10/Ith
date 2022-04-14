@@ -71,7 +71,7 @@ public class ModuleApi {
     @Provides
     static Retrofit provideRetrofit(/*Gson gson,*/ OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
-                .baseUrl(/*"http://ith-local.cu/api/"*/"http://ithapi.local.cu:80/api/")
+                .baseUrl("http://ith-local.cu/api/")
            //     .baseUrl("http://ith.api.local:80/api/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)

@@ -11,6 +11,7 @@ import cu.gob.ith.domain.model.DatosPedido;
 
 public class TransformApiDatosPedidoToDatosPedido {
     public static DatosPedido map(ApiDatosPedido apiDatosPedido) {
+        Log.e("mao DatosPedido","map " + apiDatosPedido);
         return new DatosPedido(apiDatosPedido.getNumber(),
                 apiDatosPedido.getProvider(),
                 apiDatosPedido.getCodeITH(),
@@ -33,14 +34,16 @@ public class TransformApiDatosPedidoToDatosPedido {
     }
 
     public static DatosPedido mapSecondConstructor(ApiDatosPedido apiDatosPedido) {
-        return new DatosPedido(apiDatosPedido.getNumber(), apiDatosPedido.getDate(), apiDatosPedido.getDateDespacho(),
+        return new DatosPedido(apiDatosPedido.getNumber(),
+                Util.changeDateFormat(apiDatosPedido.getDate()),
+                apiDatosPedido.getDateDespacho(),
                 apiDatosPedido.getClient());
     }
 
     public static List<DatosPedido> mapList(List<ApiDatosPedido> apiDatosPedidoList) {
         List<DatosPedido> datosPedidoList = new ArrayList<>();
         for (ApiDatosPedido apiDatosPedidos : apiDatosPedidoList)
-             datosPedidoList.add(map(apiDatosPedidos));
+            datosPedidoList.add(map(apiDatosPedidos));
 
         return datosPedidoList;
     }

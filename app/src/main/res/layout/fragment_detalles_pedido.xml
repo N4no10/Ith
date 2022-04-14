@@ -24,12 +24,11 @@
             android:id="@+id/pedidoNumberTitleTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/myriad_regular"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:text='@{"No. Pedido: "+pedidoNo}'
             android:textColor="@color/blue_dark"
-            android:textSize="14sp"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="No.Pedido: 21000001" />
@@ -38,14 +37,28 @@
             android:id="@+id/detalleProductosRV"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
             android:adapter="@{adapter}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/pedidoNumberTitleTV"
             app:layout_constraintTop_toBottomOf="@+id/pedidoNumberTitleTV"
-            tools:listitem="@layout/item_productos_detalles_pedido" />
+            tools:listitem="@layout/item_productos_detalles_pedido" >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/downloadPdfFAB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:src="@drawable/ic_download"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

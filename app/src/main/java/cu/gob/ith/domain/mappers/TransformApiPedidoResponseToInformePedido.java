@@ -1,5 +1,7 @@
 package cu.gob.ith.domain.mappers;
 
+import android.util.Log;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import cu.gob.ith.domain.model.Producto;
 
 public class TransformApiPedidoResponseToInformePedido {
     public static InformePedido map(ApiPedidoResponse apiPedidoResponse) {
+        Log.e("informePedido map","informe " + apiPedidoResponse);
         return new InformePedido(apiPedidoResponse.isSuccess(),
                 TransformApiDatosPedidoToDatosPedido.map(
                         apiPedidoResponse.getApiDatosPedido()

@@ -64,9 +64,12 @@ public class MisPedidosFragment extends Fragment {
 
             @Override
             public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
-                if (lastDestino != 0)
+                if (lastDestino != 0) {
+                    //mViewModel.setNumberOpc(currentId);
                     navController.navigate(getDestinoForIdConstriaintSet(currentId), new Bundle(),
                             new NavOptions.Builder().setPopUpTo(lastDestino, true).build());
+                }
+
             }
 
             @Override
