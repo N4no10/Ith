@@ -3,11 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/drawable/ic_all_pedidos.xml" value="0.18" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/drawable/ic_pedido_en_linea_borde.xml" value="0.1235" />
+        <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/drawable/ic_pedidos_despachados.xml" value="0.18" />
+        <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/drawable/ic_pedidos_facturados.xml" value="0.18" />
+        <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/drawable/ic_pedidos_solicitados.xml" value="0.18" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/fragment_detalles_pedido.xml" value="0.264" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/fragment_informe_pedido.xml" value="0.264" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/fragment_menu.xml" value="0.13496376811594202" />
-        <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/fragment_mis_pedidos.xml" value="0.176" />
+        <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/fragment_mis_pedidos.xml" value="0.4" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/fragment_pedido_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/fragment_pedidos_entregados.xml" value="0.19202898550724637" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/fragment_pedidos_mes.xml" value="0.20244565217391305" />

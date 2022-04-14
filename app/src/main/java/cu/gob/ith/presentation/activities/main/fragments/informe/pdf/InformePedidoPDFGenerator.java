@@ -22,9 +22,6 @@ import cu.gob.ith.R;
 import cu.gob.ith.domain.model.DatosPedido;
 import cu.gob.ith.domain.model.InformePedido;
 import cu.gob.ith.domain.model.Producto;
-import dagger.hilt.InstallIn;
-import dagger.hilt.android.components.ActivityComponent;
-import dagger.hilt.android.qualifiers.ActivityContext;
 import dagger.hilt.android.qualifiers.ApplicationContext;
 
 public class InformePedidoPDFGenerator {

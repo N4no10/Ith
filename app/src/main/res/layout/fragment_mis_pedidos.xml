@@ -20,7 +20,7 @@
             android:layout_marginTop="8dp"
             android:background="@android:color/transparent"
 
-            android:src="@drawable/ic_pedido_en_linea_borde"
+            android:src="@drawable/ic_all_pedidos"
             app:layout_constraintEnd_toStartOf="@+id/opc2FL"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
 
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_pedido_en_linea_borde"
+            android:src="@drawable/ic_pedidos_solicitados"
             app:layout_constraintBottom_toBottomOf="@+id/opc1FL"
             app:layout_constraintEnd_toStartOf="@+id/opc3FL"
             app:layout_constraintHorizontal_bias="0.5"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
 
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_pedido_en_linea_borde"
+            android:src="@drawable/ic_pedidos_despachados"
             app:layout_constraintBottom_toBottomOf="@+id/opc2FL"
             app:layout_constraintEnd_toStartOf="@+id/opc4FL"
             app:layout_constraintHorizontal_bias="0.5"
@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_pedido_en_linea_borde"
+            android:src="@drawable/ic_pedidos_facturados"
             app:layout_constraintBottom_toBottomOf="@+id/opc3FL"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
