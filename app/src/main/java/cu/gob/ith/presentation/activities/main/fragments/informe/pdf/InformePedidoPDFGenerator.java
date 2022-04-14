@@ -13,7 +13,10 @@ import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.element.Text;
 import com.itextpdf.layout.property.TextAlignment;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -57,7 +60,13 @@ public class InformePedidoPDFGenerator {
     }
 
     public String providePathPDF(String nombrePdf) {
-        return Environment.getExternalStorageDirectory().getPath() + "/" + nombrePdf + ".pdf";
+        File carpeta = new File(Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_DOWNLOADS, "ITH");
+        if (!carpeta.exists()) {
+            carpeta.mkdir();
+            carpeta = new File(Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_DOWNLOADS + "/ITH", "Documentos");
+            carpeta.mkdir();
+        }
+        return Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_DOWNLOADS + File.separator + "ITH/Documentos/" + nombrePdf + ".pdf";
     }
 
 
@@ -227,7 +236,7 @@ public class InformePedidoPDFGenerator {
     private Paragraph paragraphTitleAndContent(String title, String content) {
         Paragraph paragraph = new Paragraph();
         paragraph.add(new Text(title).setBold());
-        paragraph.add(" "+content);
+        paragraph.add(" " + content);
         paragraph.setTextAlignment(TextAlignment.LEFT);
         return paragraph;
     }
