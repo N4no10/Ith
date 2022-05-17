@@ -62,16 +62,6 @@ public class PedidosMesFragment extends Fragment {
     }
 
     private void initCalendario() {
-       /* Calendar fechaInic = Calendar.getInstance();
-        int lastDay = fechaInic.getActualMaximum(Calendar.DATE);
-        int month = fechaInic.get(Calendar.MONTH);
-        int year = fechaInic.get(Calendar.YEAR);
-        fechaInic.set(year, month, 1);
-
-        Calendar fechaFin = Calendar.getInstance();
-        fechaFin.set(year, month, lastDay);*/
-       /* updateViewFecha(MaterialDatePicker.thisMonthInUtcMilliseconds() + 86400000,
-                MaterialDatePicker.todayInUtcMilliseconds() + 86400000);*/
         MaterialDatePicker<Pair<Long, Long>> datePicker = MaterialDatePicker
                 .Builder
                 .dateRangePicker()
@@ -138,8 +128,8 @@ public class PedidosMesFragment extends Fragment {
             mViewModel.setFinFecha(fechaFin);
 
             Map<String, Object> param = new HashMap<>();
-            param.put("options.fechaInicio", Util.formatDate(mViewModel.getInicFecha().getValue()));
-            param.put("options.fechaFin", Util.formatDate(mViewModel.getFinFecha().getValue()));
+            param.put("options.fechaInicio", Util.formatDateCalendarView(mViewModel.getInicFecha().getValue()));
+            param.put("options.fechaFin", Util.formatDateCalendarView(mViewModel.getFinFecha().getValue()));
 
             loadContent(param);
         }

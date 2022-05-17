@@ -3,20 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/drawable/ic_all_pedidos.xml" value="0.18" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/drawable/ic_pedido_en_linea_borde.xml" value="0.1235" />
-        <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/drawable/ic_pedidos_despachados.xml" value="0.18" />
-        <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/drawable/ic_pedidos_facturados.xml" value="0.18" />
-        <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/drawable/ic_pedidos_solicitados.xml" value="0.18" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/fragment_detalles_pedido.xml" value="0.264" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/fragment_informe_pedido.xml" value="0.264" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/fragment_menu.xml" value="0.13496376811594202" />
-        <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/fragment_mis_pedidos.xml" value="0.4" />
+        <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/fragment_mis_pedidos.xml" value="0.176" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/fragment_pedido_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/fragment_pedidos_entregados.xml" value="0.19202898550724637" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/fragment_pedidos_mes.xml" value="0.20244565217391305" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/fragment_pedidos_procesados.xml" value="0.2" />
-        <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/fragment_pedidos_sin_procesar.xml" value="0.19202898550724637" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/item_list_pedido_doble_fecha.xml" value="0.264" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/item_list_pedidos_doble_fecha.xml" value="0.4" />
         <entry key="..\:/Proyectos/ITH/ith-apk/Ith/app/src/main/res/layout/item_pedido.xml" value="0.25416666666666665" />
@@ -38,9 +33,15 @@
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/background_title_categoria.xml" value="0.262" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/elevation_shadown.xml" value="0.242" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/ic_add.xml" value="0.3725" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/ic_all_pedidos.xml" value="0.2135" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/ic_arrow_left.xml" value="0.369" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/ic_calendario.xml" value="0.2155" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/ic_logout.xml" value="0.251" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/ic_pedido_en_linea.xml" value="0.188" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/ic_pedidos_cancelados.xml" value="0.2255" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/ic_pedidos_despachados.xml" value="0.2135" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/ic_pedidos_facturados.xml" value="0.2645" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/ic_pedidos_solicitados.xml" value="0.2135" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/ic_rest.xml" value="0.3725" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/ic_settings_black_24dp.xml" value="0.126" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/drawable/ic_shop_car.xml" value="0.1885" />
@@ -71,12 +72,21 @@
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_inicio.xml" value="0.20126926563916592" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_menu.xml" value="0.2" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_mis_pedidos.xml" value="0.2102803738317757" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_pedido_list.xml" value="0.10175438596491228" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_pedidos_cancelados.xml" value="0.23947750362844702" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_pedidos_entregados.xml" value="0.16930312099187686" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_pedidos_mes.xml" value="0.13723813595553655" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_pedidos_procesados.xml" value="0.23947750362844702" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_pedidos_sin_procesar.xml" value="0.2440828402366864" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_prueba.xml" value="0.15" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/item_categoria.xml" value="0.4" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/item_list_pedido_doble_fecha.xml" value="0.3052586575459598" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/item_menu_nav_vie.xml" value="0.1" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/item_menu_nav_view.xml" value="0.16" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/item_pedido.xml" value="0.3052586575459598" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/item_productos.xml" value="0.264" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/item_productos_detalles_pedido.xml" value="0.5" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/item_prueba_layout.xml" value="0.1513157894736842" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/item_transform.xml" value="0.25833333333333336" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/list_categoria.xml" value="0.1" />
@@ -97,7 +107,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.33" />
+        <option name="scale" value="0.1" />
       </ProjectState>
     </option>
   </component>

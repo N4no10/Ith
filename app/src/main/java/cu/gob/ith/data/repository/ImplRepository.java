@@ -89,6 +89,12 @@ public class ImplRepository implements Repository {
     }
 
     @Override
+    public Observable<ApiListPedidos> filterListPedidosCancelados() {
+        return dataSourceRemote.filterListPedidosCancelados()
+                .subscribeOn(Schedulers.io());
+    }
+
+    @Override
     public Observable<ApiPedidoResponse> getPedidoById(int numeroPedido) {
         return dataSourceRemote.getPedidoById(numeroPedido)
                 .subscribeOn(Schedulers.io());

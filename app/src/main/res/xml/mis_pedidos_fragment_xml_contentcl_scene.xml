@@ -3,29 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:motion="http://schemas.android.com/apk/res-auto">
 
-    <Transition
-        motion:constraintSetEnd="@+id/opc2"
-        motion:constraintSetStart="@id/start"
-        motion:duration="500">
-        <OnClick motion:clickAction="toggle"
-            motion:targetId="@id/opc2FL" />
-        <KeyFrameSet >
-            <KeyAttribute
-                motion:motionTarget="@+id/lineSelectedV"
-                motion:framePosition="7"
-                android:scaleX="0.25" />
-            <KeyAttribute
-                motion:motionTarget="@+id/lineSelectedV"
-                motion:framePosition="60"
-                android:scaleX="0.25" />
-        </KeyFrameSet>
-    </Transition>
-
     <ConstraintSet android:id="@+id/start">
         <Constraint
             android:id="@+id/lineSelectedV"
             motion:layout_constraintEnd_toEndOf="@id/opc1FL"
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="4dp"
             motion:layout_constraintTop_toBottomOf="@+id/opc1FL"
             motion:layout_constraintStart_toStartOf="@+id/opc1FL"
@@ -46,31 +28,129 @@
         <Constraint
             android:id="@+id/lineSelectedV"
             motion:layout_constraintEnd_toEndOf="@id/opc2FL"
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="4dp"
             motion:layout_constraintTop_toBottomOf="@id/opc2FL"
             motion:layout_constraintStart_toStartOf="@id/opc2FL"
             android:layout_marginTop="6dp"
             android:scaleX="1" />
     </ConstraintSet>
+
     <ConstraintSet android:id="@+id/opc3" >
         <Constraint
             android:id="@+id/lineSelectedV"
             motion:layout_constraintEnd_toEndOf="@id/opc3FL"
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="4dp"
             motion:layout_constraintTop_toBottomOf="@id/opc3FL"
             motion:layout_constraintStart_toStartOf="@id/opc3FL"
             android:layout_marginTop="6dp"
             android:scaleX="1" />
     </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/opc4" >
+        <Constraint
+            android:id="@+id/lineSelectedV"
+            motion:layout_constraintEnd_toEndOf="@id/opc4FL"
+            android:layout_width="30dp"
+            android:layout_height="4dp"
+            motion:layout_constraintTop_toBottomOf="@id/opc4FL"
+            motion:layout_constraintStart_toStartOf="@id/opc4FL"
+            android:layout_marginTop="6dp"
+            android:scaleX="1" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/opc5" >
+        <Constraint
+            android:id="@+id/lineSelectedV"
+            motion:layout_constraintEnd_toEndOf="@id/opc5FL"
+            android:layout_width="30dp"
+            android:layout_height="4dp"
+            motion:layout_constraintTop_toBottomOf="@id/opc5FL"
+            motion:layout_constraintStart_toStartOf="@id/opc5FL"
+            android:layout_marginTop="6dp"
+            android:scaleX="1" />
+    </ConstraintSet>
+
+    <Transition
+        motion:constraintSetStart="@id/start"
+        motion:constraintSetEnd="@+id/opc2"
+        motion:motionInterpolator="linear"
+        motion:duration="500">
+        <OnClick motion:clickAction="toggle"
+            motion:targetId="@id/opc2FL" />
+        <KeyFrameSet >
+            <KeyAttribute
+                motion:motionTarget="@+id/lineSelectedV"
+                motion:framePosition="7"
+                android:scaleX="0.25" />
+            <KeyAttribute
+                motion:motionTarget="@+id/lineSelectedV"
+                motion:framePosition="60"
+                android:scaleX="0.25" />
+        </KeyFrameSet>
+    </Transition>
     <Transition
         motion:constraintSetStart="@+id/start"
         motion:constraintSetEnd="@+id/opc3"
-        motion:autoTransition="none"
+        motion:motionInterpolator="linear"
         motion:duration="500">
         <OnClick motion:targetId="@id/opc3FL"
             motion:clickAction="toggle" />
+        <KeyFrameSet >
+            <KeyAttribute
+                motion:motionTarget="@+id/lineSelectedV"
+                motion:framePosition="7"
+                android:scaleX="0.25" />
+            <KeyAttribute
+                motion:motionTarget="@+id/lineSelectedV"
+                motion:framePosition="60"
+                android:scaleX="0.25" />
+        </KeyFrameSet>
+    </Transition>
+    <Transition
+        motion:constraintSetStart="@+id/start"
+        motion:constraintSetEnd="@+id/opc4"
+        motion:duration="500"
+        motion:motionInterpolator="linear">
+        <OnClick motion:targetId="@id/opc4FL"
+            motion:clickAction="toggle" />
+        <KeyFrameSet >
+            <KeyAttribute
+                motion:motionTarget="@+id/lineSelectedV"
+                motion:framePosition="7"
+                android:scaleX="0.25" />
+            <KeyAttribute
+                motion:motionTarget="@+id/lineSelectedV"
+                motion:framePosition="60"
+                android:scaleX="0.25" />
+        </KeyFrameSet>
+    </Transition>
+    <Transition
+        motion:constraintSetStart="@+id/start"
+        motion:constraintSetEnd="@+id/opc5"
+        motion:duration="500"
+        motion:motionInterpolator="linear">
+        <OnClick motion:targetId="@id/opc5FL"
+            motion:clickAction="toggle" />
+        <KeyFrameSet >
+            <KeyAttribute
+                motion:motionTarget="@+id/lineSelectedV"
+                motion:framePosition="7"
+                android:scaleX="0.25" />
+            <KeyAttribute
+                motion:motionTarget="@+id/lineSelectedV"
+                motion:framePosition="60"
+                android:scaleX="0.25" />
+        </KeyFrameSet>
+    </Transition>
+
+    <Transition
+        motion:constraintSetStart="@+id/opc2"
+        motion:constraintSetEnd="@+id/start"
+        motion:duration="500" >
+        <OnClick motion:clickAction="toggle"
+            motion:targetId="@id/opc1FL" />
         <KeyFrameSet >
             <KeyAttribute
                 motion:motionTarget="@+id/lineSelectedV"
@@ -101,6 +181,41 @@
     </Transition>
     <Transition
         motion:constraintSetStart="@+id/opc2"
+        motion:constraintSetEnd="@+id/opc4"
+        motion:duration="500">
+        <OnClick motion:targetId="@id/opc4FL"
+            motion:clickAction="toggle" />
+        <KeyFrameSet >
+            <KeyAttribute
+                motion:motionTarget="@+id/lineSelectedV"
+                motion:framePosition="7"
+                android:scaleX="0.25" />
+            <KeyAttribute
+                motion:motionTarget="@+id/lineSelectedV"
+                motion:framePosition="60"
+                android:scaleX="0.25" />
+        </KeyFrameSet>
+    </Transition>
+    <Transition
+        motion:constraintSetStart="@+id/opc2"
+        motion:constraintSetEnd="@+id/opc5"
+        motion:duration="500">
+        <OnClick motion:targetId="@id/opc5FL"
+            motion:clickAction="toggle" />
+        <KeyFrameSet >
+            <KeyAttribute
+                motion:motionTarget="@+id/lineSelectedV"
+                motion:framePosition="7"
+                android:scaleX="0.25" />
+            <KeyAttribute
+                motion:motionTarget="@+id/lineSelectedV"
+                motion:framePosition="60"
+                android:scaleX="0.25" />
+        </KeyFrameSet>
+    </Transition>
+
+    <Transition
+        motion:constraintSetStart="@+id/opc3"
         motion:constraintSetEnd="@+id/start"
         motion:duration="500" >
         <OnClick motion:clickAction="toggle"
@@ -135,54 +250,8 @@
     </Transition>
     <Transition
         motion:constraintSetStart="@+id/opc3"
-        motion:constraintSetEnd="@+id/start"
+        motion:constraintSetEnd="@+id/opc4"
         motion:duration="500" >
-        <OnClick motion:clickAction="toggle"
-            motion:targetId="@id/opc1FL" />
-        <KeyFrameSet >
-            <KeyAttribute
-                motion:motionTarget="@+id/lineSelectedV"
-                motion:framePosition="7"
-                android:scaleX="0.25" />
-            <KeyAttribute
-                motion:motionTarget="@+id/lineSelectedV"
-                motion:framePosition="60"
-                android:scaleX="0.25" />
-        </KeyFrameSet>
-    </Transition>
-    <ConstraintSet android:id="@+id/opc4" >
-        <Constraint
-            android:id="@+id/lineSelectedV"
-            motion:layout_constraintEnd_toEndOf="@id/opc4FL"
-            android:layout_width="40dp"
-            android:layout_height="4dp"
-            motion:layout_constraintTop_toBottomOf="@id/opc4FL"
-            motion:layout_constraintStart_toStartOf="@id/opc4FL"
-            android:layout_marginTop="6dp"
-            android:scaleX="1" />
-    </ConstraintSet>
-    <Transition
-        motion:constraintSetStart="@+id/start"
-        motion:constraintSetEnd="@+id/opc4"
-        motion:duration="500"
-        motion:motionInterpolator="linear">
-        <OnClick motion:targetId="@id/opc4FL"
-            motion:clickAction="toggle" />
-        <KeyFrameSet >
-            <KeyAttribute
-                motion:motionTarget="@+id/lineSelectedV"
-                motion:framePosition="7"
-                android:scaleX="0.25" />
-            <KeyAttribute
-                motion:motionTarget="@+id/lineSelectedV"
-                motion:framePosition="60"
-                android:scaleX="0.25" />
-        </KeyFrameSet>
-    </Transition>
-    <Transition
-        motion:constraintSetStart="@+id/opc2"
-        motion:constraintSetEnd="@+id/opc4"
-        motion:duration="500">
         <OnClick motion:targetId="@id/opc4FL"
             motion:clickAction="toggle" />
         <KeyFrameSet >
@@ -198,9 +267,9 @@
     </Transition>
     <Transition
         motion:constraintSetStart="@+id/opc3"
-        motion:constraintSetEnd="@+id/opc4"
+        motion:constraintSetEnd="@+id/opc5"
         motion:duration="500" >
-        <OnClick motion:targetId="@id/opc4FL"
+        <OnClick motion:targetId="@id/opc5FL"
             motion:clickAction="toggle" />
         <KeyFrameSet >
             <KeyAttribute
@@ -213,11 +282,12 @@
                 android:scaleX="0.25" />
         </KeyFrameSet>
     </Transition>
+
     <Transition
         motion:constraintSetStart="@+id/opc4"
-        motion:constraintSetEnd="@+id/opc3"
-        motion:duration="500">
-        <OnClick motion:targetId="@id/opc3FL"
+        motion:constraintSetEnd="@+id/start"
+        motion:duration="500" >
+        <OnClick motion:targetId="@id/opc1FL"
             motion:clickAction="toggle" />
         <KeyFrameSet >
             <KeyAttribute
@@ -249,6 +319,41 @@
     </Transition>
     <Transition
         motion:constraintSetStart="@+id/opc4"
+        motion:constraintSetEnd="@+id/opc3"
+        motion:duration="500">
+        <OnClick motion:targetId="@id/opc3FL"
+            motion:clickAction="toggle" />
+        <KeyFrameSet >
+            <KeyAttribute
+                motion:motionTarget="@+id/lineSelectedV"
+                motion:framePosition="7"
+                android:scaleX="0.25" />
+            <KeyAttribute
+                motion:motionTarget="@+id/lineSelectedV"
+                motion:framePosition="60"
+                android:scaleX="0.25" />
+        </KeyFrameSet>
+    </Transition>
+    <Transition
+        motion:constraintSetStart="@+id/opc4"
+        motion:constraintSetEnd="@+id/opc5"
+        motion:duration="500">
+        <OnClick motion:targetId="@id/opc5FL"
+            motion:clickAction="toggle" />
+        <KeyFrameSet >
+            <KeyAttribute
+                motion:motionTarget="@+id/lineSelectedV"
+                motion:framePosition="7"
+                android:scaleX="0.25" />
+            <KeyAttribute
+                motion:motionTarget="@+id/lineSelectedV"
+                motion:framePosition="60"
+                android:scaleX="0.25" />
+        </KeyFrameSet>
+    </Transition>
+
+    <Transition
+        motion:constraintSetStart="@+id/opc5"
         motion:constraintSetEnd="@+id/start"
         motion:duration="500" >
         <OnClick motion:targetId="@id/opc1FL"
@@ -264,4 +369,56 @@
                 android:scaleX="0.25" />
         </KeyFrameSet>
     </Transition>
+    <Transition
+        motion:constraintSetStart="@+id/opc5"
+        motion:constraintSetEnd="@+id/opc2"
+        motion:duration="500" >
+        <OnClick motion:clickAction="toggle"
+            motion:targetId="@id/opc2FL" />
+        <KeyFrameSet >
+            <KeyAttribute
+                motion:motionTarget="@+id/lineSelectedV"
+                motion:framePosition="7"
+                android:scaleX="0.25" />
+            <KeyAttribute
+                motion:motionTarget="@+id/lineSelectedV"
+                motion:framePosition="60"
+                android:scaleX="0.25" />
+        </KeyFrameSet>
+    </Transition>
+    <Transition
+        motion:constraintSetStart="@+id/opc5"
+        motion:constraintSetEnd="@+id/opc3"
+        motion:duration="500">
+        <OnClick motion:targetId="@id/opc3FL"
+            motion:clickAction="toggle" />
+        <KeyFrameSet >
+            <KeyAttribute
+                motion:motionTarget="@+id/lineSelectedV"
+                motion:framePosition="7"
+                android:scaleX="0.25" />
+            <KeyAttribute
+                motion:motionTarget="@+id/lineSelectedV"
+                motion:framePosition="60"
+                android:scaleX="0.25" />
+        </KeyFrameSet>
+    </Transition>
+    <Transition
+        motion:constraintSetStart="@+id/opc5"
+        motion:constraintSetEnd="@+id/opc4"
+        motion:duration="500">
+        <OnClick motion:targetId="@id/opc4FL"
+            motion:clickAction="toggle" />
+        <KeyFrameSet >
+            <KeyAttribute
+                motion:motionTarget="@+id/lineSelectedV"
+                motion:framePosition="7"
+                android:scaleX="0.25" />
+            <KeyAttribute
+                motion:motionTarget="@+id/lineSelectedV"
+                motion:framePosition="60"
+                android:scaleX="0.25" />
+        </KeyFrameSet>
+    </Transition>
+
 </MotionScene>

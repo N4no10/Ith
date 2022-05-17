@@ -59,13 +59,25 @@
             android:background="@android:color/transparent"
             android:src="@drawable/ic_pedidos_facturados"
             app:layout_constraintBottom_toBottomOf="@+id/opc3FL"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toStartOf="@id/opc5FL"
+            app:layout_constraintStart_toEndOf="@+id/opc3FL" />
+
+
+        <ImageButton
+            android:id="@+id/opc5FL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_pedidos_cancelados"
+            app:layout_constraintBottom_toBottomOf="@+id/opc4FL"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/opc3FL" />
+            app:layout_constraintStart_toEndOf="@+id/opc4FL" />
 
         <View
             android:id="@+id/lineSelectedV"
-            android:layout_width="40dp"
+            android:layout_width="30dp"
             android:layout_height="4dp"
             android:layout_marginTop="6dp"
             android:background="@drawable/line_selected_tab_mis_pedidos"

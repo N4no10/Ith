@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".presentation.activities.main.fragments.mispedidos.opc3.PedidosEntregadosFragment">
+    tools:context=".presentation.activities.main.fragments.mispedidos.opc5.PedidosCanceladosFragment">
 
     <data>
 
         <variable
             name="adapter"
-            type="cu.gob.ith.presentation.activities.main.fragments.mispedidos.opc3.recyclerview.PedidoFacturadoAdapter" />
+            type="cu.gob.ith.presentation.activities.main.fragments.mispedidos.opc4.recyclerview.PedidoDespachadoAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,14 +23,14 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/myriad_bold"
-            android:text="@string/pedidos_opc4"
+            android:text="@string/pedidos_opc5"
             android:textColor="@color/black"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/pedidosFacturadosRV"
+            android:id="@+id/listPedidosRV"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
@@ -42,5 +42,4 @@
             app:layout_constraintTop_toBottomOf="@+id/titleTV"
             tools:listitem="@layout/item_list_pedido_doble_fecha" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>

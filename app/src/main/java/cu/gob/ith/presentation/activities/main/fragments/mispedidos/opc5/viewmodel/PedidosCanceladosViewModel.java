@@ -1,16 +1,15 @@
-package cu.gob.ith.presentation.activities.main.fragments.mispedidos.opc1.viewmodel;
+package cu.gob.ith.presentation.activities.main.fragments.mispedidos.opc5.viewmodel;
 
 import android.util.Log;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
-import cu.gob.ith.domain.interactors.GetListPedidosUseCase;
+import cu.gob.ith.domain.interactors.GetFilterListPedidosCanceladosUseCase;
 import cu.gob.ith.domain.model.DatosPedido;
 import dagger.hilt.android.lifecycle.HiltViewModel;
 import io.reactivex.rxjava3.core.Observable;
@@ -18,34 +17,22 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 @HiltViewModel
-public class PedidosMesViewModel extends ViewModel {
-
+public class PedidosCanceladosViewModel extends ViewModel {
+    // TODO: Implement the ViewModel
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
-    private MutableLiveData<Long> inicFecha = new MutableLiveData<>();
-    private MutableLiveData<Long> finFecha = new MutableLiveData<>();
+    private final GetFilterListPedidosCanceladosUseCase filterListPedidosCanceladosUseCase;
 
     @Inject
-    public PedidosMesViewModel() {
+    public PedidosCanceladosViewModel(GetFilterListPedidosCanceladosUseCase filterListPedidosCanceladosUseCase) {
+        this.filterListPedidosCanceladosUseCase = filterListPedidosCanceladosUseCase;
     }
 
     public void addCompositeDisposable(Disposable disposable) {
         compositeDisposable.add(disposable);
     }
 
-    public LiveData<Long> getInicFecha() {
-        return inicFecha;
-    }
-
-    public LiveData<Long> getFinFecha() {
-        return finFecha;
-    }
-
-    public void setInicFecha(Long inicFecha) {
-        this.inicFecha.setValue(inicFecha);
-    }
-
-    public void setFinFecha(Long finFecha) {
-        this.finFecha.setValue(finFecha);
+    public Observable<List<DatosPedido>> getListPedidosCancelados(){
+        return filterListPedidosCanceladosUseCase.execute();
     }
 
     @Override

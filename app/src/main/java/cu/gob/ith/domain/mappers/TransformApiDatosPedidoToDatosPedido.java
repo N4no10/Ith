@@ -36,7 +36,7 @@ public class TransformApiDatosPedidoToDatosPedido {
     public static DatosPedido mapSecondConstructor(ApiDatosPedido apiDatosPedido) {
         return new DatosPedido(apiDatosPedido.getNumber(),
                 Util.changeDateFormat(apiDatosPedido.getDate()),
-                apiDatosPedido.getDateDespacho(),
+                Util.changeDateFormat(apiDatosPedido.getDateDespacho()),
                 apiDatosPedido.getClient());
     }
 

@@ -68,6 +68,8 @@ public class MisPedidosFragment extends Fragment {
                     //mViewModel.setNumberOpc(currentId);
                     navController.navigate(getDestinoForIdConstriaintSet(currentId), new Bundle(),
                             new NavOptions.Builder().setPopUpTo(lastDestino, true).build());
+
+                    // mainActivityViewModel.setColapsedMainContent(false);
                 }
 
             }
@@ -88,6 +90,8 @@ public class MisPedidosFragment extends Fragment {
                 return R.id.pedidosProcesadosFragment;
             case R.id.opc4:
                 return R.id.pedidosEntregadosFragment;
+            case R.id.opc5:
+                return R.id.pedidosCanceladosFragment;
             default:
                 return 0;
         }

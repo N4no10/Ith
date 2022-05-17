@@ -72,7 +72,7 @@ public class PedidosProcesadosFragment extends Fragment {
                 mViewModel.getFilterListPedidosDespachadosUseCase().execute()
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(datosPedidos ->
-                                        uiBind.pedidosDespachadosRV.setAdapter(
+                                        uiBind.listPedidosRV.setAdapter(
                                                 new PedidoDespachadoAdapter(datosPedidos, onClickDelegateRV)
                                         ),
                                 throwable -> Log.e("PedidosDespachadosList", "getPedidosDespachadosList: " + throwable.getMessage())

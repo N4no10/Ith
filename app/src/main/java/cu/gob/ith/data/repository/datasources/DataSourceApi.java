@@ -37,6 +37,8 @@ public interface DataSourceApi {
 
     Observable<ApiListPedidos> filterListPedidosPendientesDespachar();
 
+    Observable<ApiListPedidos> filterListPedidosCancelados();
+
     Observable<ApiPedidoResponse> getPedidoById(int numeroPedido);
 
 }

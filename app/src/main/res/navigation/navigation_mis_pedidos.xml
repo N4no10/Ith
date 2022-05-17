@@ -35,4 +35,9 @@
             android:id="@+id/action_pedidosMesFragment_to_pedidosProcesadosFragment"
             app:destination="@id/pedidosProcesadosFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/pedidosCanceladosFragment"
+        android:name="cu.gob.ith.presentation.activities.main.fragments.mispedidos.opc5.PedidosCanceladosFragment"
+        android:label="fragment_pedidos_cancelados"
+        tools:layout="@layout/fragment_pedidos_cancelados" />
 </navigation>

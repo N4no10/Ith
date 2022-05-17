@@ -73,6 +73,11 @@ public class DataSourceRemote implements DataSourceApi {
     }
 
     @Override
+    public Observable<ApiListPedidos> filterListPedidosCancelados() {
+        return api.findAllPedidosCancelados();
+    }
+
+    @Override
     public Observable<ApiPedidoResponse> getPedidoById(int numeroPedido) {
         return api.getPedidoById(numeroPedido);
     }

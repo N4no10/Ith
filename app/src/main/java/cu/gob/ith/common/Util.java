@@ -13,7 +13,7 @@ public class Util {
             try {
 
                 Date d = sdf.parse(fecha);
-                sdf.applyPattern("yyyy-MM-dd");
+                sdf.applyPattern("dd/MM/yyyy");
 
                 return sdf.format(d);
 
@@ -25,7 +25,11 @@ public class Util {
         return null;
     }
 
-    public static String formatDate(long date){
+    public static String formatDateCalendarView(long date){
         return new SimpleDateFormat("yyyy-MM-dd").format(date);
+    }
+
+    public static String formatDate(long date){
+        return new SimpleDateFormat("dd/MM/yyyy").format(date);
     }
 }
