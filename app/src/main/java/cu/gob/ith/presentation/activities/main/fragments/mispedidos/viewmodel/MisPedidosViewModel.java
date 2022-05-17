@@ -2,6 +2,8 @@ package cu.gob.ith.presentation.activities.main.fragments.mispedidos.viewmodel;
 
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
@@ -26,7 +28,7 @@ public class MisPedidosViewModel extends ViewModel {
     @Inject
     public MisPedidosViewModel(GetListPedidosUseCase getListPedidosUseCase) {
         this.getListPedidosUseCase = getListPedidosUseCase;
-        this.currentOpc = 1;
+        this.currentOpc = -1;
     }
 
     public Observable<List<DatosPedido>> getListPedidos(Map<String,Object> params){

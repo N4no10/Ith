@@ -90,8 +90,11 @@ public class PedidosSinProcesarFragment extends Fragment {
         if (pedidosAdapter == null) {
             pedidosAdapter = new PedidosAdapter(datosPedidoList, onClickDelegateRV);
             uiBind.listPedidosRV.setAdapter(pedidosAdapter);
-        } else
+        } else {
+            Log.e("reload List","reload");
             pedidosAdapter.loadList(datosPedidoList);
+            uiBind.listPedidosRV.setAdapter(pedidosAdapter);
+        }
     }
 
     private void observers() {

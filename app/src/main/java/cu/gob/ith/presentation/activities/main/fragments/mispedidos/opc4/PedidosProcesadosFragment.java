@@ -25,7 +25,6 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 @AndroidEntryPoint
 public class PedidosProcesadosFragment extends Fragment {
 
-    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
     private FragmentPedidosProcesadosBinding uiBind;
     private PedidosProcesadosViewModel mViewModel;
     private OnClickDelegateRV onClickDelegateRV;
@@ -68,7 +67,7 @@ public class PedidosProcesadosFragment extends Fragment {
     }
 
     private void getPedidosDespachadosList() {
-        compositeDisposable.add(
+        mViewModel.addCompositeDisposable(
                 mViewModel.getFilterListPedidosDespachadosUseCase().execute()
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(datosPedidos ->
@@ -80,10 +79,4 @@ public class PedidosProcesadosFragment extends Fragment {
         );
     }
 
-    @Override
-    public void onDestroyView() {
-        if (!compositeDisposable.isDisposed())
-            compositeDisposable.dispose();
-        super.onDestroyView();
-    }
 }

@@ -1,6 +1,7 @@
 package cu.gob.ith.presentation.activities.main.fragments.mispedidos;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,12 +42,61 @@ public class MisPedidosFragment extends Fragment {
         initViewModel();
         currentToolBar();
 
-        initMotionOptionSelected();
+        mainActivityViewModel.isColapsedMainContent().observe(getViewLifecycleOwner(), collapsedMainContent -> {
+            Log.e("ColapsedMenu", "ColapsedMenu " + collapsedMainContent);
+            if (!collapsedMainContent)
+                initMotionOptionSelected();
+        });
+
 
     }
 
     private void initMotionOptionSelected() {
         NavController navController = Navigation.findNavController(requireActivity(), R.id.navegacionFragments);
+
+        Log.e("Opcion Inicial", "opcion " + mViewModel.getNumberOpc());
+        if (mViewModel.getNumberOpc() == -1)
+            mViewModel.setNumberOpc(R.id.start);
+        else {
+            //uiBind.contentCL.transitionToState(mViewModel.getNumberOpc());
+            uiBind.contentCL.jumpToState(mViewModel.getNumberOpc());
+        }
+
+        uiBind.opc1FL.setOnClickListener(v -> {
+            Log.e("presOpc1", "opc1");
+            if (mViewModel.getNumberOpc() == R.id.opc2 || mViewModel.getNumberOpc() == R.id.opc3
+                    || mViewModel.getNumberOpc() == R.id.opc4) {
+                Log.e("trans", "trans");
+                uiBind.contentCL.transitionToState(R.id.start);
+            }
+        });
+
+        uiBind.opc2FL.setOnClickListener(v -> {
+            Log.e("presOpc2", "opc2");
+            if (mViewModel.getNumberOpc() == R.id.start || mViewModel.getNumberOpc() == R.id.opc3 ||
+                    mViewModel.getNumberOpc() == R.id.opc4) {
+                Log.e("trans", "trans");
+                uiBind.contentCL.transitionToState(R.id.opc2);
+            }
+        });
+
+        uiBind.opc3FL.setOnClickListener(v -> {
+            Log.e("presOpc3", "opc3");
+            if (mViewModel.getNumberOpc() == R.id.start || mViewModel.getNumberOpc() == R.id.opc2 ||
+                    mViewModel.getNumberOpc() == R.id.opc4) {
+                Log.e("trans", "trans");
+                uiBind.contentCL.transitionToState(R.id.opc3);
+            }
+        });
+
+        uiBind.opc4FL.setOnClickListener(v -> {
+            Log.e("presOpc4", "opc4");
+            if (mViewModel.getNumberOpc() == R.id.start || mViewModel.getNumberOpc() == R.id.opc2 ||
+                    mViewModel.getNumberOpc() == R.id.opc3) {
+                Log.e("trans", "trans");
+                uiBind.contentCL.transitionToState(R.id.opc4);
+            }
+        });
 
         uiBind.contentCL.addTransitionListener(new MotionLayout.TransitionListener() {
 
@@ -65,13 +115,12 @@ public class MisPedidosFragment extends Fragment {
             @Override
             public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
                 if (lastDestino != 0) {
-                    //mViewModel.setNumberOpc(currentId);
+                    mViewModel.setNumberOpc(currentId);
                     navController.navigate(getDestinoForIdConstriaintSet(currentId), new Bundle(),
                             new NavOptions.Builder().setPopUpTo(lastDestino, true).build());
 
                     // mainActivityViewModel.setColapsedMainContent(false);
                 }
-
             }
 
             @Override

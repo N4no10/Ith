@@ -66,29 +66,28 @@ public class PedidosMesFragment extends Fragment {
                 .Builder
                 .dateRangePicker()
                 .setTitleText("Seleccionar Fecha")
+                .setTheme(R.style.ThemeOverlay_MaterialComponents_MaterialCalendar)
                 .setSelection(new Pair<>(
                         MaterialDatePicker.thisMonthInUtcMilliseconds(),
                         MaterialDatePicker.todayInUtcMilliseconds()))
                 .build();
 
-        datePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Pair<Long, Long>>() {
-            @Override
-            public void onPositiveButtonClick(Pair<Long, Long> selection) {
-                updateViewFecha(selection.first + 86400000, selection.second + 86400000);
-            }
-        });
+        datePicker.addOnPositiveButtonClickListener(selection ->
+                updateViewFecha(selection.first + 86400000, selection.second + 86400000));
 
-        uiBind.calendarioIB.setOnClickListener(v -> {
-            datePicker.show(getParentFragmentManager(), "Calendario");
-        });
+        uiBind.calendarioIB.setOnClickListener(v -> datePicker.show(
+                requireActivity().getSupportFragmentManager(), "Calendario"));
     }
 
     private void updateAdapter(List<DatosPedido> datosPedidoList) {
         if (pedidosAdapter == null) {
             pedidosAdapter = new PedidosAdapter(datosPedidoList, onClickDelegateRV);
             uiBind.listPedidosRV.setAdapter(pedidosAdapter);
-        } else
+        } else {
+            Log.e("reload List", "reload " + datosPedidoList.size());
             pedidosAdapter.loadList(datosPedidoList);
+            uiBind.listPedidosRV.setAdapter(pedidosAdapter);
+        }
     }
 
     private void observers() {
@@ -121,18 +120,18 @@ public class PedidosMesFragment extends Fragment {
     }
 
     private void updateViewFecha(long fechaInic, long fechaFin) {
-        if ((mViewModel.getInicFecha().getValue() == null && mViewModel.getFinFecha().getValue() == null)
+       /* if ((mViewModel.getInicFecha().getValue() == null && mViewModel.getFinFecha().getValue() == null)
                 || (mViewModel.getInicFecha().getValue() != null && fechaInic != mViewModel.getInicFecha().getValue() ||
-                mViewModel.getFinFecha().getValue() != null && fechaFin != mViewModel.getFinFecha().getValue())) {
-            mViewModel.setInicFecha(fechaInic);
-            mViewModel.setFinFecha(fechaFin);
+                mViewModel.getFinFecha().getValue() != null && fechaFin != mViewModel.getFinFecha().getValue())) {*/
+        mViewModel.setInicFecha(fechaInic);
+        mViewModel.setFinFecha(fechaFin);
 
             Map<String, Object> param = new HashMap<>();
             param.put("options.fechaInicio", Util.formatDateCalendarView(mViewModel.getInicFecha().getValue()));
             param.put("options.fechaFin", Util.formatDateCalendarView(mViewModel.getFinFecha().getValue()));
 
-            loadContent(param);
-        }
+        loadContent(param);
+        // }
     }
 
     private void initViewModel() {
