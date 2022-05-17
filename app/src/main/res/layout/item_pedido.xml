@@ -8,6 +8,8 @@
         <variable
             name="pedido"
             type="cu.gob.ith.domain.model.DatosPedido" />
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -54,9 +56,9 @@
             android:layout_marginTop="2dp"
             android:fontFamily="@font/myriad_regular"
             android:gravity="center"
+            android:text='@{pedido.date}'
             android:textColor="@color/black"
             android:textSize="14sp"
-            android:text='@{pedido.date}'
             app:layout_constraintStart_toStartOf="@id/fechaTitleTV"
             app:layout_constraintTop_toBottomOf="@id/fechaTitleTV" />
 
@@ -70,6 +72,7 @@
             android:text="@string/cliente_pedido"
             android:textColor="@color/blue_dark"
             android:textSize="12sp"
+            android:visibility="@{pedido.client==null || pedido.client.empty? View.GONE:View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="@+id/fechaTitleTV"
             app:layout_constraintStart_toEndOf="@+id/fechaTitleTV"
             app:layout_constraintTop_toTopOf="@+id/fechaTitleTV"
@@ -85,9 +88,10 @@
             android:text='@{pedido.client}'
             android:textColor="@color/black"
             android:textSize="14sp"
+            android:visibility="@{pedido.client==null || pedido.client.empty? View.GONE:View.VISIBLE}"
             app:layout_constraintStart_toStartOf="@id/clienteTitleTV"
             app:layout_constraintTop_toBottomOf="@id/clienteTitleTV" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    
+
 </layout>

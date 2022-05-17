@@ -47,7 +47,7 @@ public class PedidosCanceladosFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        uiBind = DataBindingUtil.inflate(inflater,R.layout.fragment_pedidos_cancelados, container, false);
+        uiBind = DataBindingUtil.inflate(inflater, R.layout.fragment_pedidos_cancelados, container, false);
         return uiBind.getRoot();
     }
 
@@ -61,11 +61,12 @@ public class PedidosCanceladosFragment extends Fragment {
     }
 
     private void updateAdapter(List<DatosPedido> datosPedidoList) {
-        if (pedidosAdapter == null) {
+        if (pedidosAdapter == null)
             pedidosAdapter = new PedidosAdapter(datosPedidoList, onClickDelegateRV);
-            uiBind.listPedidosRV.setAdapter(pedidosAdapter);
-        } else
+        else
             pedidosAdapter.loadList(datosPedidoList);
+
+        uiBind.listPedidosRV.setAdapter(pedidosAdapter);
     }
 
     private void observers() {

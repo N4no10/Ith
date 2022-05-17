@@ -1,6 +1,10 @@
 package cu.gob.ith.presentation.activities.main.fragments.detallespedido;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.DocumentsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,7 +81,15 @@ public class DetallesPedidoFragment extends Fragment {
                                                 .getTipoCliente().equals("2") ? "TCP" : "Empresa") + "-" +
                                                 informePedido.getDatosPedido().getNumber(), informePedido);
                                         Snackbar.make(uiBind.getRoot(), getString(R.string.success_build_pdf),
-                                                Snackbar.LENGTH_LONG).show();
+                                                        Snackbar.LENGTH_LONG)
+                                                .setAction("Ubicación", v1 -> {
+                                                    Snackbar.make(uiBind.getRoot(), "Ubicación: Download/ITH/Documentos/",
+                                                                    Snackbar.LENGTH_INDEFINITE)
+                                                            .setAction("Aceptar", v2 -> {
+                                                                openFolder();
+                                                            }).show();
+//                                                    openFolder();
+                                                }).show();
                                     } catch (IOException e) {
                                         e.printStackTrace();
                                         Log.e("createPDF", "pdf error " + e.getMessage());
@@ -88,6 +100,15 @@ public class DetallesPedidoFragment extends Fragment {
                                 },
                                 throwable -> Log.e("Error", "error " + throwable.getMessage()))
         ));
+    }
+
+    private void openFolder() {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath() + "/" +
+                Environment.DIRECTORY_DOWNLOADS + "/ITH/Documentos/");
+        Log.e("TAGAGA", "openFolder: " + uri.toString());
+        intent.setDataAndType( uri,"*/*");
+        startActivity(intent);
     }
 
     private void setupViewComponents() {
