@@ -60,8 +60,8 @@
     <string name="mis_pedidos">Mis Pedidos</string>
     <string name="list_productos_title">Productos</string>
     <string name="no_title">No.</string>
-    <string name="request_date_title">Fecha de Solicitud</string>
-    <string name="processed_date_title">Fecha de Despacho</string>
+    <string name="request_date_title">Fecha \nSolicitud</string>
+    <string name="processed_date_title">Fecha \nDespacho</string>
     <string name="delivery_date_title">Fecha de Recogida</string>
     <string name="client_title">Cliente</string>
 
@@ -109,5 +109,22 @@
     <string name="pedidos_opc4">Pedidos Entregados:</string>
     //Pedidos Opc5
     <string name="pedidos_opc5">Pedidos Cancelados:</string>
+
+
+    //Cambiar Contraseña
+    <string name="cambiar_pass">Cambiar Contraseña</string>
+    <string name="descripcion_cambiar_pass">Se recomienda usar una contraseña segura que no uses para ningún otro sitio</string>
+    <string name="current_pass">Contraseña actual</string>
+    <string name="new_pass">Contraseña nueva</string>
+    <string name="new_pass_two">Vuelve a escribir la contraseña nueva</string>
+
+    <string name="aceptar_dialog">Aceptar</string>
+    <string name="save_dialog">Guardar Cambios</string>
+    <string name="cancelar_dialog">Cancelar</string>
+    <string name="msg_change_pass_dialog">Cambiando contraseña...</string>ment
+    <string name="success_pass_dialog">La contraseña se cambió de forma exitosa</string>
+    <string name="edit_text_empty">Complete este campo</string>
+    <string name="credentials_empty">No pueden existir campos vacios</string>
+    <string name="compare_pass_new">Debe introducir la misma contraseña dos veces para confirmarla </string>
 
 </resources>

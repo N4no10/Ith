@@ -7,6 +7,10 @@ import androidx.appcompat.widget.SearchView;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.databinding.BindingAdapter;
 
+import com.google.android.material.textfield.TextInputLayout;
+
+import cu.gob.ith.R;
+
 public class MyBindingAdapter {
 
     @BindingAdapter("bindadapter:fontFamily")
@@ -19,6 +23,17 @@ public class MyBindingAdapter {
     @BindingAdapter("bindadapter:fontFamily")
     public static void setFontTextView(TextView textView, @FontRes int font){
        textView.setTypeface(ResourcesCompat.getFont(textView.getContext(),font));
+    }
+
+    @BindingAdapter("bind:emptyError")
+    public static void validateEditTextEmpty(TextInputLayout textInputLayout, String text) {
+        if (text != null && text.isEmpty()) {
+            textInputLayout.setErrorEnabled(true);
+            textInputLayout.setError(textInputLayout.getContext().getString(R.string.edit_text_empty));
+        } else {
+            textInputLayout.setErrorEnabled(false);
+            textInputLayout.setError(null);
+        }
     }
 
 }

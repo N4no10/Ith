@@ -15,6 +15,7 @@ import cu.gob.ith.data.api.model.ApiLoginResponse;
 import cu.gob.ith.data.api.model.ApiPedido;
 import cu.gob.ith.data.api.model.ApiPedidoResponse;
 import cu.gob.ith.data.api.model.ApiProducto;
+import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
 
 @Singleton
@@ -80,5 +81,10 @@ public class DataSourceRemote implements DataSourceApi {
     @Override
     public Observable<ApiPedidoResponse> getPedidoById(int numeroPedido) {
         return api.getPedidoById(numeroPedido);
+    }
+
+    @Override
+    public Completable updatePassword(Map<String, String> params) {
+        return api.updatePassword(params);
     }
 }

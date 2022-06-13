@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="cu.gob.ith.R"/>
+        <variable
+            name="validate"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/contentLoginCV"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding='16dp'>
+
+
+                    <TextView
+                        android:id="@+id/titleTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="@font/myriad_bold"
+                        android:text="@string/cambiar_pass"
+                        android:textColor="@color/purple"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toTopOf="@id/passOldTextInputL"
+                        app:layout_constraintStart_toStartOf="@id/passOldTextInputL"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/passOldTextInputL"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        app:boxCornerRadiusBottomEnd="14dp"
+                        app:boxCornerRadiusBottomStart="14dp"
+                        app:boxCornerRadiusTopEnd="14dp"
+                        app:boxCornerRadiusTopStart="14dp"
+                        app:boxStrokeColor="@color/purple"
+                        app:layout_constraintBottom_toTopOf="@+id/passNewTextInputL"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/titleTV"
+                        app:passwordToggleEnabled="true"
+                        bind:emptyError='@{validate ? passOldTextInputET.text.toString() : null}'
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/passOldTextInputET"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/myriad_regular"
+                            android:hint="@string/current_pass"
+                            android:inputType="textPassword"
+                            android:textColor="@color/blue_dark"
+                            android:textColorHint="@color/gris"
+                            android:textSize="14sp">
+
+                        </com.google.android.material.textfield.TextInputEditText>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/passNewTextInputL"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        app:boxCornerRadiusBottomEnd="14dp"
+                        app:boxCornerRadiusBottomStart="14dp"
+                        app:boxCornerRadiusTopEnd="14dp"
+                        app:boxCornerRadiusTopStart="14dp"
+                        app:boxStrokeColor="@color/purple"
+                        app:layout_constraintBottom_toTopOf="@+id/passNewTwoTextInputL"
+                        app:layout_constraintEnd_toEndOf="@id/passOldTextInputL"
+                        app:layout_constraintStart_toStartOf="@id/passOldTextInputL"
+                        app:passwordToggleEnabled="true"
+                        bind:emptyError='@{validate ? passNewTextInputET.text.toString() : null}'
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/passNewTextInputET"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/myriad_regular"
+                            android:hint="@string/new_pass"
+                            android:inputType="textPassword"
+                            android:textColor="@color/blue_dark"
+                            android:textColorHint="@color/gris"
+                            android:textSize="14sp"
+                            >
+
+
+                        </com.google.android.material.textfield.TextInputEditText>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/passNewTwoTextInputL"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        app:boxCornerRadiusBottomEnd="14dp"
+                        app:boxCornerRadiusBottomStart="14dp"
+                        app:boxCornerRadiusTopEnd="14dp"
+                        app:boxCornerRadiusTopStart="14dp"
+                        app:boxStrokeColor="@color/purple"
+                        app:layout_constraintBottom_toTopOf="@+id/forgotPassTV"
+                        app:layout_constraintEnd_toEndOf="@id/passNewTextInputL"
+                        app:layout_constraintStart_toStartOf="@id/passNewTextInputL"
+                        app:passwordToggleEnabled="true"
+                        bind:emptyError='@{validate ? passNewTwoTextInputET.text.toString() : null}'
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/passNewTwoTextInputET"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/myriad_regular"
+                            android:hint="@string/new_pass_two"
+                            android:inputType="textPassword"
+                            android:textColor="@color/blue_dark"
+                            android:textColorHint="@color/gris"
+                            android:textSize="14sp">
+
+
+                        </com.google.android.material.textfield.TextInputEditText>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <TextView
+                        android:id="@+id/forgotPassTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="@font/myriad_semibold"
+                        android:text="@string/forgot_pass_login"
+                        android:textColor="@color/purple"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toTopOf="@+id/msgErrorTV"
+                        app:layout_constraintEnd_toEndOf="@id/passNewTwoTextInputL" />
+
+
+                    <TextView
+                        android:id="@+id/msgErrorTV"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:padding="12dp"
+                        android:background="#25606A9B"
+                        android:fontFamily="@font/myriad_regular"
+                        android:textColor="#B61616"
+                        android:textSize="12sp"
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        app:layout_constraintStart_toStartOf="@id/passNewTwoTextInputL"
+                        app:layout_constraintBottom_toTopOf="@+id/buttonSaveIB"
+                        app:layout_constraintEnd_toEndOf="@id/passNewTwoTextInputL" />
+
+                    <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+                        android:id="@+id/buttonSaveIB"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="6dp"
+                        android:background="@drawable/background_login_button"
+                        android:text="@string/save_dialog"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toTopOf="@id/buttonCancelIB"
+                        app:layout_constraintEnd_toEndOf="@id/passNewTwoTextInputL"
+                        app:layout_constraintStart_toStartOf="@id/passNewTextInputL"
+                        app:spinning_bar_color="@color/white"
+                        app:spinning_bar_padding="5dp"
+                        app:spinning_bar_width="4dp" />
+
+                    <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+                        android:id="@+id/buttonCancelIB"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginBottom="4dp"
+                        android:background="@drawable/background_login_button"
+                        android:backgroundTint="@color/purple"
+                        android:text="@string/cancelar_dialog"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@id/buttonSaveIB"
+                        app:layout_constraintStart_toStartOf="@id/buttonSaveIB"
+                        app:spinning_bar_color="@color/white"
+                        app:spinning_bar_padding="5dp"
+                        app:spinning_bar_width="4dp" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+
+
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

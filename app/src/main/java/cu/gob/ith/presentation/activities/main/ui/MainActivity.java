@@ -24,6 +24,7 @@ import javax.inject.Inject;
 import cu.gob.ith.R;
 import cu.gob.ith.data.preferences.UserAppPreferences;
 import cu.gob.ith.databinding.ActivityMainBinding;
+import cu.gob.ith.domain.model.Pedido;
 import cu.gob.ith.presentation.activities.main.fragments.informe.pdf.InformePedidoPDFGenerator;
 import cu.gob.ith.presentation.activities.main.recyclerview.ClickItemMenuInterface;
 import cu.gob.ith.presentation.activities.main.recyclerview.ItemMenuAdapter;
@@ -216,6 +217,8 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
             initNavigate(R.id.menuFragment, itemMenuNavView.getTitle());
         else if (itemMenuNavView.getTitle().equals(getString(R.string.menu_historial_pedido)))
             initNavigate(R.id.misPedidosFragment, itemMenuNavView.getTitle());
+        else if (itemMenuNavView.getTitle().equals(getString(R.string.menu_settings)))
+            initNavigate(R.id.ajustesFragment, itemMenuNavView.getTitle());
     }
 
     private void initNavigate(int destino, String title) {

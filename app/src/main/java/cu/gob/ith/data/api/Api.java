@@ -11,10 +11,12 @@ import cu.gob.ith.data.api.model.ApiLoginResponse;
 import cu.gob.ith.data.api.model.ApiPedido;
 import cu.gob.ith.data.api.model.ApiPedidoResponse;
 import cu.gob.ith.data.api.model.ApiProducto;
+import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
@@ -52,4 +54,7 @@ public interface Api {
 
     @GET("pedido")
     Observable<ApiPedidoResponse> getPedidoById(@Query("numero") int numeroPedido);
+
+    @PUT("servicios/generales/cambiarPassword")
+    Completable updatePassword(@QueryMap Map<String,String> params);
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bindadapter="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:binding="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.graphics.fonts.Font" />
+        <import type="android.graphics.drawable.Drawable"/>
+        <import type="androidx.core.content.ContextCompat"/>
+
+        <import type="cu.gob.ith.R" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contentMenuCL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_2">
+
+        <include
+            android:id="@+id/opcCambiarPassLayout"
+            layout="@layout/item_ajuste"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            binding:image='@{ContextCompat.getDrawable(context,R.drawable.ic_key)}'
+            binding:title='@{context.getString(R.string.cambiar_pass)}'
+            binding:subtitle='@{context.getString(R.string.descripcion_cambiar_pass)}'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

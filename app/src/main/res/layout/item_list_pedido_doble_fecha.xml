@@ -54,11 +54,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/myriad_bold"
+                android:gravity="center|left"
                 android:text="@string/request_date_title"
                 android:textColor="@color/blue_dark"
                 android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@+id/noTitleTV"
-                app:layout_constraintTop_toBottomOf="@+id/noTitleTV" />
+                app:layout_constraintEnd_toEndOf="@id/requestDateTV"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/requestDateTV"
+                app:layout_constraintTop_toBottomOf="@+id/clientTV" />
 
             <TextView
                 android:id="@+id/requestDateTV"
@@ -69,7 +72,7 @@
                 android:text='@{datosPedido.date.substring(0,10)}'
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="@id/requestDateTitleTV"
+                app:layout_constraintStart_toStartOf="@+id/clientTV"
                 app:layout_constraintTop_toBottomOf="@id/requestDateTitleTV"
                 tools:text="2022-04-04" />
 
@@ -77,29 +80,32 @@
                 android:id="@+id/processedDateTitlePriceTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:fontFamily="@font/myriad_bold"
+                android:gravity="center|left"
                 android:text="@string/processed_date_title"
                 android:textColor="@color/blue_dark"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/requestDateTitleTV"
-                app:layout_constraintStart_toEndOf="@+id/requestDateTitleTV"
+                app:layout_constraintEnd_toEndOf="@+id/processedDatePriceTV"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/processedDatePriceTV"
                 app:layout_constraintTop_toTopOf="@+id/requestDateTitleTV" />
 
             <TextView
                 android:id="@+id/processedDatePriceTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/myriad_regular"
                 android:text='@{datosPedido.secondDate.substring(0,10)}'
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="@id/processedDateTitlePriceTV"
+                app:layout_constraintStart_toEndOf="@+id/requestDateTV"
                 app:layout_constraintTop_toBottomOf="@id/processedDateTitlePriceTV"
                 tools:text="2022-04-05" />
 
-            <TextView
+           <!-- <TextView
                 android:id="@+id/clientTitleTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -110,7 +116,7 @@
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/processedDateTitlePriceTV"
                 app:layout_constraintStart_toEndOf="@+id/processedDateTitlePriceTV"
-                app:layout_constraintTop_toTopOf="@+id/processedDateTitlePriceTV" />
+                app:layout_constraintTop_toTopOf="@+id/processedDateTitlePriceTV" />-->
 
             <TextView
                 android:id="@+id/clientTV"
@@ -121,8 +127,8 @@
                 android:text='@{datosPedido.client}'
                 android:textColor="@color/black"
                 android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="@id/clientTitleTV"
-                app:layout_constraintTop_toBottomOf="@id/clientTitleTV"
+                app:layout_constraintStart_toStartOf="@id/noTitleTV"
+                app:layout_constraintTop_toBottomOf="@id/noTV"
                 tools:text="pedro" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

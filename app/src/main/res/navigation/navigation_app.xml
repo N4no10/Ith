@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_inicioFragment_to_misPedidosFragment"
             app:destination="@id/misPedidosFragment" />
+        <action
+            android:id="@+id/action_inicioFragment_to_ajustesFragment"
+            app:destination="@id/ajustesFragment" />
     </fragment>
     <fragment
         android:id="@+id/pedidoListFragment"
@@ -52,4 +55,9 @@
         android:name="cu.gob.ith.presentation.activities.main.fragments.detallespedido.DetallesPedidoFragment"
         android:label="fragment_detalles_pedido"
         tools:layout="@layout/fragment_detalles_pedido" />
+    <fragment
+        android:id="@+id/ajustesFragment"
+        android:name="cu.gob.ith.presentation.activities.main.fragments.ajustes.AjustesFragment"
+        android:label="fragment_ajustes"
+        tools:layout="@layout/fragment_ajustes" />
 </navigation>

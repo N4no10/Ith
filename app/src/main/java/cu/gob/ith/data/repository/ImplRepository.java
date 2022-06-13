@@ -16,6 +16,7 @@ import cu.gob.ith.data.api.model.ApiPedidoResponse;
 import cu.gob.ith.data.api.model.ApiProducto;
 import cu.gob.ith.data.repository.datasources.DataSourcePreferences;
 import cu.gob.ith.data.repository.datasources.DataSourceRemote;
+import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
@@ -97,6 +98,12 @@ public class ImplRepository implements Repository {
     @Override
     public Observable<ApiPedidoResponse> getPedidoById(int numeroPedido) {
         return dataSourceRemote.getPedidoById(numeroPedido)
+                .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Completable updatePassword(Map<String, String> params) {
+        return dataSourceRemote.updatePassword(params)
                 .subscribeOn(Schedulers.io());
     }
 }

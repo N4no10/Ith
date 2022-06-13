@@ -11,6 +11,7 @@ import cu.gob.ith.data.api.model.ApiLoginResponse;
 import cu.gob.ith.data.api.model.ApiPedido;
 import cu.gob.ith.data.api.model.ApiPedidoResponse;
 import cu.gob.ith.data.api.model.ApiProducto;
+import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -40,5 +41,7 @@ public interface DataSourceApi {
     Observable<ApiListPedidos> filterListPedidosCancelados();
 
     Observable<ApiPedidoResponse> getPedidoById(int numeroPedido);
+
+    Completable updatePassword(Map<String,String> params);
 
 }

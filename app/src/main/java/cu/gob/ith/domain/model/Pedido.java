@@ -1,5 +1,7 @@
 package cu.gob.ith.domain.model;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 public class Pedido {
@@ -15,7 +17,6 @@ public class Pedido {
         this.cantidad = cantidad;
         this.importe = importe;
     }
-
 
     public String getReference() {
         return reference;
