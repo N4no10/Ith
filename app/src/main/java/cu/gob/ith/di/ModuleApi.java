@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import cu.gob.ith.BuildConfig;
 import cu.gob.ith.data.api.Api;
 import cu.gob.ith.data.api.interceptors.TokenInterceptor;
 import cu.gob.ith.data.preferences.UserAppPreferences;
@@ -28,6 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 @InstallIn(SingletonComponent.class)
 public class ModuleApi {
+    public static final String BASE_URL = BuildConfig.BASE_URL;
 
     @Singleton
     @Provides
@@ -71,8 +73,8 @@ public class ModuleApi {
     @Provides
     static Retrofit provideRetrofit(/*Gson gson,*/ OkHttpClient okHttpClient) {
         return new Retrofit.Builder()
-                .baseUrl(/*"http://ith-local.cu/api/"*/"http://ithapi.local.cu:80/api/")
-//                .baseUrl("http://ith.api.local:80/api/")
+//                .baseUrl(/*"http://ith-local.cu/api/"*/"http://ithapi.local.cu:80/api/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
