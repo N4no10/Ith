@@ -3,6 +3,7 @@ package cu.gob.ith.presentation.activities.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -50,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void initView() {
         uiBind.layoutFormLogin.buttonLoginIB.setOnClickListener(v -> {
+            Toast.makeText(this, "Press Button", Toast.LENGTH_SHORT).show();
             uiBind.layoutFormLogin.buttonLoginIB.startAnimation();
 
             LoginBody loginBody = new LoginBody(Objects.requireNonNull(uiBind.layoutFormLogin.userTextInputET.getText()).toString(),
