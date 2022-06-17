@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                         public void onError(@NonNull Throwable e) {
                             uiBind.layoutFormLogin.buttonLoginIB.revertAnimation();
 
-                            Toast.makeText(uiBind.getRoot().getContext(), "Error login ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(uiBind.getRoot().getContext(), "Error login " + e.getMessage(), Toast.LENGTH_SHORT).show();
 
                             if (e.getMessage().contains("401"))
                                 Snackbar.make(uiBind.getRoot(),
