@@ -69,11 +69,15 @@ public class LoginActivity extends AppCompatActivity {
                             uiBind.layoutFormLogin.buttonLoginIB.revertAnimation();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
+                            Toast.makeText(uiBind.getRoot().getContext(), "Complete login ", Toast.LENGTH_SHORT).show();
+
                         }
 
                         @Override
                         public void onError(@NonNull Throwable e) {
                             uiBind.layoutFormLogin.buttonLoginIB.revertAnimation();
+
+                            Toast.makeText(uiBind.getRoot().getContext(), "Error login ", Toast.LENGTH_SHORT).show();
 
                             if (e.getMessage().contains("401"))
                                 Snackbar.make(uiBind.getRoot(),
