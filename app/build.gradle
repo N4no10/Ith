@@ -10,7 +10,8 @@ def version = "1.0.0"
 def appName = "Mis Pedidos"
 def flavorITH = "ITH"
 def flavorPALCO = "Palco"
-def BASE_URL = "\"http://ithapi.local.cu:80/api/\""
+def BASE_URL_ITH = "\"http://ithapi.local.cu:80/api/\""
+def BASE_URL_PALCO = "\"http://mispedidos.api.local:80/api/\""
 //def BASE_URL = "\"http://ith.api.local:80/api/\""
 
 android {
@@ -46,8 +47,8 @@ android {
             dimension "server"
             applicationId "cu.gob.ith"
             versionNameSuffix " - $flavorITH"
-            buildConfigField "String", "BASE_URL", "$BASE_URL"
-            resValue "string", "app_name", "$appName-$flavorITH"
+            buildConfigField "String", "BASE_URL", "$BASE_URL_ITH"
+            resValue "string", "app_name", "$flavorITH"
             setGoogleJsonFile(flavorITH)
 
         }
@@ -56,21 +57,21 @@ android {
             dimension "server"
             applicationId "cu.gob.palco"
             versionNameSuffix " - $flavorPALCO"
-            buildConfigField "String", "BASE_URL", "$BASE_URL"
-            resValue "string", "app_name", "$appName-$flavorPALCO"
+            buildConfigField "String", "BASE_URL", "$BASE_URL_PALCO"
+            resValue "string", "app_name", "$appName"
             setGoogleJsonFile(flavorPALCO)
 
         }
 
     }
 
-    variantFilter { variant ->
-        def names = variant.flavors*.name
-        if (variant.buildType.name == 'release' && (!names.contains("production")))
-            setIgnore(true)
-        else if (variant.buildType.name == 'debug' && names.contains("production"))
-            setIgnore(true)
-    }
+//    variantFilter { variant ->
+//        def names = variant.flavors*.name
+//        if (variant.buildType.name == 'release' && (!names.contains("production")))
+//            setIgnore(true)
+//        else if (variant.buildType.name == 'debug' && names.contains("production"))
+//            setIgnore(true)
+//    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
