@@ -20,6 +20,7 @@ import cu.gob.ith.data.repository.datasources.DataSourceRemote;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import okhttp3.ResponseBody;
 
 @Singleton
 public class ImplRepository implements Repository {
@@ -111,5 +112,10 @@ public class ImplRepository implements Repository {
     @Override
     public Observable<List<ApiApkVersion>> getApkVersion(int lastVersion) {
         return dataSourceRemote.getApkVersion(lastVersion).subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Observable<ResponseBody> getApkFile(String url) {
+        return dataSourceRemote.getApkFile(url);
     }
 }

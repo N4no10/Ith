@@ -18,6 +18,7 @@ import cu.gob.ith.data.api.model.ApiPedidoResponse;
 import cu.gob.ith.data.api.model.ApiProducto;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
+import okhttp3.ResponseBody;
 
 @Singleton
 public class DataSourceRemote implements DataSourceApi {
@@ -92,5 +93,10 @@ public class DataSourceRemote implements DataSourceApi {
     @Override
     public Observable<List<ApiApkVersion>> getApkVersion(int lastVersion) {
         return api.getApkVersion(lastVersion);
+    }
+
+    @Override
+    public Observable<ResponseBody> getApkFile(String url) {
+        return api.getApkFile(url);
     }
 }

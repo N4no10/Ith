@@ -14,9 +14,11 @@ import cu.gob.ith.data.api.model.ApiPedidoResponse;
 import cu.gob.ith.data.api.model.ApiProducto;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
+import okhttp3.ResponseBody;
 import retrofit2.http.Body;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
+import retrofit2.http.Url;
 
 public interface Repository {
 
@@ -42,9 +44,10 @@ public interface Repository {
 
     Observable<ApiPedidoResponse> getPedidoById(int numeroPedido);
 
-    Completable updatePassword(Map<String,String> params);
+    Completable updatePassword(Map<String, String> params);
 
     Observable<List<ApiApkVersion>> getApkVersion(int lastVersion);
 
+    Observable<ResponseBody> getApkFile(String url);
 
 }

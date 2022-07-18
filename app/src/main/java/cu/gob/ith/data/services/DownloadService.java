@@ -102,7 +102,7 @@ public class DownloadService extends IntentService {
     }
 
     private void initDownload() {
-        /*repositorioImple.exportarDocumento(url)
+        repositorioImple.getApkFile(url)
                 .subscribe(new Observer<ResponseBody>() {
                     @Override
                     public void onSubscribe(@NonNull Disposable d) {
@@ -134,7 +134,7 @@ public class DownloadService extends IntentService {
                         RxBus.getInstance().postDownloadFinished(100);
                         ;
                     }
-                });*/
+                });
     }
 
     private void downloadFile(ResponseBody responseBody) {
