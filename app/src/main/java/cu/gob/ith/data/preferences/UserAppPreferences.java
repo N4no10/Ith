@@ -26,20 +26,28 @@ public class UserAppPreferences {
         sharedPreferences.edit().remove(key).apply();
     }
 
-    private void setPreferenceString(String key, String value) {
+    public void setPreferenceString(String key, String value) {
         sharedPreferences.edit().putString(key, value).apply();
     }
 
-    private void setPreferenceBoolean(String key, boolean value) {
+    public void setPreferenceBoolean(String key, boolean value) {
         sharedPreferences.edit().putBoolean(key, value).apply();
     }
 
-    private String getPreferenceString(String key, String msg) {
+    public String getPreferenceString(String key, String msg) {
         return sharedPreferences.getString(key, msg);
     }
 
     private void getPreferenceBoolean(String key) {
         sharedPreferences.getBoolean(key, false);
+    }
+
+    public void setPreferenceInt(String key, int value) {
+        sharedPreferences.edit().putInt(key, value).apply();
+    }
+
+    public int getPreferenceInt(String key) {
+        return sharedPreferences.getInt(key, 0);
     }
 
     public void setApiLoginBodyResponsePreference(ApiLoginResponse apiLoginResponse) {

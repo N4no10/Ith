@@ -1,38 +1,57 @@
 package cu.gob.ith.presentation.activities.main.ui;
 
 import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.Settings;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.FrameLayout;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
+import com.google.android.material.snackbar.Snackbar;
+
+import java.io.File;
 import java.util.Objects;
 
 import javax.inject.Inject;
 
+import cu.gob.ith.BuildConfig;
 import cu.gob.ith.R;
 import cu.gob.ith.data.preferences.UserAppPreferences;
+import cu.gob.ith.data.services.DownloadService;
+import cu.gob.ith.data.util.RxBus;
 import cu.gob.ith.databinding.ActivityMainBinding;
-import cu.gob.ith.domain.model.Pedido;
-import cu.gob.ith.presentation.activities.main.fragments.informe.pdf.InformePedidoPDFGenerator;
+import cu.gob.ith.domain.model.ApkVersion;
 import cu.gob.ith.presentation.activities.main.recyclerview.ClickItemMenuInterface;
 import cu.gob.ith.presentation.activities.main.recyclerview.ItemMenuAdapter;
 import cu.gob.ith.presentation.activities.main.ui.viewmodel.MainActivityViewModel;
 import cu.gob.ith.presentation.model.ItemMenuNavView;
+import cu.gob.ith.presentation.util.PreferencesConstants;
 import cu.gob.ith.presentation.util.Util;
 import dagger.hilt.android.AndroidEntryPoint;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 @AndroidEntryPoint
 public class MainActivity extends AppCompatActivity implements ClickItemMenuInterface {
@@ -40,7 +59,11 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
     private MainActivityViewModel mainActivityViewModel;
     private ActivityMainBinding uiBind;
     private ItemMenuAdapter itemMenuAdapter;
-
+    private ApkVersion apkVersion = null;
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
+    PackageInfo infoVersion = null;
+    ActivityResultLauncher<String[]> activityResultLauncher;
+    final private String[] PERMISSIONS = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
     @Inject
     UserAppPreferences userAppPreferences;
 
@@ -56,6 +79,10 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
 
         requestPermissions();
         initView();
+        configPermissions();
+        downloadUpdateFinished();
+        getApkData();
+//        verifyApkVersion();
 
     }
 
@@ -68,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
 
     //region Permissions
     private void requestPermissions() {
-        if(!enabledPermissionReadAndWrite())
+        if (!enabledPermissionReadAndWrite())
             ActivityCompat.requestPermissions(MainActivity.this,
                     new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE,
                             Manifest.permission.WRITE_EXTERNAL_STORAGE}, 23);
@@ -198,7 +225,7 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
     @Override
     public void clickItemMenu(ItemMenuNavView itemMenuNavView) {
         Log.e("click", "click " + itemMenuNavView.getTitle());
-        if(mainActivityViewModel.isColapsedMainContent().getValue() != null &&
+        if (mainActivityViewModel.isColapsedMainContent().getValue() != null &&
                 mainActivityViewModel.isColapsedMainContent().getValue()) {
             goToStartTransitionNavView();
 
@@ -226,7 +253,7 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
         if (navController.getCurrentDestination() != null)
             navController.navigate(destino, new Bundle(),
                     new NavOptions.Builder().setPopUpTo(Objects.requireNonNull(
-                            navController.getCurrentDestination())
+                                    navController.getCurrentDestination())
                             .getId(), true).build());
     }
 
@@ -236,4 +263,158 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
             navController.navigate(destino, new Bundle());
     }
     //endregion Navigations
+
+    private void verifyApkVersion() {
+
+        compositeDisposable.add(
+                mainActivityViewModel.getGetApkVersionUseCase()
+                        .execute(infoVersion.versionCode)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(apkVersionList -> {
+                                    if (!apkVersionList.isEmpty()) {
+                                        apkVersion = apkVersionList.get(0);
+                                        Log.e("ApkVersion", "verifyApkVersion: " + apkVersion.getVersion());
+                                    }
+                                },
+                                throwable -> Log.e("ApkVersion", "verifyApkVersion: " + throwable.getMessage()),
+                                this::createUpdateDialog)
+
+        );
+
+    }
+
+    private void getApkData() {
+
+        try {
+            infoVersion = getPackageManager().getPackageInfo(getPackageName(), 0);
+        } catch (Exception e) {
+//            e.getMessage();
+        }
+
+        if (infoVersion != null) {
+            verifyApkVersion();
+        }
+    }
+
+    private void createUpdateDialog() {
+//        String peticionApk = apkVersion.getUrl().replace("~", "");
+        userAppPreferences.setPreferenceString(PreferencesConstants.URL_EXPORT, apkVersion.getUrl());
+        userAppPreferences.setPreferenceString(PreferencesConstants.VERSION_APK_NAME, "MisPedidos-Update" + apkVersion.getVersion() + ".apk");
+        userAppPreferences.setPreferenceString(PreferencesConstants.FRAGMENT_NAME, "AutenticationFragment");
+        userAppPreferences.setPreferenceInt(PreferencesConstants.NOTIFICATION_ID, PreferencesConstants.DOWNLOAD_APK);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Actualizar")
+                .setMessage("Actualización disponible de MisPedidos.apk\nDesea Instalar?")
+                .setPositiveButton("Actualizar", (dialog, which) -> verificarPermisos())
+                .setNegativeButton("Cancelar", (dialog, which) -> dialog.dismiss());
+        builder.create().show();
+    }
+
+    public void verificarPermisos() {
+
+        Log.e("verificarPermisos: ", "MainActivity");
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+            Log.e("Permisos: ", "Storage autorizado: " + Environment.isExternalStorageManager());
+            Log.e("Permisos: ", "Chewkeando Manage: " + ContextCompat.checkSelfPermission(this, Manifest.permission.MANAGE_EXTERNAL_STORAGE));
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.MANAGE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                shouldShowRequestPermissionRationale(Manifest.permission.MANAGE_EXTERNAL_STORAGE);
+                Log.e("Permisos: ", "IF: " + shouldShowRequestPermissionRationale(Manifest.permission.MANAGE_EXTERNAL_STORAGE));
+                //todo con true muestra una interfaz educativa AL USUARIO SOBRE LOS PERMISOS.
+            }
+            //todo: para saber si tengo permiso a todos los archivos llamo a Enviroment.isExternalStorageManager()
+            if (!Environment.isExternalStorageManager()) {
+                try {
+                    Uri uri = Uri.parse("package:" + BuildConfig.APPLICATION_ID);
+                    Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, uri);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Log.e("verificarPermisos: ", "ERROR TRY: " + e.getMessage());
+                    Uri uri = Uri.parse("package:" + BuildConfig.APPLICATION_ID);
+                    Intent intent = new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION, uri);
+                    startActivity(intent);
+                }
+            } else {
+                initDownloadUpdateFile();
+            }
+        } else {
+            activityResultLauncher.launch(PERMISSIONS);
+        }
+    }
+
+    private void initDownloadUpdateFile() {
+
+        Intent intent = new Intent(this, DownloadService.class);
+        startService(intent);
+        Snackbar snackbar = Snackbar.make(uiBind.getRoot(), "Descarga Iniciada", Snackbar.LENGTH_SHORT);
+        View view = snackbar.getView();
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) view.getLayoutParams();
+        params.gravity = Gravity.TOP;
+        view.setLayoutParams(params);
+        snackbar.show();
+
+    }
+
+    public void configPermissions() {
+
+        activityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.RequestMultiplePermissions(), isGranted -> {
+                    if (isGranted.containsValue(true)) {
+                        Log.e("MainActivity: ", "Permisos" + isGranted.keySet());
+                        initDownloadUpdateFile();
+                    } else {
+                        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                                .setTitle("Permisos de Escritura")
+                                .setMessage("Los permisos de escritura son necesarios para guardar los documentos que se soliciten en la aplicacion")
+                                .setCancelable(false)
+                                .setPositiveButton("Aceptar", (dialog, which) -> dialog.dismiss())
+                                .create();
+                        alertDialog.show();
+                    }
+                }
+        );
+    }
+
+    public void downloadUpdateFinished() {
+
+        compositeDisposable.add(RxBus.getInstance().getDownloadFinished().observeOn(AndroidSchedulers.mainThread())
+                .subscribe(finalDownload -> {
+                    try {
+                        if (finalDownload == 100) {
+                            Log.e("Ruta", " Documento: " + Environment.getExternalStorageDirectory().getPath() + "/"
+                                    + Environment.DIRECTORY_DOWNLOADS
+                                    + "/MisPedidos/" + userAppPreferences.getPreferenceString(PreferencesConstants.VERSION_APK_NAME, ""));
+                            Intent descargar;
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                File excelFile = new File(Environment.getExternalStorageDirectory().getPath() + "/" + Environment.DIRECTORY_DOWNLOADS + File.separator +
+                                        "MisPedidos" + File.separator + userAppPreferences.getPreferenceString(PreferencesConstants.VERSION_APK_NAME, ""));
+                                descargar = new Intent(Intent.ACTION_INSTALL_PACKAGE);
+                                Uri uri = FileProvider.getUriForFile(getApplicationContext(), BuildConfig.APPLICATION_ID + ".provider", excelFile);
+                                descargar.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                                descargar.setData(uri);
+                            } else {
+                                descargar = new Intent(Intent.ACTION_VIEW);
+                                Uri uri = Uri.parse("file:/" + Environment.getExternalStorageDirectory().getPath() + "/"
+                                        + Environment.DIRECTORY_DOWNLOADS
+                                        + "/MisPedidos/" + userAppPreferences.getPreferenceString(PreferencesConstants.VERSION_APK_NAME, ""));
+                                descargar.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);//TODO AVERIguar que es esto
+                                descargar.setDataAndType(uri, "application/vnd.android.package-archive");// Este debe ser el formato en el que entiende que es un archivo tipo apk
+                            }
+                            startActivity(descargar);
+                        }
+
+                    } catch (Exception e) {
+                        Log.e("ErrorCatchApk", " AutenticacionFragment: " + e.getMessage());
+                    }
+                }, throwable -> {
+                    Log.e("FinalDownLoadApk: ", "Error AutenticcionFra: " + throwable.getMessage());
+                }));
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (!compositeDisposable.isDisposed())
+            compositeDisposable.dispose();
+    }
 }

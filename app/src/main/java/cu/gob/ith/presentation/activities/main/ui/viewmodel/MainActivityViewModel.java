@@ -13,6 +13,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import cu.gob.ith.R;
+import cu.gob.ith.domain.interactors.GetApkVersionUseCase;
 import cu.gob.ith.domain.model.InformePedido;
 import cu.gob.ith.domain.model.Producto;
 import cu.gob.ith.presentation.model.ItemMenuNavView;
@@ -29,10 +30,13 @@ public class MainActivityViewModel extends ViewModel {
     private final List<Producto> productosParaPedidosList = new ArrayList<>();
     private final MutableLiveData<Integer> cantProductos = new MutableLiveData<>();
     private InformePedido informePedido;
+    private final GetApkVersionUseCase getApkVersionUseCase;
 
     @Inject
-    public MainActivityViewModel(@ApplicationContext Context context) {
+    public MainActivityViewModel(@ApplicationContext Context context,
+                                 GetApkVersionUseCase getApkVersionUseCase) {
         initMenuItems(context);
+        this.getApkVersionUseCase = getApkVersionUseCase;
         colapsedMainContent.setValue(false);
     }
 
@@ -105,4 +109,10 @@ public class MainActivityViewModel extends ViewModel {
     public void setInformePedido(InformePedido informePedido) {
         this.informePedido = informePedido;
     }
+
+    public GetApkVersionUseCase getGetApkVersionUseCase() {
+        return getApkVersionUseCase;
+    }
+
+
 }

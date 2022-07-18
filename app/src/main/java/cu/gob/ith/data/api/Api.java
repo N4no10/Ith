@@ -3,6 +3,7 @@ package cu.gob.ith.data.api;
 import java.util.List;
 import java.util.Map;
 
+import cu.gob.ith.data.api.model.ApiApkVersion;
 import cu.gob.ith.data.api.model.ApiCategoria;
 import cu.gob.ith.data.api.model.ApiListDetallesPedido;
 import cu.gob.ith.data.api.model.ApiListPedidos;
@@ -56,5 +57,12 @@ public interface Api {
     Observable<ApiPedidoResponse> getPedidoById(@Query("numero") int numeroPedido);
 
     @PUT("servicios/generales/cambiarPassword")
-    Completable updatePassword(@QueryMap Map<String,String> params);
+    Completable updatePassword(@QueryMap Map<String, String> params);
+
+    //Apk Info
+    @GET("apk/versiones")
+    Observable<List<ApiApkVersion>> getApkAllVersions();
+
+    @GET("apk/ultimaVersion")
+    Observable<List<ApiApkVersion>> getApkVersion(@Query("version") int lastVersion);
 }

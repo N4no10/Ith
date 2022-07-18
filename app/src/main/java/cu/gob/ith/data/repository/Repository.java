@@ -3,6 +3,7 @@ package cu.gob.ith.data.repository;
 import java.util.List;
 import java.util.Map;
 
+import cu.gob.ith.data.api.model.ApiApkVersion;
 import cu.gob.ith.data.api.model.ApiCategoria;
 import cu.gob.ith.data.api.model.ApiListDetallesPedido;
 import cu.gob.ith.data.api.model.ApiListPedidos;
@@ -42,5 +43,8 @@ public interface Repository {
     Observable<ApiPedidoResponse> getPedidoById(int numeroPedido);
 
     Completable updatePassword(Map<String,String> params);
+
+    Observable<List<ApiApkVersion>> getApkVersion(int lastVersion);
+
 
 }

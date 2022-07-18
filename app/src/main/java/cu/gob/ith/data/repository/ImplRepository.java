@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import cu.gob.ith.data.api.model.ApiApkVersion;
 import cu.gob.ith.data.api.model.ApiCategoria;
 import cu.gob.ith.data.api.model.ApiListDetallesPedido;
 import cu.gob.ith.data.api.model.ApiListPedidos;
@@ -105,5 +106,10 @@ public class ImplRepository implements Repository {
     public Completable updatePassword(Map<String, String> params) {
         return dataSourceRemote.updatePassword(params)
                 .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Observable<List<ApiApkVersion>> getApkVersion(int lastVersion) {
+        return dataSourceRemote.getApkVersion(lastVersion).subscribeOn(Schedulers.io());
     }
 }

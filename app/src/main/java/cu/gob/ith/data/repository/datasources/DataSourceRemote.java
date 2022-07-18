@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import cu.gob.ith.data.api.Api;
+import cu.gob.ith.data.api.model.ApiApkVersion;
 import cu.gob.ith.data.api.model.ApiCategoria;
 import cu.gob.ith.data.api.model.ApiListDetallesPedido;
 import cu.gob.ith.data.api.model.ApiListPedidos;
@@ -86,5 +87,10 @@ public class DataSourceRemote implements DataSourceApi {
     @Override
     public Completable updatePassword(Map<String, String> params) {
         return api.updatePassword(params);
+    }
+
+    @Override
+    public Observable<List<ApiApkVersion>> getApkVersion(int lastVersion) {
+        return api.getApkVersion(lastVersion);
     }
 }
