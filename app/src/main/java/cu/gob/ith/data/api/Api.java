@@ -26,14 +26,25 @@ import retrofit2.http.Url;
 
 public interface Api {
 
+    String urlCategorias = "categoria";
+    String urlAllCategorias = "categoria/findAllCategorias";
+    String urlProductos = "categoria/productos";
+    String urlAllProductos = "categoria/productos/findAllProductosPorCategorias";
+
     @POST("login/authenticate")
     Observable<ApiLoginResponse> login(@Body ApiLoginBody apiLoginBody);
 
-    @GET("categoria")
-    Observable<List<ApiCategoria>> getCategorias();
+    @GET/*("categoria")*/
+    Observable<List<ApiCategoria>> getCategorias(@Url String url);
 
-    @GET("categoria/productos")
-    Observable<List<ApiProducto>> getProductos(@Query("CodFamilia") String codFamilia);
+    @GET("categoria/findAllCategorias")
+    Observable<List<ApiCategoria>> getAllCategorias();
+
+    @GET/*("categoria/productos")*/
+    Observable<List<ApiProducto>> getProductos(@Url String url, @Query("CodFamilia") String codFamilia);
+
+    @GET("categoria/productos/findAllProductosPorCategorias")
+    Observable<List<ApiProducto>> getAllProductos(@Query("CodFamilia") String codFamilia);
 
     @POST("pedido/guardarPedido")
     Observable<ApiPedidoResponse> requestOrder(@Body List<ApiPedido> apiPedidoList);

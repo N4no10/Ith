@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import cu.gob.ith.common.URLEnum;
 import cu.gob.ith.data.api.Api;
 import cu.gob.ith.data.api.model.ApiApkVersion;
 import cu.gob.ith.data.api.model.ApiCategoria;
@@ -36,13 +37,13 @@ public class DataSourceRemote implements DataSourceApi {
     }
 
     @Override
-    public Observable<List<ApiCategoria>> getCategorias() {
-        return api.getCategorias();
+    public Observable<List<ApiCategoria>> getCategorias(URLEnum urlEnum) {
+        return api.getCategorias(urlEnum == URLEnum.CATEGORIAS ? Api.urlCategorias : Api.urlAllCategorias);
     }
 
     @Override
-    public Observable<List<ApiProducto>> getProductos(String codFamilia) {
-        return api.getProductos(codFamilia);
+    public Observable<List<ApiProducto>> getProductos(URLEnum urlEnum, String codFamilia) {
+        return api.getProductos(urlEnum == URLEnum.PRODUCTOS ? Api.urlProductos : Api.urlAllProductos,codFamilia);
     }
 
     @Override

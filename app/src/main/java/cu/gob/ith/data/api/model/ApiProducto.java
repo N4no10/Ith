@@ -142,4 +142,6 @@ public class ApiProducto {
     public void setCantDespachada(int cantDespachada) {
         this.cantDespachada = cantDespachada;
     }
+
+
 }

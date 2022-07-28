@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="producto"
+            type="cu.gob.ith.domain.model.Producto" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/contentCV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:background="@drawable/background_item_producto"
+            android:paddingBottom="36dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/titleTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="46dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/myriad_regular"
+                android:text="@{producto.descripcion}"
+                tools:text="ACEITE VEGETAL ORO"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.32"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <LinearLayout
+                android:id="@+id/existenciaLL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/existenciaTV"
+                app:layout_constraintStart_toStartOf="@+id/titleTV"
+                app:layout_constraintTop_toBottomOf="@+id/titleTV">
+
+                <TextView
+                    android:id="@+id/existenciaTitleTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/myriad_bold"
+                    android:text="@string/productos_existencia"
+                    android:textColor="@color/blue_dark"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/existenciaTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/myriad_regular"
+                    android:gravity="center"
+                    android:text='@{""+ producto.cantProducto + " " + producto.codUm}'
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="@+id/existenciaTitleTV"
+                    app:layout_constraintStart_toStartOf="@id/existenciaTitleTV"
+                    app:layout_constraintTop_toBottomOf="@id/existenciaTitleTV"
+                    tools:text="12344445 U" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/fotoIV2"
+            android:layout_width="64dp"
+            android:layout_height="70dp"
+            android:rotation="0"
+            android:src="@drawable/foto_alimentos"
+            app:elevation="50dp"
+            app:layout_constraintBottom_toBottomOf="@+id/contentCV"
+            app:layout_constraintEnd_toStartOf="@+id/contentCV"
+            app:layout_constraintStart_toStartOf="@+id/contentCV"
+            app:layout_constraintTop_toTopOf="@+id/contentCV"
+            app:layout_constraintVertical_bias="0.25"
+            app:srcCompat="@drawable/foto_alimentos" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

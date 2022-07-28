@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void initView() {
         uiBind.layoutFormLogin.buttonLoginIB.setOnClickListener(v -> {
-            Toast.makeText(this, "Press Button", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "Press Button", Toast.LENGTH_SHORT).show();
             uiBind.layoutFormLogin.buttonLoginIB.startAnimation();
 
             LoginBody loginBody = new LoginBody(Objects.requireNonNull(uiBind.layoutFormLogin.userTextInputET.getText()).toString(),
@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                             uiBind.layoutFormLogin.buttonLoginIB.revertAnimation();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
-                            Toast.makeText(uiBind.getRoot().getContext(), "Complete login ", Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(uiBind.getRoot().getContext(), "Complete login ", Toast.LENGTH_SHORT).show();
 
                         }
 

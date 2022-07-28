@@ -1,11 +1,10 @@
-package cu.gob.ith.presentation.activities.main.fragments.menu;
+package cu.gob.ith.presentation.activities.main.fragments.productos;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,11 +14,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import cu.gob.ith.R;
 import cu.gob.ith.databinding.FragmentMenuBinding;
+import cu.gob.ith.databinding.FragmentProductosExistenciaBinding;
 import cu.gob.ith.domain.model.Categoria;
 import cu.gob.ith.domain.model.Producto;
 import cu.gob.ith.presentation.activities.main.fragments.menu.recyclerview.categorias.CategoriasAdapter;
@@ -27,17 +26,18 @@ import cu.gob.ith.presentation.activities.main.fragments.menu.recyclerview.categ
 import cu.gob.ith.presentation.activities.main.fragments.menu.recyclerview.productos.ManageProductListUtil;
 import cu.gob.ith.presentation.activities.main.fragments.menu.recyclerview.productos.ProductosAdapter;
 import cu.gob.ith.presentation.activities.main.fragments.menu.viewmodel.MenuFragmentViewModel;
+import cu.gob.ith.presentation.activities.main.fragments.productos.existencia.recyclerview.ProductosExistenciaAdapter;
+import cu.gob.ith.presentation.activities.main.fragments.productos.existencia.viewmodel.ProductosExistenciaViewModel;
 import cu.gob.ith.presentation.activities.main.ui.viewmodel.MainActivityViewModel;
 import dagger.hilt.android.AndroidEntryPoint;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
 @AndroidEntryPoint
-public class MenuFragment extends Fragment implements ItemCategoriaClick {
+public class ProductosExistenciaFragment extends Fragment implements ItemCategoriaClick {
 
-    private FragmentMenuBinding uiBind;
-    private MenuFragmentViewModel viewModel;
+    private FragmentProductosExistenciaBinding uiBind;
+    private ProductosExistenciaViewModel viewModel;
     private MainActivityViewModel mainActivityViewModel;
-    private ManageProductListUtil manageProductListUtil;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,78 +48,9 @@ public class MenuFragment extends Fragment implements ItemCategoriaClick {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        uiBind = DataBindingUtil.inflate(inflater, R.layout.fragment_menu, container, false);
+        uiBind = DataBindingUtil.inflate(inflater, R.layout.fragment_productos_existencia, container, false);
         // Inflate the layout for this fragment
-        initManageProductListUtil();
-
         return uiBind.getRoot();
-    }
-
-    private void initManageProductListUtil() {
-
-        manageProductListUtil = new ManageProductListUtil() {
-            @Override
-            public boolean updateProduct(Producto producto) {
-                List<Producto> productoList = mainActivityViewModel.getProductosParaPedidosList();
-
-                for (Producto productoElement : productoList
-                ) {
-                    if (producto.getReferencia().equals(productoElement.getReferencia()))
-                        productoElement.setCantProducto(producto.getCantProducto());
-                    return true;
-                }
-                return false;
-            }
-
-            @Override
-            public void addProduct(Producto producto) {
-                mainActivityViewModel.getProductosParaPedidosList().add(
-                        producto
-                );
-                mainActivityViewModel.getCantProductos().setValue(mainActivityViewModel.getProductosParaPedidosList().size());
-              /*  new Producto(producto.getDescripcion(),
-                        producto.getReferencia(),
-                        producto.getCodUm(),
-                        producto.getCodFamilia(),
-                        producto.getNombreFamilia(),
-                        producto.getPv(),
-                        producto.getCantProducto())*/
-            }
-
-            @Override
-            public boolean deleteProduct(Producto producto) {
-                List<Producto> productoList = mainActivityViewModel.getProductosParaPedidosList();
-
-                for (Producto productoElement : productoList
-                ) {
-                    if (producto.getReferencia().equals(productoElement.getReferencia())) {
-                        productoList.remove(productoElement);
-                        mainActivityViewModel.getCantProductos().setValue(mainActivityViewModel.getProductosParaPedidosList().size());
-                        return true;
-                    }
-                }
-                return false;
-            }
-
-            @Override
-            public void updateApiList(List<Producto> apiProductoList) {
-                for (Producto producto : mainActivityViewModel.getProductosParaPedidosList()
-                ) {
-                    for (Producto productoElement : apiProductoList
-                    ) {
-                        if (productoElement.getReferencia().equals(producto.getReferencia())) {
-                            productoElement.setCantProducto(producto.getCantProducto());
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void setSearchText(String textSearch) {
-//                uiBind.listProductosByCategoriaLayout.getAdapter().
-            }
-        };
-
     }
 
     @Override
@@ -162,12 +93,12 @@ public class MenuFragment extends Fragment implements ItemCategoriaClick {
     }
 
     public void initViewModel() {
-        viewModel = new ViewModelProvider(this).get(MenuFragmentViewModel.class);
+        viewModel = new ViewModelProvider(this).get(ProductosExistenciaViewModel.class);
         mainActivityViewModel = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
     }
 
     private void currentToolBar() {
-        mainActivityViewModel.setTitleToolBar(getString(R.string.nuevo_pedido_fragment));
+        mainActivityViewModel.setTitleToolBar(getString(R.string.productos_existentes));
         mainActivityViewModel.setShowMenuOrBack(true);
     }
 
@@ -195,7 +126,7 @@ public class MenuFragment extends Fragment implements ItemCategoriaClick {
         viewModel.addCompositeDisposable(viewModel.getGetProductosPorCategoriaUseCase(categoria.getCodFamilia())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(productos -> {
-                    ProductosAdapter productosAdapter = new ProductosAdapter(productos, manageProductListUtil);
+                    ProductosExistenciaAdapter productosAdapter = new ProductosExistenciaAdapter(productos);
                     uiBind.listProductosByCategoriaLayout.setAdapter(productosAdapter);
                 }, throwable -> Log.e("GetProductosXCategoria", "clickEvent: " + throwable.getMessage())));
     }

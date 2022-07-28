@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_inicioFragment_to_ajustesFragment"
             app:destination="@id/ajustesFragment" />
+        <action
+            android:id="@+id/action_inicioFragment_to_productosExistenciaFragment"
+            app:destination="@id/productosExistenciaFragment" />
     </fragment>
     <fragment
         android:id="@+id/pedidoListFragment"
@@ -60,4 +63,8 @@
         android:name="cu.gob.ith.presentation.activities.main.fragments.ajustes.AjustesFragment"
         android:label="fragment_ajustes"
         tools:layout="@layout/fragment_ajustes" />
+    <fragment
+        android:id="@+id/productosExistenciaFragment"
+        android:name="cu.gob.ith.presentation.activities.main.fragments.productos.ProductosExistenciaFragment"
+        android:label="ProductosExistenciaFragment" />
 </navigation>

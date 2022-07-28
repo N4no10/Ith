@@ -7,7 +7,7 @@
     <data>
         <variable
             name="adapter"
-            type="cu.gob.ith.presentation.activities.main.fragments.menu.recyclerview.productos.ProductosAdapter" />
+            type="androidx.recyclerview.widget.RecyclerView.Adapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

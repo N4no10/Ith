@@ -127,4 +127,10 @@
     <string name="credentials_empty">No pueden existir campos vacios</string>
     <string name="compare_pass_new">Debe introducir la misma contraseña dos veces para confirmarla </string>
 
+    //Productos
+    <string name="productos_menu">Productos</string>
+    <string name="productos_existentes_opc_menu">Existentes</string>
+    <string name="productos_existencia">Existencia</string>
+    <string name="productos_existentes">Productos Existentes</string>
+
 </resources>

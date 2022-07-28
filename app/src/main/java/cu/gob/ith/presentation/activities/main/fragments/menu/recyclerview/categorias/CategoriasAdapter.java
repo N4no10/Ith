@@ -1,5 +1,6 @@
 package cu.gob.ith.presentation.activities.main.fragments.menu.recyclerview.categorias;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -53,6 +54,7 @@ public class CategoriasAdapter extends RecyclerView.Adapter<ItemCategoriaViewHol
     }
 
     public void setSelectedCategoria(Categoria categoria) {
+        Log.e("categoria","selected " + categoria.getNombreFamilia());
         categoria.setSelected(true);
         for (Categoria c : categoriaList)
             if (!c.getNombreFamilia().equals(categoria.getNombreFamilia()) && c.isSelected())

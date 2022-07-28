@@ -1,5 +1,7 @@
-package cu.gob.ith.presentation.activities.main.fragments.menu.viewmodel;
+package cu.gob.ith.presentation.activities.main.fragments.productos.existencia.viewmodel;
 
+import static cu.gob.ith.common.URLEnum.ALL_CATEGORIAS;
+import static cu.gob.ith.common.URLEnum.ALL_PRODUCTOS;
 import static cu.gob.ith.common.URLEnum.CATEGORIAS;
 import static cu.gob.ith.common.URLEnum.PRODUCTOS;
 
@@ -21,14 +23,14 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 @HiltViewModel
-public class MenuFragmentViewModel extends ViewModel {
+public class ProductosExistenciaViewModel extends ViewModel {
     private boolean isLoadedData;
     private final GetCategoriasUseCase getCategoriasUseCase;
     private final GetProductosPorCategoriaUseCase getProductosPorCategoriaUseCase;
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     @Inject
-    public MenuFragmentViewModel(GetCategoriasUseCase getCategoriasUseCase, GetProductosPorCategoriaUseCase getProductosPorCategoriaUseCase) {
+    public ProductosExistenciaViewModel(GetCategoriasUseCase getCategoriasUseCase, GetProductosPorCategoriaUseCase getProductosPorCategoriaUseCase) {
         this.getCategoriasUseCase = getCategoriasUseCase;
         this.getProductosPorCategoriaUseCase = getProductosPorCategoriaUseCase;
     }
@@ -42,7 +44,7 @@ public class MenuFragmentViewModel extends ViewModel {
     }
 
     public Observable<List<Categoria>> getGetCategoriasUseCase() {
-        return getCategoriasUseCase.execute(CATEGORIAS);
+        return getCategoriasUseCase.execute(ALL_CATEGORIAS);
     }
 
     public void addCompositeDisposable(Disposable disposable) {
@@ -51,7 +53,7 @@ public class MenuFragmentViewModel extends ViewModel {
 
     public Observable<List<Producto>> getGetProductosPorCategoriaUseCase(String codFamilia) {
         Map<String,Object> params = new HashMap<>();
-        params.put("url",PRODUCTOS);
+        params.put("url",ALL_PRODUCTOS);
         params.put("codFamilia",codFamilia);
         return getProductosPorCategoriaUseCase.execute(params);
     }

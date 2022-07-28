@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import cu.gob.ith.common.URLEnum;
 import cu.gob.ith.data.api.model.ApiApkVersion;
 import cu.gob.ith.data.api.model.ApiCategoria;
 import cu.gob.ith.data.api.model.ApiListDetallesPedido;
@@ -44,14 +45,14 @@ public class ImplRepository implements Repository {
     }
 
     @Override
-    public Observable<List<ApiCategoria>> getCategorias() {
-        return dataSourceRemote.getCategorias()
+    public Observable<List<ApiCategoria>> getCategorias(URLEnum urlEnum) {
+        return dataSourceRemote.getCategorias(urlEnum)
                 .subscribeOn(Schedulers.io());
     }
 
     @Override
-    public Observable<List<ApiProducto>> getProductos(String codFamilia) {
-        return dataSourceRemote.getProductos(codFamilia)
+    public Observable<List<ApiProducto>> getProductos(URLEnum urlEnum, String codFamilia) {
+        return dataSourceRemote.getProductos(urlEnum,codFamilia)
                 .subscribeOn(Schedulers.io());
     }
 

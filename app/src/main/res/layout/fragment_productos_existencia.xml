@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bindadapter="http://schemas.android.com/apk/res-auto"
+    >
+
+    <data>
+        <import type="android.graphics.fonts.Font"/>
+        <import type="cu.gob.ith.R"/>
+    </data>
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/contentMenuCL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white_2"
+        app:layoutDescription="@xml/fragment_menu_xml_contentmenucl_scene">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/buscarProductSV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/background_search_view"
+            app:defaultQueryHint="@string/search_hint"
+            app:iconifiedByDefault="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:queryBackground="@android:color/transparent"
+            app:queryHint="@string/search_hint"
+            bindadapter:fontFamily='@{R.font.myriad_regular}' />
+
+
+        <include
+            android:id="@+id/listCategoriaLayout"
+            layout="@layout/list_categoria"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="@id/buscarProductSV"
+            app:layout_constraintStart_toStartOf="@+id/buscarProductSV"
+            app:layout_constraintTop_toBottomOf="@+id/buscarProductSV" />
+
+        <include
+            android:id="@+id/listProductosByCategoriaLayout"
+            layout="@layout/list_productos"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/listCategoriaLayout"
+            app:layout_constraintStart_toStartOf="@id/listCategoriaLayout"
+            app:layout_constraintTop_toBottomOf="@id/listCategoriaLayout" />
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

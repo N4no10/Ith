@@ -3,6 +3,7 @@ package cu.gob.ith.data.repository;
 import java.util.List;
 import java.util.Map;
 
+import cu.gob.ith.common.URLEnum;
 import cu.gob.ith.data.api.model.ApiApkVersion;
 import cu.gob.ith.data.api.model.ApiCategoria;
 import cu.gob.ith.data.api.model.ApiListDetallesPedido;
@@ -15,18 +16,14 @@ import cu.gob.ith.data.api.model.ApiProducto;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
 import okhttp3.ResponseBody;
-import retrofit2.http.Body;
-import retrofit2.http.Query;
-import retrofit2.http.QueryMap;
-import retrofit2.http.Url;
 
 public interface Repository {
 
     Observable<ApiLoginResponse> login(ApiLoginBody apiLoginBody);
 
-    Observable<List<ApiCategoria>> getCategorias();
+    Observable<List<ApiCategoria>> getCategorias(URLEnum urlEnum);
 
-    Observable<List<ApiProducto>> getProductos(String codFamilia);
+    Observable<List<ApiProducto>> getProductos(URLEnum urlEnum, String codFamilia);
 
     Observable<ApiPedidoResponse> requestOrder(List<ApiPedido> apiPedidoList);
 

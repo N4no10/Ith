@@ -83,6 +83,13 @@ public class MainActivityViewModel extends ViewModel {
         }};
     }
 
+    private List<ItemMenuNavView> listSubMenuProducto(Context context) {
+        return new ArrayList<ItemMenuNavView>() {{
+            add(new ItemMenuNavView(context.getString(R.string.productos_existentes_opc_menu),
+                    ContextCompat.getDrawable(context, R.drawable.ic_existencia_product)));
+        }};
+    }
+
     private void initMenuItems(Context context) {
         ItemMenuNavView inicio = new ItemMenuNavView(
                 context.getString(R.string.menu_inicio),
@@ -92,6 +99,11 @@ public class MainActivityViewModel extends ViewModel {
         itemMenuNavViewList.add(new ItemMenuNavView(
                 context.getString(R.string.menu_pedido),
                 null, listSubMenuPedido(context)));
+        itemMenuNavViewList.add(
+                new ItemMenuNavView(
+                        context.getString(R.string.productos_menu),
+                        null, listSubMenuProducto(context)
+                ));
         itemMenuNavViewList.add(new ItemMenuNavView(
                 context.getString(R.string.menu_settings),
                 ContextCompat.getDrawable(context, R.drawable.ic_settings_black_24dp)

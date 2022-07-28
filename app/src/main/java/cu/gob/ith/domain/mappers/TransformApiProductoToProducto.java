@@ -22,7 +22,7 @@ public class TransformApiProductoToProducto {
                 apiProducto.getCodUm(),
                 apiProducto.getCodFamilia(),
                 apiProducto.getNombreFamilia(),
-                finalValue);
+                finalValue, apiProducto.getCantidad());
     }
 
     public static Producto mapToProductoInforme(ApiProducto apiProducto) {
