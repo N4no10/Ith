@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_inicioFragment_to_productosExistenciaFragment"
             app:destination="@id/productosExistenciaFragment" />
+        <action
+            android:id="@+id/action_inicioFragment_to_completarPedidoFragment"
+            app:destination="@id/completarPedidoFragment" />
     </fragment>
     <fragment
         android:id="@+id/pedidoListFragment"
@@ -37,7 +40,9 @@
         tools:layout="@layout/fragment_pedido_list">
         <action
             android:id="@+id/to_informePedidoFragment"
-            app:destination="@id/informePedidoFragment" />
+            app:destination="@id/informePedidoFragment"
+            app:popUpTo="@id/pedidoListFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/informePedidoFragment"
@@ -66,5 +71,25 @@
     <fragment
         android:id="@+id/productosExistenciaFragment"
         android:name="cu.gob.ith.presentation.activities.main.fragments.productos.ProductosExistenciaFragment"
-        android:label="ProductosExistenciaFragment" />
+        android:label="ProductosExistenciaFragment" >
+        <action
+            android:id="@+id/action_productosExistenciaFragment_to_detallePedidoIncompletoFragment"
+            app:destination="@id/detallePedidoIncompletoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/completarPedidoFragment"
+        android:name="cu.gob.ith.presentation.activities.main.fragments.completarpedido.CompletarPedidoFragment"
+        android:label="fragment_completar_pedido"
+        tools:layout="@layout/fragment_completar_pedido" />
+    <fragment
+        android:id="@+id/detallePedidoIncompletoFragment"
+        android:name="cu.gob.ith.presentation.activities.main.fragments.completarpedido.detalle.DetallePedidoIncompletoFragment"
+        android:label="fragment_detalle_pedido_incompleto"
+        tools:layout="@layout/fragment_detalle_pedido_incompleto" >
+        <action
+            android:id="@+id/action_detallePedidoIncompletoFragment_to_informePedidoFragment"
+            app:destination="@id/informePedidoFragment"
+            app:popUpTo="@id/detallePedidoIncompletoFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

@@ -8,6 +8,7 @@ import cu.gob.ith.data.api.model.ApiApkVersion;
 import cu.gob.ith.data.api.model.ApiCategoria;
 import cu.gob.ith.data.api.model.ApiListDetallesPedido;
 import cu.gob.ith.data.api.model.ApiListPedidos;
+import cu.gob.ith.data.api.model.ApiListProductos;
 import cu.gob.ith.data.api.model.ApiLoginBody;
 import cu.gob.ith.data.api.model.ApiLoginResponse;
 import cu.gob.ith.data.api.model.ApiPedido;
@@ -16,6 +17,7 @@ import cu.gob.ith.data.api.model.ApiProducto;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Observable;
 import okhttp3.ResponseBody;
+import retrofit2.http.Query;
 
 public interface DataSourceApi {
 
@@ -29,15 +31,11 @@ public interface DataSourceApi {
 
     Observable<ApiListPedidos> filterListPedidos(Map<String, Object> params);
 
-    Observable<ApiListPedidos> filterListPedidosDespachados();
-
-    Observable<ApiListPedidos> filterListPedidosDespachadosFacturados();
-
     Observable<ApiListDetallesPedido> findAllDetallesPedidoDespachadosyNoDespachados(int numeroPedido);
 
-    Observable<ApiListPedidos> filterListPedidosPendientesDespachar();
+    Observable<ApiListPedidos> findListPedidos(URLEnum urlEnum);
 
-    Observable<ApiListPedidos> filterListPedidosCancelados();
+    Observable<ApiListProductos> getProductosByDocument(int numeroPedido);
 
     Observable<ApiPedidoResponse> getPedidoById(int numeroPedido);
 
@@ -46,5 +44,4 @@ public interface DataSourceApi {
     Observable<List<ApiApkVersion>> getApkVersion(int lastVersion);
 
     Observable<ResponseBody> getApkFile(String url);
-
 }

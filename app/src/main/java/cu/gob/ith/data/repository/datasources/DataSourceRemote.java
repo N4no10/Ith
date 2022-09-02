@@ -12,6 +12,7 @@ import cu.gob.ith.data.api.model.ApiApkVersion;
 import cu.gob.ith.data.api.model.ApiCategoria;
 import cu.gob.ith.data.api.model.ApiListDetallesPedido;
 import cu.gob.ith.data.api.model.ApiListPedidos;
+import cu.gob.ith.data.api.model.ApiListProductos;
 import cu.gob.ith.data.api.model.ApiLoginBody;
 import cu.gob.ith.data.api.model.ApiLoginResponse;
 import cu.gob.ith.data.api.model.ApiPedido;
@@ -43,7 +44,7 @@ public class DataSourceRemote implements DataSourceApi {
 
     @Override
     public Observable<List<ApiProducto>> getProductos(URLEnum urlEnum, String codFamilia) {
-        return api.getProductos(urlEnum == URLEnum.PRODUCTOS ? Api.urlProductos : Api.urlAllProductos,codFamilia);
+        return api.getProductos(urlEnum == URLEnum.PRODUCTOS ? Api.urlProductos : Api.urlAllProductos, codFamilia);
     }
 
     @Override
@@ -57,33 +58,18 @@ public class DataSourceRemote implements DataSourceApi {
     }
 
     @Override
-    public Observable<ApiListPedidos> filterListPedidosDespachados() {
-        return api.filterListPedidosDespachados();
-    }
-
-    @Override
-    public Observable<ApiListPedidos> filterListPedidosDespachadosFacturados() {
-        return api.filterListPedidosDespachadosFacturados();
-    }
-
-    @Override
     public Observable<ApiListDetallesPedido> findAllDetallesPedidoDespachadosyNoDespachados(int numeroPedido) {
         return api.findAllDetallesPedidoDespachadosyNoDespachados(numeroPedido);
     }
 
     @Override
-    public Observable<ApiListPedidos> filterListPedidosPendientesDespachar() {
-        return api.filterListPedidosPendientesDespachar();
-    }
-
-    @Override
-    public Observable<ApiListPedidos> filterListPedidosCancelados() {
-        return api.findAllPedidosCancelados();
-    }
-
-    @Override
     public Observable<ApiPedidoResponse> getPedidoById(int numeroPedido) {
         return api.getPedidoById(numeroPedido);
+    }
+
+    @Override
+    public Observable<ApiListProductos> getProductosByDocument(int numeroPedido) {
+        return api.getProductosByDocument(numeroPedido);
     }
 
     @Override
@@ -99,5 +85,16 @@ public class DataSourceRemote implements DataSourceApi {
     @Override
     public Observable<ResponseBody> getApkFile(String url) {
         return api.getApkFile(url);
+    }
+
+    @Override
+    public Observable<ApiListPedidos> findListPedidos(URLEnum urlEnum) {
+        return api.listPedidos(
+                urlEnum == URLEnum.PEDIDOS_DESPACHADOS ? Api.urlAllPedidosDesapachados :
+                        urlEnum == URLEnum.PEDIDOS_CANCELADOS ? Api.urlAllPedidosCancelados :
+                                urlEnum == URLEnum.PEDIDOS_DESPACHADOS_FACTURADOS ? Api.urlPedidosDesapachadosFacturados :
+                                        urlEnum == URLEnum.PEDIDOS_DESPACHADOS_FALTANTES ? Api.urlPedidosDesapachadosConFaltantes :
+                                                Api.urlPedidosPendientesPorDespachar
+        );
     }
 }

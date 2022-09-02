@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="pedido"
+            type="cu.gob.ith.domain.model.DatosPedido" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/background_item_producto"
+        android:paddingBottom="16dp">
+
+        <TextView
+            android:id="@+id/titleTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/myriad_regular"
+            android:text='@{"No. " +  pedido.number}'
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@+id/imageLL"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/fechaTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/myriad_bold"
+            android:text="@string/fecha_pedido"
+            android:textColor="@color/blue_dark"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/fechaTV"
+            app:layout_constraintStart_toStartOf="@+id/titleTV"
+            app:layout_constraintTop_toBottomOf="@+id/titleTV" />
+
+        <TextView
+            android:id="@+id/fechaTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/myriad_regular"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:text='@{pedido.date}'
+            app:layout_constraintStart_toStartOf="@id/fechaTitleTV"
+            app:layout_constraintTop_toBottomOf="@id/fechaTitleTV" />
+
+
+
+       <!-- <TextView
+            android:id="@+id/cantProdTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:fontFamily="@font/myriad_bold"
+            android:text="@string/cantidad_producto_title"
+            android:textColor="@color/blue_dark"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/fechaTitleTV"
+            app:layout_constraintStart_toEndOf="@+id/fechaTitleTV"
+            app:layout_constraintTop_toTopOf="@+id/fechaTitleTV"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/cantProdTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/myriad_regular"
+            android:gravity="center"
+            android:text='@{pedido.client}'
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@id/cantProdTitleTV"
+            app:layout_constraintTop_toBottomOf="@id/cantProdTitleTV" />-->
+
+
+        <TextView
+            android:id="@+id/clienteTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="70dp"
+            android:fontFamily="@font/myriad_bold"
+            android:text="@string/cliente_pedido"
+            android:textColor="@color/blue_dark"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/fechaTitleTV"
+            app:layout_constraintStart_toEndOf="@+id/fechaTitleTV"
+            app:layout_constraintTop_toTopOf="@+id/fechaTitleTV"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/clienteTV"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/myriad_regular"
+            android:gravity="center"
+            android:text='@{pedido.client}'
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/imageLL"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/clienteTitleTV"
+            app:layout_constraintTop_toBottomOf="@id/fechaTitleTV" />
+
+
+        <LinearLayout
+            android:id="@+id/imageLL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/carritoIV"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_shop_car" />
+
+            <ImageView
+                android:id="@+id/arrowIV"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="14dp"
+                android:rotation="180"
+                android:src="@drawable/ic_arrow_left" />
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    
+</layout>

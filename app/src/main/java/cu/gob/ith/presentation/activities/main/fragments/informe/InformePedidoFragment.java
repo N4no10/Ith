@@ -60,9 +60,7 @@ public class InformePedidoFragment extends Fragment {
     private void initView() {
         initViewModels();
         setupViewComponents();
-        initAdapter();
         listenerMotionLayoutListProducts();
-        downloadPDF();
     }
 
     private void downloadPDF() {
@@ -88,8 +86,13 @@ public class InformePedidoFragment extends Fragment {
     private void setupViewComponents() {
         mainActivityViewModel.setTitleToolBar(getString(R.string.informe_pedido_fragment));
         mainActivityViewModel.getProductosParaPedidosList().clear();
-        mainActivityViewModel.getShowMenuOrBack().setValue(true);
-        uiBind.setDatosPedido(mainActivityViewModel.getInformePedido().getDatosPedido());
+        mainActivityViewModel.getShowMenuOrBack().setValue(false);
+
+        if (mainActivityViewModel.getInformePedido() != null) {
+            uiBind.setDatosPedido(mainActivityViewModel.getInformePedido().getDatosPedido());
+            initAdapter();
+            downloadPDF();
+        }
     }
 
     private void initAdapter() {

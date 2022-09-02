@@ -7,6 +7,7 @@ import cu.gob.ith.data.api.model.ApiApkVersion;
 import cu.gob.ith.data.api.model.ApiCategoria;
 import cu.gob.ith.data.api.model.ApiListDetallesPedido;
 import cu.gob.ith.data.api.model.ApiListPedidos;
+import cu.gob.ith.data.api.model.ApiListProductos;
 import cu.gob.ith.data.api.model.ApiLoginBody;
 import cu.gob.ith.data.api.model.ApiLoginResponse;
 import cu.gob.ith.data.api.model.ApiPedido;
@@ -31,6 +32,12 @@ public interface Api {
     String urlProductos = "categoria/productos";
     String urlAllProductos = "categoria/productos/findAllProductosPorCategorias";
 
+    String urlAllPedidosDesapachados = "pedido/findAllPedidosDespachados";
+    String urlPedidosDesapachadosConFaltantes = "pedido/pedidosDesapachadosConFaltantes";
+    String urlPedidosDesapachadosFacturados = "pedido/findAllPedidosDespachadosFacturados";
+    String urlPedidosPendientesPorDespachar = "pedido/findAllPedidosPendientesDespachar";
+    String urlAllPedidosCancelados = "pedido/findAllPedidosCancelados";
+
     @POST("login/authenticate")
     Observable<ApiLoginResponse> login(@Body ApiLoginBody apiLoginBody);
 
@@ -43,6 +50,9 @@ public interface Api {
     @GET/*("categoria/productos")*/
     Observable<List<ApiProducto>> getProductos(@Url String url, @Query("CodFamilia") String codFamilia);
 
+    @GET("pedido/cantidadASolicitarPorProductosNoEntregados")
+    Observable<ApiListProductos> getProductosByDocument(@Query("numero") int numeroPedido);
+
     @GET("categoria/productos/findAllProductosPorCategorias")
     Observable<List<ApiProducto>> getAllProductos(@Query("CodFamilia") String codFamilia);
 
@@ -52,20 +62,26 @@ public interface Api {
     @GET("pedido/findAllPedidos")
     Observable<ApiListPedidos> filterListPedidos(@QueryMap Map<String, Object> params);
 
-    @GET("pedido/findAllPedidosDespachados")
-    Observable<ApiListPedidos> filterListPedidosDespachados();
-
-    @GET("pedido/findAllPedidosDespachadosFacturados")
-    Observable<ApiListPedidos> filterListPedidosDespachadosFacturados();
-
     @GET("pedido/findAllDetallesPedidoDespachadosyNoDespachados")
     Observable<ApiListDetallesPedido> findAllDetallesPedidoDespachadosyNoDespachados(@Query("numero") int numeroPedido);
 
-    @GET("pedido/findAllPedidosPendientesDespachar")
+    @GET
+    Observable<ApiListPedidos> listPedidos(@Url String url);
+
+   /* //@GET("pedido/findAllPedidosDespachados")
+    Observable<ApiListPedidos> filterListPedidosDespachados();
+
+    //@GET("pedido/findAllPedidosDespachadosFacturados")
+    Observable<ApiListPedidos> filterListPedidosDespachadosFacturados();
+
+    //@GET("pedido/findAllPedidosPendientesDespachar")
     Observable<ApiListPedidos> filterListPedidosPendientesDespachar();
 
-    @GET("pedido/findAllPedidosCancelados")
+    //@GET("pedido/findAllPedidosCancelados")
     Observable<ApiListPedidos> findAllPedidosCancelados();
+
+    //@GET("pedido/pedidosDesapachadosConFaltantes")
+    Observable<ApiListPedidos> findAllPedidosConFaltantes();*/
 
     @GET("pedido")
     Observable<ApiPedidoResponse> getPedidoById(@Query("numero") int numeroPedido);

@@ -11,6 +11,7 @@ import cu.gob.ith.data.api.model.ApiApkVersion;
 import cu.gob.ith.data.api.model.ApiCategoria;
 import cu.gob.ith.data.api.model.ApiListDetallesPedido;
 import cu.gob.ith.data.api.model.ApiListPedidos;
+import cu.gob.ith.data.api.model.ApiListProductos;
 import cu.gob.ith.data.api.model.ApiLoginBody;
 import cu.gob.ith.data.api.model.ApiLoginResponse;
 import cu.gob.ith.data.api.model.ApiPedido;
@@ -69,14 +70,8 @@ public class ImplRepository implements Repository {
     }
 
     @Override
-    public Observable<ApiListPedidos> filterListPedidosDespachados() {
-        return dataSourceRemote.filterListPedidosDespachados()
-                .subscribeOn(Schedulers.io());
-    }
-
-    @Override
-    public Observable<ApiListPedidos> filterListPedidosDespachadosFacturados() {
-        return dataSourceRemote.filterListPedidosDespachadosFacturados()
+    public Observable<ApiListPedidos> getListPedidos(URLEnum urlEnum) {
+        return dataSourceRemote.findListPedidos(urlEnum)
                 .subscribeOn(Schedulers.io());
     }
 
@@ -87,20 +82,14 @@ public class ImplRepository implements Repository {
     }
 
     @Override
-    public Observable<ApiListPedidos> filterListPedidosPendientesDespachar() {
-        return dataSourceRemote.filterListPedidosPendientesDespachar()
-                .subscribeOn(Schedulers.io());
-    }
-
-    @Override
-    public Observable<ApiListPedidos> filterListPedidosCancelados() {
-        return dataSourceRemote.filterListPedidosCancelados()
-                .subscribeOn(Schedulers.io());
-    }
-
-    @Override
     public Observable<ApiPedidoResponse> getPedidoById(int numeroPedido) {
         return dataSourceRemote.getPedidoById(numeroPedido)
+                .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Observable<ApiListProductos> getProductosByDocument(int numeroPedido) {
+        return dataSourceRemote.getProductosByDocument(numeroPedido)
                 .subscribeOn(Schedulers.io());
     }
 

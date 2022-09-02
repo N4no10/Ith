@@ -2,6 +2,9 @@ package cu.gob.ith.domain.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class Producto {
     private String descripcion;
     private String referencia;
@@ -15,6 +18,7 @@ public class Producto {
     private String numDocumento;
     private int cantPedida;
     private int cantDespachada;
+    private int cantNecesaria;
 
     public Producto(String descripcion) {
         this.descripcion = descripcion;
@@ -64,6 +68,23 @@ public class Producto {
         this.pv = pv;
         this.cantProducto = cantProducto;
         this.importe = importe;
+    }
+
+    public Producto(String descripcion, String referencia, String codUm, float pv, int cantNecesaria) {
+        this.descripcion = descripcion;
+        this.referencia = referencia;
+        this.codUm = codUm;
+        this.cantNecesaria = cantNecesaria;
+        this.pv = pv;
+        calculateImport(cantNecesaria);
+    }
+
+    public int getCantNecesaria() {
+        return cantNecesaria;
+    }
+
+    public void setCantNecesaria(int cantNecesaria) {
+        this.cantNecesaria = cantNecesaria;
     }
 
     public String getDescripcion() {
@@ -128,6 +149,12 @@ public class Producto {
 
     public void setImporte(float importe) {
         this.importe = importe;
+    }
+
+    public void calculateImport(int cant) {
+        BigDecimal bd = BigDecimal.valueOf(pv * cant)
+                .setScale(2, RoundingMode.HALF_UP);
+        this.importe = bd.floatValue();
     }
 
     public String getEstado() {

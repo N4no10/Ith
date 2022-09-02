@@ -3,12 +3,11 @@ package cu.gob.ith.domain.mappers;
 import android.util.Log;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import cu.gob.ith.data.api.model.ApiListProductos;
 import cu.gob.ith.data.api.model.ApiProducto;
 import cu.gob.ith.domain.model.Producto;
 
@@ -41,6 +40,18 @@ public class TransformApiProductoToProducto {
                 apiProducto.getCantPedida(), apiProducto.getCantDespachada());
     }
 
+    public static List<Producto> mapApiListProductoToProductos(ApiListProductos apiListProductos) {
+        List<Producto> productoList = new ArrayList<>();
+        for (ApiProducto apiProducto : apiListProductos.getApiProductoList())
+            productoList.add(mapToProductoDePedidoFaltante(apiProducto));
+        return productoList;
+    }
+
+    public static Producto mapToProductoDePedidoFaltante(ApiProducto apiProducto) {
+        return new Producto(apiProducto.getDescripcion(), apiProducto.getReferencia(),
+                apiProducto.getCodUm(), apiProducto.getPv(), apiProducto.getCantNecesaria());
+    }
+
     public static List<Producto> mapList(List<ApiProducto> apiProductoList) {
         List<Producto> productoList = new ArrayList<>();
         for (ApiProducto apiProducto : apiProductoList
@@ -51,7 +62,7 @@ public class TransformApiProductoToProducto {
     }
 
     public static List<Producto> mapToProductoInformeList(List<ApiProducto> apiProductoList) {
-        Log.e("mao DatosPedido","mapToProductoInformeList " + apiProductoList);
+        Log.e("mao DatosPedido", "mapToProductoInformeList " + apiProductoList);
 
         if (apiProductoList != null && !apiProductoList.isEmpty()) {
             List<Producto> productoList = new ArrayList<>();

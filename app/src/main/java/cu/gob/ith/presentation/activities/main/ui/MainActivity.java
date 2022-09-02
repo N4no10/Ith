@@ -242,9 +242,11 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
             initNavigate(R.id.inicioFragment, itemMenuNavView.getTitle());
         else if (itemMenuNavView.getTitle().equals(getString(R.string.nuevo_pedido_fragment)))
             initNavigate(R.id.menuFragment, itemMenuNavView.getTitle());
+        else if (itemMenuNavView.getTitle().equals(getString(R.string.menu_completar_pedido)))
+            initNavigate(R.id.completarPedidoFragment, itemMenuNavView.getTitle());
         else if (itemMenuNavView.getTitle().equals(getString(R.string.menu_historial_pedido)))
             initNavigate(R.id.misPedidosFragment, itemMenuNavView.getTitle());
-        else if(itemMenuNavView.getTitle().equals(getString(R.string.productos_existentes_opc_menu)))
+        else if (itemMenuNavView.getTitle().equals(getString(R.string.productos_existentes_opc_menu)))
             initNavigate(R.id.productosExistenciaFragment, getString(R.string.productos_existentes));
         else if (itemMenuNavView.getTitle().equals(getString(R.string.menu_settings)))
             initNavigate(R.id.ajustesFragment, itemMenuNavView.getTitle());

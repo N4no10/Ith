@@ -1,9 +1,12 @@
 package cu.gob.ith.domain.interactors;
 
+import static cu.gob.ith.common.URLEnum.PEDIDOS_DESPACHADOS_FACTURADOS;
+
 import java.util.List;
 
 import javax.inject.Inject;
 
+import cu.gob.ith.common.URLEnum;
 import cu.gob.ith.data.repository.ImplRepository;
 import cu.gob.ith.domain.mappers.TransformApiDatosPedidoToDatosPedido;
 import cu.gob.ith.domain.model.DatosPedido;
@@ -21,7 +24,7 @@ public class GetFilterListPedidosFacturadosUseCase
 
     @Override
     public Observable<List<DatosPedido>> execute() {
-        return implRepository.filterListPedidosDespachadosFacturados()
+        return implRepository.getListPedidos(PEDIDOS_DESPACHADOS_FACTURADOS)
                 .map(apiPedidoResponse ->
                         TransformApiDatosPedidoToDatosPedido.mapListSecondConstructor(apiPedidoResponse.getApiDatosPedido()));
     }

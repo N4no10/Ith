@@ -53,6 +53,7 @@ public class TransformApiDatosPedidoToDatosPedido {
 
         for (ApiDatosPedido apiDatosPedidos : apiDatosPedidoList
         ) {
+            apiDatosPedidos.setImporteTotal(apiDatosPedidos.getImporteTotal());
             datosPedidoList.add(mapSecondConstructor(apiDatosPedidos));
         }
         return datosPedidoList;

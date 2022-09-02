@@ -1,9 +1,12 @@
 package cu.gob.ith.common;
 
+import android.annotation.SuppressLint;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@SuppressLint("SimpleDateFormat")
 public class Util {
 
     public static String changeDateFormat(String fecha) {

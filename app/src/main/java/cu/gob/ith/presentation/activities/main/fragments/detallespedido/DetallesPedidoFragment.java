@@ -105,7 +105,8 @@ public class DetallesPedidoFragment extends Fragment {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(productoList ->
                                         uiBind.detalleProductosRV.setAdapter(
-                                                new ItemDetalleProductoAdapter(productoList)),
+                                                new ItemDetalleProductoAdapter(productoList,
+                                                        R.layout.item_productos_detalles_pedido)),
                                 throwable -> Log.e("TAG", "initView: " + throwable.getMessage()))
         );
     }

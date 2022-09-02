@@ -44,6 +44,9 @@ public class ApiProducto {
     @SerializedName("CantidadDespachada")
     private int cantDespachada;
 
+    @SerializedName("CantidadNecesaria")
+    private int cantNecesaria;
+
     public ApiProducto() {
     }
 
@@ -143,5 +146,7 @@ public class ApiProducto {
         this.cantDespachada = cantDespachada;
     }
 
-
+    public int getCantNecesaria() {
+        return cantNecesaria;
+    }
 }

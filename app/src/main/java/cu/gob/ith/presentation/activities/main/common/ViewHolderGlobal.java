@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
 
-public abstract class ViewHolderGlobal<T, B extends ViewDataBinding> extends RecyclerView.ViewHolder {
+public class ViewHolderGlobal<T, B extends ViewDataBinding> extends RecyclerView.ViewHolder {
 
     private final B uiBind;
 

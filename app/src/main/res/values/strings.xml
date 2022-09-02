@@ -46,7 +46,7 @@
     <string name="tipo_categoria">Tipo de Categoría</string>
     <string name="productos">Productos</string>
     <string name="menu_nuevo_pedido">Nuevo Pedido</string>
-    <string name="menu_completar_pedido">Completar Pedido</string>
+    <string name="menu_completar_pedido">Completar Pedidos</string>
     <string name="menu_historial_pedido">Historial de Pedidos</string>
     <string name="menu_inicio">Inicio</string>
     <string name="inicio_fragment">Inicio</string>
@@ -132,5 +132,11 @@
     <string name="productos_existentes_opc_menu">Existentes</string>
     <string name="productos_existencia">Existencia</string>
     <string name="productos_existentes">Productos Existentes</string>
+    <string name="productos_cant_pedida">Cant. Pedida</string>
+    <string name="productos_cant_servida">Cant. Servida</string>
+    <string name="productos_cant_necesaria">Cant. Necesaria</string>
+    <string name="productos_importe">Importe</string>
+
+    <string name="completar_pedido">Completar Pedido </string>
 
 </resources>
