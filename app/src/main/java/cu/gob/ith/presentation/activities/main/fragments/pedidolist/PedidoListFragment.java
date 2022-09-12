@@ -1,6 +1,11 @@
 package cu.gob.ith.presentation.activities.main.fragments.pedidolist;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -8,20 +13,11 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
-import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +25,6 @@ import cu.gob.ith.R;
 import cu.gob.ith.databinding.FragmentPedidoListBinding;
 import cu.gob.ith.domain.model.Pedido;
 import cu.gob.ith.domain.model.Producto;
-import cu.gob.ith.presentation.activities.main.fragments.menu.recyclerview.categorias.CategoriasAdapter;
 import cu.gob.ith.presentation.activities.main.fragments.menu.recyclerview.productos.ManageProductListUtil;
 import cu.gob.ith.presentation.activities.main.fragments.menu.recyclerview.productos.ProductosAdapter;
 import cu.gob.ith.presentation.activities.main.fragments.pedidolist.viewmodel.PedidoListFragmentViewModel;
@@ -129,13 +124,43 @@ public class PedidoListFragment extends Fragment {
     }
 
     private void loadContent() {
-        Log.e("selected", "loadContent: " + mainActivityViewModel.getProductosParaPedidosList());
-        if (productosAdapter == null)
-            productosAdapter = new ProductosAdapter(
-                    mainActivityViewModel.getProductosParaPedidosList(), manageProductListUtil);
+        if (productosAdapter == null) {
+            if (requireArguments().getInt("pedidoId", 0) > 0) {
+                viewModel.addCompositeDisposable(
+                        viewModel.getGetPedidoByIdUseCase(requireArguments().getInt("pedidoId"))
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(
+                                        informePedido -> {
+                                            mainActivityViewModel.setProductosParaPedidosList(
+                                                    informePedido.getDatosPedido().getProductoList());
+                                            visibilityButtonSolicitarPedido();
+                                            productosAdapter = new ProductosAdapter(
+                                                    mainActivityViewModel.getProductosParaPedidosList(), manageProductListUtil);
+                                            uiBind.setAdapter(productosAdapter);
+                                            viewModel.setTotalToPay(productosAdapter.totalPrice());
+                                        },
+                                        throwable -> {
+                                            uiBind.buttonSendList.setVisibility(
+                                                    mainActivityViewModel.getProductosParaPedidosList()
+                                                            .isEmpty() ? View.GONE : View.VISIBLE);
+                                            Log.e("Error", "error " + throwable.getMessage());
+                                        })
+                );
+            }else {
+                visibilityButtonSolicitarPedido();
+                productosAdapter = new ProductosAdapter(
+                        mainActivityViewModel.getProductosParaPedidosList(), manageProductListUtil);
+                uiBind.setAdapter(productosAdapter);
+                viewModel.setTotalToPay(productosAdapter.totalPrice());
+            }
+        }
 
-        uiBind.setAdapter(productosAdapter);
-        viewModel.setTotalToPay(productosAdapter.totalPrice());
+    }
+
+    private void visibilityButtonSolicitarPedido() {
+        uiBind.buttonSendList.setVisibility(
+                mainActivityViewModel.getProductosParaPedidosList()
+                        .isEmpty() ? View.GONE : View.VISIBLE);
     }
 
     private void initManageProductListUtil() {
@@ -221,7 +246,7 @@ public class PedidoListFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (!disposables.isDisposed()){
+        if (!disposables.isDisposed()) {
             disposables.dispose();
         }
     }

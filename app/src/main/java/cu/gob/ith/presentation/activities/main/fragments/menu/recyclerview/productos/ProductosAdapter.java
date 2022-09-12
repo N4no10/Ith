@@ -1,5 +1,6 @@
 package cu.gob.ith.presentation.activities.main.fragments.menu.recyclerview.productos;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -158,8 +159,9 @@ public class ProductosAdapter extends RecyclerView.Adapter<ItemProductoViewHolde
 
     public float totalPrice() {
         float result = 0;
-        for (Producto producto : productoList)
+        for (Producto producto : productoList) {
             result += producto.getCantProducto() * producto.getPv();
+        }
 
         return result;
     }

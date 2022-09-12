@@ -27,7 +27,7 @@ public class MainActivityViewModel extends ViewModel {
     private final MutableLiveData<Boolean> colapsedMainContent = new MutableLiveData<>();
     private final MutableLiveData<Boolean> showMenuOrBack = new MutableLiveData<>();
     private final List<ItemMenuNavView> itemMenuNavViewList = new ArrayList<>();
-    private final List<Producto> productosParaPedidosList = new ArrayList<>();
+    private  List<Producto> productosParaPedidosList = new ArrayList<>();
     private final MutableLiveData<Integer> cantProductos = new MutableLiveData<>();
     private InformePedido informePedido;
     private final GetApkVersionUseCase getApkVersionUseCase;
@@ -64,6 +64,10 @@ public class MainActivityViewModel extends ViewModel {
         return productosParaPedidosList;
     }
 
+    public void setProductosParaPedidosList(List<Producto> productosParaPedidosList) {
+        this.productosParaPedidosList = productosParaPedidosList;
+    }
+
     public MutableLiveData<Boolean> getShowMenuOrBack() {
         return showMenuOrBack;
     }
@@ -79,6 +83,8 @@ public class MainActivityViewModel extends ViewModel {
             add(new ItemMenuNavView(context.getString(R.string.menu_completar_pedido),
                     ContextCompat.getDrawable(context, R.drawable.ic_pedido_en_linea)));
             add(new ItemMenuNavView(context.getString(R.string.menu_historial_pedido),
+                    ContextCompat.getDrawable(context, R.drawable.ic_pedido_en_linea)));
+            add(new ItemMenuNavView(context.getString(R.string.menu_pedido_a_partir_de_otro),
                     ContextCompat.getDrawable(context, R.drawable.ic_pedido_en_linea)));
         }};
     }

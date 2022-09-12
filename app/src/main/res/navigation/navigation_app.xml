@@ -32,6 +32,9 @@
         <action
             android:id="@+id/action_inicioFragment_to_completarPedidoFragment"
             app:destination="@id/completarPedidoFragment" />
+        <action
+            android:id="@+id/action_inicioFragment_to_pedidoAPartirDeOtroFragment"
+            app:destination="@id/pedidoAPartirDeOtroFragment" />
     </fragment>
     <fragment
         android:id="@+id/pedidoListFragment"
@@ -91,5 +94,17 @@
             app:destination="@id/informePedidoFragment"
             app:popUpTo="@id/detallePedidoIncompletoFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/pedidoAPartirDeOtroFragment"
+        android:name="cu.gob.ith.presentation.activities.main.fragments.pedidoapartirdeotro.PedidoAPartirDeOtroFragment"
+        android:label="fragment_pedido_a_partir_de_otro"
+        tools:layout="@layout/fragment_pedido_a_partir_de_otro" >
+        <action
+            android:id="@+id/action_pedidoAPartirDeOtroFragment_to_pedidoListFragment"
+            app:destination="@id/pedidoListFragment" />
+        <action
+            android:id="@+id/action_pedidoAPartirDeOtroFragment_to_detallesPedidoFragment"
+            app:destination="@id/detallesPedidoFragment" />
     </fragment>
 </navigation>

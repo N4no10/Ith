@@ -1,5 +1,7 @@
 package cu.gob.ith.domain.interactors;
 
+import android.util.Log;
+
 import javax.inject.Inject;
 
 import cu.gob.ith.data.repository.ImplRepository;

@@ -89,12 +89,15 @@ public class DataSourceRemote implements DataSourceApi {
 
     @Override
     public Observable<ApiListPedidos> findListPedidos(URLEnum urlEnum) {
-        return api.listPedidos(
-                urlEnum == URLEnum.PEDIDOS_DESPACHADOS ? Api.urlAllPedidosDesapachados :
-                        urlEnum == URLEnum.PEDIDOS_CANCELADOS ? Api.urlAllPedidosCancelados :
-                                urlEnum == URLEnum.PEDIDOS_DESPACHADOS_FACTURADOS ? Api.urlPedidosDesapachadosFacturados :
-                                        urlEnum == URLEnum.PEDIDOS_DESPACHADOS_FALTANTES ? Api.urlPedidosDesapachadosConFaltantes :
-                                                Api.urlPedidosPendientesPorDespachar
-        );
+        if (urlEnum == URLEnum.ALL_PEDIDOS)
+            return api.listAllPedidos(false);
+        else
+            return api.listPedidos(
+                    urlEnum == URLEnum.PEDIDOS_DESPACHADOS ? Api.urlAllPedidosDesapachados :
+                            urlEnum == URLEnum.PEDIDOS_CANCELADOS ? Api.urlAllPedidosCancelados :
+                                    urlEnum == URLEnum.PEDIDOS_DESPACHADOS_FACTURADOS ? Api.urlPedidosDesapachadosFacturados :
+                                            urlEnum == URLEnum.PEDIDOS_DESPACHADOS_FALTANTES ? Api.urlPedidosDesapachadosConFaltantes :
+                                                    Api.urlPedidosPendientesPorDespachar
+            );
     }
 }

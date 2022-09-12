@@ -37,6 +37,7 @@ public interface Api {
     String urlPedidosDesapachadosFacturados = "pedido/findAllPedidosDespachadosFacturados";
     String urlPedidosPendientesPorDespachar = "pedido/findAllPedidosPendientesDespachar";
     String urlAllPedidosCancelados = "pedido/findAllPedidosCancelados";
+    String urlAllPedidos = "pedido/findAllPedidos";
 
     @POST("login/authenticate")
     Observable<ApiLoginResponse> login(@Body ApiLoginBody apiLoginBody);
@@ -64,6 +65,9 @@ public interface Api {
 
     @GET("pedido/findAllDetallesPedidoDespachadosyNoDespachados")
     Observable<ApiListDetallesPedido> findAllDetallesPedidoDespachadosyNoDespachados(@Query("numero") int numeroPedido);
+
+    @GET(urlAllPedidos)
+    Observable<ApiListPedidos> listAllPedidos(@Query("options.mesActual") boolean mesActual);
 
     @GET
     Observable<ApiListPedidos> listPedidos(@Url String url);
