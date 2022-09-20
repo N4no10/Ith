@@ -33,6 +33,11 @@ public class DataSourceRemote implements DataSourceApi {
     }
 
     @Override
+    public Completable recuperarPass(ApiLoginBody apiLoginBody) {
+        return api.recuperarPass(apiLoginBody);
+    }
+
+    @Override
     public Observable<ApiLoginResponse> login(ApiLoginBody apiLoginBody) {
         return api.login(apiLoginBody);
     }
@@ -78,7 +83,7 @@ public class DataSourceRemote implements DataSourceApi {
     }
 
     @Override
-    public Observable<List<ApiApkVersion>> getApkVersion(int lastVersion) {
+    public Observable<ApiApkVersion> getApkVersion(int lastVersion) {
         return api.getApkVersion(lastVersion);
     }
 

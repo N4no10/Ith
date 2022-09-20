@@ -42,6 +42,7 @@
     //Preferences
     <string name="preferences_file_name">IthPreferences</string>
     <string name="unauthorized_401">Usuario o Contraseña Incorrectas</string>
+    <string name="unauthorized">Usuario o CI Incorrecto</string>
     <string name="search_hint">Buscar Producto</string>
     <string name="tipo_categoria">Tipo de Categoría</string>
     <string name="productos">Productos</string>
@@ -118,6 +119,8 @@
     <string name="current_pass">Contraseña actual</string>
     <string name="new_pass">Contraseña nueva</string>
     <string name="new_pass_two">Vuelve a escribir la contraseña nueva</string>
+    <string name="ci">Carnet de Identidad</string>
+    <string name="ci_no_valido">Carnet de Identidad no válido</string>
 
     <string name="aceptar_dialog">Aceptar</string>
     <string name="save_dialog">Guardar Cambios</string>

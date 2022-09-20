@@ -22,6 +22,7 @@ import retrofit2.http.Query;
 public interface Repository {
 
     Observable<ApiLoginResponse> login(ApiLoginBody apiLoginBody);
+    Completable recuperarPass(ApiLoginBody apiLoginBody);
 
     Observable<List<ApiCategoria>> getCategorias(URLEnum urlEnum);
 
@@ -49,7 +50,7 @@ public interface Repository {
 
     Completable updatePassword(Map<String, String> params);
 
-    Observable<List<ApiApkVersion>> getApkVersion(int lastVersion);
+    Observable<ApiApkVersion> getApkVersion(int lastVersion);
 
     Observable<ResponseBody> getApkFile(String url);
 

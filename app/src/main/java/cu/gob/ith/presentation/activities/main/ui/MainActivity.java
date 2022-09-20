@@ -276,15 +276,12 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
                 mainActivityViewModel.getGetApkVersionUseCase()
                         .execute(infoVersion.versionCode)
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(apkVersionList -> {
-                                    if (!apkVersionList.isEmpty()) {
-                                        apkVersion = apkVersionList.get(0);
+                        .subscribe(apkVersion -> {
+                                        this.apkVersion = apkVersion;
                                         Log.e("ApkVersion", "verifyApkVersion: " + apkVersion.getVersion());
-                                    }
                                 },
                                 throwable -> Log.e("ApkVersion", "verifyApkVersion: " + throwable.getMessage()),
                                 this::createUpdateDialog)
-
         );
 
     }

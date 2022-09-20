@@ -1,6 +1,7 @@
 package cu.gob.ith.common;
 
 import android.annotation.SuppressLint;
+import android.util.Base64;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,11 +29,18 @@ public class Util {
         return null;
     }
 
-    public static String formatDateCalendarView(long date){
+    public static String formatDateCalendarView(long date) {
         return new SimpleDateFormat("yyyy-MM-dd").format(date);
     }
 
-    public static String formatDate(long date){
+    public static String formatDate(long date) {
         return new SimpleDateFormat("dd/MM/yyyy").format(date);
+    }
+
+    public static String codificarTextBase64(String text) {
+        if (text != null)
+            return /*Base64.encodeToString(text.getBytes(), Base64.DEFAULT)*/text;
+
+        return null;
     }
 }

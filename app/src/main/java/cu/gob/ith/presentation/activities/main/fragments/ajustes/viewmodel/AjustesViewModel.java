@@ -12,6 +12,7 @@ import java.util.Objects;
 
 import javax.inject.Inject;
 
+import cu.gob.ith.common.Util;
 import cu.gob.ith.domain.interactors.LoginUseCase;
 import cu.gob.ith.domain.interactors.PutUpdatePassword;
 import cu.gob.ith.domain.model.login.LoginBody;
@@ -38,8 +39,8 @@ public class AjustesViewModel extends ViewModel {
 
     public Completable updatePassword(String username, String passOld, String passnew) {
         Map<String, String> params = new HashMap<>();
-        params.put("oldPassword", passOld);
-        params.put("newPassword", passnew);
+        params.put("oldPassword", Util.codificarTextBase64(passOld));
+        params.put("newPassword", Util.codificarTextBase64(passnew));
 
         return putUpdatePassword.execute(params)
                 .andThen(loginUseCase.execute(addLoginBody(username, passnew)));

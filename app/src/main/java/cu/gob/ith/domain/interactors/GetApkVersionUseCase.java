@@ -9,7 +9,7 @@ import cu.gob.ith.domain.mappers.TransformApiApkVersionToApkVersion;
 import cu.gob.ith.domain.model.ApkVersion;
 import io.reactivex.rxjava3.core.Observable;
 
-public class GetApkVersionUseCase implements GlobalUseCase<Observable<List<ApkVersion>>, Integer> {
+public class GetApkVersionUseCase implements GlobalUseCase<Observable<ApkVersion>, Integer> {
 
     private final ImplRepository implRepository;
 
@@ -19,8 +19,8 @@ public class GetApkVersionUseCase implements GlobalUseCase<Observable<List<ApkVe
     }
 
     @Override
-    public Observable<List<ApkVersion>> execute(Integer param) {
+    public Observable<ApkVersion> execute(Integer param) {
         return implRepository.getApkVersion(param)
-                .map(TransformApiApkVersionToApkVersion::mapList);
+                .map(TransformApiApkVersionToApkVersion::map);
     }
 }

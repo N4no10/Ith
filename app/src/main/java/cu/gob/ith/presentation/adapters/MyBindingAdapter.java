@@ -31,8 +31,15 @@ public class MyBindingAdapter {
             textInputLayout.setErrorEnabled(true);
             textInputLayout.setError(textInputLayout.getContext().getString(R.string.edit_text_empty));
         } else {
-            textInputLayout.setErrorEnabled(false);
-            textInputLayout.setError(null);
+            if(text != null  && textInputLayout.isCounterEnabled() &&
+                    textInputLayout.getEditText().getText().length() < textInputLayout.getCounterMaxLength() )
+            {
+                textInputLayout.setErrorEnabled(true);
+                textInputLayout.setError(textInputLayout.getContext().getString(R.string.ci_no_valido));
+            }else{
+                textInputLayout.setErrorEnabled(false);
+                textInputLayout.setError(null);
+            }
         }
     }
 

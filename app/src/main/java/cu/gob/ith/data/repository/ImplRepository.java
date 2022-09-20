@@ -1,5 +1,7 @@
 package cu.gob.ith.data.repository;
 
+import android.util.Log;
+
 import java.util.List;
 import java.util.Map;
 
@@ -43,6 +45,11 @@ public class ImplRepository implements Repository {
                 .subscribeOn(Schedulers.io())
                 .doOnNext(dataSourcePreferences::saveApiLoginBodyResponsePreference
                 );
+    }
+
+    @Override
+    public Completable recuperarPass(ApiLoginBody apiLoginBody) {
+        return dataSourceRemote.recuperarPass(apiLoginBody);
     }
 
     @Override
@@ -100,7 +107,7 @@ public class ImplRepository implements Repository {
     }
 
     @Override
-    public Observable<List<ApiApkVersion>> getApkVersion(int lastVersion) {
+    public Observable<ApiApkVersion> getApkVersion(int lastVersion) {
         return dataSourceRemote.getApkVersion(lastVersion).subscribeOn(Schedulers.io());
     }
 

@@ -10,8 +10,8 @@ def version = "1.0.0"
 def appName = "Mis Pedidos"
 def flavorITH = "ITH"
 def flavorPALCO = "Palco"
-def BASE_URL_ITH = "\"http://ithapi.local.cu:80/api/\""
-def BASE_URL_PALCO = "\"http://mispedidos.api.local:80/api/\""
+def BASE_URL_ITH = "\"http://ith.local.cu:80/api/\""
+def BASE_URL_PALCO = "\"http://palco.local:80/api/\""
 //def BASE_URL = "\"http://ith.api.local:80/api/\""
 
 android {

@@ -65,12 +65,12 @@
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/activity_main.xml" value="0.16033755274261605" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/background_login.xml" value="0.1" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/buttton_item_producto.xml" value="0.2" />
-        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/cambiar_pass_dialog.xml" value="0.33" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/cambiar_pass_dialog.xml" value="0.18875502008032127" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/content_data_from_login.xml" value="0.1971894832275612" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/content_main_activity.xml" value="0.1" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/content_menu_nav_view.xml" value="0.1" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/content_responsive.xml" value="0.25833333333333336" />
-        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/form_login.xml" value="0.1" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/form_login.xml" value="0.264" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_ajustes.xml" value="0.2129115006412997" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_blank.xml" value="0.2129115006412997" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/fragment_completar_pedido.xml" value="0.2751586582048957" />
@@ -111,6 +111,7 @@
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/list_prueba_layout.xml" value="0.2348684210526316" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/my_progress_dialog.xml" value="0.30440359127832406" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/nav_header_responsive.xml" value="0.20094057289439932" />
+        <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/olvido_pass_dialog.xml" value="0.28273809523809523" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/layout/toolbar_layout.xml" value="0.5" />
         <entry key="..\:/WORK/Arnaldo/ETI/Proyectos/Ith/app/src/main/res/xml/network_security.xml" value="0.11842667806755024" />
       </map>

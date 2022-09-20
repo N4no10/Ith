@@ -27,6 +27,9 @@ import retrofit2.http.Url;
 
 public interface Api {
 
+    String urlLogin = "login/authenticate";
+    String urlRecuperarPass = "login/recuperarPassword";
+
     String urlCategorias = "categoria";
     String urlAllCategorias = "categoria/findAllCategorias";
     String urlProductos = "categoria/productos";
@@ -39,8 +42,11 @@ public interface Api {
     String urlAllPedidosCancelados = "pedido/findAllPedidosCancelados";
     String urlAllPedidos = "pedido/findAllPedidos";
 
-    @POST("login/authenticate")
+    @POST(urlLogin)
     Observable<ApiLoginResponse> login(@Body ApiLoginBody apiLoginBody);
+
+    @POST(urlRecuperarPass)
+    Completable recuperarPass(@Body ApiLoginBody apiLoginBody);
 
     @GET/*("categoria")*/
     Observable<List<ApiCategoria>> getCategorias(@Url String url);
@@ -98,7 +104,7 @@ public interface Api {
     Observable<List<ApiApkVersion>> getApkAllVersions();
 
     @GET("apk/ultimaVersion")
-    Observable<List<ApiApkVersion>> getApkVersion(@Query("version") int lastVersion);
+    Observable<ApiApkVersion> getApkVersion(@Query("version") int lastVersion);
 
     @Streaming
     @GET
