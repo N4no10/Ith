@@ -13,6 +13,7 @@ public class Producto {
     private String nombreFamilia;
     private float pv;
     private float cantProducto = 0;
+    private float disponibilidadProducto = 0;
     private float importe;
     private String estado;
     private String numDocumento;
@@ -187,5 +188,13 @@ public class Producto {
 
     public void setCantDespachada(int cantDespachada) {
         this.cantDespachada = cantDespachada;
+    }
+
+    public float getDisponibilidadProducto() {
+        return disponibilidadProducto;
+    }
+
+    public void setDisponibilidadProducto(float disponibilidadProducto) {
+        this.disponibilidadProducto = disponibilidadProducto;
     }
 }

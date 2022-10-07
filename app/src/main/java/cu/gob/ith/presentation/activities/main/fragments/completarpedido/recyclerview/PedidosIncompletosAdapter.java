@@ -1,5 +1,7 @@
 package cu.gob.ith.presentation.activities.main.fragments.completarpedido.recyclerview;
 
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -42,7 +44,14 @@ public class PedidosIncompletosAdapter extends RecyclerView.Adapter<ItemPedidoIn
         holder.getUiBind().getRoot().setOnClickListener(v -> onClickDelegateRV.onclickItem(datosPedidoList
                 .get(position).getNumber()));
 
+        holder.getUiBind().imageLL.setOnClickListener(v-> {
+            Bundle bundle = new Bundle();
+            bundle.putInt("pedidoId", Integer.parseInt(datosPedidoList.get(position).getNumber()));
 
+            Log.e("ID","ID " + bundle.getInt("pedidoId"));
+
+            Navigation.findNavController(v).navigate(R.id.action_completarPedidoFragment_to_pedidoListFragment,bundle);
+        });
     }
 
     @Override

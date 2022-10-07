@@ -2,6 +2,7 @@ package cu.gob.ith.presentation.activities.main.fragments.mispedidos.opc3.recycl
 
 import androidx.annotation.NonNull;
 
+import cu.gob.ith.R;
 import cu.gob.ith.databinding.ItemListPedidoDobleFechaBinding;
 import cu.gob.ith.domain.model.DatosPedido;
 import cu.gob.ith.presentation.activities.main.common.ViewHolderGlobal;
@@ -14,7 +15,8 @@ public class ItemPedidoFacturadoViewHolder extends ViewHolderGlobal<DatosPedido,
 
     @Override
     public void bind(DatosPedido param) {
-        getUiBind().processedDateTitlePriceTV.setText("Fecha de Facturación");
+        getUiBind().processedDateTitlePriceTV.setText(getUiBind()
+                .getRoot().getContext().getString(R.string.facturacion_date_title));
         getUiBind().setDatosPedido(param);
         super.bind(param);
     }

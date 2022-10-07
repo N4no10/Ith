@@ -11,8 +11,8 @@ def appName = "Mis Pedidos"
 def flavorITH = "ITH"
 def flavorPALCO = "Palco"
 def BASE_URL_ITH = "\"http://ith.local.cu:80/api/\""
-def BASE_URL_PALCO = "\"http://palco.local:80/api/\""
-//def BASE_URL = "\"http://ith.api.local:80/api/\""
+def BASE_URL_PALCO = "\"http://palco.local.cu/api/\""
+//def BASE_URL = "\"http://mispedidos.palco.cu/api/\""
 
 android {
     compileSdk 31
@@ -82,18 +82,23 @@ android {
         dataBinding true
         viewBinding true
     }
-
     packagingOptions {
-        exclude 'com/itextpdf/io/font/cmap_info.txt'
-        exclude 'com/itextpdf/io/font/cmap/*'
+        jniLibs {
+            excludes += ['com/itextpdf/io/font/cmap/*']
+        }
+        resources {
+            excludes += ['com/itextpdf/io/font/cmap_info.txt', 'com/itextpdf/io/font/cmap/*']
+        }
     }
+
+    namespace 'cu.gob.ith'
 }
 
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
     implementation 'androidx.navigation:navigation-fragment:2.4.2'
     implementation 'androidx.navigation:navigation-ui:2.3.5'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
@@ -102,7 +107,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.4.1"
 
-    testImplementation 'junit:junit:4.+'
+    testImplementation 'junit:junit:'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 

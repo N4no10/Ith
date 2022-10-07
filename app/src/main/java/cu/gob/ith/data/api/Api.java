@@ -31,9 +31,10 @@ public interface Api {
     String urlRecuperarPass = "login/recuperarPassword";
 
     String urlCategorias = "categoria";
-    String urlAllCategorias = "categoria/findAllCategorias";
+    String urlCategoriasConExistencia = "categoria/categoriasConExistencias";
+
     String urlProductos = "categoria/productos";
-    String urlAllProductos = "categoria/productos/findAllProductosPorCategorias";
+    String urlProductosConExistencia = "categoria/productos/existenciasProductosPorFamilia";
 
     String urlAllPedidosDesapachados = "pedido/findAllPedidosDespachados";
     String urlPedidosDesapachadosConFaltantes = "pedido/pedidosDesapachadosConFaltantes";
@@ -48,13 +49,10 @@ public interface Api {
     @POST(urlRecuperarPass)
     Completable recuperarPass(@Body ApiLoginBody apiLoginBody);
 
-    @GET/*("categoria")*/
+    @GET
     Observable<List<ApiCategoria>> getCategorias(@Url String url);
 
-    @GET("categoria/findAllCategorias")
-    Observable<List<ApiCategoria>> getAllCategorias();
-
-    @GET/*("categoria/productos")*/
+    @GET
     Observable<List<ApiProducto>> getProductos(@Url String url, @Query("CodFamilia") String codFamilia);
 
     @GET("pedido/cantidadASolicitarPorProductosNoEntregados")

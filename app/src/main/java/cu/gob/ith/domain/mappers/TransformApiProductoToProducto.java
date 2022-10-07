@@ -16,12 +16,14 @@ public class TransformApiProductoToProducto {
     public static Producto map(ApiProducto apiProducto) {
         BigDecimal bd = BigDecimal.valueOf(apiProducto.getPv()).setScale(2, RoundingMode.HALF_UP);
         float finalValue = bd.floatValue();
-        return new Producto(apiProducto.getDescripcion(),
+        Producto producto = new Producto(apiProducto.getDescripcion(),
                 apiProducto.getReferencia(),
                 apiProducto.getCodUm(),
                 apiProducto.getCodFamilia(),
                 apiProducto.getNombreFamilia(),
                 finalValue, apiProducto.getCantidad());
+        producto.setDisponibilidadProducto(apiProducto.getDisponibilidad());
+        return producto;
     }
 
     public static Producto mapToProductoInforme(ApiProducto apiProducto) {

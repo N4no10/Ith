@@ -28,33 +28,115 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/titleTV"
+            <LinearLayout
+                android:id="@+id/titleLL"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="46dp"
-                android:layout_marginEnd="8dp"
-                android:fontFamily="@font/myriad_regular"
-                android:text="@{producto.descripcion}"
-                tools:text="ACEITE VEGETAL ORO"
-                android:textColor="@color/black"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.32"
-                app:layout_constraintVertical_chainStyle="packed" />
+                app:layout_constraintVertical_chainStyle="packed">
+
+                <TextView
+                    android:id="@+id/titleTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/myriad_regular"
+                    android:text="@{producto.descripcion}"
+                    android:textColor="@color/black"
+                    tools:text="ACEITE VEGETAL ORO" />
+
+                <TextView
+                    android:id="@+id/subTitleTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/myriad_regular"
+                    android:text='@{""+producto.referencia}'
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    tools:text="12000212" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/umLL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="@+id/titleLL"
+                app:layout_constraintTop_toBottomOf="@+id/titleLL">
+
+                <TextView
+                    android:id="@+id/umTitleTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/myriad_bold"
+                    android:text="@string/um_pdf"
+                    android:textColor="@color/blue_dark"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/umTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/myriad_regular"
+                    android:gravity="center"
+                    android:text='@{producto.codUm}'
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    tools:text="U" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/disponibleLL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toEndOf="@+id/umLL"
+                app:layout_constraintTop_toTopOf="@+id/umLL">
+
+                <TextView
+                    android:id="@+id/disponibleTitleTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/myriad_bold"
+                    android:text="@string/productos_disponible"
+                    android:textColor="@color/blue_dark"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/disponibleTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/myriad_regular"
+                    android:gravity="center"
+                    android:text='@{""+ producto.disponibilidadProducto}'
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    tools:text="12344445" />
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/existenciaLL"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_marginStart="24dp"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toTopOf="@+id/existenciaTV"
-                app:layout_constraintStart_toStartOf="@+id/titleTV"
-                app:layout_constraintTop_toBottomOf="@+id/titleTV">
+                app:layout_constraintStart_toEndOf="@+id/disponibleLL"
+                app:layout_constraintTop_toTopOf="@+id/disponibleLL">
 
                 <TextView
                     android:id="@+id/existenciaTitleTV"
@@ -64,7 +146,7 @@
                     android:fontFamily="@font/myriad_bold"
                     android:text="@string/productos_existencia"
                     android:textColor="@color/blue_dark"
-                    android:textSize="10sp" />
+                    android:textSize="11sp" />
 
                 <TextView
                     android:id="@+id/existenciaTV"
@@ -73,13 +155,10 @@
                     android:layout_marginTop="2dp"
                     android:fontFamily="@font/myriad_regular"
                     android:gravity="center"
-                    android:text='@{""+ producto.cantProducto + " " + producto.codUm}'
+                    android:text='@{""+ producto.cantProducto}'
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="@+id/existenciaTitleTV"
-                    app:layout_constraintStart_toStartOf="@id/existenciaTitleTV"
-                    app:layout_constraintTop_toBottomOf="@id/existenciaTitleTV"
-                    tools:text="12344445 U" />
+                    tools:text="12344445" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

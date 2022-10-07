@@ -83,7 +83,11 @@
         android:id="@+id/completarPedidoFragment"
         android:name="cu.gob.ith.presentation.activities.main.fragments.completarpedido.CompletarPedidoFragment"
         android:label="fragment_completar_pedido"
-        tools:layout="@layout/fragment_completar_pedido" />
+        tools:layout="@layout/fragment_completar_pedido" >
+        <action
+            android:id="@+id/action_completarPedidoFragment_to_pedidoListFragment"
+            app:destination="@id/pedidoListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detallePedidoIncompletoFragment"
         android:name="cu.gob.ith.presentation.activities.main.fragments.completarpedido.detalle.DetallePedidoIncompletoFragment"

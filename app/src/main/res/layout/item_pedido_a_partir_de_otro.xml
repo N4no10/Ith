@@ -51,13 +51,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
+            android:layout_marginEnd="24dp"
             android:fontFamily="@font/myriad_regular"
             android:gravity="center"
+            android:text='@{pedido.date}'
             android:textColor="@color/black"
             android:textSize="14sp"
-            android:text='@{pedido.date}'
+            app:layout_constraintEnd_toStartOf="@+id/clienteTitleTV"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/fechaTitleTV"
-            app:layout_constraintTop_toBottomOf="@id/fechaTitleTV" />
+            app:layout_constraintTop_toBottomOf="@id/fechaTitleTV"
+            tools:text="10/30/2022" />
 
 
 
@@ -110,14 +114,14 @@
             android:layout_marginTop="2dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/myriad_regular"
-            android:gravity="center"
             android:text='@{pedido.client}'
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/imageLL"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/clienteTitleTV"
-            app:layout_constraintTop_toBottomOf="@id/fechaTitleTV" />
+            app:layout_constraintTop_toBottomOf="@id/fechaTitleTV"
+            tools:text="usuario" />
 
 
         <LinearLayout

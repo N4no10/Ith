@@ -1,9 +1,7 @@
 package cu.gob.ith.presentation.activities.main.fragments.productos.existencia.viewmodel;
 
-import static cu.gob.ith.common.URLEnum.ALL_CATEGORIAS;
-import static cu.gob.ith.common.URLEnum.ALL_PRODUCTOS;
-import static cu.gob.ith.common.URLEnum.CATEGORIAS;
-import static cu.gob.ith.common.URLEnum.PRODUCTOS;
+import static cu.gob.ith.common.URLEnum.CATEGORIAS_CON_EXISTENCIA;
+import static cu.gob.ith.common.URLEnum.PRODUCTOS_CON_EXISTENCIA;
 
 import androidx.lifecycle.ViewModel;
 
@@ -44,7 +42,7 @@ public class ProductosExistenciaViewModel extends ViewModel {
     }
 
     public Observable<List<Categoria>> getGetCategoriasUseCase() {
-        return getCategoriasUseCase.execute(ALL_CATEGORIAS);
+        return getCategoriasUseCase.execute(CATEGORIAS_CON_EXISTENCIA);
     }
 
     public void addCompositeDisposable(Disposable disposable) {
@@ -52,9 +50,9 @@ public class ProductosExistenciaViewModel extends ViewModel {
     }
 
     public Observable<List<Producto>> getGetProductosPorCategoriaUseCase(String codFamilia) {
-        Map<String,Object> params = new HashMap<>();
-        params.put("url",ALL_PRODUCTOS);
-        params.put("codFamilia",codFamilia);
+        Map<String, Object> params = new HashMap<>();
+        params.put("url", PRODUCTOS_CON_EXISTENCIA);
+        params.put("codFamilia", codFamilia);
         return getProductosPorCategoriaUseCase.execute(params);
     }
 
@@ -62,7 +60,7 @@ public class ProductosExistenciaViewModel extends ViewModel {
     protected void onCleared() {
         super.onCleared();
 
-        if(compositeDisposable.isDisposed())
+        if (compositeDisposable.isDisposed())
             compositeDisposable.dispose();
     }
 }

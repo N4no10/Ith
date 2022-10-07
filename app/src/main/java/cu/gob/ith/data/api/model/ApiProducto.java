@@ -29,6 +29,9 @@ public class ApiProducto {
     @SerializedName("Cantidad")
     private float cantidad;
 
+    @SerializedName("Disponibilidad")
+    private float disponibilidad;
+
     @SerializedName("Importe")
     private float importe;
 
@@ -148,5 +151,9 @@ public class ApiProducto {
 
     public int getCantNecesaria() {
         return cantNecesaria;
+    }
+
+    public float getDisponibilidad() {
+        return disponibilidad;
     }
 }

@@ -64,6 +64,7 @@
     <string name="no_title">No.</string>
     <string name="request_date_title">Fecha \nSolicitud</string>
     <string name="processed_date_title">Fecha \nDespacho</string>
+    <string name="facturacion_date_title">Fecha \nFacturación</string>
     <string name="delivery_date_title">Fecha de Recogida</string>
     <string name="client_title">Cliente</string>
 
@@ -135,6 +136,7 @@
     <string name="productos_menu">Productos</string>
     <string name="productos_existentes_opc_menu">Existentes</string>
     <string name="productos_existencia">Existencia</string>
+    <string name="productos_disponible">Disponibilidad</string>
     <string name="productos_existentes">Productos Existentes</string>
     <string name="productos_cant_pedida">Cant. Pedida</string>
     <string name="productos_cant_servida">Cant. Servida</string>

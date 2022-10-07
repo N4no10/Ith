@@ -61,12 +61,19 @@ public class CompletarPedidoFragment extends Fragment {
     }
 
     private void initOnClickInViewHolderItem() {
+       /* onClickDelegateRV = id -> {
+            Log.e("Click", "click " + id);
+            Bundle bundle = new Bundle();
+            bundle.putInt("pedidoId", Integer.parseInt(id));
+            Navigation.findNavController(
+                    uiBind.getRoot()).navigate(R.id.action_completarPedidoFragment_to_pedidoListFragment, bundle);
+        };*/
         onClickDelegateRV = id -> {
             Log.e("Click", "click " + id);
             Bundle bundle = new Bundle();
             bundle.putString("pedidoId", id);
             Navigation.findNavController(
-                    uiBind.getRoot()).navigate(R.id.detallePedidoIncompletoFragment, bundle);
+                    uiBind.getRoot()).navigate(R.id.detallesPedidoFragment, bundle);
         };
     }
 

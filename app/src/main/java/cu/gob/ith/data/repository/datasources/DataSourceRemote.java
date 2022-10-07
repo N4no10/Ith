@@ -44,12 +44,13 @@ public class DataSourceRemote implements DataSourceApi {
 
     @Override
     public Observable<List<ApiCategoria>> getCategorias(URLEnum urlEnum) {
-        return api.getCategorias(urlEnum == URLEnum.CATEGORIAS ? Api.urlCategorias : Api.urlAllCategorias);
+        return api.getCategorias(urlEnum == URLEnum.CATEGORIAS ? Api.urlCategorias : Api.urlCategoriasConExistencia);
     }
 
     @Override
     public Observable<List<ApiProducto>> getProductos(URLEnum urlEnum, String codFamilia) {
-        return api.getProductos(urlEnum == URLEnum.PRODUCTOS ? Api.urlProductos : Api.urlAllProductos, codFamilia);
+        return api.getProductos(urlEnum == URLEnum.PRODUCTOS ? Api.urlProductos :
+                Api.urlProductosConExistencia, codFamilia);
     }
 
     @Override
