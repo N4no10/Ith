@@ -3,14 +3,18 @@ package cu.gob.ith.presentation.activities.main.fragments.pedidoapartirdeotro.re
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.Objects;
 
 import cu.gob.ith.R;
 import cu.gob.ith.domain.model.DatosPedido;
@@ -44,13 +48,14 @@ public class PedidosAPartirDeOtroAdapter extends RecyclerView.Adapter<ItemPedido
         holder.getUiBind().getRoot().setOnClickListener(v -> onClickDelegateRV.onclickItem(datosPedidoList
                 .get(position).getNumber()));
 
-        holder.getUiBind().imageLL.setOnClickListener(v-> {
+        holder.getUiBind().imageLL.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
             bundle.putInt("pedidoId", Integer.parseInt(datosPedidoList.get(position).getNumber()));
+            bundle.putInt("action", R.id.action_pedidoListFragment_to_menuFragment);
+            Log.e("ID", "ID " + bundle.getInt("pedidoId"));
 
-            Log.e("ID","ID " + bundle.getInt("pedidoId"));
-
-            Navigation.findNavController(v).navigate(R.id.action_pedidoAPartirDeOtroFragment_to_pedidoListFragment,bundle);
+            //  Navigation.findNavController(v).navigate(R.id.action_pedidoAPartirDeOtroFragment_to_pedidoListFragment,bundle);
+            Navigation.findNavController(v).navigate(R.id.pedidoListFragment,bundle);
         });
     }
 

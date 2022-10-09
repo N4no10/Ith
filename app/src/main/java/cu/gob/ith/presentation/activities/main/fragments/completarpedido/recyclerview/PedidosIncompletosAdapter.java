@@ -47,10 +47,11 @@ public class PedidosIncompletosAdapter extends RecyclerView.Adapter<ItemPedidoIn
         holder.getUiBind().imageLL.setOnClickListener(v-> {
             Bundle bundle = new Bundle();
             bundle.putInt("pedidoId", Integer.parseInt(datosPedidoList.get(position).getNumber()));
+            bundle.putInt("action", R.id.action_pedidoListFragment_to_menuFragment2);
+            Log.e("ID", "ID " + bundle.getInt("pedidoId"));
 
-            Log.e("ID","ID " + bundle.getInt("pedidoId"));
-
-            Navigation.findNavController(v).navigate(R.id.action_completarPedidoFragment_to_pedidoListFragment,bundle);
+            //  Navigation.findNavController(v).navigate(R.id.action_pedidoAPartirDeOtroFragment_to_pedidoListFragment,bundle);
+            Navigation.findNavController(v).navigate(R.id.pedidoListFragment,bundle);
         });
     }
 

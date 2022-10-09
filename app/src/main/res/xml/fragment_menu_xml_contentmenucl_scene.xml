@@ -25,10 +25,10 @@
             android:layout_height="0dp"
             motion:layout_constraintBottom_toBottomOf="parent"
             motion:layout_constraintStart_toStartOf="@id/listCategoriaLayout"
-            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/filterLayout"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginTop="16dp" />
+           />
         <Constraint
             android:id="@+id/buscarProductSV"
             motion:layout_constraintEnd_toEndOf="parent"
@@ -42,9 +42,17 @@
             motion:layout_constraintEnd_toEndOf="@id/buscarProductSV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@+id/buscarProductSV"
+            motion:layout_constraintTop_toBottomOf="@id/filterLayout"
             motion:layout_constraintStart_toStartOf="@+id/buscarProductSV"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:alpha="0.0" />
+        <Constraint
+            android:id="@+id/filterLayout"
+            motion:layout_constraintEnd_toEndOf="@id/buscarProductSV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            motion:layout_constraintStart_toStartOf="@+id/buscarProductSV"
+            motion:layout_constraintTop_toTopOf="parent" />
     </ConstraintSet>
 </MotionScene>

@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cu.gob.ith.R;
@@ -61,13 +62,6 @@ public class CompletarPedidoFragment extends Fragment {
     }
 
     private void initOnClickInViewHolderItem() {
-       /* onClickDelegateRV = id -> {
-            Log.e("Click", "click " + id);
-            Bundle bundle = new Bundle();
-            bundle.putInt("pedidoId", Integer.parseInt(id));
-            Navigation.findNavController(
-                    uiBind.getRoot()).navigate(R.id.action_completarPedidoFragment_to_pedidoListFragment, bundle);
-        };*/
         onClickDelegateRV = id -> {
             Log.e("Click", "click " + id);
             Bundle bundle = new Bundle();

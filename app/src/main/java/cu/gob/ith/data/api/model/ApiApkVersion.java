@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class ApiApkVersion {
     @SerializedName("Id")
-    private int id;
+    private Integer id;
 
     @SerializedName("Version")
     private String version;
@@ -15,7 +15,7 @@ public class ApiApkVersion {
     public ApiApkVersion() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

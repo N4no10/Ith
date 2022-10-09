@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.MotionLayout;
@@ -26,6 +27,8 @@ import androidx.core.content.FileProvider;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDirections;
+import androidx.navigation.NavGraph;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
@@ -43,6 +46,7 @@ import cu.gob.ith.data.services.DownloadService;
 import cu.gob.ith.data.util.RxBus;
 import cu.gob.ith.databinding.ActivityMainBinding;
 import cu.gob.ith.domain.model.ApkVersion;
+import cu.gob.ith.presentation.activities.main.fragments.pedidolist.PedidoListFragment;
 import cu.gob.ith.presentation.activities.main.recyclerview.ClickItemMenuInterface;
 import cu.gob.ith.presentation.activities.main.recyclerview.ItemMenuAdapter;
 import cu.gob.ith.presentation.activities.main.ui.viewmodel.MainActivityViewModel;
@@ -91,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
         initTransformMotionLayout();
         observerChangeToolBar();
         initShopCar();
+        initIconNewPedido();
     }
 
     //region Permissions
@@ -126,6 +131,27 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
                 uiBind.contentMainActivityLayout.toolbarLayout.productsBadgeTV.setVisibility(View.GONE);
             }
         });
+    }
+
+    private void initIconNewPedido() {
+        mainActivityViewModel.getShowIconGoToNewPedido().observe(this, action -> {
+            if (action > 0) {
+                uiBind.contentMainActivityLayout.toolbarLayout.shopCarIV.setVisibility(View.GONE);
+                uiBind.contentMainActivityLayout.toolbarLayout.newPedidoIV.setVisibility(View.VISIBLE);
+
+                uiBind.contentMainActivityLayout.toolbarLayout.newPedidoIV.setOnClickListener(v ->{
+                    initNavigateWithoutPopUpTo(action, null);
+                });
+
+            }else{
+                uiBind.contentMainActivityLayout.toolbarLayout.newPedidoIV.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    private void prueba(){
+        NavController navController = Navigation.findNavController(this, R.id.fragmentContainerView2);
+        navController.navigate(R.id.action_pedidoListFragment_to_menuFragment);
     }
 
     private void initNavView() {
@@ -271,7 +297,6 @@ public class MainActivity extends AppCompatActivity implements ClickItemMenuInte
     //endregion Navigations
 
     private void verifyApkVersion() {
-
         compositeDisposable.add(
                 mainActivityViewModel.getGetApkVersionUseCase()
                         .execute(infoVersion.versionCode)

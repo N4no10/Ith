@@ -26,6 +26,9 @@ public class ProductosExistenciaViewModel extends ViewModel {
     private final GetCategoriasUseCase getCategoriasUseCase;
     private final GetProductosPorCategoriaUseCase getProductosPorCategoriaUseCase;
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private boolean disponibles;
+    private boolean existencia;
+    private String currentCodFamilia;
 
     @Inject
     public ProductosExistenciaViewModel(GetCategoriasUseCase getCategoriasUseCase, GetProductosPorCategoriaUseCase getProductosPorCategoriaUseCase) {
@@ -49,11 +52,35 @@ public class ProductosExistenciaViewModel extends ViewModel {
         compositeDisposable.add(disposable);
     }
 
-    public Observable<List<Producto>> getGetProductosPorCategoriaUseCase(String codFamilia) {
+    public Observable<List<Producto>> getGetProductosPorCategoriaUseCase() {
         Map<String, Object> params = new HashMap<>();
         params.put("url", PRODUCTOS_CON_EXISTENCIA);
-        params.put("codFamilia", codFamilia);
+        params.put("codFamilia", currentCodFamilia);
         return getProductosPorCategoriaUseCase.execute(params);
+    }
+
+    public boolean isDisponibles() {
+        return disponibles;
+    }
+
+    public void setDisponibles(boolean disponibles) {
+        this.disponibles = disponibles;
+    }
+
+    public boolean isExistencia() {
+        return existencia;
+    }
+
+    public void setExistencia(boolean existencia) {
+        this.existencia = existencia;
+    }
+
+    public String getCurrentCodFamilia() {
+        return currentCodFamilia;
+    }
+
+    public void setCurrentCodFamilia(String currentCodFamilia) {
+        this.currentCodFamilia = currentCodFamilia;
     }
 
     @Override

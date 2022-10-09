@@ -34,14 +34,24 @@
 
 
         <include
+            android:id="@+id/filterLayout"
+            layout="@layout/productos_existencia_filter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/buscarProductSV"
+            app:layout_constraintStart_toStartOf="@+id/buscarProductSV"
+            app:layout_constraintTop_toBottomOf="@+id/buscarProductSV"
+            />
+
+        <include
             android:id="@+id/listCategoriaLayout"
             layout="@layout/list_categoria"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="@id/buscarProductSV"
             app:layout_constraintStart_toStartOf="@+id/buscarProductSV"
-            app:layout_constraintTop_toBottomOf="@+id/buscarProductSV" />
+            app:layout_constraintTop_toBottomOf="@+id/filterLayout" />
 
         <include
             android:id="@+id/listProductosByCategoriaLayout"

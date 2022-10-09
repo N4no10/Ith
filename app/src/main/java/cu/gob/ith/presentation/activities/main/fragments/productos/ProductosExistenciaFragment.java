@@ -14,18 +14,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import java.util.List;
-
 import cu.gob.ith.R;
-import cu.gob.ith.databinding.FragmentMenuBinding;
 import cu.gob.ith.databinding.FragmentProductosExistenciaBinding;
 import cu.gob.ith.domain.model.Categoria;
-import cu.gob.ith.domain.model.Producto;
 import cu.gob.ith.presentation.activities.main.fragments.menu.recyclerview.categorias.CategoriasAdapter;
 import cu.gob.ith.presentation.activities.main.fragments.menu.recyclerview.categorias.ItemCategoriaClick;
-import cu.gob.ith.presentation.activities.main.fragments.menu.recyclerview.productos.ManageProductListUtil;
-import cu.gob.ith.presentation.activities.main.fragments.menu.recyclerview.productos.ProductosAdapter;
-import cu.gob.ith.presentation.activities.main.fragments.menu.viewmodel.MenuFragmentViewModel;
 import cu.gob.ith.presentation.activities.main.fragments.productos.existencia.recyclerview.ProductosExistenciaAdapter;
 import cu.gob.ith.presentation.activities.main.fragments.productos.existencia.viewmodel.ProductosExistenciaViewModel;
 import cu.gob.ith.presentation.activities.main.ui.viewmodel.MainActivityViewModel;
@@ -38,6 +31,7 @@ public class ProductosExistenciaFragment extends Fragment implements ItemCategor
     private FragmentProductosExistenciaBinding uiBind;
     private ProductosExistenciaViewModel viewModel;
     private MainActivityViewModel mainActivityViewModel;
+    private ProductosExistenciaAdapter productosAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,6 +61,26 @@ public class ProductosExistenciaFragment extends Fragment implements ItemCategor
 
         currentToolBar();
         listenerMotionLayoutListProducts();
+        iniFilter();
+    }
+
+    private void iniFilter(){
+
+        uiBind.filterLayout.disponibilidadCB.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            Log.e("click","click Chaked");
+            viewModel.setDisponibles(isChecked);
+            loadProductosByCategoria();
+        });
+
+        uiBind.filterLayout.existenciaCB.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            viewModel.setExistencia(isChecked);
+            loadProductosByCategoria();
+        });
+    }
+
+    private void enabledFilter(boolean enabled){
+        uiBind.filterLayout.disponibilidadCB.setEnabled(enabled);
+        uiBind.filterLayout.existenciaCB.setEnabled(enabled);
     }
 
     private void listenerMotionLayoutListProducts() {
@@ -103,6 +117,7 @@ public class ProductosExistenciaFragment extends Fragment implements ItemCategor
     }
 
     private void loadContent() {
+        enabledFilter(false);
         viewModel.addCompositeDisposable(
                 viewModel.getGetCategoriasUseCase()
                         .observeOn(AndroidSchedulers.mainThread())
@@ -115,19 +130,56 @@ public class ProductosExistenciaFragment extends Fragment implements ItemCategor
                                     new LinearLayoutManager(getContext(),
                                             LinearLayoutManager.HORIZONTAL,
                                             false));
+                            enabledFilter(true);
                             Log.e("Load All", "success");
-                        }, throwable -> Log.e("GetCategoriasList", "loadContent: " + throwable.getMessage()))
+                        }, throwable -> {
+                            Log.e("GetCategoriasList", "loadContent: " + throwable.getMessage());
+                            enabledFilter(true);
+                        })
         );
     }
 
 
     @Override
     public void clickEvent(Categoria categoria) {
-        viewModel.addCompositeDisposable(viewModel.getGetProductosPorCategoriaUseCase(categoria.getCodFamilia())
+        viewModel.setCurrentCodFamilia(categoria.getCodFamilia());
+        loadProductosByCategoria();
+    }
+
+    private void loadProductosByCategoria() {
+        enabledFilter(false);
+        viewModel.addCompositeDisposable(viewModel.getGetProductosPorCategoriaUseCase()
+                .flatMapIterable(productos -> productos)
+                .filter(producto -> {
+                    if (viewModel.isDisponibles()) {
+                        Log.e("Disponibles","Disponibles");
+                        if (viewModel.isExistencia()) {
+                            Log.e("Disponibles Existencia","Disponibles y Existentes");
+
+                            return producto.getDisponibilidadProducto() > 0.0 && producto.getCantProducto() > 0.0;
+                        }
+                        return producto.getDisponibilidadProducto() > 0.0;
+                    } else {
+                        if (viewModel.isExistencia()) {
+                            Log.e("N0 Disponibles Exist","No Disponibles y Existentes");
+                            return producto.getCantProducto() > 0.0;
+                        }
+
+                        Log.e("N0 Disponibles No Exis","No Disponibles y No existentes");
+
+                        return true;
+                    }
+                })
+                .toList()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(productos -> {
-                    ProductosExistenciaAdapter productosAdapter = new ProductosExistenciaAdapter(productos);
+                    productosAdapter = new ProductosExistenciaAdapter(productos);
                     uiBind.listProductosByCategoriaLayout.setAdapter(productosAdapter);
-                }, throwable -> Log.e("GetProductosXCategoria", "clickEvent: " + throwable.getMessage())));
+                    enabledFilter(true);
+
+                }, throwable -> {
+                    Log.e("GetProductosXCategoria", "clickEvent: " + throwable.getMessage());
+                    enabledFilter(true);
+                }));
     }
 }

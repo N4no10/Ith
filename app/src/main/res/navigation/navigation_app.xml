@@ -46,6 +46,20 @@
             app:destination="@id/informePedidoFragment"
             app:popUpTo="@id/pedidoListFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_pedidoListFragment_to_menuFragment"
+            app:destination="@id/menuFragment"
+            app:popUpTo="@id/pedidoAPartirDeOtroFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_pedidoListFragment_to_completarPedidoFragment"
+            app:destination="@id/completarPedidoFragment" />
+        <action
+            android:id="@+id/action_pedidoListFragment_to_menuFragment2"
+            app:destination="@id/menuFragment"
+            app:popUpTo="@id/completarPedidoFragment"
+            app:popUpToInclusive="true"
+            />
     </fragment>
     <fragment
         android:id="@+id/informePedidoFragment"

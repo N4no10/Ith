@@ -115,7 +115,7 @@ public class PedidoListFragment extends Fragment {
     private void currentToolBar() {
         mainActivityViewModel.setTitleToolBar(getString(R.string.list_producto));
         mainActivityViewModel.setShowMenuOrBack(false);
-
+        mainActivityViewModel.showIconGoToNewPedido(requireArguments().getInt("action", 0));
     }
 
     public void initViewModel() {
@@ -146,7 +146,7 @@ public class PedidoListFragment extends Fragment {
                                             Log.e("Error", "error " + throwable.getMessage());
                                         })
                 );
-            }else {
+            } else {
                 visibilityButtonSolicitarPedido();
                 productosAdapter = new ProductosAdapter(
                         mainActivityViewModel.getProductosParaPedidosList(), manageProductListUtil);
@@ -246,6 +246,10 @@ public class PedidoListFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+
+        if (requireArguments().getInt("action", 0) > 0)
+            mainActivityViewModel.showIconGoToNewPedido(0);
+
         if (!disposables.isDisposed()) {
             disposables.dispose();
         }
