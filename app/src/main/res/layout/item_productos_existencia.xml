@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:background="@drawable/background_item_producto"
-            android:paddingBottom="36dp"
+            android:paddingBottom="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -67,18 +67,23 @@
 
             <LinearLayout
                 android:id="@+id/umLL"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
                 android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@id/viewSeparetorOneV"
                 app:layout_constraintStart_toStartOf="@+id/titleLL"
                 app:layout_constraintTop_toBottomOf="@+id/titleLL">
 
                 <TextView
                     android:id="@+id/umTitleTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:ellipsize="end"
                     android:fontFamily="@font/myriad_bold"
+                    android:gravity="center"
+                    android:maxLines="1"
                     android:text="@string/um_pdf"
                     android:textColor="@color/blue_dark"
                     android:textSize="11sp" />
@@ -99,19 +104,23 @@
 
             <LinearLayout
                 android:id="@+id/disponibleLL"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="16dp"
+                android:gravity="center"
                 android:orientation="vertical"
-                app:layout_constraintStart_toEndOf="@+id/umLL"
+                app:layout_constraintEnd_toStartOf="@id/viewSeparetorTwoV"
+                app:layout_constraintStart_toEndOf="@+id/viewSeparetorOneV"
                 app:layout_constraintTop_toTopOf="@+id/umLL">
 
                 <TextView
                     android:id="@+id/disponibleTitleTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:ellipsize="end"
                     android:fontFamily="@font/myriad_bold"
+                    android:gravity="center"
+                    android:maxLines="1"
                     android:text="@string/productos_disponible"
                     android:textColor="@color/blue_dark"
                     android:textSize="11sp" />
@@ -131,19 +140,24 @@
 
             <LinearLayout
                 android:id="@+id/existenciaLL"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
                 android:orientation="vertical"
-                app:layout_constraintStart_toEndOf="@+id/disponibleLL"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/viewSeparetorTwoV"
                 app:layout_constraintTop_toTopOf="@+id/disponibleLL">
 
                 <TextView
                     android:id="@+id/existenciaTitleTV"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:ellipsize="end"
                     android:fontFamily="@font/myriad_bold"
+                    android:gravity="center"
+                    android:maxLines="1"
                     android:text="@string/productos_existencia"
                     android:textColor="@color/blue_dark"
                     android:textSize="11sp" />
@@ -161,6 +175,34 @@
                     tools:text="12344445" />
             </LinearLayout>
 
+            <View
+                android:id="@+id/viewSeparetorOneV"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/gris_light2"
+                app:layout_constraintEnd_toStartOf="@+id/disponibleLL"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/umLL"
+                app:layout_constraintTop_toTopOf="@+id/umLL"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
+            <View
+                android:id="@+id/viewSeparetorTwoV"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/gris_light2"
+                app:layout_constraintEnd_toStartOf="@+id/existenciaLL"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/disponibleLL"
+                app:layout_constraintTop_toTopOf="@+id/disponibleLL"
+                app:layout_constraintBottom_toBottomOf="@id/viewSeparetorOneV"
+                />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
@@ -176,6 +218,8 @@
             app:layout_constraintTop_toTopOf="@+id/contentCV"
             app:layout_constraintVertical_bias="0.25"
             app:srcCompat="@drawable/foto_alimentos" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

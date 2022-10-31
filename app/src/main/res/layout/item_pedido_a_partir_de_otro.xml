@@ -23,47 +23,61 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/myriad_regular"
             android:text='@{"No. " +  pedido.number}'
             android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageLL"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.16000003"
             app:layout_constraintVertical_chainStyle="packed" />
 
-        <TextView
-            android:id="@+id/fechaTitleTV"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/dateLL"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/myriad_bold"
-            android:text="@string/fecha_pedido"
-            android:textColor="@color/blue_dark"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@+id/fechaTV"
-            app:layout_constraintStart_toStartOf="@+id/titleTV"
-            app:layout_constraintTop_toBottomOf="@+id/titleTV" />
-
-        <TextView
-            android:id="@+id/fechaTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="24dp"
-            android:fontFamily="@font/myriad_regular"
-            android:gravity="center"
-            android:text='@{pedido.date}'
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@+id/clienteTitleTV"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@id/viewSeparetorV"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@id/fechaTitleTV"
-            app:layout_constraintTop_toBottomOf="@id/fechaTitleTV"
-            tools:text="10/30/2022" />
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="@+id/titleTV"
+            app:layout_constraintTop_toBottomOf="@+id/titleTV">
 
+            <TextView
+                android:id="@+id/fechaTitleTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/myriad_bold"
+                android:text="@string/fecha_pedido"
+                android:textColor="@color/blue_dark"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:maxLines="1"
+                android:ellipsize="end"
+                app:layout_constraintBottom_toTopOf="@+id/fechaTV"
+                app:layout_constraintStart_toStartOf="@+id/titleTV"
+                app:layout_constraintTop_toBottomOf="@+id/titleTV" />
 
+            <TextView
+                android:id="@+id/fechaTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/myriad_regular"
+                android:gravity="center"
+                android:text='@{pedido.date}'
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toStartOf="@+id/clienteTitleTV"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/fechaTitleTV"
+                app:layout_constraintTop_toBottomOf="@id/fechaTitleTV"
+                tools:text="10/30/2022" />
+
+        </LinearLayout>
 
        <!-- <TextView
             android:id="@+id/cantProdTitleTV"
@@ -92,37 +106,63 @@
             app:layout_constraintStart_toStartOf="@id/cantProdTitleTV"
             app:layout_constraintTop_toBottomOf="@id/cantProdTitleTV" />-->
 
+        <View
+            android:id="@+id/viewSeparetorV"
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/gris_light2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/dateLL"
+            app:layout_constraintEnd_toStartOf="@id/clienteLL"
+            app:layout_constraintTop_toTopOf="@+id/dateLL" />
 
-        <TextView
-            android:id="@+id/clienteTitleTV"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/clienteLL"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="70dp"
-            android:fontFamily="@font/myriad_bold"
-            android:text="@string/cliente_pedido"
-            android:textColor="@color/blue_dark"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/fechaTitleTV"
-            app:layout_constraintStart_toEndOf="@+id/fechaTitleTV"
-            app:layout_constraintTop_toTopOf="@+id/fechaTitleTV"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/clienteTV"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
+            android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:fontFamily="@font/myriad_regular"
-            android:text='@{pedido.client}'
-            android:textColor="@color/black"
-            android:textSize="14sp"
+            android:orientation="vertical"
             app:layout_constraintEnd_toStartOf="@+id/imageLL"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@id/clienteTitleTV"
-            app:layout_constraintTop_toBottomOf="@id/fechaTitleTV"
-            tools:text="usuario" />
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/viewSeparetorV"
+            app:layout_constraintTop_toTopOf="@+id/dateLL">
 
+            <TextView
+                android:id="@+id/clienteTitleTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/myriad_bold"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="@string/cliente_pedido"
+                android:textColor="@color/blue_dark"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/fechaTitleTV"
+                app:layout_constraintStart_toEndOf="@+id/fechaTitleTV"
+                app:layout_constraintTop_toTopOf="@+id/fechaTitleTV"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/clienteTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/myriad_regular"
+                android:gravity="center"
+                android:text='@{pedido.client}'
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toStartOf="@+id/imageLL"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@id/clienteTitleTV"
+                app:layout_constraintTop_toBottomOf="@id/fechaTitleTV"
+                tools:text="usuario" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/imageLL"

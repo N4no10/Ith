@@ -24,8 +24,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="34dp"
             android:background="@drawable/background_item_producto"
-            android:backgroundTint="@color/gris_light"
             android:paddingBottom="16dp"
+            app:backgroundTint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -36,7 +36,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="46dp"
                 android:layout_marginEnd="8dp"
+                android:ellipsize="end"
                 android:fontFamily="@font/myriad_regular"
+                android:maxLines="3"
                 android:text="@{producto.descripcion}"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -44,121 +46,141 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.32"
-                app:layout_constraintVertical_chainStyle="packed" />
+                app:layout_constraintVertical_bias="0.16000003"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Producto de prueba para ver el texto como queda aqui en este campo" />
 
-            <TextView
-                android:id="@+id/productTitlePriceTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/myriad_bold"
-                android:text="@string/precio_title"
-                android:textColor="@color/blue_dark"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toTopOf="@+id/productPriceTV"
-                app:layout_constraintEnd_toStartOf="@+id/cantidadTitlePriceTV"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintHorizontal_chainStyle="spread"
-                app:layout_constraintStart_toStartOf="@+id/titleTV"
-                app:layout_constraintTop_toBottomOf="@+id/titleTV" />
-
-            <TextView
-                android:id="@+id/productPriceTV"
+            <LinearLayout
+                android:id="@+id/productTitlePriceLL"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:fontFamily="@font/myriad_regular"
-                android:gravity="center"
-                android:text='@{producto.pv+"/"+producto.codUm}'
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/viewSeparetorV"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@id/viewSeparetorOneV"
+                app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="@+id/titleTV"
-                app:layout_constraintTop_toBottomOf="@id/productTitlePriceTV" />
+                app:layout_constraintTop_toBottomOf="@id/titleTV">
+
+                <TextView
+                    android:id="@+id/productTitlePriceTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/myriad_bold"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/precio_title"
+                    android:textColor="@color/blue_dark"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/productPriceTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/myriad_regular"
+                    android:gravity="center"
+                    android:text='@{producto.pv+"/"+producto.codUm}'
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
 
             <View
-                android:id="@+id/viewSeparetorV"
+                android:id="@+id/viewSeparetorOneV"
                 android:layout_width="1dp"
-                android:layout_height="0dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
                 android:background="@color/gris_light3"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/cantidadTitlePriceTV"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/productTitlePriceTV"
-                app:layout_constraintTop_toTopOf="@+id/productTitlePriceTV" />
+                app:layout_constraintEnd_toStartOf="@id/cantidadTitlePriceLL"
+                app:layout_constraintStart_toEndOf="@+id/productTitlePriceLL"
+                app:layout_constraintTop_toTopOf="@+id/productTitlePriceLL" />
 
-
-            <TextView
-                android:id="@+id/cantidadTitlePriceTV"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/cantidadTitlePriceLL"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/myriad_bold"
-                android:text="@{producto.cantDespachada==0?@string/cantidad_producto_pedido_title:@string/cantidad_producto_despachado_title}"
-                android:textColor="@color/blue_dark"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="@+id/productTitlePriceTV"
-                app:layout_constraintEnd_toStartOf="@+id/totalPagarTitlePriceTV"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/productTitlePriceTV"
-                app:layout_constraintTop_toTopOf="@+id/productTitlePriceTV" />
+                android:layout_marginStart="16dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@id/viewSeparetorTwoV"
+                app:layout_constraintStart_toEndOf="@+id/viewSeparetorOneV"
+                app:layout_constraintTop_toTopOf="@+id/productTitlePriceLL">
 
-            <TextView
-                android:id="@+id/cantidadTV"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:fontFamily="@font/myriad_regular"
-                android:gravity="center"
-                android:text='@{producto.cantDespachada==0?""+producto.cantPedida:""+producto.cantDespachada}'
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/viewSeparetor2V"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/viewSeparetorV"
-                app:layout_constraintTop_toBottomOf="@id/cantidadTitlePriceTV" />
 
+                <TextView
+                    android:id="@+id/cantidadTitlePriceTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/myriad_bold"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@{producto.cantDespachada==0?@string/cantidad_producto_pedido_title:@string/cantidad_producto_despachado_title}"
+                    android:textColor="@color/blue_dark"
+                    android:textSize="12sp"
+                    tools:text="Cantidad" />
+
+                <TextView
+                    android:id="@+id/cantidadTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/myriad_regular"
+                    android:gravity="center"
+                    android:text='@{producto.cantDespachada==0?""+producto.cantPedida:""+producto.cantDespachada}'
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
 
             <View
-                android:id="@+id/viewSeparetor2V"
+                android:id="@+id/viewSeparetorTwoV"
                 android:layout_width="1dp"
-                android:layout_height="0dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="4dp"
-                android:background="@color/gris_light3"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/totalPagarTitlePriceTV"
-                app:layout_constraintStart_toEndOf="@+id/cantidadTitlePriceTV"
-                app:layout_constraintTop_toTopOf="@+id/cantidadTitlePriceTV" />
+                android:background="@color/gris_light2"
+                app:layout_constraintEnd_toStartOf="@id/totalPagarTitlePriceLL"
+                app:layout_constraintStart_toEndOf="@+id/cantidadTitlePriceLL"
+                app:layout_constraintTop_toTopOf="@+id/productTitlePriceLL" />
 
-            <TextView
-                android:id="@+id/totalPagarTitlePriceTV"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/totalPagarTitlePriceLL"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/myriad_bold"
-                android:text="@string/total_pagar_title"
-                android:textColor="@color/blue_dark"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="@+id/cantidadTitlePriceTV"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/cantidadTitlePriceTV"
-                app:layout_constraintTop_toTopOf="@+id/cantidadTitlePriceTV" />
+                app:layout_constraintStart_toEndOf="@+id/viewSeparetorTwoV"
+                app:layout_constraintTop_toTopOf="@+id/productTitlePriceLL">
 
-            <TextView
-                android:id="@+id/totalPagarPriceTV"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:fontFamily="@font/myriad_regular"
-                android:gravity="center"
-                android:text='@{""+producto.importe}'
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="@+id/titleTV"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/viewSeparetor2V"
-                app:layout_constraintTop_toBottomOf="@id/totalPagarTitlePriceTV" />
+                <TextView
+                    android:id="@+id/totalPagarTitlePriceTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/myriad_bold"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/total_pagar_title"
+                    android:textColor="@color/blue_dark"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/totalPagarPriceTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/myriad_regular"
+                    android:gravity="center"
+                    android:text='@{""+producto.importe}'
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    tools:text="1234" />
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -178,160 +200,4 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <!-- <androidx.constraintlayout.widget.ConstraintLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_margin="8dp">
-
-         <androidx.constraintlayout.widget.ConstraintLayout
-             android:id="@+id/contentCV"
-             android:layout_width="0dp"
-             android:layout_height="wrap_content"
-             android:background="@drawable/background_item_producto"
-             android:paddingBottom="36dp"
-             app:layout_constraintEnd_toEndOf="parent"
-             app:layout_constraintStart_toStartOf="parent"
-             app:layout_constraintTop_toTopOf="parent">
-
-             <TextView
-                 android:id="@+id/titleTV"
-                 android:layout_width="0dp"
-                 android:layout_height="wrap_content"
-                 android:layout_marginStart="8dp"
-                 android:layout_marginEnd="8dp"
-                 android:fontFamily="@font/myriad_regular"
-                 android:text="@{producto.descripcion}"
-                 android:textColor="@color/black"
-                 app:layout_constraintBottom_toBottomOf="parent"
-                 app:layout_constraintEnd_toEndOf="parent"
-                 app:layout_constraintHorizontal_bias="0.5"
-                 app:layout_constraintStart_toStartOf="parent"
-                 app:layout_constraintTop_toTopOf="parent"
-                 app:layout_constraintVertical_bias="0.32"
-                 app:layout_constraintVertical_chainStyle="packed" />
-
-             <TextView
-                 android:id="@+id/productTitlePriceTV"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:layout_marginTop="20dp"
-                 android:fontFamily="@font/myriad_bold"
-                 android:text="@string/precio_title"
-                 android:textColor="@color/blue_dark"
-                 android:textSize="10sp"
-                 app:layout_constraintBottom_toTopOf="@+id/productPriceTV"
-                 app:layout_constraintEnd_toStartOf="@+id/cantidadProductoTitleTV"
-                 app:layout_constraintHorizontal_bias="0.5"
-                 app:layout_constraintStart_toStartOf="parent"
-                 app:layout_constraintTop_toBottomOf="@+id/titleTV" />
-
-             <TextView
-                 android:id="@+id/productPriceTV"
-                 android:layout_width="60dp"
-                 android:layout_height="wrap_content"
-                 android:layout_marginTop="2dp"
-                 android:fontFamily="@font/myriad_regular"
-                 android:gravity="center"
-                 android:text='@{producto.pv+"/"+producto.codUm}'
-                 android:textColor="@color/black"
-                 android:textSize="14sp"
-                 app:layout_constraintEnd_toEndOf="@+id/productTitlePriceTV"
-                 app:layout_constraintStart_toStartOf="@id/productTitlePriceTV"
-                 app:layout_constraintTop_toBottomOf="@id/productTitlePriceTV" />
-
-             <View
-                 android:id="@+id/viewSeparetorV"
-                 android:layout_width="1dp"
-                 android:layout_height="0dp"
-                 android:layout_marginStart="16dp"
-                 android:layout_marginTop="4dp"
-                 android:background="@color/gris_light2"
-                 app:layout_constraintBottom_toBottomOf="parent"
-                 app:layout_constraintStart_toEndOf="@+id/productTitlePriceTV"
-                 app:layout_constraintTop_toTopOf="@+id/productTitlePriceTV" />
-
-
-             <TextView
-                 android:id="@+id/cantidadProductoTitleTV"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:fontFamily="@font/myriad_bold"
-                 android:text="@string/cantidad_producto_title"
-                 android:textColor="@color/blue_dark"
-                 android:textSize="10sp"
-                 app:layout_constraintBottom_toBottomOf="@+id/productTitlePriceTV"
-                 app:layout_constraintEnd_toStartOf="@+id/totalPagarTitlePriceTV"
-                 app:layout_constraintHorizontal_bias="0.5"
-                 app:layout_constraintStart_toEndOf="@+id/productTitlePriceTV"
-                 app:layout_constraintTop_toTopOf="@+id/productTitlePriceTV"
-                 app:layout_constraintVertical_bias="0.0" />
-
-             <TextView
-                 android:id="@+id/cantidadProductoValueTV"
-                 android:layout_width="60dp"
-                 android:layout_height="wrap_content"
-                 android:layout_marginTop="2dp"
-                 android:fontFamily="@font/myriad_regular"
-                 android:gravity="center"
-                 android:text='@{""+producto.cantProducto}'
-                 android:textColor="@color/black"
-                 android:textSize="14sp"
-                 app:layout_constraintEnd_toEndOf="@+id/cantidadProductoTitleTV"
-                 app:layout_constraintStart_toStartOf="@id/cantidadProductoTitleTV"
-                 app:layout_constraintTop_toBottomOf="@id/cantidadProductoTitleTV" />
-
-             <View
-                 android:id="@+id/viewSeparatorCantidadV"
-                 android:layout_width="1dp"
-                 android:layout_height="0dp"
-                 android:layout_marginStart="16dp"
-                 android:layout_marginTop="4dp"
-                 android:background="@color/gris_light2"
-                 app:layout_constraintBottom_toBottomOf="parent"
-                 app:layout_constraintStart_toEndOf="@+id/cantidadProductoTitleTV"
-                 app:layout_constraintTop_toTopOf="@+id/cantidadProductoTitleTV" />
-
-             <TextView
-                 android:id="@+id/totalPagarTitlePriceTV"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:fontFamily="@font/myriad_bold"
-                 android:text="@string/total_pagar_title"
-                 android:textColor="@color/blue_dark"
-                 android:textSize="10sp"
-                 app:layout_constraintBottom_toBottomOf="@+id/productTitlePriceTV"
-                 app:layout_constraintEnd_toEndOf="parent"
-                 app:layout_constraintHorizontal_bias="0.5"
-                 app:layout_constraintStart_toEndOf="@+id/cantidadProductoTitleTV"
-                 app:layout_constraintTop_toTopOf="@+id/productTitlePriceTV"
-                 app:layout_constraintVertical_bias="1.0" />
-
-             <TextView
-                 android:id="@+id/totalPagarPriceTV"
-                 android:layout_width="60dp"
-                 android:layout_height="wrap_content"
-                 android:layout_marginTop="2dp"
-                 android:fontFamily="@font/myriad_regular"
-                 android:gravity="center"
-                 android:text='@{""+producto.importe}'
-                 android:textColor="@color/black"
-                 android:textSize="14sp"
-                 app:layout_constraintEnd_toEndOf="@+id/totalPagarTitlePriceTV"
-                 app:layout_constraintStart_toStartOf="@id/totalPagarTitlePriceTV"
-                 app:layout_constraintTop_toBottomOf="@id/totalPagarTitlePriceTV" />
-
-             <View
-                 android:id="@+id/viewSeparatorV"
-                 android:layout_width="1dp"
-                 android:layout_height="0dp"
-                 android:layout_marginStart="16dp"
-                 android:layout_marginTop="4dp"
-                 android:background="@color/gris_light2"
-                 app:layout_constraintBottom_toBottomOf="parent"
-                 app:layout_constraintStart_toEndOf="@+id/totalPagarTitlePriceTV"
-                 app:layout_constraintTop_toTopOf="@+id/totalPagarTitlePriceTV" />
-         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-     </androidx.constraintlayout.widget.ConstraintLayout>-->
 </layout>

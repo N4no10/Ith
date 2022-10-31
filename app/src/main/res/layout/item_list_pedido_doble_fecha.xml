@@ -21,89 +21,126 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/background_item_producto"
-            android:paddingBottom="20dp">
+            android:paddingBottom="16dp">
 
             <TextView
                 android:id="@+id/noTitleTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
                 android:fontFamily="@font/myriad_regular"
                 android:text="@string/no_title"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/noTV" />
 
             <TextView
                 android:id="@+id/noTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:fontFamily="@font/myriad_regular"
-                android:text='@{datosPedido.number}'
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@+id/noTitleTV"
-                app:layout_constraintStart_toEndOf="@+id/noTitleTV"
-                app:layout_constraintTop_toTopOf="@+id/noTitleTV"
-                tools:text="21000007" />
-
-            <TextView
-                android:id="@+id/requestDateTitleTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/myriad_bold"
-                android:gravity="center|left"
-                android:text="@string/request_date_title"
-                android:textColor="@color/blue_dark"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@+id/noTitleTV"
-                app:layout_constraintTop_toBottomOf="@+id/clientTV"
-                tools:text="Fecha \nUbicacion" />
-
-            <TextView
-                android:id="@+id/requestDateTV"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                android:layout_marginStart="4dp"
                 android:layout_marginEnd="16dp"
+                android:ellipsize="end"
                 android:fontFamily="@font/myriad_regular"
-                android:text='@{datosPedido.date.substring(0,10)}'
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/processedDateTitlePriceTV"
-                app:layout_constraintStart_toStartOf="@+id/requestDateTitleTV"
-                app:layout_constraintTop_toBottomOf="@id/requestDateTitleTV"
-                tools:text="2022-04-04" />
+                android:maxLines="3"
 
-            <TextView
-                android:id="@+id/processedDateTitlePriceTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:fontFamily="@font/myriad_bold"
-                android:gravity="center|left"
-                android:text="@string/processed_date_title"
-                android:textColor="@color/blue_dark"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/requestDateTitleTV"
-                app:layout_constraintStart_toEndOf="@+id/requestDateTitleTV"
-                app:layout_constraintTop_toTopOf="@+id/requestDateTitleTV" />
-
-            <TextView
-                android:id="@+id/processedDatePriceTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:fontFamily="@font/myriad_regular"
-                android:text='@{datosPedido.secondDate.substring(0,10)}'
+                android:text='@{datosPedido.number}'
                 android:textColor="@color/black"
-                android:textSize="14sp"
-                app:layout_constraintTop_toBottomOf="@id/processedDateTitlePriceTV"
-                app:layout_constraintStart_toStartOf="@id/processedDateTitlePriceTV"
-                tools:layout_editor_absoluteX="96dp"
-                tools:text="2022-04-05" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/noTitleTV"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.16000003"
+                tools:text="21000007" />
+
+
+            <LinearLayout
+                android:id="@+id/requestDateLL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintEnd_toStartOf="@id/viewSeparetorV"
+                app:layout_constraintStart_toStartOf="@+id/noTitleTV"
+                app:layout_constraintTop_toBottomOf="@+id/clientTV">
+
+                <TextView
+                    android:id="@+id/requestDateTitleTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/myriad_bold"
+                    android:gravity="center"
+                    android:text="@string/request_date_title"
+                    android:textColor="@color/blue_dark"
+                    android:textSize="12sp"
+
+                    tools:text="Fecha \nUbicacion" />
+
+                <TextView
+                    android:id="@+id/requestDateTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:fontFamily="@font/myriad_regular"
+                    android:text='@{datosPedido.date.substring(0,10)}'
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    tools:text="2022-04-04" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/viewSeparetorV"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/gris_light2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/requestDateLL"
+                app:layout_constraintEnd_toStartOf="@id/processedDateTitlePriceLL"
+                app:layout_constraintTop_toTopOf="@+id/requestDateLL" />
+
+            <LinearLayout
+                android:id="@+id/processedDateTitlePriceLL"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:layout_marginStart="16dp"
+                app:layout_constraintStart_toEndOf="@+id/viewSeparetorV"
+                app:layout_constraintTop_toTopOf="@id/requestDateLL">
+
+                <TextView
+                    android:id="@+id/processedDateTitlePriceTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/myriad_bold"
+                    android:gravity="center"
+                    android:text="@string/processed_date_title"
+                    android:textColor="@color/blue_dark"
+                    android:textSize="12sp"
+                    />
+
+                <TextView
+                    android:id="@+id/processedDatePriceTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/myriad_regular"
+                    android:text='@{datosPedido.secondDate.substring(0,10)}'
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    tools:text="2022-04-05" />
+
+            </LinearLayout>
+
 
            <!-- <TextView
                 android:id="@+id/clientTitleTV"
@@ -120,15 +157,18 @@
 
             <TextView
                 android:id="@+id/clientTV"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="4dp"
                 android:fontFamily="@font/myriad_regular"
                 android:text='@{datosPedido.client}'
                 android:textColor="@color/black"
                 android:textSize="14sp"
+                android:maxLines="3"
+                android:ellipsize="end"
+                app:layout_constraintEnd_toEndOf="@id/noTV"
                 app:layout_constraintStart_toStartOf="@id/noTitleTV"
-                app:layout_constraintTop_toBottomOf="@id/noTV"
+                app:layout_constraintTop_toBottomOf="@id/noTitleTV"
                 tools:text="pedro" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

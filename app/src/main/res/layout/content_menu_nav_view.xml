@@ -36,10 +36,11 @@
 
         <LinearLayout
             android:id="@+id/headerNavViewLL"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:gravity="left"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,9 +49,8 @@
 
             <ImageView
                 android:id="@+id/fotoHeaderIV"
-                android:layout_width="50dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 app:srcCompat="@drawable/ic_user_svgrepo_com" />
 
             <LinearLayout
@@ -100,6 +100,7 @@
             android:layout_marginBottom="1dp"
             android:adapter='@{adapter}'
             android:clickable="false"
+            android:paddingEnd="50dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/logoutItemLayout"
             app:layout_constraintEnd_toEndOf="parent"
