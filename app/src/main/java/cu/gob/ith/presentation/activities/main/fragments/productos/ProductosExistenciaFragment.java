@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.motion.widget.MotionLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -27,8 +28,8 @@ import cu.gob.ith.presentation.activities.main.fragments.productos.existencia.re
 import cu.gob.ith.presentation.activities.main.fragments.productos.existencia.viewmodel.ProductosExistenciaViewModel;
 import cu.gob.ith.presentation.activities.main.ui.viewmodel.MainActivityViewModel;
 import dagger.hilt.android.AndroidEntryPoint;
-import io.reactivex.Observable;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Observable;
 
 @AndroidEntryPoint
 public class ProductosExistenciaFragment extends Fragment implements ItemCategoriaClick {
@@ -102,15 +103,29 @@ public class ProductosExistenciaFragment extends Fragment implements ItemCategor
                 })
                 .debounce(3,TimeUnit.SECONDS)
                 .distinctUntilChanged()
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        text -> Log.e("Texto", "Texto " + text),
+                        text -> {
+                            Log.e("Texto", "Texto " + text);
+                            uiBind.listCategoriaLayout.getRoot().setVisibility(View.GONE);
+                            initTransitionSearch();
+                        },
                         throwable -> Log.e("Error","error " + throwable.getMessage())
                 );
     }
 
+
+    private void initTransitionSearch(){
+        uiBind.listProductosByCategoriaLayout.productosTitleTV.setVisibility(View.GONE);
+        uiBind.listProductosByCategoriaLayout.arrowMoreIV.setVisibility(View.GONE);
+        uiBind.contentMenuCL.transitionToState(R.id.opcionSearch);
+    }
+
+
     private void enabledFilter(boolean enabled) {
         uiBind.filterLayout.disponibilidadCB.setEnabled(enabled);
         uiBind.filterLayout.existenciaCB.setEnabled(enabled);
+       // uiBind.buscarProductSV.setEnabled(enabled);
     }
 
     private void listenerMotionLayoutListProducts() {

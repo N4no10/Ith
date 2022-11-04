@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white_2"
-        app:layoutDescription="@xml/fragment_menu_xml_contentmenucl_scene">
+        app:layoutDescription="@xml/fragment_nuevo_pedido">
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/buscarProductSV"

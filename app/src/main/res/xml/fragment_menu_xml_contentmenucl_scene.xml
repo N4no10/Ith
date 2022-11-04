@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<MotionScene 
+<MotionScene
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:motion="http://schemas.android.com/apk/res-auto">
 
@@ -55,4 +55,35 @@
             motion:layout_constraintStart_toStartOf="@+id/buscarProductSV"
             motion:layout_constraintTop_toTopOf="parent" />
     </ConstraintSet>
+
+    <Transition
+        motion:constraintSetEnd="@+id/opcion2"
+        motion:constraintSetStart="@id/start"
+        motion:duration="250"
+        android:id="@+id/transitionSearch"/>
+
+    <ConstraintSet android:id="@+id/opcionSearch">
+        <Constraint
+            android:id="@+id/listCategoriaLayout"
+            motion:layout_constraintEnd_toEndOf="@id/buscarProductSV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            motion:layout_constraintTop_toBottomOf="@id/filterLayout"
+            motion:layout_constraintStart_toStartOf="@+id/buscarProductSV"
+            android:layout_marginTop="16dp"
+            android:alpha="0.0" />
+
+        <Constraint
+            android:id="@+id/listProductosByCategoriaLayout"
+            motion:layout_constraintEnd_toEndOf="@id/listCategoriaLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintStart_toStartOf="@id/listCategoriaLayout"
+            motion:layout_constraintTop_toBottomOf="@id/filterLayout"
+           android:layout_marginTop="32dp"
+            />
+
+    </ConstraintSet>
+
 </MotionScene>
