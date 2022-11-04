@@ -97,6 +97,18 @@
     <string name="fecha_pedido">Fecha</string>
     <string name="cliente_pedido">Cliente</string>
 
+    //Detalle del Pedido
+    <string name="detalle_pedido_no_pedido">Número de Pedido:</string>
+    <string name="detalle_pedido_proveedor_empresa">Proveedor:</string>
+    <string name="detalle_pedido_palco">PALCO</string>
+    <string name="detalle_pedido_codigo">Código:</string>
+    <string name="detalle_pedido_direccion">Dirección:</string>
+    <string name="detalle_pedido_cliente">CLIENTE</string>
+    <string name="detalle_pedido_cuenta">Cuenta Bancaria:</string>
+    <string name="detalle_pedido_sucursal">Sucursal:</string>
+    <string name="detalle_pedido_importe_total">IMPORTE TOTAL </string>
+
+
     //Mis Pedidos Opc1
     <string name="detalle_pedido">Detalle del Pedido</string>
     <string name="pedidos_opc1">Pedidos:</string>

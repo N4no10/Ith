@@ -60,7 +60,13 @@ public class ImplRepository implements Repository {
 
     @Override
     public Observable<List<ApiProducto>> getProductos(URLEnum urlEnum, String codFamilia) {
-        return dataSourceRemote.getProductos(urlEnum,codFamilia)
+        return dataSourceRemote.getProductos(urlEnum, codFamilia)
+                .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Observable<List<ApiProducto>> searchProductos(URLEnum urlEnum, Map<String, String> filter) {
+        return dataSourceRemote.searchProductos(urlEnum, filter)
                 .subscribeOn(Schedulers.io());
     }
 

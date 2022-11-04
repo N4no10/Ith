@@ -67,13 +67,13 @@ public class InformePedidoPDFGenerator {
     }
 
     public String providePathPDF(String nombrePdf) {
-        File carpeta = new File(Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_DOWNLOADS, "ITH");
+        File carpeta = new File(Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_DOWNLOADS, "MisPedidos");
         if (!carpeta.exists()) {
             carpeta.mkdir();
-            carpeta = new File(Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_DOWNLOADS + "/ITH", "Documentos");
+            carpeta = new File(Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_DOWNLOADS + "/MisPedidos", "Documentos");
             carpeta.mkdir();
         }
-        return Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_DOWNLOADS + File.separator + "ITH/Documentos/" + nombrePdf + ".pdf";
+        return Environment.getExternalStorageDirectory() + "/" + Environment.DIRECTORY_DOWNLOADS + File.separator + "MisPedidos/Documentos/" + nombrePdf + ".pdf";
     }
 
 

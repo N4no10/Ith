@@ -28,6 +28,8 @@ public interface DataSourceApi {
 
     Observable<List<ApiProducto>> getProductos(URLEnum urlEnum, String codFamilia);
 
+    Observable<List<ApiProducto>> searchProductos(URLEnum urlEnum, Map<String,String> filter);
+
     Observable<ApiPedidoResponse> requestOrder(List<ApiPedido> apiPedidoList);
 
     Observable<ApiListPedidos> filterListPedidos(Map<String, Object> params);

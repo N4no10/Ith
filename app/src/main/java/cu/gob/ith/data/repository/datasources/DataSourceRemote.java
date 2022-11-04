@@ -54,6 +54,12 @@ public class DataSourceRemote implements DataSourceApi {
     }
 
     @Override
+    public Observable<List<ApiProducto>> searchProductos(URLEnum urlEnum, Map<String, String> filter) {
+        return api.searchProductos( urlEnum == URLEnum.PRODUCTOS_CON_EXISTENCIA_SEARCH ?
+                Api.urlSearchProductosConExistencia : Api.urlSearchProductos, filter);
+    }
+
+    @Override
     public Observable<ApiPedidoResponse> requestOrder(List<ApiPedido> apiPedidoList) {
         return api.requestOrder(apiPedidoList);
     }

@@ -2,6 +2,7 @@ package cu.gob.ith.presentation.activities.main.fragments.productos.existencia.v
 
 import static cu.gob.ith.common.URLEnum.CATEGORIAS_CON_EXISTENCIA;
 import static cu.gob.ith.common.URLEnum.PRODUCTOS_CON_EXISTENCIA;
+import static cu.gob.ith.common.URLEnum.PRODUCTOS_CON_EXISTENCIA_SEARCH;
 
 import androidx.lifecycle.ViewModel;
 
@@ -13,6 +14,7 @@ import javax.inject.Inject;
 
 import cu.gob.ith.domain.interactors.GetCategoriasUseCase;
 import cu.gob.ith.domain.interactors.GetProductosPorCategoriaUseCase;
+import cu.gob.ith.domain.interactors.SearchProductosUseCase;
 import cu.gob.ith.domain.model.Categoria;
 import cu.gob.ith.domain.model.Producto;
 import dagger.hilt.android.lifecycle.HiltViewModel;
@@ -25,15 +27,19 @@ public class ProductosExistenciaViewModel extends ViewModel {
     private boolean isLoadedData;
     private final GetCategoriasUseCase getCategoriasUseCase;
     private final GetProductosPorCategoriaUseCase getProductosPorCategoriaUseCase;
+    private final SearchProductosUseCase searchProductosUseCase;
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
     private boolean disponibles;
     private boolean existencia;
     private String currentCodFamilia;
 
     @Inject
-    public ProductosExistenciaViewModel(GetCategoriasUseCase getCategoriasUseCase, GetProductosPorCategoriaUseCase getProductosPorCategoriaUseCase) {
+    public ProductosExistenciaViewModel(GetCategoriasUseCase getCategoriasUseCase,
+                                        GetProductosPorCategoriaUseCase getProductosPorCategoriaUseCase,
+                                        SearchProductosUseCase searchProductosUseCase) {
         this.getCategoriasUseCase = getCategoriasUseCase;
         this.getProductosPorCategoriaUseCase = getProductosPorCategoriaUseCase;
+        this.searchProductosUseCase = searchProductosUseCase;
     }
 
     public boolean isLoadedData() {
@@ -57,6 +63,19 @@ public class ProductosExistenciaViewModel extends ViewModel {
         params.put("url", PRODUCTOS_CON_EXISTENCIA);
         params.put("codFamilia", currentCodFamilia);
         return getProductosPorCategoriaUseCase.execute(params);
+    }
+
+    public Observable<List<Producto>> searchProductos(String descripcion, String codigo) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("url", PRODUCTOS_CON_EXISTENCIA_SEARCH);
+
+        if (descripcion != null)
+            params.put("descripcion", descripcion);
+
+        if (codigo != null)
+            params.put("codigo", codigo);
+
+        return searchProductosUseCase.execute(params);
     }
 
     public boolean isDisponibles() {

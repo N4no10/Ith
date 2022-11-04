@@ -8,11 +8,15 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
+import java.util.Timer;
+import java.util.concurrent.TimeUnit;
 
 import cu.gob.ith.R;
 import cu.gob.ith.databinding.FragmentProductosExistenciaBinding;
@@ -23,6 +27,7 @@ import cu.gob.ith.presentation.activities.main.fragments.productos.existencia.re
 import cu.gob.ith.presentation.activities.main.fragments.productos.existencia.viewmodel.ProductosExistenciaViewModel;
 import cu.gob.ith.presentation.activities.main.ui.viewmodel.MainActivityViewModel;
 import dagger.hilt.android.AndroidEntryPoint;
+import io.reactivex.Observable;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 
 @AndroidEntryPoint
@@ -64,10 +69,11 @@ public class ProductosExistenciaFragment extends Fragment implements ItemCategor
         iniFilter();
     }
 
-    private void iniFilter(){
+    private void iniFilter() {
+        searchEditText();
 
         uiBind.filterLayout.disponibilidadCB.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            Log.e("click","click Chaked");
+            Log.e("click", "click Chaked");
             viewModel.setDisponibles(isChecked);
             loadProductosByCategoria();
         });
@@ -78,7 +84,31 @@ public class ProductosExistenciaFragment extends Fragment implements ItemCategor
         });
     }
 
-    private void enabledFilter(boolean enabled){
+    private void searchEditText() {
+        Observable.create((emitter) -> {
+                    Log.e("Emitter", "Emitter");
+                    uiBind.buscarProductSV.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                        @Override
+                        public boolean onQueryTextSubmit(String query) {
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onQueryTextChange(String newText) {
+                            emitter.onNext(newText);
+                            return false;
+                        }
+                    });
+                })
+                .debounce(3,TimeUnit.SECONDS)
+                .distinctUntilChanged()
+                .subscribe(
+                        text -> Log.e("Texto", "Texto " + text),
+                        throwable -> Log.e("Error","error " + throwable.getMessage())
+                );
+    }
+
+    private void enabledFilter(boolean enabled) {
         uiBind.filterLayout.disponibilidadCB.setEnabled(enabled);
         uiBind.filterLayout.existenciaCB.setEnabled(enabled);
     }
@@ -152,20 +182,20 @@ public class ProductosExistenciaFragment extends Fragment implements ItemCategor
                 .flatMapIterable(productos -> productos)
                 .filter(producto -> {
                     if (viewModel.isDisponibles()) {
-                        Log.e("Disponibles","Disponibles");
+                        Log.e("Disponibles", "Disponibles");
                         if (viewModel.isExistencia()) {
-                            Log.e("Disponibles Existencia","Disponibles y Existentes");
+                            Log.e("Disponibles Existencia", "Disponibles y Existentes");
 
                             return producto.getDisponibilidadProducto() > 0.0 && producto.getCantProducto() > 0.0;
                         }
                         return producto.getDisponibilidadProducto() > 0.0;
                     } else {
                         if (viewModel.isExistencia()) {
-                            Log.e("N0 Disponibles Exist","No Disponibles y Existentes");
+                            Log.e("N0 Disponibles Exist", "No Disponibles y Existentes");
                             return producto.getCantProducto() > 0.0;
                         }
 
-                        Log.e("N0 Disponibles No Exis","No Disponibles y No existentes");
+                        Log.e("N0 Disponibles No Exis", "No Disponibles y No existentes");
 
                         return true;
                     }

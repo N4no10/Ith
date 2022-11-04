@@ -35,6 +35,8 @@ public interface Api {
 
     String urlProductos = "categoria/productos";
     String urlProductosConExistencia = "categoria/productos/existenciasProductosPorFamilia";
+    String urlSearchProductosConExistencia = "categoria/productos/buscarProductoConLaExistencia";
+    String urlSearchProductos = "categoria/productos/buscarProducto";
 
     String urlAllPedidosDesapachados = "pedido/findAllPedidosDespachados";
     String urlPedidosDesapachadosConFaltantes = "pedido/pedidosDesapachadosConFaltantes";
@@ -54,6 +56,9 @@ public interface Api {
 
     @GET
     Observable<List<ApiProducto>> getProductos(@Url String url, @Query("CodFamilia") String codFamilia);
+
+    @GET
+    Observable<List<ApiProducto>> searchProductos(@Url String url, @QueryMap Map<String,String> filtro);
 
     @GET("pedido/cantidadASolicitarPorProductosNoEntregados")
     Observable<ApiListProductos> getProductosByDocument(@Query("numero") int numeroPedido);
