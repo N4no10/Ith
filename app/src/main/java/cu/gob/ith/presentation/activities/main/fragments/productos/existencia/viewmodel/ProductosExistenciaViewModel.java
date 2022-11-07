@@ -4,6 +4,8 @@ import static cu.gob.ith.common.URLEnum.CATEGORIAS_CON_EXISTENCIA;
 import static cu.gob.ith.common.URLEnum.PRODUCTOS_CON_EXISTENCIA;
 import static cu.gob.ith.common.URLEnum.PRODUCTOS_CON_EXISTENCIA_SEARCH;
 
+import android.util.Log;
+
 import androidx.lifecycle.ViewModel;
 
 import java.util.HashMap;
@@ -19,8 +21,10 @@ import cu.gob.ith.domain.model.Categoria;
 import cu.gob.ith.domain.model.Producto;
 import dagger.hilt.android.lifecycle.HiltViewModel;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.disposables.SerialDisposable;
 
 @HiltViewModel
 public class ProductosExistenciaViewModel extends ViewModel {
@@ -32,6 +36,8 @@ public class ProductosExistenciaViewModel extends ViewModel {
     private boolean disponibles;
     private boolean existencia;
     private String currentCodFamilia;
+
+    private SerialDisposable serialDisposable = new SerialDisposable();
 
     @Inject
     public ProductosExistenciaViewModel(GetCategoriasUseCase getCategoriasUseCase,
@@ -55,7 +61,24 @@ public class ProductosExistenciaViewModel extends ViewModel {
     }
 
     public void addCompositeDisposable(Disposable disposable) {
+        /*if(compositeDisposable.size() > 2) {
+            Log.e("composite","composite > 2");
+            compositeDisposable.clear();
+        }*/
+        compositeDisposable.clear();
         compositeDisposable.add(disposable);
+    }
+
+    public void setSerialDisposable(Disposable disposable){
+        serialDisposable.set(disposable);
+    }
+
+    public CompositeDisposable getCompositeDisposable() {
+        return compositeDisposable;
+    }
+
+    public CompositeDisposable getSerialCompositeDisposable() {
+        return compositeDisposable;
     }
 
     public Observable<List<Producto>> getGetProductosPorCategoriaUseCase() {
@@ -75,7 +98,11 @@ public class ProductosExistenciaViewModel extends ViewModel {
         if (codigo != null)
             params.put("codigo", codigo);
 
-        return searchProductosUseCase.execute(params);
+        return searchProductosUseCase.execute(params)
+                .flatMapIterable(productos -> productos)
+                .filter(this::filterDisponibilidadExistencia)
+                .toList()
+                .toObservable();
     }
 
     public boolean isDisponibles() {
@@ -102,11 +129,29 @@ public class ProductosExistenciaViewModel extends ViewModel {
         this.currentCodFamilia = currentCodFamilia;
     }
 
+    public boolean filterDisponibilidadExistencia(Producto producto) {
+        if (isDisponibles()) {
+            if (isExistencia()) {
+              //  Log.e("Disponibles Existencia", "Disponibles y Existentes");
+                return producto.getDisponibilidadProducto() > 0.0 && producto.getCantProducto() > 0.0;
+            }
+            return producto.getDisponibilidadProducto() > 0.0;
+        } else {
+            if (isExistencia()) {
+               // Log.e("N0 Disponibles Exist", "No Disponibles y Existentes " + producto.getCantProducto());
+                return producto.getCantProducto() > 0.0;
+            }
+
+          //  Log.e("N0 Disponibles No Exis", "No Disponibles y No existentes");
+
+            return true;
+        }
+    }
+
     @Override
     protected void onCleared() {
         super.onCleared();
 
-        if (compositeDisposable.isDisposed())
-            compositeDisposable.dispose();
+
     }
 }

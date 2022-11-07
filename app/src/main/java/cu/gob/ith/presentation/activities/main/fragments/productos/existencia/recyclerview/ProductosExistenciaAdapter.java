@@ -51,4 +51,20 @@ public class ProductosExistenciaAdapter extends RecyclerView.Adapter<ItemProduct
         super.setHasStableIds(true);
     }
 
+    public void addNewListProductos(List<Producto> productos){
+        if(this.productoList != null && !this.productoList.isEmpty())
+            this.productoList.clear();
+        this.productoList.addAll(productos);
+    }
+
+    public void clearListProductos(){
+        if(this.productoList != null && !this.productoList.isEmpty())
+           this.productoList.clear();
+
+        notifyDataSetChanged();
+    }
+
+    public List<Producto> getProductoList() {
+        return productoList;
+    }
 }

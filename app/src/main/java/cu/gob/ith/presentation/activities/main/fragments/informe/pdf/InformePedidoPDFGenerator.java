@@ -2,6 +2,7 @@ package cu.gob.ith.presentation.activities.main.fragments.informe.pdf;
 
 import android.content.Context;
 import android.os.Environment;
+import android.util.Log;
 
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
@@ -115,47 +116,47 @@ public class InformePedidoPDFGenerator {
 
     private void addCliente(DatosPedido datosPedido, Table table) {
         table.addCell(new Cell(0, 2).add(paragraphTitleAndContent(
-                context.getString(R.string.cliente_pdf), datosPedido.getClient()))
+                context.getString(R.string.cliente_pdf), datosPedido.getClient() != null ? datosPedido.getClient() : ""))
                 .setBorderBottom(Border.NO_BORDER).setTextAlignment(TextAlignment.LEFT));
 
         table.addCell(new Cell(0, 2).add(paragraphTitleAndContent(
-                context.getString(R.string.direccion_pdf), datosPedido.getAddress()))
+                context.getString(R.string.direccion_pdf), datosPedido.getAddress() != null ? datosPedido.getAddress() : ""))
                 .setBorderBottom(Border.NO_BORDER).setBorderTop(Border.NO_BORDER).setTextAlignment(TextAlignment.LEFT));
 
         if (datosPedido.getTipoCliente().equals("2"))
             table.addCell(new Cell(0, 2).add(paragraphTitleAndContent(
-                    context.getString(R.string.negocio_pdf), datosPedido.getDescripcionTipoCliente()))
+                    context.getString(R.string.negocio_pdf), datosPedido.getDescripcionTipoCliente() != null ? datosPedido.getDescripcionTipoCliente() : ""))
                     .setBorderBottom(Border.NO_BORDER).setBorderTop(Border.NO_BORDER).setTextAlignment(TextAlignment.LEFT));
 
         table.addCell(new Cell(0, 2).add(paragraphTitleAndContent(
-                context.getString(R.string.cuenta_pdf), datosPedido.getBankAccount()))
+                context.getString(R.string.cuenta_pdf), datosPedido.getBankAccount() != null ? datosPedido.getBankAccount() : ""))
                 .setBorderBottom(Border.NO_BORDER).setBorderTop(Border.NO_BORDER).setTextAlignment(TextAlignment.LEFT));
 
         table.addCell(new Cell(0, 2).add(paragraphTitleAndContent(
-                context.getString(R.string.sucursal_pdf), datosPedido.getSucursal()))
+                context.getString(R.string.sucursal_pdf), datosPedido.getSucursal() != null ? datosPedido.getSucursal() : ""))
                 .setBorderTop(Border.NO_BORDER).setTextAlignment(TextAlignment.LEFT));
     }
 
     private void addProveedor(DatosPedido datosPedido, Table table) {
         table.addCell(addCellSinBorde(new Cell(0, 2)
                 .add(paragraphTitleAndContent(context.getString(R.string.proveedor_pdf),
-                        datosPedido.getProvider()))
+                        datosPedido.getProvider() != null ? datosPedido.getProvider() : ""))
                 .setPaddingTop(16f)
                 .setTextAlignment(TextAlignment.LEFT)));
 
         table.addCell(addCellSinBorde(new Cell(0, 2)
                 .add(paragraphTitleAndContent(context.getString(R.string.direccion_pdf),
-                        datosPedido.getAddressITH()))
+                        datosPedido.getAddressITH() != null ? datosPedido.getAddressITH() : ""))
                 .setTextAlignment(TextAlignment.LEFT)));
 
         table.addCell(addCellSinBorde(new Cell(0, 2)
                 .add(paragraphTitleAndContent(context.getString(R.string.cuenta_pdf),
-                        datosPedido.getBankAccount()))
+                        datosPedido.getBankAccount() != null ? datosPedido.getBankAccount() : ""))
                 .setTextAlignment(TextAlignment.LEFT)));
 
         table.addCell(addCellSinBorde(new Cell(0, 2)
                 .add(paragraphTitleAndContent(context.getString(R.string.sucursal_pdf),
-                        datosPedido.getSucursal()))
+                        datosPedido.getSucursal() != null ? datosPedido.getSucursal() : ""))
                 .setTextAlignment(TextAlignment.LEFT)));
     }
 

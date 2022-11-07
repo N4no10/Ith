@@ -1,88 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<MotionScene
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:motion="http://schemas.android.com/apk/res-auto">
 
     <Transition
+        android:id="@+id/transitionListProductos"
         motion:constraintSetEnd="@+id/opcion2"
         motion:constraintSetStart="@id/start"
-        motion:duration="250"
-        android:id="@+id/transitionListProductos">
-       <KeyFrameSet>
-       </KeyFrameSet>
-        <OnClick motion:targetId="@id/arrowMoreIV"
-            motion:clickAction="toggle" />
+        motion:duration="250">
+        <KeyFrameSet></KeyFrameSet>
+        <OnClick
+            motion:clickAction="toggle"
+            motion:targetId="@id/arrowMoreIV" />
     </Transition>
 
-    <ConstraintSet android:id="@+id/start">
-    </ConstraintSet>
+    <ConstraintSet android:id="@+id/start"></ConstraintSet>
 
     <ConstraintSet android:id="@+id/opcion2">
         <Constraint
             android:id="@+id/listProductosByCategoriaLayout"
-            motion:layout_constraintEnd_toEndOf="@id/listCategoriaLayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            motion:layout_constraintBottom_toBottomOf="parent"
-            motion:layout_constraintStart_toStartOf="@id/listCategoriaLayout"
-            motion:layout_constraintTop_toBottomOf="@id/filterLayout"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-           />
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="@id/listCategoriaLayout"
+            motion:layout_constraintStart_toStartOf="@id/listCategoriaLayout"
+            motion:layout_constraintTop_toBottomOf="@id/filterLayout" />
         <Constraint
             android:id="@+id/buscarProductSV"
-            motion:layout_constraintEnd_toEndOf="parent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            motion:layout_constraintTop_toTopOf="parent"
+            android:alpha="0.0"
+            motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
-            android:alpha="0.0" />
+            motion:layout_constraintTop_toTopOf="parent" />
         <Constraint
             android:id="@+id/listCategoriaLayout"
-            motion:layout_constraintEnd_toEndOf="@id/buscarProductSV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@id/filterLayout"
+            android:layout_marginTop="8dp"
+            android:alpha="0.0"
+            motion:layout_constraintEnd_toEndOf="@id/buscarProductSV"
             motion:layout_constraintStart_toStartOf="@+id/buscarProductSV"
-            android:layout_marginTop="16dp"
-            android:alpha="0.0" />
+            motion:layout_constraintTop_toBottomOf="@id/filterLayout" />
         <Constraint
             android:id="@+id/filterLayout"
-            motion:layout_constraintEnd_toEndOf="@id/buscarProductSV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            motion:layout_constraintEnd_toEndOf="@id/buscarProductSV"
             motion:layout_constraintStart_toStartOf="@+id/buscarProductSV"
             motion:layout_constraintTop_toTopOf="parent" />
     </ConstraintSet>
 
     <Transition
-        motion:constraintSetEnd="@+id/opcion2"
+        android:id="@+id/transitionSearch"
+        motion:constraintSetEnd="@+id/opcionSearch"
         motion:constraintSetStart="@id/start"
-        motion:duration="250"
-        android:id="@+id/transitionSearch"/>
+        motion:duration="250" />
 
     <ConstraintSet android:id="@+id/opcionSearch">
         <Constraint
             android:id="@+id/listCategoriaLayout"
-            motion:layout_constraintEnd_toEndOf="@id/buscarProductSV"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            motion:layout_constraintTop_toBottomOf="@id/filterLayout"
+            android:alpha="0.0"
+            motion:layout_constraintEnd_toEndOf="@id/buscarProductSV"
             motion:layout_constraintStart_toStartOf="@+id/buscarProductSV"
-            android:layout_marginTop="16dp"
-            android:alpha="0.0" />
+            motion:layout_constraintTop_toBottomOf="@id/filterLayout" />
 
         <Constraint
             android:id="@+id/listProductosByCategoriaLayout"
-            motion:layout_constraintEnd_toEndOf="@id/listCategoriaLayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="8dp"
             motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="@id/listCategoriaLayout"
             motion:layout_constraintStart_toStartOf="@id/listCategoriaLayout"
-            motion:layout_constraintTop_toBottomOf="@id/filterLayout"
-           android:layout_marginTop="32dp"
-            />
+            motion:layout_constraintTop_toBottomOf="@id/filterLayout" />
 
     </ConstraintSet>
 

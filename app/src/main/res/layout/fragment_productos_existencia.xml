@@ -48,7 +48,7 @@
             layout="@layout/list_categoria"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="@id/buscarProductSV"
             app:layout_constraintStart_toStartOf="@+id/buscarProductSV"
             app:layout_constraintTop_toBottomOf="@+id/filterLayout" />
@@ -58,7 +58,7 @@
             layout="@layout/list_productos"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/listCategoriaLayout"
             app:layout_constraintStart_toStartOf="@id/listCategoriaLayout"

@@ -117,10 +117,9 @@
                     android:id="@+id/disponibleTitleTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ellipsize="end"
                     android:fontFamily="@font/myriad_bold"
                     android:gravity="center"
-                    android:maxLines="1"
+                    tools:text="Disponibilidad"
                     android:text="@string/productos_disponible"
                     android:textColor="@color/blue_dark"
                     android:textSize="11sp" />
@@ -154,11 +153,10 @@
                     android:id="@+id/existenciaTitleTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ellipsize="end"
                     android:fontFamily="@font/myriad_bold"
                     android:gravity="center"
-                    android:maxLines="1"
                     android:text="@string/productos_existencia"
+                    tools:text="Existencia"
                     android:textColor="@color/blue_dark"
                     android:textSize="11sp" />
 

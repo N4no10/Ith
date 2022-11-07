@@ -10,18 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.motion.widget.MotionLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import java.util.Timer;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import cu.gob.ith.R;
 import cu.gob.ith.databinding.FragmentProductosExistenciaBinding;
 import cu.gob.ith.domain.model.Categoria;
+import cu.gob.ith.domain.model.Producto;
 import cu.gob.ith.presentation.activities.main.fragments.menu.recyclerview.categorias.CategoriasAdapter;
 import cu.gob.ith.presentation.activities.main.fragments.menu.recyclerview.categorias.ItemCategoriaClick;
 import cu.gob.ith.presentation.activities.main.fragments.productos.existencia.recyclerview.ProductosExistenciaAdapter;
@@ -30,6 +30,7 @@ import cu.gob.ith.presentation.activities.main.ui.viewmodel.MainActivityViewMode
 import dagger.hilt.android.AndroidEntryPoint;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.core.ObservableOnSubscribe;
 
 @AndroidEntryPoint
 public class ProductosExistenciaFragment extends Fragment implements ItemCategoriaClick {
@@ -38,6 +39,7 @@ public class ProductosExistenciaFragment extends Fragment implements ItemCategor
     private ProductosExistenciaViewModel viewModel;
     private MainActivityViewModel mainActivityViewModel;
     private ProductosExistenciaAdapter productosAdapter;
+    private CategoriasAdapter categoriasAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -76,56 +78,85 @@ public class ProductosExistenciaFragment extends Fragment implements ItemCategor
         uiBind.filterLayout.disponibilidadCB.setOnCheckedChangeListener((buttonView, isChecked) -> {
             Log.e("click", "click Chaked");
             viewModel.setDisponibles(isChecked);
-            loadProductosByCategoria();
+            filterListProductos();
+            //  loadProductosByCategoria();
         });
 
         uiBind.filterLayout.existenciaCB.setOnCheckedChangeListener((buttonView, isChecked) -> {
             viewModel.setExistencia(isChecked);
-            loadProductosByCategoria();
+            filterListProductos();
+            // loadProductosByCategoria();
         });
     }
 
     private void searchEditText() {
-        Observable.create((emitter) -> {
-                    Log.e("Emitter", "Emitter");
-                    uiBind.buscarProductSV.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                        @Override
-                        public boolean onQueryTextSubmit(String query) {
-                            return false;
-                        }
+        // viewModel.addCompositeDisposable(
+        viewModel.setSerialDisposable(
+                Observable.create((ObservableOnSubscribe<String>) emitter -> {
+                            Log.e("Emitter", "Emitter");
+                            uiBind.buscarProductSV.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                                @Override
+                                public boolean onQueryTextSubmit(String query) {
+                                    return false;
+                                }
 
-                        @Override
-                        public boolean onQueryTextChange(String newText) {
-                            emitter.onNext(newText);
-                            return false;
-                        }
-                    });
-                })
-                .debounce(3,TimeUnit.SECONDS)
-                .distinctUntilChanged()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        text -> {
-                            Log.e("Texto", "Texto " + text);
-                            uiBind.listCategoriaLayout.getRoot().setVisibility(View.GONE);
-                            initTransitionSearch();
-                        },
-                        throwable -> Log.e("Error","error " + throwable.getMessage())
-                );
+                                @Override
+                                public boolean onQueryTextChange(String newText) {
+                                    emitter.onNext(newText);
+                                    return false;
+                                }
+                            });
+                        })
+                        .debounce(2, TimeUnit.SECONDS)
+                        .distinctUntilChanged()
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .filter(text -> {
+                            boolean result = !(text.equals("") || text.equals(" "));
+                            showTransitionListProductosSearch(result);
+                            return result;
+                        })
+                        .concatMap(text -> {
+                            Log.e("concatMap", "concatMap " + text + " > Hilo: " + Thread.currentThread());
+                            return viewModel.searchProductos(text, null);
+                        })
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(
+                                productos -> {
+                                    Log.e("onNext", "next " + productos.size());
+                                    initAdapterProductos(productos);
+                                },
+                                throwable -> Log.e("Error", "error " + throwable.getMessage())
+                        )
+        );
+
+        // );
+
     }
 
 
-    private void initTransitionSearch(){
-        uiBind.listProductosByCategoriaLayout.productosTitleTV.setVisibility(View.GONE);
-        uiBind.listProductosByCategoriaLayout.arrowMoreIV.setVisibility(View.GONE);
-        uiBind.contentMenuCL.transitionToState(R.id.opcionSearch);
+    private void showTransitionListProductosSearch(boolean show) {
+        if (productosAdapter != null)
+            productosAdapter.clearListProductos();
+
+        if (categoriasAdapter != null)
+            categoriasAdapter.clearCategoriaSelected();
+
+        if (show) {
+            uiBind.listProductosByCategoriaLayout.productosTitleTV.setVisibility(View.GONE);
+            uiBind.listProductosByCategoriaLayout.arrowMoreIV.setVisibility(View.GONE);
+            uiBind.contentMenuCL.transitionToState(R.id.opcionSearch);
+        } else {
+            uiBind.listProductosByCategoriaLayout.productosTitleTV.setVisibility(View.VISIBLE);
+            uiBind.listProductosByCategoriaLayout.arrowMoreIV.setVisibility(View.VISIBLE);
+            uiBind.contentMenuCL.transitionToStart();
+        }
     }
 
 
     private void enabledFilter(boolean enabled) {
         uiBind.filterLayout.disponibilidadCB.setEnabled(enabled);
         uiBind.filterLayout.existenciaCB.setEnabled(enabled);
-       // uiBind.buscarProductSV.setEnabled(enabled);
+        // uiBind.buscarProductSV.setEnabled(enabled);
     }
 
     private void listenerMotionLayoutListProducts() {
@@ -167,14 +198,8 @@ public class ProductosExistenciaFragment extends Fragment implements ItemCategor
                 viewModel.getGetCategoriasUseCase()
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(categorias -> {
-                            CategoriasAdapter categoriasAdapter = new CategoriasAdapter(categorias);
-                            categoriasAdapter.setItemCategoriaClick(this);
                             viewModel.setLoadedData(true);
-                            uiBind.listCategoriaLayout.setAdapter(categoriasAdapter);
-                            uiBind.listCategoriaLayout.listCategoriaRV.setLayoutManager(
-                                    new LinearLayoutManager(getContext(),
-                                            LinearLayoutManager.HORIZONTAL,
-                                            false));
+                            initAdapterCategoria(categorias);
                             enabledFilter(true);
                             Log.e("Load All", "success");
                         }, throwable -> {
@@ -193,38 +218,71 @@ public class ProductosExistenciaFragment extends Fragment implements ItemCategor
 
     private void loadProductosByCategoria() {
         enabledFilter(false);
-        viewModel.addCompositeDisposable(viewModel.getGetProductosPorCategoriaUseCase()
-                .flatMapIterable(productos -> productos)
-                .filter(producto -> {
-                    if (viewModel.isDisponibles()) {
-                        Log.e("Disponibles", "Disponibles");
-                        if (viewModel.isExistencia()) {
-                            Log.e("Disponibles Existencia", "Disponibles y Existentes");
+        viewModel.addCompositeDisposable(
+                viewModel.getGetProductosPorCategoriaUseCase()
+                        .flatMapIterable(productos -> productos)
+                        .filter(producto -> viewModel.filterDisponibilidadExistencia(producto))
+                        .toList()
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(productos -> {
+                            Log.e("next productos", "productos");
+                            initAdapterProductos(productos);
+                            enabledFilter(true);
+                        }, throwable -> {
+                            Log.e("GetProductosXCategoria", "clickEvent: " + throwable.getMessage());
+                            enabledFilter(true);
+                        })
+        );
+    }
 
-                            return producto.getDisponibilidadProducto() > 0.0 && producto.getCantProducto() > 0.0;
-                        }
-                        return producto.getDisponibilidadProducto() > 0.0;
-                    } else {
-                        if (viewModel.isExistencia()) {
-                            Log.e("N0 Disponibles Exist", "No Disponibles y Existentes");
-                            return producto.getCantProducto() > 0.0;
-                        }
+    private void filterListProductos() {
+        if (!uiBind.buscarProductSV.getQuery().toString().equals("")) {
+            enabledFilter(false);
+            viewModel.addCompositeDisposable(
+                    viewModel.searchProductos("" + uiBind.buscarProductSV.getQuery(), null)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(
+                                    list -> {
+                                        enabledFilter(true);
+                                        initAdapterProductos(list);
+                                    },
+                                    e -> {
+                                        enabledFilter(true);
+                                        Log.e("error", "error");
+                                    }
+                            )
+            );
+        } else loadProductosByCategoria();
+    }
 
-                        Log.e("N0 Disponibles No Exis", "No Disponibles y No existentes");
+    public void initAdapterCategoria(List<Categoria> categoriaList) {
+        if (categoriasAdapter == null) {
+            categoriasAdapter = new CategoriasAdapter(categoriaList);
+            categoriasAdapter.setItemCategoriaClick(this);
+        } else categoriasAdapter.addNewListCategorias(categoriaList);
 
-                        return true;
-                    }
-                })
-                .toList()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(productos -> {
-                    productosAdapter = new ProductosExistenciaAdapter(productos);
-                    uiBind.listProductosByCategoriaLayout.setAdapter(productosAdapter);
-                    enabledFilter(true);
+        uiBind.listCategoriaLayout.listCategoriaRV.setLayoutManager(
+                new LinearLayoutManager(getContext(),
+                        LinearLayoutManager.HORIZONTAL,
+                        false));
+        uiBind.listCategoriaLayout.setAdapter(categoriasAdapter);
+    }
 
-                }, throwable -> {
-                    Log.e("GetProductosXCategoria", "clickEvent: " + throwable.getMessage());
-                    enabledFilter(true);
-                }));
+    public void initAdapterProductos(List<Producto> productoList) {
+        if (productosAdapter == null)
+            productosAdapter = new ProductosExistenciaAdapter(productoList);
+        else productosAdapter.addNewListProductos(productoList);
+
+        uiBind.listProductosByCategoriaLayout.setAdapter(productosAdapter);
+    }
+
+    @Override
+    public void onDestroyView() {
+        if (viewModel.getCompositeDisposable().isDisposed())
+            viewModel.getCompositeDisposable().dispose();
+
+        if (viewModel.getSerialCompositeDisposable().isDisposed())
+            viewModel.getSerialCompositeDisposable().isDisposed();
+        super.onDestroyView();
     }
 }

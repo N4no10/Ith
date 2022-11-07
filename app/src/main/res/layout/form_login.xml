@@ -56,7 +56,6 @@
                         android:fontFamily="@font/myriad_regular"
                         android:hint="@string/user_login"
                         android:inputType="text"
-                        android:text="pedro"
                         android:textColor="@color/blue_dark"
                         android:textColorHint="@color/gris"
                         android:textSize="14sp">
@@ -89,7 +88,6 @@
                         android:hint="@string/pass_login"
                         android:inputType="textPassword"
                         android:textColor="@color/blue_dark"
-                        android:text="12345"
                         android:textColorHint="@color/gris"
                         android:textSize="14sp">
 

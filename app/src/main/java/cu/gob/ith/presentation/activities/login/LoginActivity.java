@@ -1,15 +1,20 @@
 package cu.gob.ith.presentation.activities.login;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -18,6 +23,9 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.util.Objects;
 
 import javax.inject.Inject;
@@ -25,6 +33,7 @@ import javax.inject.Inject;
 import cu.gob.ith.R;
 import cu.gob.ith.common.Util;
 import cu.gob.ith.data.preferences.PreferenceConstants;
+import cu.gob.ith.data.preferences.UserAppPreferences;
 import cu.gob.ith.databinding.ActivityLoginBinding;
 import cu.gob.ith.databinding.OlvidoPassDialogBinding;
 import cu.gob.ith.domain.model.login.LoginBody;
@@ -37,6 +46,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.CompletableObserver;
+import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
@@ -48,6 +58,8 @@ public class LoginActivity extends AppCompatActivity {
     private AlertDialog alertDialog;
     private MyProgressDialog myProgressDialog;
 
+    @Inject
+    UserAppPreferences userAppPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +69,6 @@ public class LoginActivity extends AppCompatActivity {
         loginActivityViewModel = new ViewModelProvider(this).get(LoginActivityViewModel.class);
 
         initView();
-
     }
 
     private void initView() {
@@ -68,9 +79,27 @@ public class LoginActivity extends AppCompatActivity {
 
             LoginBody loginBody = new LoginBody(Objects.requireNonNull(uiBind.layoutFormLogin.userTextInputET.getText()).toString(),
                     Util.codificarTextBase64(Objects.requireNonNull(uiBind.layoutFormLogin.passTextInputET.getText()).toString()));
-            loginActivityViewModel.getLoginUseCase().execute(loginBody)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new CompletableObserver() {
+            //  Snackbar.make(v, "Datos Enviados: " + "\nuser:" + loginBody.getUsername() + "> pass" + loginBody.getPassword(), Snackbar.LENGTH_INDEFINITE).show();
+
+            loginActivityViewModel.getCompositeDisposable().add(
+                    loginActivityViewModel.getLoginUseCase().execute(loginBody)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(
+                                    () -> {
+                                        uiBind.layoutFormLogin.buttonLoginIB.revertAnimation();
+                                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                    },
+                                    throwable -> {
+                                        uiBind.layoutFormLogin.buttonLoginIB.revertAnimation();
+                                        Snackbar.make(uiBind.getRoot(),
+                                                !throwable.getMessage().contains("401") ?
+                                                        throwable.getMessage() :
+                                                        getString(R.string.unauthorized_401),
+                                                Snackbar.LENGTH_LONG).show();
+
+                                        Log.e("Error","error " + throwable.getMessage() + "  " + throwable.getMessage().contains("401"));
+                                    }
+                            /*new CompletableObserver() {
                         @Override
                         public void onSubscribe(@NonNull Disposable d) {
                             loginActivityViewModel.getCompositeDisposable().add(d);
@@ -89,15 +118,15 @@ public class LoginActivity extends AppCompatActivity {
                         public void onError(@NonNull Throwable e) {
                             uiBind.layoutFormLogin.buttonLoginIB.revertAnimation();
 
-                            Toast.makeText(uiBind.getRoot().getContext(), "Error login " + e.getMessage(), Toast.LENGTH_SHORT).show();
-
                             if (e.getMessage().contains("401"))
                                 Snackbar.make(uiBind.getRoot(),
                                         R.string.unauthorized_401,
                                         Snackbar.LENGTH_SHORT).show();
                             Log.e("TAG", "onError: " + e.getMessage());
                         }
-                    });
+                    }*/)
+            );
+
 
         });
 
@@ -178,17 +207,17 @@ public class LoginActivity extends AppCompatActivity {
                     public void onError(@NonNull Throwable e) {
                         clearDataAlertDialog();
                         myProgressDialog.dissmisProgress();
-                            Log.e("Error","error " + e.getMessage());
+                        Log.e("Error", "error " + e.getMessage());
 
-                            Snackbar.make(uiBind.getRoot(), e.getMessage().contains("401") ?
-                                            getString(R.string.unauthorized) : "Error " + e.getMessage(),
-                                    Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(uiBind.getRoot(), e.getMessage().contains("401") ?
+                                        getString(R.string.unauthorized) : "Error " + e.getMessage(),
+                                Snackbar.LENGTH_LONG).show();
                     }
                 });
     }
 
-    private void clearDataAlertDialog(){
-        ((TextInputEditText)alertDialog.getWindow().findViewById(R.id.ciTextInputET)).setText(null);
-        ((TextInputEditText)alertDialog.getWindow().findViewById(R.id.passNewTextInputET)).setText(null);
+    private void clearDataAlertDialog() {
+        ((TextInputEditText) alertDialog.getWindow().findViewById(R.id.ciTextInputET)).setText(null);
+        ((TextInputEditText) alertDialog.getWindow().findViewById(R.id.passNewTextInputET)).setText(null);
     }
 }
